@@ -1,0 +1,107 @@
+.upcomingEventStyle{
+    color: rgba(233, 236, 238, 0.939);
+    margin-left:4%;
+    padding:0px 24px 35px ;
+    font-weight: 600;
+    word-wrap: break-word;
+    font: Raleway;
+    font-size: 24px;
+    line-height: 28.18px;
+    width: 424px;
+    
+}
+.upcomingEventList {
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding:20px 24px;
+    font: Raleway;
+    font-size: 20px;
+    font-weight: 500;
+    background: #273144;
+    border: 1px solid #3D5A80;
+    border-radius: 8px;
+    width:450px;
+    height:120px;
+    margin:0px 10px 12px 20px;
+    cursor: pointer;
+      
+
+}
+.allEventsList{
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding:20px 24px;
+    font: Roboto Flex;
+    font-size: 16px;
+    font-weight: 500;
+    background: #384559;
+    border: 1px solid #3D5A80;
+    color:#FDF6FD;
+    width:669px;
+    height:120px;
+    margin:0px 10px 0px 20px;
+    cursor: pointer;
+
+}
+#dot{
+    margin:12px;
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    background-color: azure;
+}
+
+.allEvents{
+    display:flex;
+    margin-left: 2%;
+    padding:0px 10px 25px 24px;
+    font: Raleway;
+    font-size: 24px;
+    font-weight: 600;
+
+}
+.allEvents div:first-child{
+    width:70%;
+}
+
+.allEventsList >div:last-child{
+    display:flex;
+    padding-left:24px
+}
+.allEventsList >div:last-child >div:last-child{
+    display:flex;
+    padding-left:24px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+
+.upcomingEventList div:last-child > div:last-child{
+    display:flex;
+    font-size: 16px;
+    font-weight: 500;
+}
+.upcomingEventList >div:last-child{
+    padding-left:20px;
+
+}
+.allEventsList >div:last-child > div:first-child{
+   width:290px;
+}
+
+ img{
+    width:96px;
+    height:96px;
+    border:1px solid blue;
+    border-radius: 8px;
+}
+
+.allEventsList:nth-child(odd) {
+    background-color:#293241
+    
+}
+
+
+

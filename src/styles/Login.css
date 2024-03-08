@@ -1,0 +1,75 @@
+.welcomeDiv{
+margin-top: 104px;
+margin-left: 105px;
+gap: 40px;
+text-align: left;
+
+}
+.welcomeDiv p{
+font-size: 18px;
+font-weight: 500;
+line-height: 21px;
+letter-spacing: 0em;
+margin-top: 24px;
+/* text-align: left; */
+
+}
+
+.welcomeDiv #welComeDesc{
+/* font-family: ; */
+font-size: 14px;
+width: 300px;
+font-weight: 400;
+padding-top: 15px;
+border-top: 1px solid rgb(61, 90, 128);
+
+}
+.welcomeDiv img{
+  width: 60px;
+  height: 60px;
+  
+}
+.welcomeDiv h4{
+  /* font-family: ra; */
+font-size: 28px;
+font-weight: 700;
+/* line-height: 46px; */
+letter-spacing: 0.21em;
+/* text-align: left; */
+}
+.loginSection{
+  display: flex;
+  /* justify-content: space-between; */
+  height: 100vh;
+  /* border: 2px solid rgb(61, 90, 128); */
+}
+.vectorDiv svg{
+  width: 500px;
+  border: 1px solid white;
+}
+
+.loginLogoutBtn{
+  width: 300px;
+  height: 60px;
+  border: 1px solid rgb(61, 90, 128);  
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 100px 0 0 100px;
+}
+.loginLogoutBtn img{
+  width: 25px;
+  height: 25px;
+  margin-right: 30px;
+}
+.logInOutComp{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  /* border: 2px solid rgb(61, 90, 128); */
+  width: 100%;
+}

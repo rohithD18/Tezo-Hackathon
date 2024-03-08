@@ -1,0 +1,318 @@
+.navRegister{
+  width: 84%;
+  border-bottom: 1px solid rgb(61, 90, 128);
+  margin-left: 100px;
+  padding-top: 15px;
+}
+.aTag{
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+}
+.navThroughFormD{
+  padding: 20px 100px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+#h6Tag{
+  font-size: 18px;
+}
+.circles{
+  margin-top: 3px;
+}
+.circles #currentStep{
+  width: 28px;
+  height: 27px;
+  background-color: rgb(238, 108, 77);
+  color: white;
+  border-radius: 20px;
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  /* font-weight: bold; */
+  padding-top: 4px;
+}
+.circles #notReachedHr{
+  background-color:  rgb(207 207 207);
+  height: 40px;
+  width: 2px;
+  padding: 0;
+  margin: 0 14px;
+}
+.circles #currentHr{
+  /* position: relative; */
+  background-color:  rgb(252, 90, 21);
+  height: 40px;
+  width: 2px;
+  padding: 0;
+  margin: 0 14px;
+  /* transform: rotate(90deg); */
+}
+.navThrough{
+  display: flex;
+  margin-top: 30px;
+}
+.circles #notReached{
+  width: 28px;
+  height: 27px;
+  background-color: rgb(207, 207, 207);
+  color: white;
+  border-radius: 20px;
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  /* font-weight: bold; */
+  padding-top: 4px;
+}
+
+.namesOfRegister p{
+  margin-bottom: 24px;
+  margin-left: 15px;
+  padding: 0;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.namesOfRegister span{
+  margin-left: 0px;
+  padding: 0;
+  font-size: 14px;
+  color: gray;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.formSection, .topicForm{
+  width:800px;
+  border: 1px solid rgb(56 66 82);
+  /* height: 500px; */
+  border-radius: 20px;
+  background-color: rgb(39 49 68);
+  padding: 20px;
+}
+.formSection p, .topicForm p{
+  /* padding: 0px 0 0 20px; */
+  font-size: 11px;
+}
+.topicForm{
+  margin-bottom: 150px;
+}
+
+.searchIcon{
+  /* padding: 5px 0 0 20px; */
+  display: flex;
+  justify-content: space-between;
+}
+.rulForTeam{
+  margin-top: 20px;
+}
+.rulForTeam #svgP{
+  font-size: 10px;
+}
+.teamMembersDiv{
+  margin-top: 25px;
+}
+.membersNav{
+  display: flex;
+  justify-content: space-between;
+}
+.membersNav p{
+  font-size: 13px;
+}
+.contentMEM{
+  /* font-family: arial, sans-serif; */
+  /* border-collapse: collapse; */
+  /* border-radius: 10px; */
+  border: none;
+  background-color: rgb(39 49 68);
+  display: flex;
+  /* justify-content: space; */
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+}
+.contentMEM:nth-child(odd) {
+  background-color: rgb(43 54 71);
+}
+.contentMEM p{
+ padding-top: 5px;
+ margin: 0 20px 0 0;
+ position: relative;
+ font-size: 13px;
+}
+#trashIcon{
+ position: absolute;
+ right: 120px;
+ cursor: pointer;
+}
+#idOfMem, #nameEmail{
+ display: flex;
+  /* margin-right: 100px; */
+}
+#nameEmail b{
+  display: block;
+  margin-left: 20px;
+  font-weight: normal;
+  /* margin-right: 100px; */
+}
+#nameEmail #email{
+ color: gray;
+ font-size: small;
+}
+#nameEmail img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  /* display:; */
+}
+.nextCancelDiv{
+  text-align: right;
+  margin-top: 30px;
+}
+#cancelBtn, #nextBtn{
+  /* padding: 10px; */
+  padding: 10px 40px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: small;
+    
+}
+#cancelBtn{
+  margin-right: 10px;
+  background-color: transparent;
+  border: 1px solid  rgb(61, 90, 128);
+}
+#nextBtn{
+  background-color: rgb(238, 108, 77);
+}
+.profilePicSelectDiv{
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  color: gray;
+  border-bottom: 1px solid  rgb(61, 90, 128);
+  /* font-size: 20px; */
+}
+.profilePicSelectDiv p{
+  font-size: 12px;
+  /* padding: 0; */
+  margin: 10px 0 0 0;
+}
+.profilePicSelectDiv img{
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin:0 0 10px 70px;
+}
+.teamNameInpDiv{
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin-top: 25px;
+  color: gray;
+}
+.teamNameInpDiv p{
+  font-size: 14px;
+  /* padding: 0; */
+  margin: 7px 0 0 0;
+}
+.teamNameInpDiv input{
+  font-size: 14px;
+  width: 70%;
+  border: 1px solid  rgb(61, 90, 128);
+  background-color: transparent;
+  padding: 8px 10px ;
+  border-radius: 3px;
+  color: white;
+}
+.selectCaptainSec{
+  display: flex;
+justify-content: space-between;
+margin-top: 20px;
+}
+.selectCaptainSec #captainLbl{
+  color: gray;
+  font-size: 14px;
+}
+.selectACaptianDiv{
+  width: 70%;
+  /* display: block; */
+}
+.mapMemberDiv{
+  display: flex;
+  align-items: center;
+  /* border: 1px solid white; */
+  padding: 0 15px;
+}
+.selectedMemberDiv{
+  display: flex;
+  align-items: center;
+  /* border: 1px solid white; */
+  padding: 0 15px;
+  background-color: rgb(92 67 72);
+}
+/* .selectedMemberDiv:nth-child(odd) {
+
+} */
+
+.mapMemberDiv:nth-child(odd) {
+  background-color: rgb(43 54 71);
+}
+.mapMemberDiv span, .selectedMemberDiv span{
+  color: gray;
+  /* margin-top: 20px; */
+}
+.mapMemberDiv p, .selectedMemberDiv p{
+  margin-top: 15px;
+  font-size: small;
+  font-weight: normal;
+  /* border: 1px solid white; */
+  /* align-content: center; */
+}
+.mapMemberDiv img, .selectedMemberDiv img{
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin:0 20px;
+  /* display: ; */
+}
+/* #html{
+  accent-color: rgb(238, 108, 77);
+  width: 17px;
+  height: 17px;
+  background-color: transparent;
+  color: transparent;
+} */
+.topicSec{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  color: gray;
+}
+.topicSec p, .descriptionSec p {
+  font-size: 14px;
+  margin-top: 7px;
+}
+.topicSec input, .descriptionSec textarea{
+  font-size: 14px;
+  width: 70%;
+  border: 1px solid  rgb(61, 90, 128);
+  background-color: transparent;
+  padding: 8px 10px ;
+  border-radius: 3px;
+  color: white;
+}
+.descriptionSec{
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  margin-top: 25px;
+  color: gray;
+}
+.descriptionSec textarea{
+  /* height: 150px; */
+  min-height: 100px;
+}

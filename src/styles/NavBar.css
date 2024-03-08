@@ -1,0 +1,60 @@
+.custom-navbar {
+    background-color: #495F80;
+    width:100%;
+    max-height:100px;
+    padding-right:100px;
+    padding-left:100px;
+    height:50px
+     /* or any other color */
+  }
+.navLinkItem{
+    color:white;
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+    font-family: inherit;
+font-size:12px;
+font-weight: 500;
+line-height: 16px;
+
+letter-spacing: 0em;
+text-align: left;
+text-decoration: none;
+
+}
+.navLinkItem:hover,.navLinkItem:active{
+    text-decoration: underline;
+    color: white;
+}
+.profile{
+    width: 38px;
+    height: 38px;
+    
+}
+.nameStyling{
+font-family: "Inter";
+font-size: 16px;
+font-weight: 300;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: left;
+color:#FFFFFF;
+font-family: inherit;
+}
+.teamStyling{
+font-family: "Inter";
+font-size: 12px;
+font-weight: 500;
+line-height: 16px;
+letter-spacing: 0em;
+text-align: left;
+color:#B8B8B8;
+font-family: inherit;
+}
+.iconDivStyling{
+    width:52px;
+    height:52px;
+    padding: 14px;
+    border-radius: 8px;
+    gap: 6px
+    
+}

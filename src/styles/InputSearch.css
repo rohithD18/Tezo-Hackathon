@@ -1,0 +1,28 @@
+.inputWithSearchIcon input{
+  background-color: rgb(39 49 68);
+  border: 1px solid rgb(61, 90, 128);
+  border-radius: 4px;
+  padding: 5px 0 5px 40px;
+  font-size: small;
+  color: white;
+  width: 250px;
+  
+}
+.inputWithSearchIcon input::placeholder{
+  font-size: small;
+  
+}
+/* .inputWithSearchIcon input{
+  border:  1px solid rgb(61, 90, 128);
+} */
+.inputWithSearchIcon{
+  position: relative;
+}
+.inputWithSearchIcon svg{
+  position: absolute;
+  top: 7px;
+  left: 15px;
+  width: 13px;
+  /* font-size: smaller; */
+  color: gray;
+}

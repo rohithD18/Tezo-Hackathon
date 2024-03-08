@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Login } from "./components/Login";
+import Registration from "./components/registration/Registration";
+import MenuSection from "./components/MenuSection";
+import Home from "./components/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useMsal } from "@azure/msal-react";
+import { Schedule } from "./components/Schedule";
+import MyTeam from "./components/MyTeam";
 
-function App() {
+const App: React.FC = () => {
+  const { instance } = useMsal();
+  const myAccounts = instance.getAllAccounts();
+  console.log(myAccounts);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        {/* <Route path="/" Component={Home} /> */}
+        <Route path="/" Component={Registration} />
+
+        {/* <Route path="/Registraion-Form" Component={Registration} /> */}
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,36 @@
+.checkBoxIcon{
+  width: 18px;
+  height: 18px;
+  border: 2px solid #dad5d5;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkBoxInner{
+  width: 14px;
+  height: 14px;
+  border-radius: 10px;
+  background-color: rgb(238, 108, 77);
+  border: 3px solid  rgb(39 49 68);
+}
+.checkBoxOuter{
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkBoxOuter:hover{
+ background-color: rgb(53 60 83);
+}
+.checkBoxMiddle{
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgb(238, 108, 77);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
