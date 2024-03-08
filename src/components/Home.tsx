@@ -2,8 +2,10 @@ import React from "react";
 import bgImage from "../assets/bgImage.jpg";
 import "../styles/Home.css";
 import NavBarCopy from "./NavBarCopy";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="hex">
       <NavBarCopy />
@@ -13,7 +15,12 @@ const Home: React.FC = () => {
             Join the Tezo <br /> Hackathon!
           </h1>
           <p>Welcome to Tezo Hackathon</p>
-          <button id="registerBtn">Register Now</button>
+          <button
+            onClick={() => navigate("/Registraion-Form")}
+            id="registerBtn"
+          >
+            Register Now
+          </button>
         </div>
       </div>
     </div>

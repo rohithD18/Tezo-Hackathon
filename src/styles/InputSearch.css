@@ -6,21 +6,19 @@
   font-size: small;
   color: white;
   width: 250px;
-  
+  height: 35px;
 }
 .inputWithSearchIcon input::placeholder{
-  font-size: small;
-  
+  font-size: small;  
 }
-/* .inputWithSearchIcon input{
-  border:  1px solid rgb(61, 90, 128);
-} */
 .inputWithSearchIcon{
   position: relative;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
 }
 .inputWithSearchIcon svg{
   position: absolute;
-  top: 7px;
   left: 15px;
   width: 13px;
   /* font-size: smaller; */

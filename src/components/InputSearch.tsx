@@ -46,7 +46,7 @@ const InputSearch: React.FC = () => {
     <div className="inputWithSearchIcon">
       <input
         type="text"
-        placeholder="Search by name or email"
+        placeholder="Search by names"
         onChange={(e) => handleChange(e.target.value)}
       />
       <svg

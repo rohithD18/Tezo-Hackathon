@@ -26,15 +26,23 @@ function LogInLogOutComp() {
   const navigate = useNavigate();
   const { instance } = useMsal();
   const { accounts } = useMsal();
-  const username = accounts[0]?.username;
+  const username: string = accounts[0]?.username;
+  useEffect(() => {
+    {
+      username
+        ? localStorage.setItem("username", username)
+        : localStorage.getItem("username")?.toString();
+    }
+  }, [username]);
 
   const handleLoginPopup = () => {
     instance
       .loginPopup()
       .catch((error) => console.log(error))
       .then((res) => {
-        console.log("response", res);
+        // console.log("response", res);
         localStorage.setItem("userDataL", JSON.stringify(res));
+
         navigate("/");
       });
   };
@@ -51,6 +59,7 @@ function LogInLogOutComp() {
       })
       .then((res) => console.log("logOutRes", res));
     localStorage.removeItem("userDataL");
+    localStorage.removeItem("username");
   };
 
   return (

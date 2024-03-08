@@ -55,20 +55,23 @@
 
 .allEvents{
     display:flex;
+    justify-content: space-between;
     margin-left: 2%;
     padding:0px 10px 25px 24px;
     font: Raleway;
     font-size: 24px;
     font-weight: 600;
+    /* position: relative; */
 
 }
 .allEvents div:first-child{
-    width:70%;
+    /* width:70%; */
+   
 }
 
 .allEventsList >div:last-child{
     display:flex;
-    padding-left:24px
+    padding-left:24px;
 }
 .allEventsList >div:last-child >div:last-child{
     display:flex;
@@ -85,7 +88,6 @@
 }
 .upcomingEventList >div:last-child{
     padding-left:20px;
-
 }
 .allEventsList >div:last-child > div:first-child{
    width:290px;
