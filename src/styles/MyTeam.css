@@ -39,9 +39,6 @@ border-bottom: 2px solid transparent;
     margin-bottom: 40px;
 
 }
-.cardsStyling{
-
-}
 .cardStyling{
     width: 345px;
 height: 104px;
@@ -54,7 +51,7 @@ background-color:#273144
     padding: 16px;
     
 }
-.imgStyling{
+.profileStyling{
     border-radius: 50%;
     object-fit: cover; 
     width: 65px;

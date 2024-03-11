@@ -15,25 +15,28 @@ import hackathonLogo from "../assets/hackathonLogo.png";
 import vector from "../assets/upVector.png";
 import "../styles/Login.css";
 import microsoftLogo from "../assets/microsoftLogo.png";
-import axios from "axios";
 import { useEffect } from "react";
 import { getAUser, getUsers } from "../services/Services";
 import "../styles/Login.css";
 
 const pca = new PublicClientApplication(msalConfig);
 
-function LogInLogOutComp() {
+interface IProps1 {
+  userNameFromLogInLogOutComp: (message: string) => void;
+}
+interface IProps2 {
+  setUserName: (message: string) => void;
+}
+
+function LogInLogOutComp({ userNameFromLogInLogOutComp }: IProps1) {
   const navigate = useNavigate();
   const { instance } = useMsal();
   const { accounts } = useMsal();
   const username: string = accounts[0]?.username;
   useEffect(() => {
-    {
-      username
-        ? localStorage.setItem("username", username)
-        : localStorage.getItem("username")?.toString();
-    }
-  }, [username]);
+    username && localStorage.setItem("username", username);
+    userNameFromLogInLogOutComp(username);
+  }, [username, userNameFromLogInLogOutComp]);
 
   const handleLoginPopup = () => {
     instance
@@ -79,7 +82,10 @@ function LogInLogOutComp() {
   );
 }
 
-export const Login = () => {
+export const Login = ({ setUserName }: IProps2) => {
+  const userNameFromLogInLogOutComp = (data: string) => {
+    setUserName(data); // or set the data to a state
+  };
   return (
     <div className="loginSection">
       <div className="welcomeDiv">
@@ -96,7 +102,9 @@ export const Login = () => {
       {/* <img src={vector} alt="veckto" /> */}
 
       <MsalProvider instance={pca}>
-        <LogInLogOutComp />
+        <LogInLogOutComp
+          userNameFromLogInLogOutComp={userNameFromLogInLogOutComp}
+        />
       </MsalProvider>
     </div>
   );

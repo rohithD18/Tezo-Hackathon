@@ -34,7 +34,8 @@ const MyTeam: React.FC = () => {
                         src={image}
                         width={64}
                         height={64}
-                        className="imgStyling"
+                        className="profileStyling"
+                        alt="profilePic"
                       ></img>
                     </div>
                     <div className="col-md-6 pr-4">
