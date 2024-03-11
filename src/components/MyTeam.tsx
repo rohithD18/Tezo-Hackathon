@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/MyTeam.css'
-
 import {teamMembersArray} from '../components/TeamMembers'
-import NavBarCopy from './NavBarCopy';
 const MyTeam = () => {
   const [activeItem, setActiveItem] = useState<null|string>();
   
@@ -12,7 +10,6 @@ const MyTeam = () => {
 
   return (
     <div>
-    <NavBarCopy/>
     <div className='root'>
       <div className="container">
       <div className="row topContainer">

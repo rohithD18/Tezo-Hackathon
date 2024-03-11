@@ -54,6 +54,9 @@ flex-direction: column;
 .imgStyling{
     border-radius: 50%;
     object-fit: cover; 
+    width: 65px;
+    height: 65px;
+    border: none;
 }
 .nameStyling{
     font-family: inherit;

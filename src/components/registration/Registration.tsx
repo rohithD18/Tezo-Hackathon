@@ -1,18 +1,16 @@
 import React from "react";
 import NavThroughForm from "./NavThroughForm";
 import "../../styles/registrationStyles/Registration.css";
-import NavBarCopy from "../NavBarCopy";
 
 const Registration: React.FC = () => {
   return (
     <div className="registerHome">
-      <NavBarCopy />
       <div className="navRegister">
-        <a className="aTag" href="#" style={{ color: "gray" }}>
+        <a className="aTag" href="/" style={{ color: "gray" }}>
           Home
         </a>{" "}
         /{" "}
-        <a className="aTag" href="#">
+        <a className="aTag" href="#R">
           Register
         </a>
       </div>
