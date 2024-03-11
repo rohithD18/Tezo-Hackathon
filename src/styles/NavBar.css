@@ -27,7 +27,7 @@ text-decoration: none;
 .profile{
     width: 38px;
     height: 38px;
-    
+    border: none;
 }
 .nameStyling{
 font-family: "Inter";
@@ -57,7 +57,7 @@ font-family: inherit;
     gap: 6px
     
 }
-.container img{
+.col-1 img{
     width: 34px;
     height: 34px;
     border: none;

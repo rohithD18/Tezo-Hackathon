@@ -66,7 +66,7 @@ function LogInLogOutComp() {
     <div className="logInOutComp">
       <AuthenticatedTemplate>
         <div className="loginLogoutBtn" onClick={handleLogoutPopup}>
-          Logout {username}
+          Logout
         </div>
       </AuthenticatedTemplate>
       <UnauthenticatedTemplate>

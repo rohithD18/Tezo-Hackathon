@@ -60,7 +60,7 @@ function NavBarCopy() {
                   src={profilepic}
                   width="38"
                   height="38"
-                  // className="profile ms-3"
+                  className="profile ms-3"
                   alt="Profile"
                 />
               </div>
