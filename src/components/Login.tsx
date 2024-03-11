@@ -1,9 +1,4 @@
-import {
-  AuthenticatedTemplate,
-  MsalProvider,
-  UnauthenticatedTemplate,
-  useMsal,
-} from "@azure/msal-react";
+import { MsalProvider, useMsal } from "@azure/msal-react";
 import {
   // InteractionStatus,
   PublicClientApplication,
@@ -12,14 +7,13 @@ import { msalConfig } from "../authConfig";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 import hackathonLogo from "../assets/hackathonLogo.png";
-import vector from "../assets/upVector.png";
 import "../styles/Login.css";
 import microsoftLogo from "../assets/microsoftLogo.png";
 import { useEffect } from "react";
-import { getAUser, getUsers } from "../services/Services";
+// import { getUsers } from "../services/Services";
 import "../styles/Login.css";
 
-const pca = new PublicClientApplication(msalConfig);
+export const pca = new PublicClientApplication(msalConfig);
 
 interface IProps1 {
   userNameFromLogInLogOutComp: (message: string) => void;
@@ -28,7 +22,7 @@ interface IProps2 {
   setUserName: (message: string) => void;
 }
 
-function LogInLogOutComp({ userNameFromLogInLogOutComp }: IProps1) {
+export function LogInLogOutComp({ userNameFromLogInLogOutComp }: IProps1) {
   const navigate = useNavigate();
   const { instance } = useMsal();
   const { accounts } = useMsal();
@@ -50,10 +44,10 @@ function LogInLogOutComp({ userNameFromLogInLogOutComp }: IProps1) {
       });
   };
 
-  useEffect(() => {
-    getUsers();
-    // username ?
-  }, []);
+  // useEffect(() => {
+  //   getUsers();
+  //   // username ?
+  // }, []);
 
   const handleLogoutPopup = () => {
     instance
@@ -66,18 +60,18 @@ function LogInLogOutComp({ userNameFromLogInLogOutComp }: IProps1) {
   };
 
   return (
-    <div className="logInOutComp">
-      <AuthenticatedTemplate>
+    <div>
+      {/* <AuthenticatedTemplate> */}
+      {localStorage.getItem("username")?.toString() ? (
         <div className="loginLogoutBtn" onClick={handleLogoutPopup}>
           Logout
         </div>
-      </AuthenticatedTemplate>
-      <UnauthenticatedTemplate>
+      ) : (
         <div className="loginLogoutBtn" onClick={handleLoginPopup}>
           <img src={microsoftLogo} alt="microsoftLogo" />
           Sign in with Microsoft
         </div>
-      </UnauthenticatedTemplate>
+      )}
     </div>
   );
 }
@@ -100,12 +94,13 @@ export const Login = ({ setUserName }: IProps2) => {
         </p>
       </div>
       {/* <img src={vector} alt="veckto" /> */}
-
-      <MsalProvider instance={pca}>
-        <LogInLogOutComp
-          userNameFromLogInLogOutComp={userNameFromLogInLogOutComp}
-        />
-      </MsalProvider>
+      <div className="logInOutComp">
+        <MsalProvider instance={pca}>
+          <LogInLogOutComp
+            userNameFromLogInLogOutComp={userNameFromLogInLogOutComp}
+          />
+        </MsalProvider>
+      </div>
     </div>
   );
 };

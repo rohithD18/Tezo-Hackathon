@@ -1,7 +1,6 @@
 import React from "react";
-import bgImage from "../assets/bgImage.jpg";
 import "../styles/Home.css";
-import NavBarCopy from "./NavBarCopy";
+
 import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {

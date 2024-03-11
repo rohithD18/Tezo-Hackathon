@@ -59,7 +59,7 @@ letter-spacing: 0.21em;
   align-items: center;
   cursor: pointer;
   font-size: 18px;
-  margin: 100px 0 0 100px;
+  /* margin: 100px 0 0 100px; */
 }
 .loginLogoutBtn img{
   width: 25px;

@@ -2,7 +2,14 @@ import "../styles/NavBar.css";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 import logo from "../assets/hackathonLogo.png";
 import profilepic from "../assets/profilepic.jpg";
+// import { LogInLogOutComp, pca } from "./Login";
+// import { MsalProvider } from "@azure/msal-react";
+
 function NavBarCopy() {
+  // const userNameFromLogInLogOutComp = (data: string) => {
+  //   console.log(data);
+  // };
+
   return (
     <div className="container-fluid custom-navbar">
       <div className="container">
@@ -64,6 +71,12 @@ function NavBarCopy() {
                   alt="Profile"
                 />
               </div>
+              {/* <MsalProvider instance={pca}>
+                <LogInLogOutComp
+                  userNameFromLogInLogOutComp={userNameFromLogInLogOutComp}
+                />
+              </MsalProvider> */}
+
               <div className="col-4 text-start">
                 <div className="nameStyling">Venkatesh</div>
                 <div className="teamStyling">Team1</div>
