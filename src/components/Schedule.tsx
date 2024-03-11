@@ -3,7 +3,6 @@ import React from "react";
 import { TeamEvents } from "./TeamEvents";
 import "../styles/Schedule.css";
 import { IEvents } from "../Interfaces";
-import NavBarCopy from "./NavBarCopy";
 export const Schedule: FC = () => {
   // const validUpcomingEvents: boolean = true;
   const teamEvents: IEvents[] = [
@@ -33,15 +32,9 @@ export const Schedule: FC = () => {
     (item) => item.teamShedule === "12/12/12"
   );
   return (
-    <div>
-      <NavBarCopy />
-      <div className="Schedule">
-        <TeamEvents
-          upcomingEvents={upcomingEvents}
-          validUpcomingEvents={true}
-        />
-        <TeamEvents upcomingEvents={teamEvents} validUpcomingEvents={false} />
-      </div>
+    <div className="Schedule">
+      <TeamEvents upcomingEvents={upcomingEvents} validUpcomingEvents={true} />
+      <TeamEvents upcomingEvents={teamEvents} validUpcomingEvents={false} />
     </div>
   );
 };

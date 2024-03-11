@@ -8,7 +8,6 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
   return (
     <div className="hex">
-      <NavBarCopy />
       <div className="bottomShape">
         <div className="introDiv">
           <h1>
