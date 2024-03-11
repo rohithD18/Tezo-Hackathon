@@ -9,3 +9,9 @@ export interface IEvents {
   image: string;
   teamShedule: string;
 }
+export interface ITeamMembers {
+  name: string,
+  email:string,
+  employeeId: string,
+  profileUrl: string
+}
