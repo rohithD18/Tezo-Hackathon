@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const t: any = localStorage.getItem("userDataL");
-console.log("token", JSON.parse(t).accessToken);
+const userData: any = localStorage.getItem("userDataL");
+// console.log("token", JSON.parse(t).accessToken);
 
-const token: string = JSON.parse(t).accessToken;
+const token: string = JSON.parse(userData)?.accessToken;
 
 export const getUsers = async () => {
   let url = "https://graph.microsoft.com/v1.0/users?$top=100";
@@ -27,6 +27,8 @@ export const getUsers = async () => {
 
 export const getAUser = () => {
   // const { instance } = useMsal();
+  console.log(token);
+
   axios
     .get("https://graph.microsoft.com/v1.0/users", {
       headers: {
