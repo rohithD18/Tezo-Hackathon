@@ -24,7 +24,6 @@ const App: React.FC = () => {
           <NavBarCopy />
           <Routes>
             <Route path="/" Component={Home} />
-
             <Route path="/Registraion-Form" Component={Registration} />
             <Route path="/Schedule" Component={Schedule} />
             <Route path="/Teams" Component={MyTeam} />
