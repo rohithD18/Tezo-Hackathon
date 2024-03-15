@@ -1,5 +1,5 @@
 import "../styles/NavBar.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
+// import "@fortawesome/fontawesome-free/css/all.min.css";
 import logo from "../assets/Logo.png";
 import profilepic from "../assets/profilepic.jpg";
 import { useState } from "react";

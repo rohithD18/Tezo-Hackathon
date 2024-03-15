@@ -12,6 +12,9 @@ import microsoftLogo from "../assets/microsoftLogo.png";
 import { useEffect } from "react";
 // import { getUsers } from "../services/Services";
 import "../styles/Login.css";
+import signoutIcon from "../assets/signout.png";
+import vectorUp from "../assets/upVector.png";
+import vectorDown from "../assets/downVector.png";
 
 export const pca = new PublicClientApplication(msalConfig);
 
@@ -63,11 +66,12 @@ export function LogInLogOutComp({ userNameFromLogInLogOutComp }: IProps1) {
     <div>
       {/* <AuthenticatedTemplate> */}
       {localStorage.getItem("username")?.toString() ? (
-        <div className="loginLogoutBtn" onClick={handleLogoutPopup}>
-          Logout
+        <div className="logoutBtn" onClick={handleLogoutPopup}>
+          <img src={signoutIcon} alt="signoutIcon" />
+          Sign out
         </div>
       ) : (
-        <div className="loginLogoutBtn" onClick={handleLoginPopup}>
+        <div className="loginBtn" onClick={handleLoginPopup}>
           <img src={microsoftLogo} alt="microsoftLogo" />
           Sign in with Microsoft
         </div>
@@ -93,7 +97,11 @@ export const Login = ({ setUserName }: IProps2) => {
           the future of technology!
         </p>
       </div>
-      {/* <img src={vector} alt="veckto" /> */}
+      {/* <img src={vectorDown} alt="veckto" id="vector4" />
+      <img src={vectorUp} alt="veckto" id="vector3" />
+      <img src={vectorUp} alt="veckto" id="vector2" />
+      <img src={vectorUp} alt="veckto" id="vector1" />
+      <img src={vectorUp} alt="veckto" id="vector" /> */}
       <div className="logInOutComp">
         <MsalProvider instance={pca}>
           <LogInLogOutComp
