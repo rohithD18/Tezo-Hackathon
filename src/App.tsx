@@ -7,6 +7,8 @@ import { Route, Routes } from "react-router-dom";
 import { Schedule } from "./components/Schedule";
 import MyTeam from "./components/MyTeam";
 import NavBarCopy from "./components/NavBarCopy";
+import MyProject from "./components/MyProject/MyProject";
+
 const App: React.FC = () => {
   console.log("userNameeeee", localStorage.getItem("username")?.toString());
   const [user, setUser] = useState<string>("");
@@ -27,6 +29,8 @@ const App: React.FC = () => {
             <Route path="/Registraion-Form" Component={Registration} />
             <Route path="/Schedule" Component={Schedule} />
             <Route path="/Teams" Component={MyTeam} />
+            <Route path="/MyProject" Component={MyProject} />
+
           </Routes>
         </>
       )}
