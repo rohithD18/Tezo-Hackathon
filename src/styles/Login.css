@@ -41,7 +41,6 @@ letter-spacing: 0.21em;
 .loginSection{
   display: flex;
   /* justify-content: space-between; */
-  height: 100vh;
   /* border: 2px solid rgb(61, 90, 128); */
 }
 .vectorDiv svg{
@@ -99,14 +98,29 @@ text-align: center;
   align-items: center;
   /* height: 100vh; */
   /* border: 2px solid rgb(61, 90, 128); */
-  width: 100%;
+  /* width: 100%; */
+  position: absolute;
+  top: 65%;
+  left: 60%;
 }
-/* #vector{
-position: absolute;
-left: 640.66px;
+#vector{
+width: 860px;
+}
+#vectorRight{
+  position: absolute;
+  top: 25px;
+left:572px;
 background: transparent;
-
+width: 690px;
 }
+#plusSigns{
+  background-color: transparent;
+  position: absolute;
+  top: 96%;
+  left: 0;
+  width: 350px;
+}
+/* 
 #vector1{
   position: absolute;
 top: -38.77px;

@@ -79,7 +79,7 @@ function NavBarCopy() {
                       activeItem === "rules" ? "itemActive disable-hover" : ""
                     }`}
                     onClick={() => handleItemClick("rules")}
-                    href="#rules"
+                    href="/Rules"
                   >
                     Rules
                   </a>

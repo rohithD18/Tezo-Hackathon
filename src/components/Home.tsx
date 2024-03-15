@@ -14,7 +14,7 @@ const Home: React.FC = () => {
           </h1>
           <p>Welcome to Tezo Hackathon</p>
           <button
-            onClick={() => navigate("/Registraion-Form")}
+            onClick={() => navigate("/Registration-Form")}
             id="registerBtn"
           >
             Register Now
