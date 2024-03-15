@@ -29,7 +29,7 @@ function NavBarCopy() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link navLinkItem" href="#myproject">
+                <a className="nav-link navLinkItem" href="/MyProject">
                   MyProject
                 </a>
               </li>

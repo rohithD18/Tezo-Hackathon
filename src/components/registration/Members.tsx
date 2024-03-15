@@ -6,7 +6,6 @@ import { membersArray } from "./MembersA";
 // import membersArray from "./MembersA";
 const Members: React.FC = () => {
   // const membersArray = members;
-
   return (
     <div className="membersSection">
       {/* <tbody> */}
