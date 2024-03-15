@@ -15,6 +15,13 @@ export interface ITeamMembers {
   employeeId: string,
   profileUrl: string
 }
+export interface IJudges {
+  name: string,
+  email:string,
+  role: string,
+  profileUrl: string
+}
+
 export interface Ipdf{
   name:string;
   size:number;

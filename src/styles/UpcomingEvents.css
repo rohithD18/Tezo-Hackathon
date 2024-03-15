@@ -65,7 +65,7 @@
 
 }
 .allEvents div:first-child{
-    /* width:70%; */
+    width:70%;
    
 }
 
@@ -97,6 +97,10 @@
     background-color:#293241
     
 }
-
+#teamLogo{
+    width: 96px;
+    height: 96px;
+    border-radius: 8px;
+}
 
 

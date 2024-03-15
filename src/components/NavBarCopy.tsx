@@ -5,7 +5,6 @@ import profilepic from "../assets/profilepic.jpg";
 import { useState } from "react";
 function NavBarCopy() {
   const [activeItem, setActiveItem] = useState<null | string>();
-
   const handleItemClick = (itemName: string) => {
     setActiveItem(itemName);
   };
