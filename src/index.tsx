@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes } from "react-router-dom";
+import MyProject from "./components/MyProject/MyProject";
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,6 +15,7 @@ root.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
+    
     {/* <App /> */}
   </React.StrictMode>
 );
