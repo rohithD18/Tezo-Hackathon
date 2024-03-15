@@ -43,7 +43,7 @@ function NavBarCopy() {
                         : ""
                     }`}
                     onClick={() => handleItemClick("schedule")}
-                    href="/Schedule"
+                    href="/schedule"
                   >
                     Schedule
                   </a>
@@ -56,9 +56,7 @@ function NavBarCopy() {
                         : ""
                     }`}
                     onClick={() => handleItemClick("myproject")}
-                    href="/Myproject"
-
-                    
+                    href="/myProject"
                   >
                     MyProject
                   </a>
@@ -69,7 +67,7 @@ function NavBarCopy() {
                       activeItem === "teams" ? "itemActive disable-hover" : ""
                     }`}
                     onClick={() => handleItemClick("teams")}
-                    href="/Teams"
+                    href="/teams"
                   >
                     Teams
                   </a>
@@ -80,7 +78,7 @@ function NavBarCopy() {
                       activeItem === "rules" ? "itemActive disable-hover" : ""
                     }`}
                     onClick={() => handleItemClick("rules")}
-                    href="/Rules"
+                    href="/rules"
                   >
                     Rules
                   </a>
