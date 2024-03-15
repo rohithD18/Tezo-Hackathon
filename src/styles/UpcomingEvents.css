@@ -93,13 +93,6 @@
    width:290px;
 }
 
- img{
-    width:96px;
-    height:96px;
-    border:1px solid blue;
-    border-radius: 8px;
-}
-
 .allEventsList:nth-child(odd) {
     background-color:#293241
     
