@@ -5,7 +5,6 @@ import profilepic from "../assets/profilepic.jpg";
 import { useState } from "react";
 function NavBarCopy() {
   const [activeItem, setActiveItem] = useState<null | string>();
-
   const handleItemClick = (itemName: string) => {
     setActiveItem(itemName);
   };
@@ -31,7 +30,7 @@ function NavBarCopy() {
                       activeItem === "Home" ? "itemActive disable-hover" : ""
                     }`}
                     onClick={() => handleItemClick("Home")}
-                    href="#home"
+                    href="/"
                   >
                     Home
                   </a>
@@ -44,7 +43,7 @@ function NavBarCopy() {
                         : ""
                     }`}
                     onClick={() => handleItemClick("schedule")}
-                    href="#schedule"
+                    href="/Schedule"
                   >
                     Schedule
                   </a>
@@ -68,7 +67,7 @@ function NavBarCopy() {
                       activeItem === "teams" ? "itemActive disable-hover" : ""
                     }`}
                     onClick={() => handleItemClick("teams")}
-                    href="#teams"
+                    href="/Teams"
                   >
                     Teams
                   </a>

@@ -1,53 +1,24 @@
 import React, { useState } from 'react'
 import '../styles/MyTeam.css'
 import {teamMembersArray} from '../components/TeamMembers'
+import SubNavBar from './SubNavBar';
 const MyTeam = () => {
-  const [activeItem, setActiveItem] = useState<null|string>();
-  
-  const handleItemClick = (itemName:string) => {
-    setActiveItem(itemName);
-  };
-
   return (
-    <div>
     <div className='root'>
-      <div className="container">
-      <div className="row topContainer">
-        <div className={`col-sm-1 item ${activeItem === 'All' ? 'active' : ''}`} onClick={() => handleItemClick('All')} >
-         <label className={`${activeItem === 'All' ? 'active' : ''}`} onClick={() => handleItemClick('All')}> All</label>
-        </div>
-        <div className={`col-sm-1 item ${activeItem === 'My Team' ? 'active' : ''}`} onClick={() => handleItemClick('My Team')}  style={{width:110}}>
-     
-             <label className={`${activeItem === 'My Team' ? 'active' : ''}`} onClick={() => handleItemClick('My Team')} > My Team</label> 
-        
-        </div>
-      </div>
-    </div>
-    <div className="borderStyling">
-
-    </div>
-    <div className="container">
+      <SubNavBar/>
     <div className="row">
     {teamMembersArray.map((item, index) => (
-
-        
-    <div className="cardsStyling col-sm-4 mb-3">
-
-    <div className="cardStyling">
-      <div >
-         
-      </div>
-      <div>
-        liki
+    <div className="cardStyling  col-sm-4 mb-3"  key={index}>
+      <img src={item.profileUrl} width={64} height={64} className="imgStyling"></img>
+      <div className='memberDetails'>
+      <label className='name'>{item.name}</label>
+      <label className='emailStyling'>{item.email}</label>
+      <label className='empIdStyling'>Emp. ID {item.employeeId}</label>
         </div>
-    </div>
-    
     </div>
     ))}
   </div>
   </div>
-    </div>
-    </div>
   )
 }
 

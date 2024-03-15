@@ -1,3 +1,4 @@
+
 :root{
   --bgColor:  rgba(43, 54,71, 100);
   --homeColor : rgba(27, 37, 49, 100);
@@ -5,6 +6,7 @@
 }
 .hex{
   /* background-color: darkslategray; */
+  padding-left: 20px;
   height: 100vh;
 }
 .navBar{
@@ -21,6 +23,11 @@
  display: flex;
  justify-content: center;
  align-items: center;
+ position: relative; 
+ background-image: url("../assets/mainBG.png"), url("../assets/mainBG.png");
+ background-position: calc(0px - 80px) calc(100% + 75px), calc(100% + 50px) calc(0px - 10px); 
+ background-size:500px 270px; 
+ background-repeat: no-repeat;
 }
 .div2{
   background-color:  var(--bgColor);
@@ -29,12 +36,36 @@
   background-color:  rgba(73, 95, 128, 100);
   border: 2px solid white;
   border-radius: 10px;
-  width: 950px;
-  height: 400px;  
-  padding-left: 20px;
-  padding-top: 20px;
+  width: 1060px;
+  height: 480px;  
+  display: flex;
+  flex-direction: row;
+}
+.left{
+flex:44%;
+padding: 50px 0px 0px 12px; 
+border-radius: 8px;
+margin-left: 56px;
+margin-right: 20px;
+}
+.members{
+  width:173px;
+height:36px;
+padding: 8px 12px 8px 12px;
+border-radius: 4px;
+border: 1px solid white;
+background-color: #A4608E;
+margin-bottom: 36px;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+.right{
+flex:56%;
+padding-left:50px;
 }
 #registerBtn{
+  margin-top: 25px;
   background-color: rgba(238,108,77,100);
   border: none;
   border-radius: 7px;
@@ -44,4 +75,60 @@
   font-weight: bold;
   font-size: smaller;
   
+}
+.header{
+  font-family: "Roboto";
+font-size: 36px;
+font-weight: 700;
+letter-spacing: 0em;
+text-align: left;
+margin-bottom: 20px;
+
+}
+.description{
+font-family: "Roboto" , sans-serif;
+font-size: 14px;
+font-weight: 500;
+letter-spacing: 0em;
+text-align: left;
+
+}
+#backgroundImage2{
+  background-image: url('../assets/bgimage2.png');
+  background-size:cover;
+  background-position: left top ;
+  flex:56%;
+
+}
+#backgroundImage1{
+  margin-top: 15px;
+  background-image: url('../assets/bgimage4.png');
+  background-size:cover;
+  background-position: left;
+  flex:44%;
+    margin-right: -122px;
+    padding-right: 105px;
+
+}
+.noOfMembers{
+font-family: "Roboto";
+font-size: 12px;
+font-weight: 500;
+line-height: 18px;
+letter-spacing: 0em;
+color:#F5FCFC;
+text-align: left;
+
+}
+.profileIcon{
+  width: 20px;
+height: 20px;
+border: 1px groove white;
+border-radius: 100%;  
+position: absolute;
+  object-fit: cover;
+}
+.profileContainer{
+  position:relative;
+  width: fit-content;
 }

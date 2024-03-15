@@ -2,7 +2,8 @@
     color:aliceblue;
     padding-left: 100px;
     padding-right: 100px;
- height:100vh 
+ height:100vh; 
+ font-family: 'Roboto', sans-serif;
 }
 .item{
 padding: 20px;
@@ -45,12 +46,13 @@ border: 1px solid #3D5A80;
 background-color:#273144;
 padding: 16px;
 display: flex;
-flex-direction: column;
+flex-direction: row;
+gap:20px;
+margin-left: 10px;
+margin-right: 10px;
+
 }
-/* .rowStyling{
-    padding: 16px;
-    
-} */
+
 .imgStyling{
     border-radius: 50%;
     object-fit: cover; 
@@ -58,7 +60,7 @@ flex-direction: column;
     height: 65px;
     border: none;
 }
-.nameStyling{
+.name{
     font-family: inherit;
     
 font-size: 16px;
@@ -84,4 +86,8 @@ font-weight: 600;
 letter-spacing: 0em;
 text-align: left;
 
+}
+.memberDetails{
+    display: flex;
+    flex-direction: column;
 }

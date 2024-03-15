@@ -29,7 +29,7 @@ export const TeamEvents: React.FC<IProps> = ({
           }
         >
           <div>
-            <img src={item.image} alt="Team Event" />
+            <img src={item.image} alt="Team Event" id="teamLogo" />
           </div>
           <div>
             <div>{item.teamName.toUpperCase()}</div>
