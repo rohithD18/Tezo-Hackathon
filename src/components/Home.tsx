@@ -53,7 +53,7 @@ const Home: React.FC<HomeProps> = (props) => {
           </h1>
           <p className="description">{description}</p>
           <button
-            onClick={() => navigate("/Registraion-Form")}
+            onClick={() => navigate("/Registration-Form")}
             id="registerBtn"
           >
             {buttonValue}
