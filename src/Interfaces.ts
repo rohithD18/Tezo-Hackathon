@@ -21,4 +21,16 @@ export interface IJudges {
   role: string,
   profileUrl: string
 }
+export interface Ipdf{
+  name:string;
+  size:number;
+  type:string
+}
+export interface IProjectDetail {
+  id: number;
+  Topic:string;
+  TopicDescripition:string;
+  ProposedSolution:string;
+  pdf:Ipdf[]
+}
 

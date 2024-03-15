@@ -23,8 +23,6 @@ const App: React.FC = () => {
       {!user && !localStorage.getItem("username")?.toString() ? (
         <>
         <Login setUserName={setUserName} />
-        <NavBarCopy />
-        <HomePage isRegister={false}/>
         </>
       ) : (
         <>

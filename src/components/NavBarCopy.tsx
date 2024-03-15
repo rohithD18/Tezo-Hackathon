@@ -56,7 +56,7 @@ function NavBarCopy() {
                         : ""
                     }`}
                     onClick={() => handleItemClick("myproject")}
-                    href="#myproject"
+                    href="/MyProject"
                   >
                     MyProject
                   </a>
