@@ -1,0 +1,65 @@
+.submissionFailedSec{
+  width: 407px;
+  background-color: rgba(39, 49, 68, 1);
+  border-radius: 16px;
+  border: 1px solid rgba(61, 90, 128, 1);
+  text-align: center;
+}
+.submissionFailedSec img{
+  width: 88px;
+  height: 88px;
+  margin: 40px 0;
+}
+#header{
+font-size: 18px;
+font-weight: 500;
+line-height: 27px;
+text-align: center;
+
+}
+#failedInfo{
+font-size: 14px;
+font-weight: 400;
+line-height: 22px;
+text-align: center;
+color: rgba(180, 180, 180, 1);
+}
+#note{
+  width:359px;
+height: 32px;
+margin: 6px 24px 40px 24px;
+border-radius: 4px;
+background-color: rgba(128, 68, 64, 1);
+font-size: 14px;
+font-weight: 500;
+line-height: 20px;
+text-align: center;
+color: rgba(238, 238, 238, 1);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+#tryAgainBtn{
+  width: 160px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: rgba(238, 108, 77, 1);
+font-size: 16px;
+font-weight: 700;
+text-align: center;  
+border: none;
+margin-bottom: 14px;
+color: white;
+}
+#viewTopic{
+  width: 160px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: transparent;
+font-size: 16px;
+font-weight: 700;
+text-align: center;  
+border: 1px solid rgba(180, 180, 180, 1);
+margin-bottom: 14px;
+color: white;
+}

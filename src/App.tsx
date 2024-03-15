@@ -7,9 +7,13 @@ import { Route, Routes } from "react-router-dom";
 import { Schedule } from "./components/Schedule";
 import MyTeam from "./components/MyTeam";
 import NavBarCopy from "./components/NavBarCopy";
+import SubmissionClosed from "./components/submissionStatus/SubmissionClosed";
+import SubmissionFailed from "./components/submissionStatus/FailedAndSuccessStatus";
+import SessionInvitation from "./components/submissionStatus/SessionInvitation";
+import SubmissionAccepeted from "./components/submissionStatus/SubmissionAccepeted";
+import RejectedRework from "./components/submissionStatus/RejectedRework";
+import HomePage from "./components/HomePage";
 import MyProject from "./components/MyProject/MyProject";
-
-import  HomePage  from "./components/HomePage";
 const App: React.FC = () => {
   console.log("userNameeeee", localStorage.getItem("username")?.toString());
   const [user, setUser] = useState<string>("");
@@ -21,20 +25,17 @@ const App: React.FC = () => {
   return (
     <div className="App">
       {!user && !localStorage.getItem("username")?.toString() ? (
-        <>
         <Login setUserName={setUserName} />
-        </>
       ) : (
         <>
           <NavBarCopy />
           <Routes>
             <Route path="/" Component={() => <HomePage isRegister={true} />} />
-
-            <Route path="/Registraion-Form" Component={Registration} />
-            <Route path="/Schedule" Component={Schedule} />
-            <Route path="/Teams" Component={MyTeam} />
-            <Route path="/MyProject" Component={MyProject} />
-
+            <Route path="/registration-form" Component={Registration} />
+            <Route path="/schedule" Component={Schedule} />
+            <Route path="/teams" Component={MyTeam} />
+            <Route path="/rules" Component={RejectedRework} />
+            <Route path="/myProject" Component={MyProject} />
           </Routes>
         </>
       )}

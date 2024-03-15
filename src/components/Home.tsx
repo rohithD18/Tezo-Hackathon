@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Home.css";
-import registrationImage from "../assets/registrationImage.png"
+import registrationImage from "../assets/registrationImage.png";
 import { useNavigate } from "react-router-dom";
 import { teamMembersArray } from "./TeamMembers";
 import { ITeamMembers } from "../Interfaces";
-import  mainBG  from "../assets/mainBG.png"
+import mainBG from "../assets/mainBG.png";
 interface HomeProps {
-  isRegister:boolean
- }
+  isRegister: boolean;
+}
 const Home: React.FC<HomeProps> = (props) => {
   const navigate = useNavigate();
-  const [members,setMembers] = useState<ITeamMembers[]>(teamMembersArray);
+  const [members, setMembers] = useState<ITeamMembers[]>(teamMembersArray);
   const visibleImages = members.slice(0, 3);
   const [title,setTitle] =useState<string>("");
   const [description,setDescription] =useState<string>("");
@@ -31,8 +31,7 @@ const Home: React.FC<HomeProps> = (props) => {
   
   },[props.isRegister]);
   return (
-    <div className="hex" >
-     
+    <div className="hex">
       <div className="bottomShape">
         <div className="introDiv">
           <div id="backgroundImage1" >
