@@ -7,7 +7,7 @@ const NavThroughForm: React.FC = () => {
   const [currentForm, setCurrentForm] = useState<string>("SelectMembersForm");
   return (
     <div className="navThroughFormD">
-      <div>
+      <div className="sideSteps">
         <div>
           <h6 id="h6Tag"> Step 1 of 3</h6>
         </div>
