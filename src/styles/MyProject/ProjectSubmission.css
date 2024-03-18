@@ -50,6 +50,7 @@
     border-radius: 20px;
     background-color: rgb(39 49 68);
     padding: 20px;
+    height: fit-content;
   }
   .projectDoc{
     display:flex;

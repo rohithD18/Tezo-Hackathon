@@ -1,4 +1,4 @@
-interface IApplications {
+export interface IApplications {
   Id: number;
   TeamName: string;
   ProjectName: string;
@@ -8,15 +8,15 @@ interface IApplications {
   Status: string;
   ProjectDescription: string;
 }
-export const Application: IApplications[] = [
+export const ApplicationData: IApplications[] = [
   {
     Id: 1,
     TeamName: "Rohith D",
-    ProjectName: "Project One",
+    ProjectName: "Project One Application Manager",
     TeamCaptian: "Captain One",
     ProjectedSubmitted: false,
     SubmissionDate: new Date(),
-    Status: "",
+    Status: "Accepted",
     ProjectDescription: "Description",
   },
   {
@@ -26,7 +26,7 @@ export const Application: IApplications[] = [
     TeamCaptian: "Captain Two",
     ProjectedSubmitted: true,
     SubmissionDate: new Date(),
-    Status: "Accepted",
+    Status: "Rejected",
     ProjectDescription: "Description for second team",
   },
   {
@@ -42,21 +42,21 @@ export const Application: IApplications[] = [
   {
     Id: 4,
     TeamName: "Likitha K",
-    ProjectName: "Project four",
-    TeamCaptian: "Captain four",
+    ProjectName: "Project Four",
+    TeamCaptian: "Captain Four",
     ProjectedSubmitted: true,
     SubmissionDate: new Date(),
-    Status: "Need Improvements",
-    ProjectDescription: "Description for Fourth team",
+    Status: "Accepted",
+    ProjectDescription: "Description for fourth team",
   },
   {
     Id: 5,
     TeamName: "Gnani G",
-    ProjectName: "Project five",
-    TeamCaptian: "Captain five",
+    ProjectName: "Project Five",
+    TeamCaptian: "Captain Five",
     ProjectedSubmitted: false,
-    SubmissionDate: "",
-    Status: "",
+    SubmissionDate: new Date(),
+    Status: "Pending",
     ProjectDescription: "Description for fifth team",
   },
   {
@@ -67,7 +67,67 @@ export const Application: IApplications[] = [
     ProjectedSubmitted: true,
     SubmissionDate: new Date(),
     Status: "Accepted",
-    ProjectDescription: "Description for third team",
+    ProjectDescription: "Description for sixth team",
+  },
+  {
+    Id: 7,
+    TeamName: "John Doe",
+    ProjectName: "Project Seven",
+    TeamCaptian: "Captain Seven",
+    ProjectedSubmitted: false,
+    SubmissionDate: "",
+    Status: "Rejected",
+    ProjectDescription: "Description for seventh team",
+  },
+  {
+    Id: 8,
+    TeamName: "Jane Smith",
+    ProjectName: "Project Eight",
+    TeamCaptian: "Captain Eight",
+    ProjectedSubmitted: true,
+    SubmissionDate: new Date(),
+    Status: "Pending",
+    ProjectDescription: "Description for eighth team",
+  },
+  {
+    Id: 9,
+    TeamName: "Alice Johnson",
+    ProjectName: "Project Nine",
+    TeamCaptian: "Captain Nine",
+    ProjectedSubmitted: true,
+    SubmissionDate: new Date(),
+    Status: "Accepted",
+    ProjectDescription: "Description for ninth team",
+  },
+  {
+    Id: 10,
+    TeamName: "Michael Scott",
+    ProjectName: "Project Ten",
+    TeamCaptian: "Captain Ten",
+    ProjectedSubmitted: true,
+    SubmissionDate: new Date(),
+    Status: "Accepted",
+    ProjectDescription: "Description for tenth team",
+  },
+  {
+    Id: 11,
+    TeamName: "Andy Bernard",
+    ProjectName: "Project Eleven",
+    TeamCaptian: "Captain Eleven",
+    ProjectedSubmitted: true,
+    SubmissionDate: new Date(),
+    Status: "Accepted",
+    ProjectDescription: "Description for eleventh team",
+  },
+  {
+    Id: 12,
+    TeamName: "Dwight Schrute",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: new Date(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
   },
 ];
 

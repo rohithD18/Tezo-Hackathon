@@ -35,31 +35,27 @@ const Home: React.FC<HomeProps> = (props) => {
   
   },[props.isRegister]);
   return (
-    <div className="hex">
-      <div className="bottomShape">
-        <div className="introDiv">
-          <div id="backgroundImage1" >
-          <div   className="left">
-            {flag?(<div className="members">             
-            
+    <div className="bottomShape">
+      <div className="mainDiv">
+        <div className="left1">
+          <div className="members">
             <div className="profileContainer">
-            {visibleImages.map((item, index) => (
-              <img src={item.profileUrl}key={index} alt={`Image ${index}`} style={{ left: `${index * 10}px` }}
-              className="profileIcon"></img>)
-             
-              )
-              }
-              </div>
-             <label className="noOfMembers"> + {members.length} participating</label>
-            </div>):<div className="timeContainer">
-              <div> <img src={timerIcon} alt="timer icon" width={32} height={32}></img>
-                
-                <label id="time">{date}</label></div>
-              <div id="timer">14 more days to submit</div>
-              </div>}
-          <h1 className="header">
-          {title}
-          </h1>
+              {visibleImages.map((item, index) => (
+                <img
+                  src={item.profileUrl}
+                  key={index}
+                  alt={`profile ${index}`}
+                  style={{ left: `${index * 10}px` }}
+                  className="profileIcon"
+                ></img>
+              ))}
+            </div>
+            <label className="noOfMembers">
+              {" "}
+              + {members.length} participating
+            </label>
+          </div>
+          <h1 className="header">{title}</h1>
           <p className="description">{description}</p>
           <button
             onClick={() => navigate("/registration-form")}
@@ -68,13 +64,15 @@ const Home: React.FC<HomeProps> = (props) => {
             {buttonValue}
           </button>
         </div>
-        </div>
-        <div id="backgroundImage2" >
-        <div className="right">
-          <img  src={registrationImage} alt="Registration Image" width={550} height={500} style={{paddingBottom:0}} ></img>
-        </div>
-        </div>
-        </div>
+        <div className="right1"></div>
+        <img
+          id="binaryImage"
+          src={registrationImage}
+          alt="Registration pic"
+          width="40%"
+          // height="43%"
+          style={{ paddingBottom: 0 }}
+        ></img>
       </div>
     </div>
   );
