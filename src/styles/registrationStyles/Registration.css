@@ -1,3 +1,10 @@
+.registerHome{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  margin-top: 20px;
+}
 .navRegister{
   width: 84%;
   border-bottom: 1px solid rgb(61, 90, 128);
@@ -16,13 +23,24 @@
   display: flex;
   
   justify-content: space-between;
+  width: 100%;
+  height: 100vh;
 }
 
+
 .navThroughFormD{
-  padding: 20px 100px;
+  padding: 20px 0;
+  width: 100%;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  /* border: 2px solid green; */
+  /* flex-direction: row; */
+  /* align-items: center; */
+  /* height: 100vh; */
+}
+.sideSteps{
+  width: 30%;
 }
 #h6Tag{
   font-size: 18px;
@@ -97,6 +115,7 @@
   border-radius: 20px;
   background-color: rgb(39 49 68);
   padding: 20px;
+  height: fit-content;
 }
 .formSection p, .topicForm p{
   /* padding: 0px 0 0 20px; */
@@ -138,6 +157,7 @@
   align-items: center;
   width: 100%;
   padding: 10px 20px;
+  position: relative;
 }
 .contentMEM:nth-child(odd) {
   background-color: rgb(43 54 71);
@@ -150,7 +170,7 @@
 }
 #trashIcon{
  position: absolute;
- right: 120px;
+ right: 20px;
  cursor: pointer;
 }
 #idOfMem, #nameEmail{
@@ -361,4 +381,9 @@ margin-top: 20px;
 .descriptionSec textarea{
   /* height: 150px; */
   min-height: 100px;
+}
+@media screen and (min-width:1024px){
+  .navThroughFormD, .navThroughFormD1{
+    width: 80%;
+  }
 }

@@ -77,7 +77,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
     return color;
   }
   return (
-    <>
+    <div className="homePageDiv">
       <Home isRegister={props.isRegister} />
       <div className="scrollContainer">
         <img
@@ -91,18 +91,18 @@ const HomePage: React.FC<HomePageProps> = (props) => {
         <label id="scrollText">Scroll up to know more</label>
       </div>
       {/*date*/}
+
       <div className="dateContainer">
         <div className="dateContent">
-          <p>
-            <h1 className="heading">Keep Up to Date</h1>
-            <p className="description1">
-              As a front-end developer, I find myself in a perpetual race
-              against time. However, unlike the elements in my code, time
-              refuses to be debugged or optimised. So, make sure you do not run
-              out of time.
-            </p>
-            <button className="addButton">Add to Calender</button>
+          {/* <p> */}
+          <h1 className="heading">Keep Up to Date</h1>
+          <p className="description1">
+            As a front-end developer, I find myself in a perpetual race against
+            time. However, unlike the elements in my code, time refuses to be
+            debugged or optimised. So, make sure you do not run out of time.
           </p>
+          <button className="addButton">Add to Calender</button>
+          {/* </p> */}
         </div>
 
         <div className="finalStage">
@@ -120,6 +120,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
             ))}
           </div>
         </div>
+
         <img src={ribbon} id="ribbon" alt="ribbon"></img>
       </div>
       {/*schedule*/}
@@ -169,7 +170,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

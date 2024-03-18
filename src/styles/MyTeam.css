@@ -2,7 +2,7 @@
     color:aliceblue;
     padding-left: 100px;
     padding-right: 100px;
- height:100vh; 
+ /* height:100vh; / */
  font-family: 'Roboto', sans-serif;
 }
 .item{
