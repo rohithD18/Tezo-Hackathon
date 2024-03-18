@@ -28,15 +28,16 @@ margin-left: 56px;
 }
 .members{
   width:173px;
-/* height:36px; */
-padding: 8px 12px 8px 12px;
+height:36px;
+padding: 8px 12px;
 border-radius: 4px;
 border: 1px solid white;
 background-color: #A4608E;
 margin-bottom: 36px;
 display: flex;
-flex-direction: row;
+/* flex-direction: row; */
 justify-content: space-between;
+position: relative;
 }
 .right{
   /* border: 2px solid white; */
@@ -100,7 +101,6 @@ font-weight: 500;
 line-height: 18px;
 letter-spacing: 0em;
 color:#F5FCFC;
-text-align: left;
 
 }
 .profileIcon{
@@ -108,11 +108,13 @@ text-align: left;
 height: 20px;
 border: 1px groove white;
 border-radius: 100%;  
-position: absolute;
+position: absolute;  
+/* left: 0; */
   object-fit: cover;
 }
 .profileContainer{
   position:relative;
+  left: 0;
   width: fit-content;
 }
 .mainDiv{
