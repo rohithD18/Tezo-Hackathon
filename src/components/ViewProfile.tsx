@@ -4,19 +4,28 @@ import Group7334 from "../assets/Group7334.png";
 import Icon from "../assets/Icon.png";
 import userIcon from "../assets/userIcon.png";
 import "../styles/ViewProfile.css";
+import { LogInLogOutComp, pca } from "./Login";
+import { MsalProvider } from "@azure/msal-react";
 
 type Props = {
-  setShowProfile: any;
+  setShowProfile: (message: boolean) => void;
+  setUserName: (message: string) => void;
 };
+interface IProps2 {
+  setUserName: (message: string) => void;
+}
 
-const ViewProfile = (props: Props) => {
-  const { setShowProfile } = props;
+const ViewProfile = ({ setShowProfile, setUserName }: Props) => {
+  // const { setShowProfile } = props;
 
   const handleCancel = () => {
     setShowProfile(false);
   };
-  const userName:any    = localStorage.getItem("userDataL");
-  console.log(userName)
+  const userName: any = localStorage.getItem("userDataL");
+  console.log(userName);
+  const userNameFromLogInLogOutComp = (data: string) => {
+    setUserName(""); // or set the data to a state
+  };
 
   return (
     <div className="profileContainer">
@@ -29,7 +38,9 @@ const ViewProfile = (props: Props) => {
             onClick={handleCancel}
           />
         </span>
-        <span className="emailSpan">{localStorage.getItem(("username").toString())}</span>
+        <span className="emailSpan">
+          {localStorage.getItem("username".toString())}
+        </span>
         <div className="profilePicDiv">
           <div className="profileGroup">
             <img src={Group7334} alt="profilePic" className="profileGroupImg" />
@@ -50,7 +61,7 @@ const ViewProfile = (props: Props) => {
               </label>
             </div>
           </button>
-          <button className="btn2">
+          {/* <button className="btn2">
             <div className="Statelayer">
               <span className="iconBox">
                 <img src={Icon} alt="userIcon" className="icon" />
@@ -59,7 +70,12 @@ const ViewProfile = (props: Props) => {
                 Sign Out
               </label>
             </div>
-          </button>
+          </button> */}
+          <MsalProvider instance={pca}>
+            <LogInLogOutComp
+              userNameFromLogInLogOutComp={userNameFromLogInLogOutComp}
+            />
+          </MsalProvider>
         </div>
       </div>
     </div>

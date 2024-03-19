@@ -57,12 +57,15 @@ export function LogInLogOutComp({ userNameFromLogInLogOutComp }: IProps1) {
 
   const handleLogoutPopup = () => {
     instance
-      .logoutPopup({
-        mainWindowRedirectUri: "/", // redirects the top level app after logout
+      .logout()
+      .then((res) => {
+        console.log("logOutRes", res);
       })
-      .then((res) => console.log("logOutRes", res));
+      .catch((err) => console.error(err));
     localStorage.removeItem("userDataL");
     localStorage.removeItem("username");
+    localStorage.removeItem("fullName");
+    navigate("/");
   };
 
   return (
