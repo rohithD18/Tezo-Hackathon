@@ -1,0 +1,136 @@
+.applicationDetails {
+  position: absolute;
+  width: 734.88px;
+  height: 891px;
+  top: 0;
+  right: 0;
+  background-color: #273144;
+  border: 1px solid #3d5a80;
+  z-index: 1000;
+}
+
+.headerBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 49px;
+  padding: 14px 24px;
+  background-color: #495f80;
+  color: white;
+}
+
+.title {
+  width: auto;
+  height: 23px;
+  font: Raleway;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 23px;
+  text-align: left;
+  color: #ffffff;
+  padding: 6px; /* Adjust as needed */
+}
+
+.cancelImage {
+  width: 24px; /* Adjust as needed */
+  height: 24px; /* Adjust as needed */
+  cursor: pointer;
+}
+.cancelImage:hover {
+  background-color: #273144;
+}
+.detailsContainer {
+  width: 671.71px;
+  height: 788px;
+  top: 100.51px;
+  position: absolute;
+  left: 31.83px;
+  justify-content: space-between;
+}
+.table1 {
+  width: 671.71px;
+  height: 213px;
+  padding: 0 0 26.49px 0;
+  gap: 26.49px;
+  border: 0 0 1px 0;
+  border-bottom: 1px solid #3d5a80;
+}
+
+.tableHeader {
+  width: auto;
+  height: 27px;
+  font: Raleway;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.table2Header {
+  width: max-content;
+  display: inline-block;
+  height: 27px;
+  font: Raleway;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.teamTable th {
+  width: 240px;
+  height: 20px;
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  color: #b4b4b4;
+}
+
+.teamTable td:hover img {
+  filter: invert(40%) sepia(90%) saturate(6401%) hue-rotate(300deg)
+    brightness(105%) contrast(95%);
+  cursor: pointer;
+}
+.btnConatainer {
+  position: absolute;
+  width: 671.71px;
+  height: 98px;
+  padding: 24px 0px 24px 0px;
+  gap: 20pxl;
+  bottom: 0px;
+  border: 1px, 0px, 0px, 0px;
+  border-top: 1px solid #3d5a80;
+  display: flex;
+  justify-content: flex-end;
+}
+.acceptButton,
+.rejectButton {
+  width: 125px;
+  height: 50px;
+  border-radius: 8px;
+  font: Roboto Flex;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  /* cursor: pointer; */
+}
+.acceptButton:hover {
+  cursor: pointer;
+}
+
+.rejectButton {
+  color: #eeeeee;
+  border: 1px solid #b4b4b4;
+  background: inherit;
+  margin-right: 20px; /* Added margin for gap */
+}
+
+.acceptButton {
+  color: #ffffff;
+  background: #ee6c4d;
+  border: none;
+}
