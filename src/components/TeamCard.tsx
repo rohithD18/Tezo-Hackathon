@@ -9,7 +9,7 @@ type Props = {
   data: ITeamData;
 };
 
-const TeamCard = (props: Props) => {
+const TeamCard: React.FC<Props> = (props: Props) => {
   const { data } = props;
 
   return (

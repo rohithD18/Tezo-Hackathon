@@ -33,7 +33,7 @@ const App: React.FC = () => {
         <>
           <NavBarCopy />
           <Routes>
-            <Route path="/" Component={() => <HomePage isRegister={true} />} />
+            <Route path="/" Component={() => <HomePage isRegister={false} />} />
             <Route path="/registration-form" Component={Registration} />
             <Route path="/schedule" Component={Schedule} />
             <Route path="/teams" Component={MyTeam} />
