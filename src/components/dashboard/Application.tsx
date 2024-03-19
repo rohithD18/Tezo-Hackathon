@@ -10,11 +10,26 @@ import { ApplicationData, IApplications } from "../../services/Data";
 import Feedback from "../../assets/Feedback.png";
 import Feedback1 from "../../assets/Feedback1.png";
 import profilepic from "../../assets/profilepic.jpg";
-import Status from "../../assets/Status.png";
 import PaginationSection from "../pagination/PaginationSection";
+import ApplicationDetails from "./ApplicationDetails";
 
-const Application = () => {
+type Props = {
+  setIsApplicationDetailsOpen: any;
+};
+const Application = (props: Props) => {
+  const { setIsApplicationDetailsOpen } = props;
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [isApplicationDetails, setIsApplicationDetails] = useState(false);
+  const [appliDetailsData, setAppliDetailsData] = useState<IApplications[]>([]);
   const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    if (isApplicationDetails === true) {
+      setIsApplicationDetailsOpen(true);
+    } else {
+      setIsApplicationDetailsOpen(false);
+    }
+  }, [isApplicationDetails, setIsApplicationDetailsOpen]);
   const [statusCounts, setStatusCounts] = useState<{
     Accepted: number;
     Rejected: number;
@@ -64,6 +79,7 @@ const Application = () => {
   };
 
   const handleFilterClick = (status: string) => {
+    setActiveFilter(status);
     if (status === "All") {
       setCurrApplicationData(ApplicationData);
     } else {
@@ -77,8 +93,17 @@ const Application = () => {
   const formatDate = (date: Date | string): string => {
     if (typeof date === "string") {
       return date;
+    } else {
+      const options: any = {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      };
+      return new Intl.DateTimeFormat("en-US", options).format(date);
     }
-    return date.toLocaleDateString();
   };
 
   const cardData = [
@@ -92,7 +117,10 @@ const Application = () => {
       count: statusCounts.Rework,
     },
   ];
-
+  const handleAppliDetailsData = (data: any) => {
+    setIsApplicationDetails(true);
+    setAppliDetailsData(data);
+  };
   return (
     <>
       <div className="ApplicationScreen">
@@ -114,26 +142,7 @@ const Application = () => {
         <div className="tableContainer">
           <div className="tableTopContainer">
             <span className="tableTitle">Applications</span>
-            {/* <div className="filterContainer">
-              <input
-                type="search"
-                name=""
-                className="searchBox"
-                placeholder="Search by Team Name"
-                value={searchQuery}
-                onChange={handleSearchChange}
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                className="bi bi-search"
-                viewBox="0 0 16 16"
-              >
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-              </svg>
-            </div> */}
+
             <div className="filterContainer">
               <div className="searchBox">
                 <svg
@@ -161,42 +170,52 @@ const Application = () => {
           <div className="displayTable">
             <div className="filterButtonContainer">
               <button
-                className="btnAll"
+                className={`btnAll ${activeFilter === "All" ? "hovered" : ""}`}
                 onClick={() => handleFilterClick("All")}
               >
                 All
               </button>
               <button
-                className="btnPending"
+                className={`btnPending ${
+                  activeFilter === "Pending" ? "hovered" : ""
+                }`}
                 onClick={() => handleFilterClick("Pending")}
               >
                 Pending
               </button>
               <button
-                className="btnAccepted"
+                className={`btnAccepted ${
+                  activeFilter === "Accepted" ? "hovered" : ""
+                }`}
                 onClick={() => handleFilterClick("Accepted")}
               >
                 Accepted
               </button>
               <button
-                className="btnRejected"
+                className={`btnRejected ${
+                  activeFilter === "Rejected" ? "hovered" : ""
+                }`}
                 onClick={() => handleFilterClick("Rejected")}
               >
                 Rejected
               </button>
             </div>
             <table className="table">
-              <tr className="tableRow">
+              <thead className="tableRow">
                 <th className="teamTitle">Team Name</th>
                 <th className="captTitle">Captain</th>
                 <th className="projectTitle">Project Name</th>
                 <th className="projectSubmit">Project Submitted</th>
                 <th className="dateTitle">Submission Date</th>
                 <th className="statusTitle">Status</th>
-              </tr>
+              </thead>
 
               {displayOnApplication.map((application, index) => (
-                <tr className="tableRowData" key={index}>
+                <tr
+                  className="tableRowData"
+                  key={index}
+                  onClick={() => handleAppliDetailsData(application)}
+                >
                   <td className="teamTitle">{application.TeamName}</td>
                   <td className="captTitleData">
                     <span
@@ -235,34 +254,24 @@ const Application = () => {
                   <td className="dateTitle">
                     {formatDate(application.SubmissionDate)}
                   </td>
-                  <td
-                    className="statusTitle"
-                    // className={`statusTitleData ${application.Status.toLowerCase()}`}
-                  >
-                    {application.Status === "Pending" ? (
-                      <img
-                        src={Status}
-                        alt="img"
-                        style={{
-                          width: "75px",
-                          height: "42px",
-                          background: "none",
-                          border: "none",
-                        }}
-                      />
-                    ) : (
-                      <div
-                        className={`statusTitleData ${application.Status.toLowerCase()}`}
-                      >
-                        {application.Status}
-                      </div>
-                    )}
+                  <td className="statusTitle">
+                    <div
+                      className={`statusTitleData ${application.Status.toLowerCase()}`}
+                    >
+                      {application.Status}
+                    </div>
                   </td>
                 </tr>
               ))}
             </table>
           </div>
         </div>
+        {isApplicationDetails && (
+          <ApplicationDetails
+            setIsApplicationDetails={setIsApplicationDetails}
+            appliDetailsData={appliDetailsData}
+          />
+        )}
         <div className="applicationPagination"></div>
         <PaginationSection
           setCurrentItem={setDisplayOnApplication}
