@@ -7,8 +7,9 @@ type Props = {
 };
 
 const SubNavBar = (props: Props) => {
+
   const { setShowAll } = props;
-  const [activeItem, setActiveItem] = useState<null | string>();
+  const [activeItem, setActiveItem] = useState<string>("All");
   const handleItemClick = (itemName: string) => {
     setActiveItem(itemName);
     {
