@@ -100,7 +100,6 @@
   .profileName {
     width: 113px;
     height: 19px;
-    //styleName: Heading 1/16 medium;
     font: Raleway;
     font-size: 16px;
     font-weight: 500;
@@ -112,7 +111,6 @@
   .profileId {
     width: 73px;
     height: 14px;
-    //styleName: Body 2/12 Medium;
     font: Roboto Flex;
     font-size: 12px;
     font-weight: 500;

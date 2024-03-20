@@ -62,7 +62,6 @@ img.cardImage {
 .cardTitle {
   width: 112px;
   height: 22px;
-  //styleName: Body 1/16 Regular;
   font-family: Inter;
   font-size: 16px;
   font-weight: 400;
@@ -75,7 +74,6 @@ img.cardImage {
 .cardNum {
   width: 47px;
   height: 32px;
-  //styleName: Heading 1/24 Semibold;
   font-family: Inter;
   font-size: 24px;
   font-weight: 600;
@@ -302,7 +300,7 @@ img.ProjectedSubmittedImg:hover {
 .captTitleData {
   width: 10%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;

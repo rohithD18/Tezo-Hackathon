@@ -131,7 +131,7 @@ export const ApplicationData: IApplications[] = [
   },
 ];
 
-interface ITeamMembers {
+export interface ITeamMembers {
   Id: number;
   Name: string;
   Email: string;

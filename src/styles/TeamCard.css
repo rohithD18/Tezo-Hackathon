@@ -19,6 +19,7 @@
   background: #273144;
   border: 1px solid #3d5a80;
   border-bottom: 4px solid #ee6c4d;
+  text-decoration: none;
 }
 
 .card1 {
@@ -172,6 +173,7 @@ img.starIcon {
   letter-spacing: 0.02em;
   text-align: right;
   color: rgba(255, 255, 255, 1);
+  text-decoration: none;
 }
 
 .captainTitle {

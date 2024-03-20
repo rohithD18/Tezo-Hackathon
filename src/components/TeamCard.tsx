@@ -1,19 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/TeamCard.css";
 import { ITeamData } from "../services/Interface/TeamData";
 import star01 from "../assets/star01.png";
 import Ellipse810 from "../assets/Ellipse810.png";
 import { FaHashtag } from "react-icons/fa";
-
+import {Teams} from "../services/Data";
+import { ITeamMembers } from "../services/Data";
+import MyTeam from "./MyTeam";
+import { Link } from "react-router-dom";
 type Props = {
   data: ITeamData;
 };
 
 const TeamCard: React.FC<Props> = (props: Props) => {
   const { data } = props;
-
+  const [clicked, setClicked] = useState(false);
+  const [teamMembers, setTeamMembers] = useState<ITeamMembers[]>();
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault();
+    Teams.forEach(item => {
+      if( data.teamName === item.TeamName){
+       setTeamMembers(item.TeamMembers)
+      };
+    });
+    setClicked(true)
+};
   return (
-    <div className="cardAll">
+    <>
+    {clicked ? (
+      <div>
+        hi
+      </div>
+    ) : (
+
+         <a href={`/teams/${data.teamName}`} style={{textDecoration:"none"}} >
+    <div className="cardAll" key={data.id} >
+   
       <div className="card1">
         <div className="cardLogo">
           <div className="cardgroup">
@@ -50,7 +72,11 @@ const TeamCard: React.FC<Props> = (props: Props) => {
           <span className="captainName">{data.captainName}</span>
         </div>
       </div>
+      
     </div>
+  </a>
+    )}
+    </>
   );
 };
 

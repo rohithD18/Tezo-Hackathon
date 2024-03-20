@@ -6,7 +6,7 @@ import { TeamsData } from "../services/Const";
 
 const AllTeams: React.FC = () => {
   const [currentItem, setCurrentItem] = useState<any[]>([]);
-
+  console.log(currentItem)
   return (
     <>
       <div className="allCardBody">

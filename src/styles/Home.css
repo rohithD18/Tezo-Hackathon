@@ -149,6 +149,7 @@ position: absolute;
   position:relative;
   left: 0;
   width: fit-content;
+  border:none
 }
 .mainDiv{
   margin: 3%;
