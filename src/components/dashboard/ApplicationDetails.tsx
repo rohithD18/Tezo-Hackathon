@@ -9,7 +9,7 @@ type Props = {
   appliDetailsData: any;
 };
 
-const ApplicationDetails = (props: Props) => {
+const ApplicationDetails: React.FC<Props> = (props: Props) => {
   const { setIsApplicationDetails, appliDetailsData } = props;
   console.log(appliDetailsData);
 

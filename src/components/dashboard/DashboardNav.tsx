@@ -8,7 +8,7 @@ import Users from "../../assets/Users.png";
 type Props = {
   setIsApplication: any;
 };
-const DashboardNav = (props: Props) => {
+const DashboardNav: React.FC<Props> = (props: Props) => {
   const { setIsApplication } = props;
 
   // const navigate = useNavigate();

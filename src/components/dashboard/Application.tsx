@@ -16,7 +16,7 @@ import ApplicationDetails from "./ApplicationDetails";
 type Props = {
   setIsApplicationDetailsOpen: any;
 };
-const Application = (props: Props) => {
+const Application: React.FC<Props> = (props: Props) => {
   const { setIsApplicationDetailsOpen } = props;
   const [activeFilter, setActiveFilter] = useState("All");
   const [isApplicationDetails, setIsApplicationDetails] = useState(false);

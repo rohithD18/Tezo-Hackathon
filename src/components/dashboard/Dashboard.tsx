@@ -3,7 +3,7 @@ import AdminNavBar from "./DashboardNav";
 import Application from "./Application";
 import ViewBlur from "./ViewBlur";
 
-const Dashboard = () => {
+const Dashboard: React.FC = () => {
   const [isApplication, setIsApplication] = useState(false);
   const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =
     useState(false);
