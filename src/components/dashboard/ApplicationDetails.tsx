@@ -3,21 +3,31 @@ import xclose from "../../assets/xclose.png";
 import arrow_up_right from "../../assets/arrow_up_right.png";
 import Ellipse811 from "../../assets/Ellipse811.png";
 import "../../styles/dashboard/ApplicationDetails.css";
-import { ApplicationData } from "../../services/Data";
+import { ApplicationData, IApplications } from "../../services/Data";
 type Props = {
   setIsApplicationDetails: any;
   appliDetailsData: any;
+  setIsRating: any;
+  setIsApplicationDetailsOpen: any;
+  setIsRejectedFeed: any;
 };
 
 const ApplicationDetails = (props: Props) => {
-  const { setIsApplicationDetails, appliDetailsData } = props;
-  console.log(appliDetailsData);
+  const {
+    setIsApplicationDetails,
+    appliDetailsData,
+    setIsRating,
+    setIsApplicationDetailsOpen,
+    setIsRejectedFeed,
+  } = props;
+  // console.log(appliDetailsData);
 
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       const modal = document.querySelector(".ApplicationScreen");
       if (modal && !modal.contains(event.target as Node)) {
         setIsApplicationDetails(false);
+        setIsApplicationDetailsOpen(false);
       }
     };
 
@@ -26,7 +36,7 @@ const ApplicationDetails = (props: Props) => {
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, [setIsApplicationDetails]);
+  }, [setIsApplicationDetails, setIsApplicationDetailsOpen]);
 
   let formattedDate: string = "";
   let formattedTime: string = "";
@@ -50,16 +60,26 @@ const ApplicationDetails = (props: Props) => {
 
   const handleClose = () => {
     setIsApplicationDetails(false);
+    setIsApplicationDetailsOpen(false);
   };
+
   const handleAccept = () => {
-    // const id = appliDetailsData.Id;
-    // ApplicationData[id].Status = "Accepted";
     setIsApplicationDetails(false);
+    setIsRating(true);
+
+    // const id = appliDetailsData.Id; // Convert to string
+    // const updatedData = ApplicationData.map((application) =>
+    //   application.Id === id
+    //  (ApplicationData[id].Status = "Accepted")
+    //     : application
+    // );
+    // console.log(updatedData);
+    // setIsApplicationDetails(false);
   };
+
   const handleReject = () => {
-    // const id = appliDetailsData.Id;
-    // ApplicationData[id].Status = "Rejected";
     setIsApplicationDetails(false);
+    setIsRejectedFeed(true);
   };
 
   return (

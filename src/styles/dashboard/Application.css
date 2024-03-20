@@ -252,10 +252,7 @@ img.cardImage {
   background-color: rgba(61, 90, 128, 1) ;
   cursor: pointer !important; 
 }
-/* table tr:hover{
-  background-color: rgba(61, 90, 128, 1) ;
-  cursor: pointer !important; 
-} */
+
 img.ProjectedSubmittedImg {
   height: 38px;
   width: 38px;

@@ -8,16 +8,27 @@ const Dashboard = () => {
   const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =
     useState(false);
 
+  //setting state for rating pop up
+  const [isRating, setIsRating] = useState(false);
+  const [isRejectedFeed, setIsRejectedFeed] = useState(false);
   return (
     <div className="adminHomeDiv">
       <div>
-        {isApplicationDetailsOpen && <ViewBlur />}
+        {isApplicationDetailsOpen && (
+          <ViewBlur
+            isRating={isRating}
+            setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
+            isRejectedFeed={isRejectedFeed}
+          />
+        )}
         <AdminNavBar setIsApplication={setIsApplication} />
       </div>
       <div>
         {isApplication && (
           <Application
             setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
+            setIsRating={setIsRating}
+            setIsRejectedFeed={setIsRejectedFeed}
           />
         )}
       </div>

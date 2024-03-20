@@ -15,9 +15,11 @@ import ApplicationDetails from "./ApplicationDetails";
 
 type Props = {
   setIsApplicationDetailsOpen: any;
+  setIsRating: any;
+  setIsRejectedFeed:any
 };
 const Application = (props: Props) => {
-  const { setIsApplicationDetailsOpen } = props;
+  const { setIsApplicationDetailsOpen, setIsRating,setIsRejectedFeed } = props;
   const [activeFilter, setActiveFilter] = useState("All");
   const [isApplicationDetails, setIsApplicationDetails] = useState(false);
   const [appliDetailsData, setAppliDetailsData] = useState<IApplications[]>([]);
@@ -27,9 +29,11 @@ const Application = (props: Props) => {
     if (isApplicationDetails === true) {
       setIsApplicationDetailsOpen(true);
     } else {
-      setIsApplicationDetailsOpen(false);
+      if (activeFilter === "Pending") {
+        setIsApplicationDetailsOpen(false);
+      }
     }
-  }, [isApplicationDetails, setIsApplicationDetailsOpen]);
+  }, [isApplicationDetails, setIsApplicationDetailsOpen, activeFilter]);
   const [statusCounts, setStatusCounts] = useState<{
     Accepted: number;
     Rejected: number;
@@ -270,6 +274,10 @@ const Application = (props: Props) => {
           <ApplicationDetails
             setIsApplicationDetails={setIsApplicationDetails}
             appliDetailsData={appliDetailsData}
+            setIsRating={setIsRating}
+            setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
+            setIsRejectedFeed={setIsRejectedFeed}
+           
           />
         )}
         <div className="applicationPagination"></div>
