@@ -1,17 +1,5 @@
-/* .allCardBody {
-    width: 100%;
-    height: auto;
-    gap: 20px;
-    background-color: #1b2531;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    scroll-behavior: auto;
-  } */
-
-.cardAll{
-  /* width: 360px; */
-  width: 355px;
+.cardAll {
+  width: 375px;
   height: 316px;
   border-radius: 8px;
   border: 1px;
@@ -40,8 +28,6 @@
   padding: 0px, 24px, 24px, 24px;
   border: 0px, 0px, 4px, 0px;
   gap: 12px;
-  /* top: 22px; */
-  /* border-bottom: 4px solid #ee6c4d; */
   border-left: 4px;
   padding: 0px 24px;
   position: relative;

@@ -1,192 +1,178 @@
 .profileContainer {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    z-index: 9999; 
-  }
-  
-  .profileContainer {
-    position: sticky;
-    width: 357px;
-    height: 251px;
-    left: 75%;
-    /* top: 12989px;/ */
-    /* right: 0px;/ */
-    padding: 24px, 20px, 20px, 20px;
-    border-radius: 8px;
-    border: 0.6px;
-    justify-content: space-between;
-    background: #273144;
-    border: 0.6px solid #3d5a80;
-  }
-  
-  .cancelContainer {
-    width: 24px;
-    height: 24px;
-    padding: 5.41px, 5.41px, 5.41px, 5.41px;
-    float: right;
-  }
-  /* img.profileViewCancel {
-  } */
-  
-  img.profileViewCancel {
-    animation-duration: 1ms;
-    cursor: pointer;
-  }
-  
-  img.profileViewCancel:active {
-    color: 1.5px solid rgba(238, 108, 77, 1);
-  }
-  
-  .profileDiv {
-    width: 317px;
-    height: 207px;
-    gap: 24px;
-  }
-  
-  .emailSpan {
-    padding-left: 95px;
-    width: 146px;
-    height: 14px;
-    color: #b4b4b4;
-    font: Roboto;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 14px;
-    letter-spacing: 0em;
-    text-align: center;
-  }
-  .profilePicDiv {
-    width: 317px;
-    height: 109px;
-    gap: 8px;
-    margin-top: 28px;
-    /* border: 1px solid yellow; */
-    display: flex; /* Use flexbox */
-    flex-direction: column;
-    justify-content: center; /* Horizontally center the items */
-    align-items: center;
-  }
-  
-  /* .profilePicDiv2 {
-    width: 317px;
-    height: 36px;
-    
-  } */
-  
-  .profileGroup {
-    width: 60px;
-    height: 60px;
-    color: Primary 1 / 100;
-  }
-  
-  img.profileGroupImg {
-    width: 60px;
-    height: 60px;
-    border: none;
-    align-items: center;
-  }
-  .profileNameContainer {
-    width: 317px;
-    height: 41px;
-    gap: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .profileName {
-    width: 113px;
-    height: 19px;
-    font: Raleway;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(238, 238, 238, 1);
-  }
-  .profileId {
-    width: 73px;
-    height: 14px;
-    font: Roboto Flex;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 14px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: rgba(180, 180, 180, 1);
-  }
-  .profilePicDiv2 {
-    display: flex;
-  
-    width: 317px;
-    height: 36px;
-    gap: 8px;
-    margin-left: 10px;
-    margin-top: 40px;
-  }
-  
-  .btn1 {
-    width: 154.5px;
-    height: 36px;
-    border-radius: 8px;
-    border: 1px;
-    background-color: transparent;
-    border: 1px solid rgba(180, 180, 180, 1);
-    cursor: pointer;
-  }
-  
-  .btn2 {
-    width: 154.5px;
-    height: 36px;
-    border-radius: 8px;
-    background: rgba(253, 237, 238, 1);
-    cursor: pointer;
-  }
-  
-  .Statelayer {
-    display: flex;
-    height: initial;
-    align-items: center;
-    /* height: 36px; */
-    cursor: pointer;
-    padding: 9px, 28px, 9px, 20px;
-    gap: 8px;
-    justify-content: center;
-  }
-  
-  .iconBox {
-    width: 18px;
-    height: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    /* border: 1px solid yellow;
-    /* border: 1px solid yellow; */
-  }
-  img.icon {
-    width: 100%;
-    height: 100%;
-    top: 2.25px;
-    left: 2.25px;
-    border: 1.5px;
-    color: 1.5px solid rgba(238, 108, 77, 1);
-  }
-  .IblViewProfile {
-    /* padding-top: 6.5px; */
-    width: 77px;
-    height: 16px;
-    font: Roboto Flex;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: rgba(238, 108, 77, 1);
-    cursor: pointer;
-  }
-  
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.profileContainer {
+  position: sticky;
+  width: 357px;
+  height: 251px;
+  left: 75%;
+
+  padding: 24px, 20px, 20px, 20px;
+  border-radius: 8px;
+  border: 0.6px;
+  justify-content: space-between;
+  background: #273144;
+  border: 0.6px solid #3d5a80;
+}
+
+.cancelContainer {
+  width: 24px;
+  height: 24px;
+  padding: 5.41px, 5.41px, 5.41px, 5.41px;
+  float: right;
+}
+
+img.profileViewCancel {
+  animation-duration: 1ms;
+  cursor: pointer;
+}
+
+img.profileViewCancel:active {
+  color: 1.5px solid rgba(238, 108, 77, 1);
+}
+
+.profileDiv {
+  width: 317px;
+  height: 207px;
+  gap: 24px;
+}
+
+.emailSpan {
+  padding-left: 95px;
+  width: 146px;
+  height: 14px;
+  color: #b4b4b4;
+  font: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.profilePicDiv {
+  width: 317px;
+  height: 109px;
+  gap: 8px;
+  margin-top: 28px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileGroup {
+  width: 60px;
+  height: 60px;
+  color: Primary 1 / 100;
+}
+
+img.profileGroupImg {
+  width: 60px;
+  height: 60px;
+  border: none;
+  align-items: center;
+}
+.profileNameContainer {
+  width: 317px;
+  height: 41px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profileName {
+  width: 113px;
+  height: 19px;
+  font: Raleway;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(238, 238, 238, 1);
+}
+.profileId {
+  width: 73px;
+  height: 14px;
+  font: Roboto Flex;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(180, 180, 180, 1);
+}
+.profilePicDiv2 {
+  display: flex;
+
+  width: 317px;
+  height: 36px;
+  gap: 8px;
+  margin-left: 10px;
+  margin-top: 40px;
+}
+
+.btn1 {
+  width: 154.5px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px;
+  background-color: transparent;
+  border: 1px solid rgba(180, 180, 180, 1);
+  cursor: pointer;
+}
+
+.btn2 {
+  width: 154.5px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(253, 237, 238, 1);
+  cursor: pointer;
+}
+
+.Statelayer {
+  display: flex;
+  height: initial;
+  align-items: center;
+
+  cursor: pointer;
+  padding: 9px, 28px, 9px, 20px;
+  gap: 8px;
+  justify-content: center;
+}
+
+.iconBox {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+img.icon {
+  width: 100%;
+  height: 100%;
+  top: 2.25px;
+  left: 2.25px;
+  border: 1.5px;
+  color: 1.5px solid rgba(238, 108, 77, 1);
+}
+.IblViewProfile {
+  width: 77px;
+  height: 16px;
+  font: Roboto Flex;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(238, 108, 77, 1);
+  cursor: pointer;
+}

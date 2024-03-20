@@ -34,11 +34,10 @@ border-bottom: 2px solid transparent;
     font-weight:600;
     z-index: 1;
 }
-.borderStyling{
-    margin-top: -2px; 
-    border-bottom: 2px solid #3D5A80; 
-    margin-bottom: 40px;
-
+.borderStyling {
+  margin-top: -2px;
+  border-bottom: 2px solid #3d5a80;
+  margin-bottom: 40px;
 }
 .cardStyling{
     width: 350px;
@@ -55,12 +54,12 @@ margin-right: 20px;
 
 }
 
-.imgStyling{
-    border-radius: 50%;
-    object-fit: cover; 
-    width: 65px;
-    height: 65px;
-    border: none;
+.imgStyling {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 65px;
+  height: 65px;
+  border: none;
 }
 .name{
     font-family: inherit;
@@ -91,7 +90,7 @@ letter-spacing: 0em;
 text-align: left;
 
 }
-.memberDetails{
-    display: flex;
-    flex-direction: column;
+.memberDetails {
+  display: flex;
+  flex-direction: column;
 }

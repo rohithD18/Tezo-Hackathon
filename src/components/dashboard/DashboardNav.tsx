@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../../styles/dashboard/AdminNavBar.css";
 import category from "../../assets/category.png";
-import dropdownIcon from "../../assets/dropdownIcon.png";
 import Users from "../../assets/Users.png";
+import square3 from "../../assets/square3.png";
+import document_code_2 from "../../assets/document_code_2.png";
+import calendar from "../../assets/calendar.png";
 // import { useNavigate } from "react-router-dom";
 
 type Props = {
@@ -11,11 +13,6 @@ type Props = {
 const DashboardNav = (props: Props) => {
   const { setIsApplication } = props;
 
-  // const navigate = useNavigate();
-  const [istoggle, setIstoggle] = useState(false);
-  const handleDropdown = () => {
-    setIstoggle(!istoggle);
-  };
   const handleApplicationClick = () => {
     setIsApplication(true);
     // navigate("/admin/application");
@@ -38,23 +35,25 @@ const DashboardNav = (props: Props) => {
               <img src={Users} alt="users" className="userIcon" />
               <span className="userText">User Management</span>
             </div>
-            <div className="dropDownIcon" onClick={handleDropdown}>
-              <img
-                src={dropdownIcon}
-                alt="dropdown"
-                className="dropDownImage"
-              />
+          </div>
+          <div className="Application" onClick={handleApplicationClick}>
+            <div className="Application1">
+              <img src={square3} alt="users" className="userIcon" />
+              <span className="userText">Applications</span>
             </div>
           </div>
-
-          {istoggle && (
-            <div className="Application" onClick={handleApplicationClick}>
-              <div className="Application1">
-                <img src={Users} alt="users" className="userIcon" />
-                <span className="userText">Applications</span>
-              </div>
+          <div className="Application" onClick={handleApplicationClick}>
+            <div className="Application1">
+              <img src={document_code_2} alt="users" className="userIcon" />
+              <span className="userText">Project Management</span>
             </div>
-          )}
+          </div>
+          <div className="Application" onClick={handleApplicationClick}>
+            <div className="Application1">
+              <img src={calendar} alt="users" className="userIcon" />
+              <span className="userText">Events Management</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

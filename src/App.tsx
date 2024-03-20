@@ -24,7 +24,7 @@ const App: React.FC = () => {
   const setUserName = (data: string) => {
     setUser(data);
   };
-  console.log("user", user);
+  // console.log("user", user);
 
   return (
     <div className="App">
@@ -42,8 +42,8 @@ const App: React.FC = () => {
             <Route path="/rules" Component={RejectedRework} />
             <Route path="/myProject" Component={MyProject} />
             <Route path="/allteams" Component={AllTeams} />
-          <Route path="/dashboard" Component={Dashboard} />
-          <Route path="/dashboard/application" Component={Application} />
+            <Route path="/dashboard" Component={Dashboard} />
+            {/* <Route path="/dashboard/application" Component={Application} /> */}
           </Routes>
         </>
       )}

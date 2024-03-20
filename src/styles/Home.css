@@ -72,12 +72,6 @@ display: flex;
 justify-content: space-between;
 position: relative;
 }
-.right{
-  /* border: 2px solid white; */
-/* flex:6%; */
-/* padding-left:50px; */
-/* width: 56%; */
-}
 #registerBtn{
   margin-top: 25px;
   background-color: rgba(238,108,77,100);
