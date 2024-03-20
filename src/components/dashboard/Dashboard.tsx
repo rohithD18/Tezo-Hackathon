@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import AdminNavBar from "./DashboardNav";
 import Application from "./Application";
+import DashboardView from "./DashboardView";
 import ViewBlur from "./ViewBlur";
 
-const Dashboard = () => {
+const Dashboard:React.FC = () => {
   const [isApplication, setIsApplication] = useState(false);
   const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =
     useState(false);
@@ -23,6 +24,7 @@ const Dashboard = () => {
         )}
         <AdminNavBar setIsApplication={setIsApplication} />
       </div>
+      <div style={{width:"100%"}}>{!isApplication && <DashboardView />}</div>
       <div>
         {isApplication && (
           <Application
