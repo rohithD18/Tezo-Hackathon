@@ -1,0 +1,113 @@
+.RejectedFeedbackComponent {
+  width: 457px;
+  height: 585px;
+  top: 3476.26px;
+  left: 3830.18px;
+  border-radius: 8px;
+  background: #273144;
+  z-index: 10000;
+}
+.imgSpanDiv {
+  display: flex;
+  height: 24px;
+  margin-top: 24px;
+  margin-right: 24px;
+  gap: 12px;
+  justify-content: flex-end;
+}
+img.closeImage {
+  width: 24px;
+  height: 24px;
+  float: right;
+}
+img.closeImage:hover {
+  border-radius: 5px;
+  background-color: #3d5a80;
+  cursor: pointer;
+}
+.descriptionDiv {
+  width: 409px;
+  height: 411px;
+  gap: 31.83px;
+  margin-top: 25px;
+  margin: 0 auto;
+}
+
+.descriptionText {
+  display: inline-block;
+  width: 409px;
+  height: 27px;
+  font-size: Raleway;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #eeeeee;
+}
+
+.reasonList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.reasonList li {
+  display: flex;
+  align-items: center;
+  /* margin-bottom: 10px; */
+  height: 38px;
+}
+
+.reasonIcon {
+  width: 24px;
+  height: 24px;
+  padding: 2px; /* Adjust padding as needed */
+}
+
+.reasonText {
+  width: 373px;
+  height: 22px;
+  font: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #eeeeee;
+  margin-left: 12px; /* Adjust margin as needed */
+}
+
+.textArea {
+  width: 409px;
+  height: 112px;
+  padding: 12px;
+  gap: 8px;
+  border-radius: 4px;
+  background: #2b3647;
+  border: 1px solid #3d5a80;
+  font: "Roboto Flex";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #878787;
+  resize: none; /* Disable textarea resizing */
+}
+
+.rejectedSubmitButton {
+  width: 125px;
+  height: 50px;
+  border-radius: 8px;
+  background: #ee6c4d;
+  border: none;
+  cursor: pointer;
+  color: white;
+  float: right;
+  transition: background-color 0.3s ease;
+  margin-right: 22px;
+  margin-top: 20px;
+}
+.rejectedSubmitButton:hover {
+  background-color: #ff0000; /* Change background color on click */
+}

@@ -10,6 +10,9 @@ function NavBarCopy() {
     setActiveItem(itemName);
   };
   const [showProfile, setShowProfile] = useState(false);
+  const [userName, setUserName] = useState(
+    localStorage.getItem("username")?.toString()
+  );
   const handleProfileClick = () => {
     setShowProfile(!showProfile);
   };
@@ -124,7 +127,12 @@ function NavBarCopy() {
                 </div>
               </div>
             </div>
-            {showProfile && <ViewProfile setShowProfile={setShowProfile}/>}
+            {showProfile && (
+              <ViewProfile
+                setShowProfile={setShowProfile}
+                setUserName={setUserName}
+              />
+            )}
           </div>
         </div>
       </div>
