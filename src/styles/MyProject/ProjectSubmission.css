@@ -149,3 +149,18 @@
     line-height: 20px;
 
   }
+  .fileData{
+    padding-top:15px;
+    align-items: center;
+
+  }
+  .fileData input{
+    text-align: center;
+    border: none;
+    background-color: transparent;
+    color:#EEEEEE
+  }
+  .fileData :hover{
+    border: none;
+
+  }
