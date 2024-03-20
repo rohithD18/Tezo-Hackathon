@@ -1,9 +1,10 @@
 import axios from "axios";
 
-const userData: any = localStorage.getItem("userDataL");
-// console.log("token", JSON.parse(t).accessToken);
+//const userData: any = localStorage.getItem("userDataL");
+// console.log("token", JSON.parse(t).accessToken); 
 
-const token: string = JSON.parse(userData)?.accessToken;
+//onst token: string = JSON.parse(userData)?.accessToken;
+
 
 export const getUsers = async () => {
   let url = "https://graph.microsoft.com/v1.0/users?$top=100";
@@ -11,7 +12,7 @@ export const getUsers = async () => {
   await axios
     .get(url, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer`,
       },
     })
     .then((res) => {
@@ -27,12 +28,12 @@ export const getUsers = async () => {
 
 export const getAUser = () => {
   // const { instance } = useMsal();
-  console.log(token);
+  // console.log(token);
 
   axios
     .get("https://graph.microsoft.com/v1.0/users", {
       headers: {
-        Authorization: "Bearer" + token,
+        Authorization: "Bearer" ,
         ConsistencyLevel: "eventual",
       },
     })

@@ -3,12 +3,13 @@ margin-top: 104px;
 margin-left: 105px;
 gap: 40px;
 text-align: left;
+width: 25%;
 
 }
 .welcomeDiv p{
 font-size: 18px;
-font-weight: 500;
-line-height: 21px;
+font-weight: 600;
+line-height: 27px;
 letter-spacing: 0em;
 margin-top: 24px;
 /* text-align: left; */
@@ -17,7 +18,7 @@ margin-top: 24px;
 
 .welcomeDiv #welComeDesc{
 /* font-family: ; */
-font-size: 14px;
+font-size: 16px;
 width: 300px;
 font-weight: 400;
 padding-top: 15px;
@@ -32,38 +33,38 @@ border-top: 1px solid rgb(61, 90, 128);
 }
 .welcomeDiv h4{
   /* font-family: ra; */
-font-size: 28px;
+font-size: 32px;
 font-weight: 700;
-/* line-height: 46px; */
+line-height: 46px;
 letter-spacing: 0.21em;
 /* text-align: left; */
 }
 .loginSection{
   display: flex;
+  /* width: 100%; */
+  /* border: 2px solid red; */
   /* justify-content: space-between; */
-  height: 100vh;
   /* border: 2px solid rgb(61, 90, 128); */
-}
-.vectorDiv svg{
-  width: 500px;
-  border: 1px solid white;
+  position: relative;
+  /* height: 100vh */
 }
 
 .loginBtn{
-  width: 300px;
-  height: 60px;
+  width: 349px;
+  height: 80px;
   border: 1px solid rgb(61, 90, 128);  
-  border-radius: 10px;
+  border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: 600;
   /* margin: 100px 0 0 100px; */
 }
 .loginBtn img{
-  width: 25px;
-  height: 25px;
+  width: 32px;
+  height: 32px;
   margin-right: 30px;
   border: none;
   border-radius: 0;
@@ -97,38 +98,24 @@ text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 100vh; */
-  /* border: 2px solid rgb(61, 90, 128); */
-  width: 100%;
-}
-/* #vector{
-position: absolute;
-left: 640.66px;
-background: transparent;
-
-}
-#vector1{
   position: absolute;
-top: -38.77px;
-left: 613.66px;
-background: transparent;
+  top: 45%;
+  left: 60%;
 }
-#vector2{
-  position: absolute;
-top: -77.54px;
-left: 587px;
-background: transparent;
+#vector{
+width: 70%;
 }
-#vector3{
+#vectorRight{
   position: absolute;
-top: -114px;
-left: 560px;
-background: transparent;
+  top: 38px;
+right: 0;
+/* background: transparent; */
+width: 56%;
 }
-#vector4{
+#plusSigns{
+  background-color: transparent;
   position: absolute;
-top: -114px;
-left: 560px;
-background: transparent;
-transform: rotate(-270deg);
-} */
+  left: 0;
+  bottom: 0;
+  width: 30%;
+}

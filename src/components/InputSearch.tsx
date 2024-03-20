@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/InputSearch.css";
 import { getAUser } from "../services/Services";
 // import { getAUser } from "../services/Services";

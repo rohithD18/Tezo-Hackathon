@@ -1,3 +1,10 @@
+.registerHome{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  margin-top: 20px;
+}
 .navRegister{
   width: 84%;
   border-bottom: 1px solid rgb(61, 90, 128);
@@ -9,11 +16,29 @@
   text-decoration: none;
   font-size: 12px;
 }
-.navThroughFormD{
-  padding: 20px 100px;
+.navThroughFormD1{
+  padding: 20px 120px;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  height: 100vh;
+}
+
+
+.navThroughFormD{
+  padding: 20px 0;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  /* border: 2px solid green; */
+  /* flex-direction: row; */
+  /* align-items: center; */
+  /* height: 100vh; */
+}
+.sideSteps{
+  width: 30%;
 }
 #h6Tag{
   font-size: 18px;
@@ -88,6 +113,7 @@
   border-radius: 20px;
   background-color: rgb(39 49 68);
   padding: 20px;
+  height: fit-content;
 }
 .formSection p, .topicForm p{
   /* padding: 0px 0 0 20px; */
@@ -129,6 +155,7 @@
   align-items: center;
   width: 100%;
   padding: 10px 20px;
+  position: relative;
 }
 .contentMEM:nth-child(odd) {
   background-color: rgb(43 54 71);
@@ -141,7 +168,7 @@
 }
 #trashIcon{
  position: absolute;
- right: 120px;
+ right: 20px;
  cursor: pointer;
 }
 #idOfMem, #nameEmail{
@@ -185,6 +212,42 @@
 }
 #nextBtn{
   background-color: rgb(238, 108, 77);
+  
+}
+.projectDetail{
+  display:flex;
+  justify-content: space-between;
+}
+.projectDetail h5{
+ 
+  color: rgba(255, 255, 255, 1);
+
+}
+.projectDetail p{
+  color:rgba(238, 238, 238, 1)
+}
+.dd{
+  font:
+  Roboto Flex;
+  font-weight:400;
+  font-size:14px;
+  line-height:20px;
+  color:rgba(255, 255, 255, 1)
+
+}
+.count{
+  float:right;
+  color:rgba(180, 180, 180, 1);
+}
+#ss{
+  background-color: rgba(128, 68, 64, 1);
+  margin-top: 30px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  color: rgba(238, 238, 238, 1);
+  font-weight: 500;
+  font-size:14px;
 }
 .profilePicSelectDiv{
   margin-top: 30px;
@@ -287,6 +350,7 @@ margin-top: 20px;
 } */
 .topicSec{
   display: flex;
+  height: fit-content;
   justify-content: space-between;
   align-items: center;
   margin-top: 25px;
@@ -315,4 +379,9 @@ margin-top: 20px;
 .descriptionSec textarea{
   /* height: 150px; */
   min-height: 100px;
+}
+@media screen and (min-width:1024px){
+  .navThroughFormD, .navThroughFormD1{
+    width: 80%;
+  }
 }

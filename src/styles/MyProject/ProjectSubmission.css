@@ -1,0 +1,151 @@
+.topicSec1{
+    display: flex;
+    height: fit-content;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    color: gray;
+  }
+  .topicSec1 textarea::placeholder {
+    white-space: pre-wrap; /* Enable word wrapping */
+}
+  .topicSec1 p, .dropFile p {
+    font-size: 14px;
+    margin-top: 7px;
+  }
+  .topicSec1 textarea{
+    font-size: 15px;
+    width: 70%;
+    border: 1px solid  rgb(61, 90, 128);
+    background-color: transparent;
+    padding:10px 10px 35px 10px;
+    border-radius: 3px;
+    color: white;
+  }
+ 
+ .pdfIcon{
+    height:40px;
+    width:40px;
+    border:none
+ }
+ .dropFile ul{
+    display: grid;
+  grid-template-columns: auto  auto;
+ }
+  .dropFile label,.dropFile ul{
+    font-size: 14px;
+    width:70%;
+    height:200px;
+    border: 1px solid  rgb(61, 90, 128);
+    background-color: transparent;
+    padding:10px 10px 10px 10px;
+    border-radius: 3px;
+    color:gray;
+    text-align: center;
+  }
+  .formSection1 {
+    width:900px;
+    border: 1px solid rgb(56 66 82);
+    /* height: 500px; */
+    border-radius: 20px;
+    background-color: rgb(39 49 68);
+    padding: 20px;
+    height: fit-content;
+  }
+  .projectDoc{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    height:71px;
+    width:270px;
+    border-radius: 4px;
+    border:1px solid rgba(61, 90, 128, 1);
+    background-color: transparent;
+    margin:12px
+  }
+  #AddIcon{
+    display:flex;
+    padding: 20px 40px;
+    cursor: pointer;
+
+  }
+  #AddIcon img{
+    margin:5px 10px;
+    width:20px;
+    height:20px;
+    border:none;
+
+
+  }
+  #pdf{
+    height:47px;
+    width:47px;
+    border:none;
+    align-items: center;
+
+  }
+  #deleteIcon{
+    height:34px;
+    width:34px;
+    background-color: transparent;
+    border-radius: 20px;
+    border:none;
+    align-items: center;
+    padding:7px
+
+  }
+  #deleteIcon:hover{
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgba(59, 74, 97, 1);
+
+  }
+  .dropFile label svg{
+    color:white;
+    height:30px;
+    width:70px
+  }
+  .dropFile button{
+    width:72px;
+    height:32px;
+    border-radius: 4px;
+    text-align: center;
+    background-color: transparent;
+    margin:10px;
+    font-size: 15px;
+    color: rgba(238, 108, 77, 1);
+    font:Roboto Flex;
+    border: 1px solid rgba(238, 108, 77, 1);
+    
+  }
+  .dropFile{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    margin-top: 25px;
+    color: gray;
+  }
+  .dropFile textarea{
+    /* height: 150px; */
+    min-height: 100px;
+  }
+  li{
+    list-style-type:none;
+    align-items:center;
+  }
+  .imgIcon{
+    width:20px;
+    height:20px;
+    border: none;
+  }
+  .timeRemainder{
+    display:flex;
+  }
+  .timeRemainder p{
+    margin:0px 5px;
+    font-size: 14px;
+    font:Roboto Flex;
+    font-weight: 400;
+    line-height: 20px;
+
+  }

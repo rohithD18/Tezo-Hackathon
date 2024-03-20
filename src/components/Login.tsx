@@ -13,8 +13,9 @@ import { useEffect } from "react";
 // import { getUsers } from "../services/Services";
 import "../styles/Login.css";
 import signoutIcon from "../assets/signout.png";
-import vectorUp from "../assets/upVector.png";
-import vectorDown from "../assets/downVector.png";
+import vectorRight from "../assets/rightVector.png";
+import plusSigns from "../assets/plusSigns.png";
+import vector from "../assets/vecktorAll.png";
 
 export const pca = new PublicClientApplication(msalConfig);
 
@@ -30,10 +31,13 @@ export function LogInLogOutComp({ userNameFromLogInLogOutComp }: IProps1) {
   const { instance } = useMsal();
   const { accounts } = useMsal();
   const username: string = accounts[0]?.username;
+  const fullName: string | undefined = accounts[0]?.name;
+
   useEffect(() => {
     username && localStorage.setItem("username", username);
+    fullName && localStorage.setItem("fullName", fullName);
     userNameFromLogInLogOutComp(username);
-  }, [username, userNameFromLogInLogOutComp]);
+  }, [username, userNameFromLogInLogOutComp, fullName]);
 
   const handleLoginPopup = () => {
     instance
@@ -42,7 +46,6 @@ export function LogInLogOutComp({ userNameFromLogInLogOutComp }: IProps1) {
       .then((res) => {
         // console.log("response", res);
         localStorage.setItem("userDataL", JSON.stringify(res));
-
         navigate("/");
       });
   };
@@ -54,12 +57,15 @@ export function LogInLogOutComp({ userNameFromLogInLogOutComp }: IProps1) {
 
   const handleLogoutPopup = () => {
     instance
-      .logoutPopup({
-        mainWindowRedirectUri: "/", // redirects the top level app after logout
+      .logout()
+      .then((res) => {
+        console.log("logOutRes", res);
       })
-      .then((res) => console.log("logOutRes", res));
+      .catch((err) => console.error(err));
     localStorage.removeItem("userDataL");
     localStorage.removeItem("username");
+    localStorage.removeItem("fullName");
+    navigate("/");
   };
 
   return (
@@ -99,9 +105,11 @@ export const Login = ({ setUserName }: IProps2) => {
       </div>
       {/* <img src={vectorDown} alt="veckto" id="vector4" />
       <img src={vectorUp} alt="veckto" id="vector3" />
-      <img src={vectorUp} alt="veckto" id="vector2" />
-      <img src={vectorUp} alt="veckto" id="vector1" />
-      <img src={vectorUp} alt="veckto" id="vector" /> */}
+      <img src={vectorUp} alt="veckto" id="vector2" />*/}
+      <img src={vectorRight} alt="veckto" id="vectorRight" />
+      <img src={plusSigns} alt="vecktor" id="plusSigns" />
+      <img src={vector} alt="vecktor" id="vector" />
+
       <div className="logInOutComp">
         <MsalProvider instance={pca}>
           <LogInLogOutComp

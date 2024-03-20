@@ -5,7 +5,7 @@ import "../../styles/registrationStyles/Registration.css";
 const Registration: React.FC = () => {
   return (
     <div className="registerHome">
-      <div className="navRegister">
+      {/* <div className="navRegister">
         <a className="aTag" href="/" style={{ color: "gray" }}>
           Home
         </a>{" "}
@@ -13,7 +13,7 @@ const Registration: React.FC = () => {
         <a className="aTag" href="#R">
           Register
         </a>
-      </div>
+      </div> */}
       <NavThroughForm />
     </div>
   );

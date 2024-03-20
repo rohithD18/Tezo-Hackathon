@@ -3,11 +3,18 @@ import "../styles/NavBar.css";
 import logo from "../assets/Logo.png";
 import profilepic from "../assets/profilepic.jpg";
 import { useState } from "react";
+import ViewProfile from "./ViewProfile";
 function NavBarCopy() {
   const [activeItem, setActiveItem] = useState<null | string>();
-
   const handleItemClick = (itemName: string) => {
     setActiveItem(itemName);
+  };
+  const [showProfile, setShowProfile] = useState(false);
+  const [userName, setUserName] = useState(
+    localStorage.getItem("username")?.toString()
+  );
+  const handleProfileClick = () => {
+    setShowProfile(!showProfile);
   };
   return (
     <>
@@ -44,7 +51,7 @@ function NavBarCopy() {
                         : ""
                     }`}
                     onClick={() => handleItemClick("schedule")}
-                    href="/Schedule"
+                    href="/schedule"
                   >
                     Schedule
                   </a>
@@ -57,7 +64,7 @@ function NavBarCopy() {
                         : ""
                     }`}
                     onClick={() => handleItemClick("myproject")}
-                    href="#myproject"
+                    href="/myProject"
                   >
                     MyProject
                   </a>
@@ -68,7 +75,7 @@ function NavBarCopy() {
                       activeItem === "teams" ? "itemActive disable-hover" : ""
                     }`}
                     onClick={() => handleItemClick("teams")}
-                    href="/Teams"
+                    href="/teams"
                   >
                     Teams
                   </a>
@@ -79,7 +86,7 @@ function NavBarCopy() {
                       activeItem === "rules" ? "itemActive disable-hover" : ""
                     }`}
                     onClick={() => handleItemClick("rules")}
-                    href="#rules"
+                    href="/rules"
                   >
                     Rules
                   </a>
@@ -89,15 +96,18 @@ function NavBarCopy() {
                     className={`nav-link navLinkItem ${
                       activeItem === "updates" ? "itemActive disable-hover" : ""
                     }`}
-                    onClick={() => handleItemClick("updates")}
-                    href="#updates"
+                    onClick={() => handleItemClick("dashboard")}
+                    href="/dashboard"
                   >
-                    Updates
+                    Dashboard
                   </a>
                 </li>
               </ul>
             </div>
-            <div className="col-3 d-flex justify-content-end">
+            <div
+              className="col-3 d-flex justify-content-end"
+              onClick={handleProfileClick}
+            >
               <div className="row align-items-center">
                 <div className="col-3 iconDivStyling">
                   <i className="far fa-bell text-white icon-class"></i>
@@ -117,6 +127,12 @@ function NavBarCopy() {
                 </div>
               </div>
             </div>
+            {showProfile && (
+              <ViewProfile
+                setShowProfile={setShowProfile}
+                setUserName={setUserName}
+              />
+            )}
           </div>
         </div>
       </div>

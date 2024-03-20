@@ -1,0 +1,87 @@
+.submissionDetail{
+    display:flex;
+   
+}
+.submissionDetail img{
+    height:24px;
+    width:24px;
+    border:none;
+    margin-right:10px;
+
+}
+.submissionDetail h5{
+    font:Raleway;
+    line-height: 28.18px;
+
+}
+.subLine{
+    Font:Roboto Flex;
+    font-weight:400;
+    font-size:14px;
+    line-height:20px;
+    color:rgba(238, 238, 238, 1);
+    padding-left: 5px;
+}
+.topicSec2{
+    display: flex;
+    height: fit-content;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    color: gray;
+  }
+  .topicSec2 p:last-child{
+    width:577px;
+    Font:Roboto Flex;
+    font-weight:500;
+    font-size:14px;
+    line-height:20px;
+    color:rgba(238, 238, 238, 1);
+
+
+  }
+  .topicSec2 p:first-child{
+    width:240px;
+    Font:Roboto Flex;
+    font-weight:400;
+    font-size:14px;
+    line-height:20px;
+    color:rgba(180, 180, 180, 1);
+
+  }
+.EventDetails{
+    border-bottom: 1px solid rgba(61, 90, 128, 1);
+    margin:10px 0px;
+}
+.EventDetails div{
+    display:flex;
+}
+.EventDetails h6{
+    margin-bottom: 15px;
+    line-height: 27px;
+    font:Raleway;
+    font-weight: 600;
+    font-size: 18px;
+
+}
+.EventDetails div p:first-child{
+    width:240px;
+    line-height: 20px;
+    font:Roboto Flex;
+    font-weight: 400;
+    font-size: 14px;
+    color:rgba(180, 180, 180, 1)
+
+
+}
+.EventDetails div p:last-child{
+    width:577px;
+    line-height: 20px;
+    font:Roboto Flex;
+    font-weight: 400;
+    font-size: 14px;
+    color:rgba(238, 238, 238, 1)
+}
+
+   
+
