@@ -8,7 +8,7 @@ type Props = {
   onPageChange: any;
 };
 
-const EntriesPerPagePopup = (props: Props) => {
+const EntriesPerPagePopup: React.FC<Props> = (props: Props) => {
   const { onSelect, onClose, totalRecords, onPageChange } = props;
   const itemsPerPage = 9;
   // Calculate options dynamically based on the total number of records

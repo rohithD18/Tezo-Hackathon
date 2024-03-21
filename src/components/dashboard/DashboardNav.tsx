@@ -14,19 +14,11 @@ const DashboardNav:React.FC = () => {
   const {id } = useParams();
   console.log("activeBtn",id);
   
- 
-  // const { setIsApplication } = props;
   const [activeButton, setActiveButton] = useState<string | undefined>(id);
-  // useEffect(() => {
-  //   setActiveButton(activeBtn)
-  // },)
 
   const handleButtonClick = (buttonName: string) => {
-    // setIsApplication(buttonName === "Applications");
-    // setActiveButton(buttonName);
+
    navigate(`/dashboard/${buttonName}`)
-    
-    // <Link to="/application"/>
   };
 
   return (

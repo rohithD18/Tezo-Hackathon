@@ -10,7 +10,7 @@ type Props = {
   setIsRejectedFeed:any;
   setIsRating:any
 };
-const ViewBlur = (props: Props) => {
+const ViewBlur: React.FC<Props> = (props: Props) => {
   const { isRating, setIsApplicationDetailsOpen, isRejectedFeed , setIsRejectedFeed,setIsRating} = props;
   return (
     <div className="blur-container">

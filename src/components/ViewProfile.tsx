@@ -15,7 +15,10 @@ interface IProps2 {
   setUserName: (message: string) => void;
 }
 
-const ViewProfile = ({ setShowProfile, setUserName }: Props) => {
+const ViewProfile: React.FC<Props> = ({
+  setShowProfile,
+  setUserName,
+}: Props) => {
   // const { setShowProfile } = props;
 
   const handleCancel = () => {
