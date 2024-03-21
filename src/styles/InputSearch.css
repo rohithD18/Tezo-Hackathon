@@ -24,7 +24,7 @@
   /* font-size: smaller; */
   color: gray;
 }
-.dropdown {
+.dropdownSearch {
   position: absolute;
   top: 100%;
   left: 0;
@@ -54,8 +54,7 @@ color: #EEEEEE;
 
 
 }
-.dropdown li:hover,
-.dropdown li#selected {
+.dropdown li:hover{
   background: #3D5A80;
   color:white;
   cursor: pointer;

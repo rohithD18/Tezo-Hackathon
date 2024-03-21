@@ -18,6 +18,7 @@ import Application from "./components/dashboard/Application";
 import Dashboard from "./components/dashboard/Dashboard";
 import AllTeams from "./components/AllTeams";
 import TeamDetails from "./components/TeamDetails";
+import Profile from "./components/Profile";
 const App: React.FC = () => {
   console.log("userNameeeee", localStorage.getItem("username")?.toString());
   const [user, setUser] = useState<string>("");
@@ -43,7 +44,7 @@ const App: React.FC = () => {
             <Route path="/myProject" Component={MyProject} />
             <Route path="/allteams" Component={AllTeams} />
             <Route path="/dashboard" Component={Dashboard} />
-            {/* <Route path="/dashboard/application" Component={Application} /> */}
+            <Route path="/profile" Component={Profile} />
           </Routes>
         </>
       )}

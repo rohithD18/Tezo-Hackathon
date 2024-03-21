@@ -4,11 +4,26 @@ import { useParams } from 'react-router-dom';
 import InputSearch from "./InputSearch";
 import image from "../assets/image.png"
 import { ITeamMembers, Teams } from '../services/Data';
+import { getFilteredTeams } from '../services/Services';
 const TeamDetails = () => {
     const { teamNameParam } = useParams();
+    // const history = useHistory();
     const [teamName,setTeamName]=useState<string|undefined>();
     const [teamMembers, setTeamMembers] = useState<ITeamMembers[]|undefined>();
-      
+    // const [teamNameFromService,setTeamNameFromService]=useState<string|undefined>();
+    const [querySearch, setQuerySearch] = useState<string>('');
+  useEffect(() => {
+    Teams.forEach(item => {
+      if( querySearch === item.TeamName){
+       setTeamMembers(item.TeamMembers);
+       setTeamName(item.TeamName)
+      };
+    });
+  console.log("sss",teamNameParam, querySearch);
+  
+     querySearch && window.history.pushState({},'', `/teams/${querySearch}`)
+    
+  }, [querySearch]); //
       useEffect(() => {
         Teams.forEach(item => {
             if( teamNameParam === item.TeamName){
@@ -16,12 +31,20 @@ const TeamDetails = () => {
              setTeamName(item.TeamName)
             };
           });
-        console.log(teamMembers)
       }, [teamNameParam]);
+
+      // useEffect(() => {
+      //   Teams.forEach(item => {
+      //       if( teamNameParam === item.TeamName){
+      //        setTeamMembers(item.TeamMembers);
+      //        setTeamName(item.TeamName)
+      //       };
+      //     });
+      // }, [teamNameFromService]);
   return (
           <div className="root">
             <div className='search'>
-                <InputSearch/>
+                <InputSearch setQuerySearch={setQuerySearch}/>
             </div>
             <div className='teamName'>
                 <label id='initials'>

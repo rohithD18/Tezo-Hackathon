@@ -4,6 +4,7 @@ import Dropdown from "../Dropdown";
 import Members from "./Members";
 
 const SelectMember: React.FC = () => {
+  const [querySearch,setQuerySearch]=useState<string>("");
   const greenChecksvg = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +23,7 @@ const SelectMember: React.FC = () => {
       <h5>Select Members</h5>
       <p>An email invite will be sent on your behalf to the selected members</p>
       <div className="searchIcon">
-        <InputSearch />
+      <InputSearch setQuerySearch={setQuerySearch}/>
         <Dropdown />
       </div>
       <div className="rulForTeam">

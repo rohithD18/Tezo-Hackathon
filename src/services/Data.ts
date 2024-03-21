@@ -140,7 +140,7 @@ export interface ITeamMembers {
   IsDeveloper: boolean;
 }
 
-interface ITeams {
+export interface ITeams {
   Id: number;
   TeamName: string;
   TeamMembers: ITeamMembers[];

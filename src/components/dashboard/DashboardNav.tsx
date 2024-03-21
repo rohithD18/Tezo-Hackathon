@@ -30,7 +30,7 @@ const DashboardNav = (props: Props) => {
               <span className="dashboardtext">Dashboard</span>
             </div>
           </div>
-          <div className="userManagment">
+          <div className="userManagment" onClick={handleApplicationClick}>
             <div className="userManagment1">
               <img src={Users} alt="users" className="userIcon" />
               <span className="userText">User Management</span>

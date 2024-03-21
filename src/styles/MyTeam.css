@@ -4,6 +4,9 @@
   margin-right: 10%;
  /* height:100vh; / */
  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 .item{
 padding: 20px;

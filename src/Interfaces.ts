@@ -47,3 +47,9 @@ export interface IProjectDetail {
   ProposedSolution:string;
   pdf:Ipdf[]
 }
+export interface IUser {
+  Name: string;
+  EmailAddress: string;
+  TeamName: string;
+  RegisteredOn: Date | string;
+}

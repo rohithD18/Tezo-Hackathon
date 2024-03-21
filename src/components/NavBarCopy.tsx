@@ -19,7 +19,7 @@ function NavBarCopy() {
   return (
     <>
       <div className="container-fluid custom-navbar">
-        <div className="container">
+        <div className="container ">
           <div className="row align-items-center">
             <div className="col-1">
               <img
@@ -105,23 +105,24 @@ function NavBarCopy() {
               </ul>
             </div>
             <div
-              className="col-3 d-flex justify-content-end"
-              onClick={handleProfileClick}
+              className="col-3 d-flex justify-content-end "
+              onClick={handleProfileClick} 
+             
             >
-              <div className="row align-items-center">
+              <div className="row align-items-center " >
                 <div className="col-3 iconDivStyling">
                   <i className="far fa-bell text-white icon-class"></i>
                 </div>
-                <div className="col-4">
+                <div className={`col-4 ${showProfile ? 'profileActiveImage' : ''}`}>
                   <img
                     src={profilepic}
-                    width="38"
-                    height="38"
+                    width="40"
+                    height="40"
                     className="profile ms-3"
                     alt="Profile"
                   />
                 </div>
-                <div className="col-4 text-start">
+                <div className={`col-4 text-start details ${showProfile ? 'profileActiveDetails' : ''}`}>
                   <div className="nameStyling">Venkatesh</div>
                   <div className="teamStyling">Team1</div>
                 </div>

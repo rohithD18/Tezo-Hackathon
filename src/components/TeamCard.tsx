@@ -14,27 +14,15 @@ type Props = {
 
 const TeamCard: React.FC<Props> = (props: Props) => {
   const { data } = props;
-  const [clicked, setClicked] = useState(false);
-  const [teamMembers, setTeamMembers] = useState<ITeamMembers[]>();
-  const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    e.preventDefault();
-    Teams.forEach(item => {
-      if( data.teamName === item.TeamName){
-       setTeamMembers(item.TeamMembers)
-      };
-    });
-    setClicked(true)
-};
+  const handleCardClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  
+    e.preventDefault()
+    window.location.href =`/teams/${data.teamName}`;
+  };
   return (
     <>
-    {clicked ? (
-      <div>
-        hi
-      </div>
-    ) : (
-
          <a href={`/teams/${data.teamName}`} style={{textDecoration:"none"}} >
-    <div className="cardAll" key={data.id} >
+    <div className="cardAll" key={data.id} onClick={handleCardClick}>
    
       <div className="card1">
         <div className="cardLogo">
@@ -75,7 +63,7 @@ const TeamCard: React.FC<Props> = (props: Props) => {
       
     </div>
   </a>
-    )}
+    
     </>
   );
 };
