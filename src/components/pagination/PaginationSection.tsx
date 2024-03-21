@@ -10,7 +10,7 @@ type Props = {
   data: any[];
 };
 
-const PaginationSection = (props: Props) => {
+const PaginationSection: React.FC<Props> = (props: Props) => {
   const { setCurrentItem, data } = props;
   const [showPopup, setShowPopup] = useState(false);
   const [activePage, setActivePage] = useState(0);

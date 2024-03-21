@@ -3,9 +3,10 @@ import "../../styles/dashboard/Rating.css";
 import xclose from "../../assets/xclose.png";
 type Props = {
   setIsApplicationDetailsOpen: any;
+  setIsRating: any;
 };
 const Rating = (props: Props) => {
-  const { setIsApplicationDetailsOpen } = props;
+  const { setIsApplicationDetailsOpen, setIsRating } = props;
   const ratings = Array.from({ length: 10 }, (_, index) => index + 1);
   const [selectedRating, setSelectedRating] = useState(null);
 
@@ -15,10 +16,11 @@ const Rating = (props: Props) => {
 
   const handleSubmit = () => {
     setIsApplicationDetailsOpen(false);
-    // Here you can handle the submission, for now, let's log the selected rating
+    setIsRating(false);
     console.log("Selected rating:", selectedRating);
   };
   const handleClose = () => {
+    setIsRating(false);
     setIsApplicationDetailsOpen(false);
   };
 

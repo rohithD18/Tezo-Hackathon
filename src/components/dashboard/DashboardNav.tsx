@@ -1,61 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/dashboard/AdminNavBar.css";
-import category from "../../assets/category.png";
+import "../../styles/dashboard/DashboardNavBar.css";
+import category22 from "../../assets/category22.png";
 import Users from "../../assets/Users.png";
 import square3 from "../../assets/square3.png";
 import document_code_2 from "../../assets/document_code_2.png";
 import calendar from "../../assets/calendar.png";
-// import { useNavigate } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 
-type Props = {
-  setIsApplication: any;
-};
-const DashboardNav = (props: Props) => {
-  const { setIsApplication } = props;
 
-  const handleApplicationClick = () => {
-    setIsApplication(true);
-    // navigate("/admin/application");
+const DashboardNav:React.FC = () => {
+  const navigate = useNavigate();
+  const {id } = useParams();
+  console.log("activeBtn",id);
+  
+  const [activeButton, setActiveButton] = useState<string | undefined>(id);
+
+  const handleButtonClick = (buttonName: string) => {
+
+   navigate(`/dashboard/${buttonName}`)
   };
-  const handleDashboard = () => {
-    setIsApplication(false);
-  };
+
   return (
     <div className="navContainer">
-      <div className="navChildContainer">
-        <div className="navContainer3">
-          <div className="dashboard" onClick={handleDashboard}>
-            <div className="dashboard1">
-              <img src={category} alt="category" className="category" />
-              <span className="dashboardtext">Dashboard</span>
-            </div>
-          </div>
-          <div className="userManagment" onClick={handleApplicationClick}>
-            <div className="userManagment1">
-              <img src={Users} alt="users" className="userIcon" />
-              <span className="userText">User Management</span>
-            </div>
-          </div>
-          <div className="Application" onClick={handleApplicationClick}>
-            <div className="Application1">
-              <img src={square3} alt="users" className="userIcon" />
-              <span className="userText">Applications</span>
-            </div>
-          </div>
-          <div className="Application" onClick={handleApplicationClick}>
-            <div className="Application1">
-              <img src={document_code_2} alt="users" className="userIcon" />
-              <span className="userText">Project Management</span>
-            </div>
-          </div>
-          <div className="Application" onClick={handleApplicationClick}>
-            <div className="Application1">
-              <img src={calendar} alt="users" className="userIcon" />
-              <span className="userText">Events Management</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <button
+        className={`dashboard ${!activeButton ? "activeNav" : ""}`}
+        onClick={() => handleButtonClick("")}
+      >
+        <img src={category22} alt="dashboard" className="imgDashboard" />
+        Dashboard
+      </button>
+      <button
+        className={`dashboard ${activeButton === "UserManagement" ? "activeNav" : ""}`}
+        onClick={() => handleButtonClick("UserManagement")}
+      >
+        <img src={Users} alt="dashboard" className="imgDashboard" />
+        User Management
+      </button>
+      <button
+        className={`dashboard ${activeButton === "Applications" ? "activeNav" : ""}`}
+        onClick={() => handleButtonClick("Applications")}
+      >
+        <img src={square3} alt="dashboard" className="imgDashboard" />
+        Applications
+      </button>
+      <button
+        className={`dashboard ${activeButton === "ProjectManagement" ? "activeNav" : ""}`}
+        onClick={() => handleButtonClick("ProjectManagement")}
+      >
+        <img src={document_code_2} alt="dashboard" className="imgDashboard" />
+        Project Management
+      </button>
+      <button
+        className={`dashboard ${activeButton === "EventsManagement" ? "activeNav" : ""}`}
+        onClick={() => handleButtonClick("EventsManagement")}
+      >
+        <img src={calendar} alt="dashboard" className="imgDashboard" />
+        Events Management
+      </button>
     </div>
   );
 };

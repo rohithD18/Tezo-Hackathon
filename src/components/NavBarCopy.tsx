@@ -9,7 +9,8 @@ function NavBarCopy() {
   const handleItemClick = (itemName: string) => {
     setActiveItem(itemName);
   };
-  const [showProfile, setShowProfile] = useState(false);
+  const activeButton = "Dashboard";
+   const [showProfile, setShowProfile] = useState(false);
   const [userName, setUserName] = useState(
     localStorage.getItem("username")?.toString()
   );
@@ -97,7 +98,7 @@ function NavBarCopy() {
                       activeItem === "updates" ? "itemActive disable-hover" : ""
                     }`}
                     onClick={() => handleItemClick("dashboard")}
-                    href="/dashboard"
+                    href={`/dashboard`}
                   >
                     Dashboard
                   </a>

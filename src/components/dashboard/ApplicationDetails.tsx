@@ -12,7 +12,7 @@ type Props = {
   setIsRejectedFeed: any;
 };
 
-const ApplicationDetails = (props: Props) => {
+const ApplicationDetails: React.FC<Props> = (props: Props) => {
   const {
     setIsApplicationDetails,
     appliDetailsData,
