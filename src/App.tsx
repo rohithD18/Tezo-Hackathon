@@ -17,6 +17,7 @@ import MyProject from "./components/MyProject/MyProject";
 import Application from "./components/dashboard/Application";
 import Dashboard from "./components/dashboard/Dashboard";
 import AllTeams from "./components/AllTeams";
+import Usermana from "./components/dashboard/Usermana";
 const App: React.FC = () => {
   console.log("userNameeeee", localStorage.getItem("username")?.toString());
   const [user, setUser] = useState<string>("");
@@ -40,8 +41,8 @@ const App: React.FC = () => {
             <Route path="/rules" Component={RejectedRework} />
             <Route path="/myProject" Component={MyProject} />
             <Route path="/allteams" Component={AllTeams} />
-            <Route path="/dashboard" Component={Dashboard} />
-            {/* <Route path="/dashboard/application" Component={Application} /> */}
+            <Route path="/dashboard/" Component={Dashboard} />
+            <Route path="/dashboard/:id" Component={Dashboard} />
           </Routes>
         </>
       )}
