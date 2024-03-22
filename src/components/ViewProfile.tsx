@@ -15,7 +15,10 @@ interface IProps2 {
   setUserName: (message: string) => void;
 }
 
-const ViewProfile = ({ setShowProfile, setUserName }: Props) => {
+const ViewProfile: React.FC<Props> = ({
+  setShowProfile,
+  setUserName,
+}: Props) => {
   // const { setShowProfile } = props;
 
   const handleCancel = () => {
@@ -46,8 +49,8 @@ const ViewProfile = ({ setShowProfile, setUserName }: Props) => {
             <img src={Group7334} alt="profilePic" className="profileGroupImg" />
           </div>
           <div className="profileNameContainer">
-            <span className="profileName">Venkatesh Nair</span>
-            <span className="profileId">Emp ID. 4568</span>
+            <span className="profileName">{localStorage.getItem("fullName")?.toString()} </span>
+            {/* <span className="profileId">Emp ID. 4568</span> */}
           </div>
         </div>
         <div className="profilePicDiv2">
@@ -61,16 +64,6 @@ const ViewProfile = ({ setShowProfile, setUserName }: Props) => {
               </label>
             </div>
           </button>
-          {/* <button className="btn2">
-            <div className="Statelayer">
-              <span className="iconBox">
-                <img src={Icon} alt="userIcon" className="icon" />
-              </span>
-              <label htmlFor="text" className="IblViewProfile">
-                Sign Out
-              </label>
-            </div>
-          </button> */}
           <MsalProvider instance={pca}>
             <LogInLogOutComp
               userNameFromLogInLogOutComp={userNameFromLogInLogOutComp}

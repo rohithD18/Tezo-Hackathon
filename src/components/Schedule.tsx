@@ -3,7 +3,7 @@ import React from "react";
 import { TeamEvents } from "./TeamEvents";
 import "../styles/Schedule.css";
 import { IEvents } from "../Interfaces";
-export const Schedule: FC = () => {
+export const Schedule: React.FC = () => {
   // const validUpcomingEvents: boolean = true;
   const teamEvents: IEvents[] = [
     {

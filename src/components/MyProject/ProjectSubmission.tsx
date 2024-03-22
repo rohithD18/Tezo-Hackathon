@@ -8,47 +8,46 @@ import TimeICon from '../../assets/TimeIcon.png'
 
 export const ProjectSubmission:React.FC = () => {
     const [files, setFiles] = useState<File[]>([]);
-    
     const handleFileSelection = (selectedFiles: File[]) => {
         const updatedFiles1 = [...files,...selectedFiles]
         setFiles(updatedFiles1);
     };
-    
+    const formatFileSize=(bytes:number)=> {
+        if (bytes < 1024) {
+            return bytes + ' bytes';
+        } else if (bytes < 1024 * 1024) {
+            return (bytes / 1024).toFixed(2) + ' KB';
+        } else if (bytes < 1024 * 1024 * 1024) {
+            return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+        } else {
+            return (bytes / (1024 * 1024 * 1024)).toFixed(2) + ' GB';
+        }
+    }
     const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
         const droppedFiles = Array.from(event.dataTransfer.files);
         handleFileSelection(droppedFiles);
     };
+    console.log("files", files);
     
     const handleRemoveFile = (index: number) => {
         const updatedFiles = [...files];
         updatedFiles.splice(index, 1);
         setFiles(updatedFiles);
     };
-    
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
     };
-    
-    const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const selectedFiles = event.target.files && Array.from(event.target.files);
-        handleFileSelection(selectedFiles || []);
-    };
-    
     const handleBrowseClick = () => {
         const fileInput = document.getElementById('fileInput') as HTMLInputElement | null;
         if (fileInput) {
             fileInput.click(); // Trigger file input click
         }
     };
-
-    const handleContainerClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        if (!(event.target as HTMLElement).closest('#fileInput')) {
-            // If the click is not on the file input, trigger file input click
-            handleBrowseClick();
-        }
+    const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedFiles = event.target.files && Array.from(event.target.files);
+        handleFileSelection(selectedFiles || []);
     };
-
     return(
         <div>
             <div className="projectDetail">
@@ -59,13 +58,15 @@ export const ProjectSubmission:React.FC = () => {
                 </div>
                 
             </div>
-            <p className="dd">After submitting, you can still edit your project until the submission deadline.</p>
+            <p className="dd">After submitting,you can still edit your project until the submission deadline.</p>
             <div className="topicSec1">
                 <p>Enter the Description</p>
-                <textarea placeholder="Enter the brief description of the project, including the problem it solves, the target audience, and the proposed solution" ></textarea>
+                <textarea placeholder="Enter the breif description of the project, including the problem it
+                 solves, the target audience, and the proposed solution" ></textarea>
             </div>
             
-            <div className="dropFile" onDrop={handleDrop} onDragOver={handleDragOver} onClick={handleContainerClick}>
+            <div className="dropFile" onDrop={handleDrop}
+                onDragOver={handleDragOver}>
                 <p>Submit your presentation</p>
                 <input
                     type="file"
@@ -74,13 +75,17 @@ export const ProjectSubmission:React.FC = () => {
                     multiple
                     onChange={handleFileInputChange}
                     accept=".pdf"
+                     // Hide the default file input
                 />
                 {files?.length >0?  <>
                     
                  <ul>
                             {files.map((file, index) => (
 
-                                <li  className="projectDoc" key={index}><img id="pdf" src={pdf} alt="pdf icon"/>  {file.name}<img id="deleteIcon" src={deleteIcon} alt="Delete icon" onClick={() => handleRemoveFile(index)}/></li>
+                                <li  className="projectDoc" key={index}><img id="pdf" src={pdf} alt="pdf icon"/> 
+                                <div className="fileData"><input type="text"  value={file.name}></input>
+                                 <p>{formatFileSize(file.size)}</p>
+                                    </div><img id="deleteIcon" src={deleteIcon} alt="Delete icon" onClick={() => handleRemoveFile(index)}/></li>
                             ))}<li><div id="AddIcon" onClick={handleBrowseClick}><img src={AddIcon} alt="add icon"/>
                             <p>Add Files</p></div></li>
                         </ul>
@@ -99,4 +104,6 @@ export const ProjectSubmission:React.FC = () => {
             </div>
         </div>
     );
+    
+    
 }

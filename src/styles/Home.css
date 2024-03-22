@@ -141,7 +141,7 @@ position: absolute;
 }
 .profileContainer{
   position:relative;
-  left: 0;
+  /* left: 0; */
   width: fit-content;
   border:none
 }

@@ -8,6 +8,7 @@ export interface IApplications {
   Status: string;
   ProjectDescription: string;
 }
+
 export const ApplicationData: IApplications[] = [
   {
     Id: 1,

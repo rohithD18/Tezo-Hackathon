@@ -12,18 +12,23 @@ import Feedback1 from "../../assets/Feedback1.png";
 import profilepic from "../../assets/profilepic.jpg";
 import PaginationSection from "../pagination/PaginationSection";
 import ApplicationDetails from "./ApplicationDetails";
+import DashboardNav from "./DashboardNav";
+import ViewBlur from "./ViewBlur";
 
-type Props = {
-  setIsApplicationDetailsOpen: any;
-  setIsRating: any;
-  setIsRejectedFeed:any
-};
-const Application = (props: Props) => {
-  const { setIsApplicationDetailsOpen, setIsRating,setIsRejectedFeed } = props;
-  const [activeFilter, setActiveFilter] = useState("All");
-  const [isApplicationDetails, setIsApplicationDetails] = useState(false);
+// type Props = {
+//   setIsApplicationDetailsOpen: any;
+//   setIsRating: any;
+//   setIsRejectedFeed: any;
+// };
+const Application:React.FC = () => {
+  // const { setIsApplicationDetailsOpen, setIsRating, setIsRejectedFeed } = props;
+  const [activeFilter, setActiveFilter] = useState<string>("All");
+  const [isApplicationDetails, setIsApplicationDetails] = useState<boolean>(false);
   const [appliDetailsData, setAppliDetailsData] = useState<IApplications[]>([]);
   const [total, setTotal] = useState(0);
+  const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =useState(false);
+    const [isRating, setIsRating] = useState(false);
+  const [isRejectedFeed, setIsRejectedFeed] = useState(false);
 
   useEffect(() => {
     if (isApplicationDetails === true) {
@@ -126,7 +131,8 @@ const Application = (props: Props) => {
     setAppliDetailsData(data);
   };
   return (
-    <>
+    <div className="applicationView">
+    <DashboardNav />
       <div className="ApplicationScreen">
         <div className="cardContainer">
           {cardData.map((card, index) => (
@@ -277,7 +283,6 @@ const Application = (props: Props) => {
             setIsRating={setIsRating}
             setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
             setIsRejectedFeed={setIsRejectedFeed}
-           
           />
         )}
         <div className="applicationPagination"></div>
@@ -286,7 +291,16 @@ const Application = (props: Props) => {
           data={filteredData}
         />
       </div>
-    </>
+       {isApplicationDetailsOpen && (
+          <ViewBlur
+            isRating={isRating}
+            setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
+            isRejectedFeed={isRejectedFeed}
+            setIsRejectedFeed={setIsRejectedFeed}
+            setIsRating={setIsRating}
+          />
+        )}
+    </div>
   );
 };
 
