@@ -22,7 +22,7 @@ const Dashboard:React.FC = () => {
   return (
     <div className="adminHomeDiv">
       {
-        !id && <DashboardNav />
+        !id && <DashboardView />
       }
         {id === "Applications" && (
           <Application />
