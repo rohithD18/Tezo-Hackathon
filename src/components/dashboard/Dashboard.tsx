@@ -9,9 +9,9 @@ import Usermana from "./Usermana";
 
 const Dashboard:React.FC = () => {
   const {id } = useParams();
-  const [isApplication, setIsApplication] = useState(false);
+  const [isApplication, setIsApplication] = useState<boolean>(false);
   const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =
-    useState(false);
+    useState<boolean>(false);
     console.log(id);
     
 

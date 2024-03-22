@@ -108,6 +108,7 @@ ul.pagination {
   display: flex; /* Use flexbox */
   justify-content: center; /* Horizontally center */
   align-items: center; /* Vertically center */
+  border-top: none;
 }
 
 ul.pagination li {

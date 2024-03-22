@@ -5,11 +5,12 @@ import Ellipse811 from "../../assets/Ellipse811.png";
 import "../../styles/dashboard/ApplicationDetails.css";
 import { ApplicationData, IApplications } from "../../services/Data";
 type Props = {
-  setIsApplicationDetails: any;
-  appliDetailsData: any;
-  setIsRating: any;
-  setIsApplicationDetailsOpen: any;
-  setIsRejectedFeed: any;
+  setIsApplicationDetails: (message: boolean) => void;
+  appliDetailsData: IApplications;
+  // appliDetailsData: any;
+  setIsRating: (message: boolean) => void;
+  setIsApplicationDetailsOpen: (message: boolean) => void;
+  setIsRejectedFeed: (message: boolean) => void;
 };
 
 const ApplicationDetails: React.FC<Props> = (props: Props) => {
