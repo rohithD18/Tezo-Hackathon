@@ -1,53 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/InputSearch.css";
-import { getAUser } from "../services/Services";
-// import { getAUser } from "../services/Services";
-// import { MsalProvider, useIsAuthenticated, useMsal } from "@azure/msal-react";
-// import {
-//   InteractionStatus,
-//   PublicClientApplication,
-// } from "@azure/msal-browser";
-// import { msalConfig } from "../authConfig";
-// const pca = new PublicClientApplication(msalConfig);
-const InputSearch: React.FC = () => {
-  // const [searchQ, setSearchQ] = useState<string>("");
+interface IProps {
+  setQueary: (message: string) => void;
+}
 
-  // useEffect(() => {
+const InputSearch: React.FC<IProps> = (props: IProps) => {
+  const { setQueary } = props;
+  const [searchQueary, setSearchQueary] = useState<string>("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQueary(e.target.value);
+  };
 
-  //   searchQ.length > 2 && getAUser(searchQ);
-  //   console.log("aaaaaaaaaa", searchQ, searchQ.length);
-  // }, [searchQ]);
-  // const isAuthenticated = useIsAuthenticated();
-  // useEffect(() => {
-  //   console.log(isAuthenticated, inProgress, instance);
-  //   if (!isAuthenticated && inProgress === InteractionStatus.None) {
-  //     instance.loginPopup();
-  //   }
-  // }, [isAuthenticated, inProgress, instance]);
-
-  const handleChange = (value: string) => {
-    // instance
-    //   .acquireTokenSilent({
-    //     scopes: ["openid", "profile", "user.read"],
-    //     authority:
-    //       "https://login.microsoftonline.com/865cc515-a530-4538-8ef8-072b7b2be759",
-    //   })
-    //   .then((response) => {
-    //     console.log(response.accessToken);
-    //     // getAUser(response.accessToken)
-    //     //   .then((res) => console.log(res))
-    //     //   .catch((err) => console.error(err));
-    //   })
-    //   .catch((err) => console.error("eror", err));
-    getAUser();
+  const saveUser = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      setQueary(searchQueary);
+      setSearchQueary("");
+    }
   };
 
   return (
     <div className="inputWithSearchIcon">
       <input
         type="text"
+        value={searchQueary}
         placeholder="Search by names"
-        onChange={(e) => handleChange(e.target.value)}
+        onChange={(e) => handleChange(e)}
+        onKeyDown={(e) => saveUser(e)}
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"

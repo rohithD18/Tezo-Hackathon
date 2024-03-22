@@ -1,81 +1,57 @@
 import axios from "axios";
+import { membersArray } from "../components/registration/MembersA";
+import { UsersData } from "./Data";
+import { useEffect, useState } from "react";
 
-//const userData: any = localStorage.getItem("userDataL");
-// console.log("token", JSON.parse(t).accessToken); 
+export const getAMember = (value: string) => {
+  const member = UsersData.filter((entry) =>
+    entry.Name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+  );
+  console.log("memeber", member);
+  // AllTeams.TeamMembers[0] = member[0];
+  return member;
+};
 
-//onst token: string = JSON.parse(userData)?.accessToken;
+export const useFetch = (
+  queary: string,
+  setQueary: (message: string) => void
+) => {
+  // const [queary, setQueary] = useState<string>("");
+  const [isQA, setIsQA] = useState<boolean>(false);
+  const [isLimitAchieved, setIsLimitAchieved] = useState<boolean>(false);
+  // console.log(membersArray, isQA);
 
-
-export const getUsers = async () => {
-  let url = "https://graph.microsoft.com/v1.0/users?$top=100";
-  // while(url){
-  await axios
-    .get(url, {
-      headers: {
-        Authorization: `Bearer`,
-      },
-    })
-    .then((res) => {
-      if (res.data["@odata.nextLink"]) {
-        url = res.data["@odata.nextLink"];
-        console.log(url);
+  useEffect(() => {
+    if (membersArray.filter((item) => item?.Department === "QA").length > 0) {
+      setIsQA(true);
+      // setQueary("");
+    }
+    if (membersArray.length >= 8) {
+      setIsLimitAchieved(true);
+      alert("Your team limit has achieved!");
+      // setQueary("");
+    } else {
+      if (queary.length > 3) {
+        if (
+          membersArray.filter(
+            (item) => item?.Name === getAMember(queary)[0]?.Name
+          ).length > 0 ||
+          getAMember(queary).length === 0
+        ) {
+          getAMember(queary).length === 0
+            ? alert("no user with " + queary)
+            : alert("Alredy present");
+          // setQueary("");
+        } else {
+          membersArray.filter((item) => item?.Department === "QA").length ==
+            1 && getAMember(queary)[0]?.Department === "QA"
+            ? alert("You already have a QA")
+            : membersArray.push(getAMember(queary)[0]);
+          setQueary("");
+        }
       }
-      console.log("apiResponse", res.data["@odata.nextLink"], res);
-    })
-    .catch((err) => console.error(err));
-  // }
+    }
+  }, [queary, setQueary]);
+
+  return { queary, isQA, isLimitAchieved, membersArray };
 };
-
-export const getAUser = () => {
-  // const { instance } = useMsal();
-  // console.log(token);
-
-  axios
-    .get("https://graph.microsoft.com/v1.0/users", {
-      headers: {
-        Authorization: "Bearer" ,
-        ConsistencyLevel: "eventual",
-      },
-    })
-    .then((res) => console.log("responseUser", res))
-    .catch((err) => console.error(err));
-};
-
-// axios
-//     .post(
-//       ("https://graph.microsoft.com/beta/search/query",
-//       {
-//         headers: {
-//           Authorization: "Bearer" + token,
-//           // ConsistencyLevel: "eventual",
-//           ContentType: "application/json",
-//           // Content-Type: "application/json",
-//         },
-//         body: {
-//           requests: [
-//             {
-//               entityTypes: ["person"],
-//               query: {
-//                 queryString: "Rohith",
-//               },
-//             },
-//           ],
-//         },
-//       })
-//     )
-
-// const handleChange = (value) => {
-//   instance
-//     .acquireTokenSilent({
-//       scopes: ["openid", "profile", "user.read"],
-//       authority:
-//         "https://login.microsoftonline.com/865cc515-a530-4538-8ef8-072b7b2be759",
-//     })
-//     .then((response) => {
-//       console.log(response.accessToken);
-//       // getAUser(response.accessToken)
-//       //   .then((res) => console.log(res))
-//       //   .catch((err) => console.error(err));
-//     })
-//     .catch((err) => console.error("eror", err));
-// }

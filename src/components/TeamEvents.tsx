@@ -18,7 +18,7 @@ export const TeamEvents: React.FC<IProps> = ({
       ) : (
         <div className="allEvents">
           <div>All Events</div>
-          <InputSearch />
+          {/* <InputSearch /> */}
         </div>
       )}
       {upcomingEvents.map((item) => (
