@@ -31,6 +31,7 @@ const InputSearch: React.FC<SearchComponentProps> = ({
   const handlekeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setQuerySearch(inputValue);
+      setInputValue("");
     }
   };
   return (
