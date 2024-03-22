@@ -13,7 +13,6 @@ const InputSearch: React.FC<SearchComponentProps> = ({
   const [inputValue, setInputValue] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-    setQuerySearch(e.target.value);
     if (e.target.value.trim() === "") {
       setFilteredTeams([]);
     } else {
@@ -29,6 +28,11 @@ const InputSearch: React.FC<SearchComponentProps> = ({
       setFilteredTeams([]);
     }
   };
+  const handlekeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      setQuerySearch(inputValue);
+    }
+  };
   return (
     <div className="inputWithSearchIcon">
       <input
@@ -36,6 +40,7 @@ const InputSearch: React.FC<SearchComponentProps> = ({
         value={inputValue}
         placeholder="Search by Team Name"
         onChange={handleChange}
+        onKeyDown={(e) => handlekeyDown(e)}
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
