@@ -2,43 +2,33 @@ import React, { useState } from "react";
 import "../styles/InputSearch.css";
 import { ITeams } from "../Interfaces";
 import { getFilteredTeams } from "../services/Services";
-// import { getAUser } from "../services/Services";
-// import { MsalProvider, useIsAuthenticated, useMsal } from "@azure/msal-react";
-// import {
-//   InteractionStatus,
-//   PublicClientApplication,
-// } from "@azure/msal-browser";
-// import { msalConfig } from "../authConfig";
-// const pca = new PublicClientApplication(msalConfig);
 interface SearchComponentProps {
   setQuerySearch: (query: string) => void;
 }
 
-const InputSearch:  React.FC<SearchComponentProps>= ({ setQuerySearch }) => {
-  // const [searchQ, setSearchQ] = useState<string>("");
-
-  // useEffect(() => {
-
-  //   searchQ.length > 2 && getAUser(searchQ);
-  //   console.log("aaaaaaaaaa", searchQ, searchQ.length);
-  // }, [searchQ]);
-  // const isAuthenticated = useIsAuthenticated();
-  // useEffect(() => {
-  //   console.log(isAuthenticated, inProgress, instance);
-  //   if (!isAuthenticated && inProgress === InteractionStatus.None) {
-  //     instance.loginPopup();
-  //   }
-  // }, [isAuthenticated, inProgress, instance]);
-  const [filteredTeams,setFilteredTeams]=useState<ITeams[]>();
-  const [inputValue, setInputValue] = useState('');
+const InputSearch: React.FC<SearchComponentProps> = ({
+  setQuerySearch,
+}: SearchComponentProps) => {
+  const [filteredTeams, setFilteredTeams] = useState<ITeams[]>();
+  const [inputValue, setInputValue] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-    if (e.target.value.trim() === '') {
+    setQuerySearch(e.target.value);
+    if (e.target.value.trim() === "") {
       setFilteredTeams([]);
     } else {
       setFilteredTeams(getFilteredTeams(e.target.value));
     }
-
+  };
+  const handleClickItem = (item: string) => {
+    if (item.trim() === "") {
+      setFilteredTeams([]);
+    } else {
+      setQuerySearch(item);
+      setInputValue("");
+      setFilteredTeams([]);
+    }
+  };
   return (
     <div className="inputWithSearchIcon">
       <input
@@ -60,12 +50,16 @@ const InputSearch:  React.FC<SearchComponentProps>= ({ setQuerySearch }) => {
       {filteredTeams && filteredTeams.length > 0 && (
         <ul className="dropdownSearch">
           {filteredTeams.map((team, index) => (
-            <li key={index} className="dropDownItem" onClick={(e) => {
-             
-                  // handleSelectItem(team);
-                  handleClickItem(team.TeamName); 
-                }} 
-            >{team.TeamName}</li>
+            <li
+              key={index}
+              className="dropDownItem"
+              onClick={(e) => {
+                // handleSelectItem(team);
+                handleClickItem(team.TeamName);
+              }}
+            >
+              {team.TeamName}
+            </li>
           ))}
         </ul>
       )}
