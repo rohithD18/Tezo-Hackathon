@@ -4,6 +4,7 @@ import { UserData } from "../../services/UserData";
 import { IUser } from "../../Interfaces";
 import profilepic from "../../assets/profilepic.jpg";
 import PaginationSection from "../pagination/PaginationSection";
+import DashboardNav from "./DashboardNav";
 
 const Users = () => {
   const [currUserData, setCurrUserData] = useState<
@@ -43,14 +44,11 @@ const Users = () => {
 
   
   return (
-    <>
-      <div className="UsersScreen">
-        <div className="tableContainer">
-          <div className="tableTopContainer">
+    <><DashboardNav/>
+    <div className="UserManagement">
+      <div className="UsersScreen1">
             <span className="tableTitle">Users</span>
-
-            <div className="filterContainer">
-              <div className="searchBox">
+            <div className="searchBox">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -70,16 +68,18 @@ const Users = () => {
                   onChange={handleSearchChange}
                 />
               </div>
-            </div>
+
+            
+        
           </div>
-          <div className="displayTable">
+          <div className="userDisplayTable">
             <table className="table">
               <thead className="tableRow">
-                <th className="captTitle">Name</th>
-                <th className="captTitle">Email Address</th>
-                <th className="captTitle">Team Name</th>
-                <th className="captTitle">Registered on</th>
-                <th className="captTitle">Actions</th>
+                <th className="headingTitle">Name</th>
+                <th className="headingTitle">Email Address</th>
+                <th className="headingTitle">Team Name</th>
+                <th className="headingTitle">Registered on</th>
+                <th className="headingTitle">Actions</th>
               </thead>
 
               {displayOnUser.map((user, index) => (
@@ -88,7 +88,7 @@ const Users = () => {
                   key={index}
                 >
                 
-                  <td className="dateTitle">
+                  <td className="rowTitle">
                     <span
                       style={{ background: "none" }}
                       className="captTitleDataSpan"
@@ -106,13 +106,13 @@ const Users = () => {
                       {user.Name}
                     </span>
                   </td>
-                  <td className="dateTitle">{user.EmailAddress}</td>
-                  <td className="dateTitle">{user.TeamName}</td>
+                  <td className="rowTitle">{user.EmailAddress}</td>
+                  <td className="rowTitle">{user.TeamName}</td>
                
-                  <td className="dateTitle">
+                  <td className="rowTitle">
                     {formatDate(user.RegisteredOn)}
                   </td>
-                  <td className="dateTitle">
+                  <td className="rowTitle">
                    
       <svg width="36" height="36" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" id="editAndDeleteStyling">
 <path d="M1.87604 17.1159C1.92198 16.7024 1.94496 16.4957 2.00751 16.3025C2.06301 16.131 2.14143 15.9679 2.24064 15.8174C2.35246 15.6478 2.49955 15.5008 2.79373 15.2066L16 2.0003C17.1046 0.895732 18.8955 0.895734 20 2.0003C21.1046 3.10487 21.1046 4.89573 20 6.0003L6.79373 19.2066C6.49955 19.5008 6.35245 19.6479 6.18289 19.7597C6.03245 19.8589 5.86929 19.9373 5.69785 19.9928C5.5046 20.0553 5.29786 20.0783 4.88437 20.1243L1.5 20.5003L1.87604 17.1159Z" stroke="#B4B4B4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -124,13 +124,13 @@ const Users = () => {
                 </tr>
               ))}
             </table>
-          </div>
-        </div>
+        
         <div className="applicationPagination"></div>
         <PaginationSection
           setCurrentItem={setDisplayOnUser}
           data={filteredData}
         />
+      </div>
       </div>
     </>
   );

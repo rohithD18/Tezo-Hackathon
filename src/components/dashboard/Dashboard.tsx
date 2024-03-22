@@ -6,7 +6,7 @@ import Users from "./Users";
 import ViewBlur from "./ViewBlur";
 import DashboardNav from "./DashboardNav";
 import { useParams } from "react-router-dom";
-import Usermana from "./Usermana";
+
 
 const Dashboard:React.FC = () => {
   const {id } = useParams();
@@ -28,7 +28,7 @@ const Dashboard:React.FC = () => {
           <Application />
         )}
         {
-          id === "UserManagement" ? <Usermana /> :<></>
+          id === "UserManagement" ? <Users /> :<></>
         }
     </div>
   );

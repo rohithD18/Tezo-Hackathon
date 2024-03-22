@@ -19,7 +19,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import AllTeams from "./components/AllTeams";
 import TeamDetails from "./components/TeamDetails";
 import Profile from "./components/Profile";
-import Usermana from "./components/dashboard/Usermana";
+
 const App: React.FC = () => {
   console.log("userNameeeee", localStorage.getItem("username")?.toString());
   const [user, setUser] = useState<string>("");
