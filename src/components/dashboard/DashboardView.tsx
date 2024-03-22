@@ -8,8 +8,12 @@ import {Teams} from '../../services/Data';
 
 import '../../styles/dashboard/DashboardView.css'
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import DashboardNav from "./DashboardNav";
 const DashboardView:React.FC = () => {      
-    return(<div className="DashboardView">
+    return(
+        <>
+        <DashboardNav />
+    <div className="DashboardView">
         <div className="countDiv">
                 <div className="displayComponent">
                  
@@ -109,6 +113,9 @@ const DashboardView:React.FC = () => {
             </div>
            </div>
         </div>
-    </div>)
+    </div>
+    </>
+    )
+
 }
 export default DashboardView;

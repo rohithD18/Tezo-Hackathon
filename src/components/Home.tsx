@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { teamMembersArray } from "./TeamMembers";
 import { ITeamMembers } from "../Interfaces";
 import mainBG from "../assets/mainBG.png";
+import timerIcon from "../assets/timerIcon.png";
 interface HomeProps {
   isRegister: boolean;
 }
@@ -12,22 +13,27 @@ const Home: React.FC<HomeProps> = (props) => {
   const navigate = useNavigate();
   const [members, setMembers] = useState<ITeamMembers[]>(teamMembersArray);
   const visibleImages = members.slice(0, 3);
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [buttonValue, setButtonValue] = useState<string>("");
+  const [title,setTitle] =useState<string>("");
+  const [description,setDescription] =useState<string>("");
+  const [buttonValue,setButtonValue]=useState<string>("");
+  const [flag,setFlag]=useState<boolean>();
+  const [date,setDate]=useState<string>("");
   useEffect(() => {
-    if (!props.isRegister) {
-      setTitle("Secure Your Spot at the Forefront! 🚀");
-      setDescription(
-        "Be among the first five teams to REGISTER and SUBMIT your project topics for an exclusive REVIEW by our esteemed judges. Stand out, get noticed, and pave your way to a VIP ONE-ON-ONE session"
-      );
-      setButtonValue("Register Now");
-    } else {
+    if(props.isRegister){
       setTitle("Welcome to Tezo Hackathon!");
       setDescription("You’re registered for this hackathon");
-      setButtonValue("Enter a submission");
+      setButtonValue("Enter a submission")
+      setDate("Dec 10, 2023");
+      setFlag(false);
     }
-  }, [props.isRegister]);
+    else{
+      setTitle("Secure Your Spot at the Forefront! 🚀");
+      setDescription("Be among the first five teams to REGISTER and SUBMIT your project topics for an exclusive REVIEW by our esteemed judges. Stand out, get noticed, and pave your way to a VIP ONE-ON-ONE session");
+      setButtonValue("Register Now");
+      setFlag(true);
+    }
+  
+  },[props.isRegister]);
   return (
     <div className="bottomShape">
       <div className="mainDiv">

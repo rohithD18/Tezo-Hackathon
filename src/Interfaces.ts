@@ -15,6 +15,7 @@ export interface ITeamMembers {
   employeeId: string;
   profileUrl: string;
 }
+
 export interface IJudges {
   name: string;
   email: string;
@@ -33,27 +34,4 @@ export interface IProjectDetail {
   TopicDescripition: string;
   ProposedSolution: string;
   pdf: Ipdf[];
-}
-export interface IUsers {
-  Id: number;
-  Name: string;
-  EmailAddress: string;
-  Department: string;
-  IsCaptain: boolean;
-}
-export interface ITeamMems {
-  Id: number;
-  Name: string;
-  Email: string;
-  IsCaptain: boolean;
-  IsQualityAnalyst: boolean;
-  IsDeveloper: boolean;
-}
-
-export interface ITeams {
-  Id: number;
-  TeamName: string;
-  TeamMembers: IUsers[];
-  Rank: number;
-  Score: number;
 }

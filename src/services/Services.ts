@@ -1,7 +1,9 @@
 import axios from "axios";
+import { Teams } from "../services/Data";
 import { membersArray } from "../components/registration/MembersA";
 import { UsersData } from "./Data";
 import { useEffect, useState } from "react";
+import { ITeams } from "../Interfaces";
 
 export const getAMember = (value: string) => {
   const member = UsersData.filter((entry) =>
@@ -54,4 +56,11 @@ export const useFetch = (
   }, [queary, setQueary]);
 
   return { queary, isQA, isLimitAchieved, membersArray };
+};
+export const getFilteredTeams = (name: string): ITeams[] => {
+  const filtered = Teams.filter((item) =>
+    item.TeamName.toLowerCase().includes(name.toLowerCase())
+  );
+  console.log(filtered);
+  return filtered;
 };
