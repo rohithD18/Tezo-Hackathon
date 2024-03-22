@@ -269,7 +269,7 @@ img.ProjectedSubmittedImg:hover {
 .captTitleData {
   width: 10%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;

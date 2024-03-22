@@ -132,7 +132,7 @@ export const ApplicationData: IApplications[] = [
   },
 ];
 
-interface ITeamMembers {
+export interface ITeamMembers {
   Id: number;
   Name: string;
   Email: string;
@@ -141,7 +141,7 @@ interface ITeamMembers {
   IsDeveloper: boolean;
 }
 
-interface ITeams {
+export interface ITeams {
   Id: number;
   TeamName: string;
   TeamMembers: ITeamMembers[];

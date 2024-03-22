@@ -1,0 +1,71 @@
+.root{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.search{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.teamName{
+    background: url('../assets/bgimageTeam1.png') ,
+    url('../assets/bgimageTeam2.png') ,#2B3647; 
+    background-position: left, top right; /* Set the positions of the background images */
+    background-size:900px 200px, 600px 100px;                               
+  background-repeat: no-repeat;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    height:184px;
+    padding: 40px 0px 32px 0px;
+    border: 0px 0px 1px 0px;
+    /* background: #2B3647; */
+    border-bottom: 1px solid #3D5A80;
+    position: relative;
+font-size: 24px;
+font-weight: 300;
+/* line-height: 36px; */
+text-align: left;
+
+    text-align: center;
+    
+}
+.title{
+font-size: 20px;
+font-weight: 500;
+line-height: 27px;
+text-align: left;
+margin-bottom: 20px;
+color: #FFFFFF;
+
+
+}
+#initials{
+    width:100px;
+height:100px;
+gap: 8px;
+margin-right: 20px;
+border-radius: 100px;
+background: #FDF6FD;
+color: #EE6C4D;
+font-size: 25px;
+font-weight: 600;
+line-height: 26px;
+text-align: center;
+margin-bottom: 10px;
+padding-top: 38px;
+
+}
+.captain{
+    width:66px;
+height: 24px;
+padding: 2px 8px 2px 8px;
+gap: 8px;
+border-radius: 0px 8px 0px 8px;
+background: #A4608E;
+margin-top: -15px;
+margin-left: 1px;
+position:relative;
+
+}

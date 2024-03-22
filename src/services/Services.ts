@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Teams,ITeams } from "../services/Data";
 
 //const userData: any = localStorage.getItem("userDataL");
 // console.log("token", JSON.parse(t).accessToken); 
@@ -40,6 +41,13 @@ export const getAUser = () => {
     .then((res) => console.log("responseUser", res))
     .catch((err) => console.error(err));
 };
+export const getFilteredTeams =(name:string) :ITeams[]=>{
+  
+  const filtered = Teams.filter(item => item.TeamName.toLowerCase().includes(name.toLowerCase()));
+  console.log(filtered)
+  return filtered
+
+}
 
 // axios
 //     .post(
