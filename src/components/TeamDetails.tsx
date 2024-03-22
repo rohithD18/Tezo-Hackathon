@@ -46,7 +46,7 @@ const TeamDetails = () => {
       <div className="search">
         <InputSearch setQuerySearch={setQuerySearch} />
       </div>
-      <div className="teamName">
+      <div className="teamNameDiv">
         <label id="initials">
           {teamName &&
             teamName
@@ -67,6 +67,7 @@ const TeamDetails = () => {
                 width={64}
                 height={64}
                 className="imgStyling"
+                alt="styling"
               ></img>
               <div className="memberDetails">
                 <label className="name">{item.Name}</label>
