@@ -12,14 +12,17 @@ import Feedback1 from "../../assets/Feedback1.png";
 import profilepic from "../../assets/profilepic.jpg";
 import PaginationSection from "../pagination/PaginationSection";
 import ApplicationDetails from "./ApplicationDetails";
+import { boolean } from "yargs";
 
 type Props = {
   setIsApplicationDetailsOpen: any;
   setIsRating: any;
-  setIsRejectedFeed:any
+  setIsRejectedFeed:any;
+  setShedule:any
 };
 const Application = (props: Props) => {
   const { setIsApplicationDetailsOpen, setIsRating,setIsRejectedFeed } = props;
+  const [isProjectManagement,setprojectManagement]=useState<boolean>(false) ;
   const [activeFilter, setActiveFilter] = useState("All");
   const [isApplicationDetails, setIsApplicationDetails] = useState(false);
   const [appliDetailsData, setAppliDetailsData] = useState<IApplications[]>([]);
@@ -272,9 +275,11 @@ const Application = (props: Props) => {
         </div>
         {isApplicationDetails && (
           <ApplicationDetails
+          isProjectManagement={isProjectManagement}
             setIsApplicationDetails={setIsApplicationDetails}
             appliDetailsData={appliDetailsData}
             setIsRating={setIsRating}
+            setShedule={props.setShedule}
             setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
             setIsRejectedFeed={setIsRejectedFeed}
            

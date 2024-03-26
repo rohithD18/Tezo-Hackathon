@@ -34,3 +34,10 @@ export interface IProjectDetail {
   ProposedSolution:string;
   pdf:Ipdf[]
 }
+export interface IProject {
+  id: number;
+  TeamName: string;
+  description: string;
+  Status: string;
+  submittedOn: string;
+}

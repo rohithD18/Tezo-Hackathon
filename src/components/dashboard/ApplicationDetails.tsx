@@ -2,14 +2,17 @@ import React from "react";
 import xclose from "../../assets/xclose.png";
 import arrow_up_right from "../../assets/arrow_up_right.png";
 import Ellipse811 from "../../assets/Ellipse811.png";
+import NextButton from "../../assets/NextButton.png";
 import "../../styles/dashboard/ApplicationDetails.css";
 import { ApplicationData, IApplications } from "../../services/Data";
 type Props = {
   setIsApplicationDetails: any;
   appliDetailsData: any;
   setIsRating: any;
+  setShedule:any;
   setIsApplicationDetailsOpen: any;
   setIsRejectedFeed: any;
+  isProjectManagement:boolean;
 };
 
 const ApplicationDetails = (props: Props) => {
@@ -19,6 +22,7 @@ const ApplicationDetails = (props: Props) => {
     setIsRating,
     setIsApplicationDetailsOpen,
     setIsRejectedFeed,
+    setShedule
   } = props;
   // console.log(appliDetailsData);
 
@@ -57,6 +61,12 @@ const ApplicationDetails = (props: Props) => {
     // Formatting the time
     formattedTime = `${hours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
   }
+  const handleShedule=()=>{
+    setIsApplicationDetails(false);
+    setIsRating(false);
+    setShedule(true);
+
+  }
 
   const handleClose = () => {
     setIsApplicationDetails(false);
@@ -85,7 +95,7 @@ const ApplicationDetails = (props: Props) => {
   return (
     <div className="applicationDetails">
       <div className="headerBar">
-        <div className="title">Application Details</div>
+      { props.isProjectManagement ?<div className="title">Project Details</div>:<div className="title">Application Details</div>}
         <img
           src={xclose}
           alt="Cancel"
@@ -94,8 +104,8 @@ const ApplicationDetails = (props: Props) => {
         />
       </div>
       <div className="detailsContainer">
-        <table className="table1">
-          <span className="tableHeader">Team Details</span>
+        <table className="tablefirst">
+          <p className="tableHeader">Team Details</p>
           <tbody>
             <tr>
               <td style={{ color: "#B4B4B4" }}>Team Name</td>
@@ -123,18 +133,22 @@ const ApplicationDetails = (props: Props) => {
                 {appliDetailsData?.TeamName}
               </td>
             </tr>
-            <tr>
-              <td style={{ color: "#B4B4B4" }}>Date</td>
-              <td>{formattedDate}</td>
-            </tr>
-            <tr>
-              <td style={{ color: "#B4B4B4" }}>Time</td>
-              <td>{formattedTime}</td>
-            </tr>
+            {!props.isProjectManagement ? (
+  <>
+    <tr>
+      <td style={{ color: "#B4B4B4" }}>Date</td>
+      <td>{formattedDate}</td>
+    </tr>
+    <tr>
+      <td style={{ color: "#B4B4B4" }}>Time</td>
+      <td>{formattedTime}</td>
+    </tr>
+  </>
+) : <></>}
           </tbody>
         </table>
         <table className="table1">
-          <span className="table2Header">Topic Submission Details</span>
+          <p className="table2Header">Topic Submission Details</p>
           <tbody>
             <tr>
               <td style={{ color: "#B4B4B4" }}>Topic</td>
@@ -150,6 +164,27 @@ const ApplicationDetails = (props: Props) => {
                 🌐💻
               </td>
             </tr>
+            {props.isProjectManagement ? (
+  <>
+    <tr>
+      <td style={{ color: "#B4B4B4" }}>project Descripition</td>
+      <td>Collaborative coding for diverse teams! Create solutions
+                enhancing teamwork, code integration, and inclusivity. How can
+                tech bring harmony to coding practices? Propose ideas empowering
+                efficient collaboration. Let's harmonize the coding experience!
+                🌐💻</td>
+    </tr>
+    <tr>
+      <td style={{ color: "#B4B4B4" }}>Submission</td>
+      <td>Collaborative coding for diverse teams! Create solutions
+                enhancing teamwork, code integration, and inclusivity. How can
+                tech bring harmony to coding practices? Propose ideas empowering
+                efficient collaboration. Let's harmonize the coding experience!
+                🌐💻</td>
+    </tr>
+  </>
+) : <></>}
+     
           </tbody>
         </table>
         {appliDetailsData.Status === "Pending" ? (
@@ -168,6 +203,16 @@ const ApplicationDetails = (props: Props) => {
         ) : (
           <></>
         )}
+        {appliDetailsData.Status === "Accepted" && props.isProjectManagement ? (
+          <div className="btnConatainer">
+            <button
+              className="sheduleButton"
+              style={{ cursor: "pointer" }}
+              onClick={handleShedule}
+            >
+             Shedule a demo<span className="nextButton"><img src={NextButton} alt=""/></span>
+            </button>
+            </div>):<></>}
       </div>
     </div>
   );

@@ -5,30 +5,14 @@ import Submittedicon from '../../assets/submittedIcon.png';
 import image from '../../assets/image.png';
 import 'react-circular-progressbar/dist/styles.css';
 import {Teams} from '../../services/Data';
-
+import { DisplayCount } from "./DisplayCount";
 import '../../styles/dashboard/DashboardView.css'
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+
 const DashboardView:React.FC = () => {      
     return(<div className="DashboardView">
         <div className="countDiv">
-                <div className="displayComponent">
-                 
-                     <div>
-                        <img src={Participant} alt="participant icon"/>
-                        <p className="displayComponentName">Total Participants</p>
-                        <p>200</p>
-                    </div>
-                    <div>
-                        <img src={RegistrationIcon} alt=""/>
-                        <p className="displayComponentName">Registered Teams</p>
-                        <p>36</p>
-                    </div>
-                    <div>
-                        <img src={Submittedicon} alt=""/>
-                        <p className="displayComponentName">Total Submitted Projects</p>
-                        <p>20</p>
-                    </div>
-                </div>
+                <DisplayCount/>
                 <div className="itenary">
                     <h5>Itenary</h5>
                     <div>
