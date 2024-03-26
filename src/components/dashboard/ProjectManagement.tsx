@@ -54,7 +54,7 @@ export const ProjectManagement:React.FC=()=>{
   <thead>
     <tr className="headerTable">
       <th scope="col"className="colTeamName" >Team Name</th>
-      <th scope="col" className="colTeamDescripition">Descripition</th>
+      <th scope="col" className="colTeamDescripition">Description</th>
       <th scope="col"className="colSubmit">Submitted on</th>
       <th scope="col"className="colStatus">Status</th>
     </tr>
