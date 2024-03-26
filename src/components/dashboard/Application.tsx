@@ -3,7 +3,6 @@ import "../../styles/dashboard/Application.css";
 import profile from "../../assets/profile.png";
 import clipboard_tick from "../../assets/clipboard_tick.png";
 import category from "../../assets/category2.png";
-// import "../../styles/dashboard/Application.css";
 
 import { ApplicationData, IApplications } from "../../services/Data";
 
@@ -15,20 +14,20 @@ import ApplicationDetails from "./ApplicationDetails";
 import DashboardNav from "./DashboardNav";
 import ViewBlur from "./ViewBlur";
 
-// type Props = {
-//   setIsApplicationDetailsOpen: any;
-//   setIsRating: any;
-//   setIsRejectedFeed: any;
-// };
-const Application:React.FC = () => {
+
+const Application: React.FC = () => {
   // const { setIsApplicationDetailsOpen, setIsRating, setIsRejectedFeed } = props;
   const [activeFilter, setActiveFilter] = useState<string>("All");
-  const [isApplicationDetails, setIsApplicationDetails] = useState<boolean>(false);
-  const [appliDetailsData, setAppliDetailsData] = useState<IApplications[]>([]);
+  const [isShedule,setShedule] = useState<boolean>(false);
+  const [isApplicationDetails, setIsApplicationDetails] =
+    useState<boolean>(false);
+  const [appliDetailsData, setAppliDetailsData] = useState<IApplications>(ApplicationData[0]);
   const [total, setTotal] = useState(0);
-  const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =useState(false);
-    const [isRating, setIsRating] = useState(false);
-  const [isRejectedFeed, setIsRejectedFeed] = useState(false);
+  const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =
+    useState<boolean>(false);
+  const [isRating, setIsRating] = useState<boolean>(false);
+  const [isRejectedFeed, setIsRejectedFeed] = useState<boolean>(false);
+  const [isProjectManagement,setprojectManagement]=useState<boolean>(false) ;
 
   useEffect(() => {
     if (isApplicationDetails === true) {
@@ -56,7 +55,7 @@ const Application:React.FC = () => {
   const [displayOnApplication, setDisplayOnApplication] = useState<
     IApplications[]
   >([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredData, setFilteredData] = useState<IApplications[]>([]);
 
   useEffect(() => {
@@ -132,7 +131,7 @@ const Application:React.FC = () => {
   };
   return (
     <div className="applicationView">
-    <DashboardNav />
+      <DashboardNav />
       <div className="ApplicationScreen">
         <div className="cardContainer">
           {cardData.map((card, index) => (
@@ -278,9 +277,11 @@ const Application:React.FC = () => {
         </div>
         {isApplicationDetails && (
           <ApplicationDetails
+          isProjectManagement={isProjectManagement}
             setIsApplicationDetails={setIsApplicationDetails}
             appliDetailsData={appliDetailsData}
             setIsRating={setIsRating}
+            setShedule={setShedule}
             setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
             setIsRejectedFeed={setIsRejectedFeed}
           />
@@ -292,15 +293,17 @@ const Application:React.FC = () => {
           screen="application"
         />
       </div>
-       {isApplicationDetailsOpen && (
-          <ViewBlur
-            isRating={isRating}
-            setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
-            isRejectedFeed={isRejectedFeed}
-            setIsRejectedFeed={setIsRejectedFeed}
-            setIsRating={setIsRating}
-          />
-        )}
+      {isApplicationDetailsOpen && (
+        <ViewBlur
+        isShedule={isShedule}
+          isRating={isRating}
+          setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
+          isRejectedFeed={isRejectedFeed}
+          setIsRejectedFeed={setIsRejectedFeed}
+          setIsRating={setIsRating}
+          setShedule={setShedule}
+        />
+      )}
     </div>
   );
 };

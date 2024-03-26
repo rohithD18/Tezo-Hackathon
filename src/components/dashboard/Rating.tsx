@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "../../styles/dashboard/Rating.css";
 import xclose from "../../assets/xclose.png";
 type Props = {
-  setIsApplicationDetailsOpen: any;
-  setIsRating: any;
+  setIsApplicationDetailsOpen: (message:boolean) => void;
+  setIsRating: (message:boolean) => void;
 };
 const Rating = (props: Props) => {
   const { setIsApplicationDetailsOpen, setIsRating } = props;
@@ -22,6 +22,8 @@ const Rating = (props: Props) => {
   const handleClose = () => {
     setIsRating(false);
     setIsApplicationDetailsOpen(false);
+    setIsRating(false);
+
   };
 
   return (

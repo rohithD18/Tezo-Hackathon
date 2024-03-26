@@ -19,8 +19,6 @@ const ViewProfile: React.FC<Props> = ({
   setShowProfile,
   setUserName,
 }: Props) => {
-  // const { setShowProfile } = props;
-
   const handleCancel = () => {
     setShowProfile(false);
   };
@@ -52,8 +50,9 @@ const ViewProfile: React.FC<Props> = ({
             <img src={Group7334} alt="profilePic" className="profileGroupImg" />
           </div>
           <div className="profileNameContainer">
-            <span className="profileName">{localStorage.getItem("fullName")?.toString()} </span>
-            {/* <span className="profileId">Emp ID. 4568</span> */}
+            <span className="profileName">
+              {localStorage.getItem("fullName")?.toString()}{" "}
+            </span>
           </div>
         </div>
         <div className="profilePicDiv2">

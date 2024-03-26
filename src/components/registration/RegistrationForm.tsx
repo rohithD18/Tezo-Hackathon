@@ -2,11 +2,22 @@ import React, { useState } from "react";
 import SelectMember from "./SelectMember";
 import TeamDetailsForm from "./TeamDetailsForm";
 import TopicDetailsForm from "./TopicDetailsForm";
+import { membersArray } from "./MembersA";
 
-const NavThroughForm: React.FC = () => {
+const RegistrationForm: React.FC = () => {
   const [currentForm, setCurrentForm] = useState<string>("SelectMembersForm");
+  console.log(membersArray);
+
+  const handleNextAndSubmit = (btn: string) => {
+    setCurrentForm(
+      currentForm === "SelectMembersForm"
+        ? "TeamDetailsForm"
+        : "TopicDescriptionForm"
+    );
+  };
+
   return (
-    <div className="navThroughFormD">
+    <div className="registerHome">
       <div className="sideSteps">
         <div>
           <h6 id="h6Tag"> Step 1 of 3</h6>
@@ -90,10 +101,8 @@ const NavThroughForm: React.FC = () => {
           </button>
           <button
             onClick={() =>
-              setCurrentForm(
-                currentForm === "SelectMembersForm"
-                  ? "TeamDetailsForm"
-                  : "TopicDescriptionForm"
+              handleNextAndSubmit(
+                currentForm === "TopicDescriptionForm" ? "Submit" : "Next"
               )
             }
             id="nextBtn"
@@ -106,4 +115,4 @@ const NavThroughForm: React.FC = () => {
   );
 };
 
-export default NavThroughForm;
+export default RegistrationForm;

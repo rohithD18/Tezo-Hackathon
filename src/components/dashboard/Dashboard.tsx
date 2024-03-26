@@ -6,19 +6,19 @@ import Users from "./Users";
 import ViewBlur from "./ViewBlur";
 import DashboardNav from "./DashboardNav";
 import { useParams } from "react-router-dom";
+import { ProjectManagement } from "./ProjectManagement";
 import Events from "./Events";
 
 
 const Dashboard:React.FC = () => {
   const {id } = useParams();
-  const [isApplication, setIsApplication] = useState(false);
-  const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =
-    useState(false);
+ 
+    console.log(id);
     
 
   //setting state for rating pop up
-  // const [isRating, setIsRating] = useState(false);
-  // const [isRejectedFeed, setIsRejectedFeed] = useState(false);
+  
+ 
   return (
     <div className="adminHomeDiv">
       {
@@ -30,6 +30,13 @@ const Dashboard:React.FC = () => {
         {
           id === "UserManagement" ? <Users /> :<></>
           
+        }
+
+        {
+          id === "ProjectManagement" ? <ProjectManagement
+          //  setIsApplicationDetailsOpen={setIsApplicationDetailsOpen} setIsRating={setIsRating}
+          // setIsRejectedFeed={setIsRejectedFeed} isRejectedFeed={isRejectedFeed} isRating={isRating}
+          /> : <></>
         }
          {id === "EventsManagement" && <Events />}
     </div>

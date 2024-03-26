@@ -3,8 +3,8 @@ import "../../styles/dashboard/RejectedFeedback.css";
 import xclose from "../../assets/xclose.png";
 
 type Props = {
-  setIsApplicationDetailsOpen: any;
-  setIsRejectedFeed: any;
+  setIsApplicationDetailsOpen: (message:boolean) => void;
+  setIsRejectedFeed: (message:boolean) => void;
 };
 
 const RejectedFeedback = (props: Props) => {

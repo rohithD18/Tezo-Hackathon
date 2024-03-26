@@ -3,10 +3,11 @@ import "../styles/AllTeams.css";
 import PaginationSection from "./pagination/PaginationSection";
 import TeamCard from "./TeamCard";
 import { TeamsData } from "../services/Const";
+import { ITeamData } from "../services/Interface/TeamData";
 
 const AllTeams: React.FC = () => {
-  const [currentItem, setCurrentItem] = useState<any[]>([]);
-  console.log(currentItem)
+  const [currentItem, setCurrentItem] = useState<ITeamData[]>([]);
+
   return (
     <>
       <div className="allCardBody">
