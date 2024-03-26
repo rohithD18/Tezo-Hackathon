@@ -48,11 +48,11 @@ const Users = () => {
     <div className="UserManagement">
       <div className="UsersScreen1">
             <span className="tableTitle">Users</span>
-            <div className="searchBox">
+            <div className="userSearchBox">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
+                  width="20"
+                  height="20"
                   fill="currentColor"
                   className="bi bi-search"
                   viewBox="0 0 16 16"
@@ -84,7 +84,7 @@ const Users = () => {
 
               {displayOnUser.map((user, index) => (
                 <tr
-                  className="tableRowData"
+                  className="tableRowDataUser"
                   key={index}
                 >
                 
@@ -125,11 +125,13 @@ const Users = () => {
               ))}
             </table>
         
-        <div className="applicationPagination"></div>
+        <div className="userPagination">
         <PaginationSection
           setCurrentItem={setDisplayOnUser}
           data={filteredData}
+          screen="users"
         />
+        </div>
       </div>
       </div>
     </>

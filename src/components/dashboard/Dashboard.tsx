@@ -7,6 +7,7 @@ import ViewBlur from "./ViewBlur";
 import DashboardNav from "./DashboardNav";
 import { useParams } from "react-router-dom";
 import { ProjectManagement } from "./ProjectManagement";
+import Events from "./Events";
 
 
 const Dashboard:React.FC = () => {
@@ -28,6 +29,7 @@ const Dashboard:React.FC = () => {
         )}
         {
           id === "UserManagement" ? <Users /> :<></>
+          
         }
 
         {
@@ -36,6 +38,7 @@ const Dashboard:React.FC = () => {
           // setIsRejectedFeed={setIsRejectedFeed} isRejectedFeed={isRejectedFeed} isRating={isRating}
           /> : <></>
         }
+         {id === "EventsManagement" && <Events />}
     </div>
   );
 };

@@ -1,6 +1,9 @@
+.eventsSection{
+    margin-right: 6%;
+}
 .upcomingEventStyle{
     color: rgba(233, 236, 238, 0.939);
-    margin-left:4%;
+    /* margin-right:4%; */
     padding:0px 24px 35px ;
     font-weight: 600;
     word-wrap: break-word;

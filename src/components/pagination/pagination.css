@@ -14,7 +14,9 @@
   border-bottom: 1px solid #273144;
   cursor: pointer;
 }
-
+#userPagin{
+  margin: 0px;
+}
 .dropdownDiv {
   display: flex;
   align-items: center;

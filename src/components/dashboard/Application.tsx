@@ -290,6 +290,7 @@ const Application: React.FC = () => {
         <PaginationSection
           setCurrentItem={setDisplayOnApplication}
           data={filteredData}
+          screen="application"
         />
       </div>
       {isApplicationDetailsOpen && (

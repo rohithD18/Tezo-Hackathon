@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100vh;
   width: 84%;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 24px;
+  gap:40px
 }
 .UsersScreen1 {
   display: flex;
@@ -53,17 +53,18 @@
   .searchIcon {
     fill: gray;
   }
-  .searchBox {
+  .userSearchBox {
     display: flex;
     align-items: center;
     width: 20%;
     height: 36px;
     color: gray;
-    padding-left: 50px;
+    padding-left: 20px;
     font-weight: bold;
     border-radius: 4px;
     background-color: rgba(43, 54, 71, 1);
     border: 1px solid gray;
+    gap: 8px;
   }
   
   .searchInput {
@@ -124,20 +125,20 @@
     color: rgba(238, 238, 238, 1);
   }
  
-  .tableRowData {
+  .tableRowDataUser {
     background-color: rgba(43, 54, 71, 1);
     justify-content: center;
-    height: 52.5px;
+    height: 60px;
     border-bottom: 1px solid rgba(61, 90, 128, 1);
   }
   
-  .tableRowData:hover  #editAndDeleteStyling{
+  .tableRowDataUser:hover  #editAndDeleteStyling{
     background-color: rgba(61, 90, 128, 1) !important;
     cursor: pointer !important; 
  
 
   }
-  .tableRowData:hover {
+  .tableRowDataUser:hover {
     background-color: rgba(61, 90, 128, 1) !important;
     cursor: pointer !important; 
  
@@ -164,14 +165,14 @@
     background: none;
     border: none;
   }
-  .applicationPagination {
-    position: relative;
-    margin-top: 450px;
+  .userPagination {
+    bottom: 0;
+  width: 82%;
+  position: fixed;
+
   }
    #editAndDeleteStyling{
     background-color: #2B3647;
 
     
    }
-
-  
