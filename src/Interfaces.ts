@@ -35,18 +35,12 @@ export interface IProjectDetail {
   ProposedSolution: string;
   pdf: Ipdf[];
 }
-
-export interface Ipdf {
-  name: string;
-  size: number;
-  type: string;
-}
-export interface IProjectDetail {
+export interface IProject {
   id: number;
-  Topic: string;
-  TopicDescripition: string;
-  ProposedSolution: string;
-  pdf: Ipdf[];
+  TeamName: string;
+  descripition: string;
+  Status: string;
+  submittedOn: string;
 }
 export interface IUsers {
   Id: number;

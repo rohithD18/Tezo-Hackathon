@@ -10,6 +10,8 @@ type Props = {
   isRejectedFeed: boolean;
   setIsRejectedFeed: (message: boolean) => void;
   setIsRating: (message: boolean) => void;
+  isShedule:boolean;
+  setShedule:(message : boolean) => void
 };
 const ViewBlur: React.FC<Props> = (props: Props) => {
   const {
@@ -18,6 +20,8 @@ const ViewBlur: React.FC<Props> = (props: Props) => {
     isRejectedFeed,
     setIsRejectedFeed,
     setIsRating,
+    isShedule,
+    setShedule
   } = props;
   return (
     <div className="blur-container">
@@ -33,6 +37,11 @@ const ViewBlur: React.FC<Props> = (props: Props) => {
             setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
             setIsRejectedFeed={setIsRejectedFeed}
           />
+        )}
+        {isShedule && (
+<Shedule setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
+setShedule={setShedule}
+ />
         )}
       </div>
     </div>

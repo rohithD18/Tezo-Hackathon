@@ -18,7 +18,7 @@ import ViewBlur from "./ViewBlur";
 const Application: React.FC = () => {
   // const { setIsApplicationDetailsOpen, setIsRating, setIsRejectedFeed } = props;
   const [activeFilter, setActiveFilter] = useState<string>("All");
-  const [shedule,setShedule] = useState<boolean>(false);
+  const [isShedule,setShedule] = useState<boolean>(false);
   const [isApplicationDetails, setIsApplicationDetails] =
     useState<boolean>(false);
   const [appliDetailsData, setAppliDetailsData] = useState<IApplications>(ApplicationData[0]);
@@ -294,11 +294,13 @@ const Application: React.FC = () => {
       </div>
       {isApplicationDetailsOpen && (
         <ViewBlur
+        isShedule={isShedule}
           isRating={isRating}
           setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
           isRejectedFeed={isRejectedFeed}
           setIsRejectedFeed={setIsRejectedFeed}
           setIsRating={setIsRating}
+          setShedule={setShedule}
         />
       )}
     </div>

@@ -6,14 +6,13 @@ import NextButton from "../../assets/NextButton.png";
 import "../../styles/dashboard/ApplicationDetails.css";
 import { ApplicationData, IApplications } from "../../services/Data";
 type Props = {
-  setIsApplicationDetails: (message: boolean) => void;
-  appliDetailsData: IApplications;
-  // appliDetailsData: any;
-  setIsRating: (message: boolean) => void;
-  setShedule:any;
-  setIsApplicationDetailsOpen: (message: boolean) => void;
-  setIsRejectedFeed: (message: boolean) => void;
-  isProjectManagement:boolean;
+  setIsApplicationDetails: any;
+  appliDetailsData: any;
+  setIsRating: any;
+  setIsApplicationDetailsOpen: any;
+  setIsRejectedFeed: any;
+  isProjectManagement: boolean
+  setShedule : (message : boolean) => void
 };
 
 const ApplicationDetails: React.FC<Props> = (props: Props) => {
@@ -23,6 +22,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     setIsRating,
     setIsApplicationDetailsOpen,
     setIsRejectedFeed,
+    isProjectManagement,
     setShedule
   } = props;
   // console.log(appliDetailsData);
@@ -63,40 +63,33 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     formattedTime = `${hours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
   }
   const handleShedule=()=>{
-    setIsApplicationDetails(false);
-    setIsRating(false);
     setShedule(true);
-
+    setIsApplicationDetailsOpen(false);
+    setIsRating(false);
   }
 
   const handleClose = () => {
     setIsApplicationDetails(false);
     setIsApplicationDetailsOpen(false);
+    setShedule(false);
   };
 
   const handleAccept = () => {
-    setIsApplicationDetails(false);
     setIsRating(true);
-
-    // const id = appliDetailsData.Id; // Convert to string
-    // const updatedData = ApplicationData.map((application) =>
-    //   application.Id === id
-    //  (ApplicationData[id].Status = "Accepted")
-    //     : application
-    // );
-    // console.log(updatedData);
-    // setIsApplicationDetails(false);
+    setIsApplicationDetails(true);    
+    setIsApplicationDetailsOpen(false);
   };
 
   const handleReject = () => {
     setIsApplicationDetails(false);
     setIsRejectedFeed(true);
+    setIsApplicationDetailsOpen(false);
   };
 
   return (
     <div className="applicationDetails">
       <div className="headerBar">
-      { props.isProjectManagement ?<div className="title">Project Details</div>:<div className="title">Application Details</div>}
+      { isProjectManagement ?<div className="title">Project Details</div>:<div className="title">Application Details</div>}
         <img
           src={xclose}
           alt="Cancel"

@@ -12,19 +12,20 @@ import { MultiSectionDigitalClock } from "@mui/x-date-pickers/MultiSectionDigita
 import { DesktopDatePicker, DesktopTimePicker, TimePicker } from "@mui/x-date-pickers";
 
 type Props = {
-    setIsApplicationDetailsOpen: any;
+    setIsApplicationDetailsOpen: (message:boolean) => void;
+    setShedule:(message:boolean) => void
   };
 
 export const Shedule =(props:Props)=>{
     const [selectedDate, setSelectedDate] = useState<any>();
-    const { setIsApplicationDetailsOpen } = props;
+    const { setIsApplicationDetailsOpen,setShedule     } = props;
     const hours:number[]=[1,2,3,4,5,6,7,8,9,10,11,12];
     const minutes: number[] = Array.from({ length: 60 }, (_, index) => index + 1);
 
     
     return(
         <div className="scheduleMeetingPopup">
-            <img src={xclose} alt="closeIcon"/>
+            <img src={xclose} alt="closeIcon" onClick={() => setShedule(false)    }/>
             <p>Please provide the details for the meeting scheduled</p>
             <div >
                <DatePicker className="datePicker" selected={selectedDate} onChange={(e)=>setSelectedDate(e)} dateFormat="YYYY-MM-dd" placeholderText="Select Date"/>
