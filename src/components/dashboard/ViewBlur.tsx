@@ -5,24 +5,35 @@ import RejectedFeedback from "./RejectedFeedback";
 import { Shedule } from "./Shedule";
 
 type Props = {
-  setIsRating:any
-  isShedule: any;
-  isRating: any;
-  setIsApplicationDetailsOpen: any;
-  isRejectedFeed: any;
+  isRating: boolean;
+  setIsApplicationDetailsOpen: (message: boolean) => void;
+  isRejectedFeed: boolean;
+  setIsRejectedFeed: (message: boolean) => void;
+  setIsRating: (message: boolean) => void;
 };
-const ViewBlur = (props: Props) => {
-  const { isRating, setIsApplicationDetailsOpen, isRejectedFeed,setIsRating,isShedule } = props;
+const ViewBlur: React.FC<Props> = (props: Props) => {
+  const {
+    isRating,
+    setIsApplicationDetailsOpen,
+    isRejectedFeed,
+    setIsRejectedFeed,
+    setIsRating,
+  } = props;
   return (
     <div className="blur-container">
       <div className="blur-background">
         {isRating && (
-          <Rating setIsApplicationDetailsOpen={setIsApplicationDetailsOpen} setIsRating={setIsRating}  />
+          <Rating
+            setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
+            setIsRating={setIsRating}
+          />
         )}
-        {isShedule && (
-          <Shedule setIsApplicationDetailsOpen={setIsApplicationDetailsOpen} />
+        {isRejectedFeed && (
+          <RejectedFeedback
+            setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
+            setIsRejectedFeed={setIsRejectedFeed}
+          />
         )}
-        {isRejectedFeed && <RejectedFeedback  setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}/>}
       </div>
     </div>
   );

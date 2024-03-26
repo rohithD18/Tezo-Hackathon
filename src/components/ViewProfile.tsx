@@ -15,11 +15,15 @@ interface IProps2 {
   setUserName: (message: string) => void;
 }
 
-const ViewProfile = ({ setShowProfile, setUserName }: Props) => {
-  // const { setShowProfile } = props;
-
+const ViewProfile: React.FC<Props> = ({
+  setShowProfile,
+  setUserName,
+}: Props) => {
   const handleCancel = () => {
     setShowProfile(false);
+  };
+  const handleProfileClick = () => {
+    window.history.pushState({},'', '/profile')
   };
   const userName: any = localStorage.getItem("userDataL");
   console.log(userName);
@@ -46,31 +50,24 @@ const ViewProfile = ({ setShowProfile, setUserName }: Props) => {
             <img src={Group7334} alt="profilePic" className="profileGroupImg" />
           </div>
           <div className="profileNameContainer">
-            <span className="profileName">Venkatesh Nair</span>
-            <span className="profileId">Emp ID. 4568</span>
+            <span className="profileName">
+              {localStorage.getItem("fullName")?.toString()}{" "}
+            </span>
           </div>
         </div>
         <div className="profilePicDiv2">
-          <button className="btn1">
+        <a href={`/profile`} style={{textDecoration:"none"}} >
+          <button className="btn1" >
             <div className="Statelayer">
               <span className="iconBox">
                 <img src={userIcon} alt="userIcon" className="icon" />
               </span>
-              <label htmlFor="text" className="IblViewProfile">
+              <label htmlFor="text" className="IblViewProfile" >
                 View Profile
               </label>
             </div>
           </button>
-          {/* <button className="btn2">
-            <div className="Statelayer">
-              <span className="iconBox">
-                <img src={Icon} alt="userIcon" className="icon" />
-              </span>
-              <label htmlFor="text" className="IblViewProfile">
-                Sign Out
-              </label>
-            </div>
-          </button> */}
+          </a>
           <MsalProvider instance={pca}>
             <LogInLogOutComp
               userNameFromLogInLogOutComp={userNameFromLogInLogOutComp}

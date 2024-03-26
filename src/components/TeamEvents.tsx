@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import InputSearch from "./InputSearch";
 import "../styles/UpcomingEvents.css";
 import { IEvents } from "../Interfaces";
@@ -11,6 +11,7 @@ export const TeamEvents: React.FC<IProps> = ({
   upcomingEvents,
   validUpcomingEvents,
 }: IProps) => {
+  const [querySearch, setQuerySearch] = useState<string>();
   return (
     <div>
       {validUpcomingEvents ? (
@@ -18,7 +19,7 @@ export const TeamEvents: React.FC<IProps> = ({
       ) : (
         <div className="allEvents">
           <div>All Events</div>
-          <InputSearch />
+          <InputSearch setQuerySearch={setQuerySearch} />
         </div>
       )}
       {upcomingEvents.map((item) => (

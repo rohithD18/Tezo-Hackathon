@@ -3,7 +3,6 @@ import "../../styles/dashboard/Application.css";
 import profile from "../../assets/profile.png";
 import clipboard_tick from "../../assets/clipboard_tick.png";
 import category from "../../assets/category2.png";
-// import "../../styles/dashboard/Application.css";
 
 import { ApplicationData, IApplications } from "../../services/Data";
 
@@ -12,21 +11,23 @@ import Feedback1 from "../../assets/Feedback1.png";
 import profilepic from "../../assets/profilepic.jpg";
 import PaginationSection from "../pagination/PaginationSection";
 import ApplicationDetails from "./ApplicationDetails";
-import { boolean } from "yargs";
+import DashboardNav from "./DashboardNav";
+import ViewBlur from "./ViewBlur";
 
-type Props = {
-  setIsApplicationDetailsOpen: any;
-  setIsRating: any;
-  setIsRejectedFeed:any;
-  setShedule:any
-};
-const Application = (props: Props) => {
-  const { setIsApplicationDetailsOpen, setIsRating,setIsRejectedFeed } = props;
-  const [isProjectManagement,setprojectManagement]=useState<boolean>(false) ;
-  const [activeFilter, setActiveFilter] = useState("All");
-  const [isApplicationDetails, setIsApplicationDetails] = useState(false);
-  const [appliDetailsData, setAppliDetailsData] = useState<IApplications[]>([]);
+
+const Application: React.FC = () => {
+  // const { setIsApplicationDetailsOpen, setIsRating, setIsRejectedFeed } = props;
+  const [activeFilter, setActiveFilter] = useState<string>("All");
+  const [shedule,setShedule] = useState<boolean>(false);
+  const [isApplicationDetails, setIsApplicationDetails] =
+    useState<boolean>(false);
+  const [appliDetailsData, setAppliDetailsData] = useState<IApplications>(ApplicationData[0]);
   const [total, setTotal] = useState(0);
+  const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =
+    useState<boolean>(false);
+  const [isRating, setIsRating] = useState<boolean>(false);
+  const [isRejectedFeed, setIsRejectedFeed] = useState<boolean>(false);
+  const [isProjectManagement,setprojectManagement]=useState<boolean>(false) ;
 
   useEffect(() => {
     if (isApplicationDetails === true) {
@@ -54,7 +55,7 @@ const Application = (props: Props) => {
   const [displayOnApplication, setDisplayOnApplication] = useState<
     IApplications[]
   >([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredData, setFilteredData] = useState<IApplications[]>([]);
 
   useEffect(() => {
@@ -129,7 +130,8 @@ const Application = (props: Props) => {
     setAppliDetailsData(data);
   };
   return (
-    <>
+    <div className="applicationView">
+      <DashboardNav />
       <div className="ApplicationScreen">
         <div className="cardContainer">
           {cardData.map((card, index) => (
@@ -279,10 +281,9 @@ const Application = (props: Props) => {
             setIsApplicationDetails={setIsApplicationDetails}
             appliDetailsData={appliDetailsData}
             setIsRating={setIsRating}
-            setShedule={props.setShedule}
+            setShedule={setShedule}
             setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
             setIsRejectedFeed={setIsRejectedFeed}
-           
           />
         )}
         <div className="applicationPagination"></div>
@@ -291,7 +292,16 @@ const Application = (props: Props) => {
           data={filteredData}
         />
       </div>
-    </>
+      {isApplicationDetailsOpen && (
+        <ViewBlur
+          isRating={isRating}
+          setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
+          isRejectedFeed={isRejectedFeed}
+          setIsRejectedFeed={setIsRejectedFeed}
+          setIsRating={setIsRating}
+        />
+      )}
+    </div>
   );
 };
 

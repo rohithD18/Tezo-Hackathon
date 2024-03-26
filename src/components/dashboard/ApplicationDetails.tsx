@@ -6,16 +6,17 @@ import NextButton from "../../assets/NextButton.png";
 import "../../styles/dashboard/ApplicationDetails.css";
 import { ApplicationData, IApplications } from "../../services/Data";
 type Props = {
-  setIsApplicationDetails: any;
-  appliDetailsData: any;
-  setIsRating: any;
+  setIsApplicationDetails: (message: boolean) => void;
+  appliDetailsData: IApplications;
+  // appliDetailsData: any;
+  setIsRating: (message: boolean) => void;
   setShedule:any;
-  setIsApplicationDetailsOpen: any;
-  setIsRejectedFeed: any;
+  setIsApplicationDetailsOpen: (message: boolean) => void;
+  setIsRejectedFeed: (message: boolean) => void;
   isProjectManagement:boolean;
 };
 
-const ApplicationDetails = (props: Props) => {
+const ApplicationDetails: React.FC<Props> = (props: Props) => {
   const {
     setIsApplicationDetails,
     appliDetailsData,

@@ -1,9 +1,11 @@
 .registerHome{
-  width: 100%;
+  /* width: 80%; */
   display: flex;
   justify-content: center;
   height: 100vh;
   margin-top: 20px;
+  /* padding: 20px 120px; */
+  /* border: 3px solid rgb(61, 90, 128); */
 }
 .navRegister{
   width: 84%;
@@ -17,15 +19,14 @@
   text-decoration: none;
   font-size: 12px;
 }
-.navThroughFormD1{
-  padding: 20px 120px;
+/* .navThroughFormD1{
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   
   justify-content: space-between;
   width: 100%;
   height: 100vh;
-}
+} */
 
 
 .navThroughFormD{
@@ -40,7 +41,8 @@
   /* height: 100vh; */
 }
 .sideSteps{
-  width: 30%;
+  /* width: 30%; */
+  margin-right: 10%;
 }
 #h6Tag{
   font-size: 18px;
@@ -109,7 +111,7 @@
 }
 
 .formSection, .topicForm{
-  width:800px;
+  width:50%;
   border: 1px solid rgb(56 66 82);
   /* height: 500px; */
   border-radius: 20px;
@@ -124,6 +126,20 @@
 .topicForm{
   margin-bottom: 150px;
 }
+#selectMemHead{
+font-size: 24px;
+font-weight: 600;
+line-height: 28.18px;
+text-align: left;
+
+}
+#infoHeading1{
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+text-align: left;
+
+}
 
 .searchIcon{
   /* padding: 5px 0 0 20px; */
@@ -133,8 +149,21 @@
 .rulForTeam{
   margin-top: 20px;
 }
+.rulForTeam p {
+font-size: 14px;
+font-weight: 500;
+line-height: 20px;
+text-align: left;
+
+}
 .rulForTeam #svgP{
-  font-size: 10px;
+font-size: 12px;
+font-weight: 400;
+line-height: 14.06px;
+text-align: left;
+color: rgba(238, 238, 238, 1);
+
+
 }
 .teamMembersDiv{
   margin-top: 25px;
@@ -144,7 +173,11 @@
   justify-content: space-between;
 }
 .membersNav p{
-  font-size: 13px;
+font-size: 16px;
+font-weight: 600;
+line-height: 18.75px;
+text-align: left;
+
 }
 .contentMEM{
   /* font-family: arial, sans-serif; */
@@ -175,17 +208,30 @@
 }
 #idOfMem, #nameEmail{
  display: flex;
+font-size: 16px;
+font-weight: 500;
+line-height: 18.75px;
+text-align: left;
+
   /* margin-right: 100px; */
 }
 #nameEmail b{
   display: block;
   margin-left: 20px;
-  font-weight: normal;
+font-size: 16px;
+font-weight: 500;
+line-height: 18.75px;
+text-align: left;
+
   /* margin-right: 100px; */
 }
 #nameEmail #email{
- color: gray;
- font-size: small;
+ color: rgba(180, 180, 180, 1);
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+text-align: left;
+
 }
 #nameEmail img{
   width: 40px;
@@ -211,9 +257,30 @@
   margin-right: 10px;
   background-color: transparent;
   border: 1px solid  rgb(61, 90, 128);
+font-size: 16px;
+font-weight: 700;
+line-height: 18.75px;
+text-align: center;
+width: 160px;
+height: 47px;
+padding: 14px 28px 14px 28px;
+gap: 8px;
+opacity: 0px;
+
+
 }
 #nextBtn{
   background-color: rgb(238, 108, 77);
+  width: 160px;
+height: 47px;
+padding: 14px 28px 14px 28px;
+gap: 8px;
+opacity: 0px;
+font-size: 16px;
+font-weight: 700;
+line-height: 18.75px;
+text-align: center;
+
   
 }
 .projectDetail{
@@ -252,31 +319,41 @@
   font-size:14px;
 }
 .profilePicSelectDiv{
-  margin-top: 30px;
+height: 78px;
+padding: 12px 0px 12px 0px;
+gap: 0px;
+border: 0px 0px 1px 0px;
+opacity: 0px;
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
-  color: gray;
+  align-items: center;
   border-bottom: 1px solid  rgb(61, 90, 128);
-  /* font-size: 20px; */
 }
 .profilePicSelectDiv p{
-  font-size: 12px;
-  /* padding: 0; */
-  margin: 10px 0 0 0;
+font-size: 14px;
+font-weight: 400;
+line-height: 22px;
+text-align: left;
+color: rgba(140, 140, 140, 1);
+
 }
 .profilePicSelectDiv img{
-  width: 40px;
-  height: 40px;
+  width: 54px;
+  height: 54px;
   border-radius: 20px;
-  margin:0 0 10px 70px;
+  /* margin:0 0 10px 70px; */
 }
 .teamNameInpDiv{
   display: flex;
   justify-content: space-between;
   align-content: center;
   margin-top: 25px;
-  color: gray;
+  color: rgba(140, 140, 140, 1);
+height:72px;
+padding: 12px 0px 12px 0px;
+gap: 0px;
+opacity: 0px;
+
 }
 .teamNameInpDiv p{
   font-size: 14px;
@@ -298,17 +375,19 @@ justify-content: space-between;
 margin-top: 20px;
 }
 .selectCaptainSec #captainLbl{
-  color: gray;
-  font-size: 14px;
+  color: rgba(140, 140, 140, 1);
+font-size: 14px;
+font-weight: 400;
+line-height: 22px;
+text-align: left;
+
 }
 .selectACaptianDiv{
   width: 70%;
-  /* display: block; */
 }
 .mapMemberDiv{
   display: flex;
   align-items: center;
-  /* border: 1px solid white; */
   padding: 0 15px;
 }
 .selectedMemberDiv{
@@ -326,19 +405,24 @@ margin-top: 20px;
   background-color: rgb(43 54 71);
 }
 .mapMemberDiv span, .selectedMemberDiv span{
-  color: gray;
-  /* margin-top: 20px; */
+  color: rgba(140, 140, 140, 1);
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+text-align: left;
+
 }
 .mapMemberDiv p, .selectedMemberDiv p{
   margin-top: 15px;
-  font-size: small;
-  font-weight: normal;
-  /* border: 1px solid white; */
-  /* align-content: center; */
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18.75px;
+  text-align: left;
+  
 }
 .mapMemberDiv img, .selectedMemberDiv img{
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 20px;
   margin:0 20px;
   /* display: ; */
@@ -381,6 +465,7 @@ margin-top: 20px;
 .descriptionSec textarea{
   /* height: 150px; */
   min-height: 100px;
+  /* height: max-content; */
 }
 @media screen and (min-width:1024px){
   .navThroughFormD, .navThroughFormD1{

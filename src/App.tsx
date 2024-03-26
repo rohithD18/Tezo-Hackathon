@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
 import { Login } from "./components/Login";
-import Registration from "./components/registration/Registration";
-import Home from "./components/Home";
 import { Route, Routes } from "react-router-dom";
 import { Schedule } from "./components/Schedule";
 import MyTeam from "./components/MyTeam";
@@ -17,6 +15,10 @@ import MyProject from "./components/MyProject/MyProject";
 import Application from "./components/dashboard/Application";
 import Dashboard from "./components/dashboard/Dashboard";
 import AllTeams from "./components/AllTeams";
+import RegistrationForm from "./components/registration/RegistrationForm";
+import TeamDetails from "./components/TeamDetails";
+import Profile from "./components/Profile";
+
 const App: React.FC = () => {
   console.log("userNameeeee", localStorage.getItem("username")?.toString());
   const [user, setUser] = useState<string>("");
@@ -34,14 +36,16 @@ const App: React.FC = () => {
           <NavBarCopy />
           <Routes>
             <Route path="/" Component={() => <HomePage isRegister={false} />} />
-            <Route path="/registration-form" Component={Registration} />
+            <Route path="/registration-form" Component={RegistrationForm} />
             <Route path="/schedule" Component={Schedule} />
             <Route path="/teams" Component={MyTeam} />
+            <Route path="/teams/:teamNameParam" Component={TeamDetails} />
             <Route path="/rules" Component={RejectedRework} />
             <Route path="/myProject" Component={MyProject} />
             <Route path="/allteams" Component={AllTeams} />
-            <Route path="/dashboard" Component={Dashboard} />
-            {/* <Route path="/dashboard/application" Component={Application} /> */}
+            <Route path="/dashboard/" Component={Dashboard} />
+            <Route path="/dashboard/:id" Component={Dashboard} />
+            <Route path="/profile" Component={Profile} />
           </Routes>
         </>
       )}

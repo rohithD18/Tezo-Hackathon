@@ -2,11 +2,30 @@
     background-color: #495F80;
     width:100%;
     max-height:100px;
-    padding-right:100px;
-    padding-left:100px;
+    /* padding-right:100px;
+    padding-left:100px; */
     height:50px
      /* or any other color */
   }
+  .container {
+    width: 100%;
+    min-width: 82%;
+  }
+  
+  /* Media query for 1440px screen size */
+  @media screen and (min-width: 1440px) {
+    .container {
+      width: 80%; 
+    }
+  }
+  
+  /* Media query for 1920px screen size */
+  @media screen and (min-width: 1920px) {
+    .container {
+      width: 75%;
+    }
+}
+  
 .navLinkItem{
     color:white;
     padding-right: 20px !important;
@@ -69,4 +88,29 @@ font-family: inherit;
 }
 .icon-class{
     font-size: 20px;
+}
+.profileActiveImage{
+    background-color:#273144;
+/* padding: 7px 12px 7px 16px; */
+
+border-radius: 8px 0px 0px 8px;
+
+padding: 7px 10px 7px 10px;
+border-radius: 8px 0px 0px 0px;
+
+
+
+
+}
+.profileActiveDetails{
+    background-color:#273144;
+    padding: 7px 40px 7px 10px;
+/* padding: 7px 12px 7px 16px; */
+border-radius: 0px 8px 8px 0px;
+
+
+}
+.details{
+    max-width:300px;
+    width:100px
 }

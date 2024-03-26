@@ -1,100 +1,40 @@
-// import React from "react";
-// import "../../styles/dashboard/RejectedFeedback.css";
-// import xclose from "../../assets/xclose.png";
-// import radiobutton from "../../assets/radiobutton.png";
-// type Props = {
-//   setIsApplicationDetailsOpen: any;
-// };
-// const RejectedFeedback = (props: Props) => {
-//   const { setIsApplicationDetailsOpen } = props;
-//   const handleClose = () => {
-//     setIsApplicationDetailsOpen(false);
-//   };
-//   return (
-//     <div className="RejectedFeedbackComponent">
-//       <span className="imgSpanDiv" onClick={handleClose}>
-//         <img src={xclose} alt="Cancel" className="closeImage" />
-//       </span>
-//       <div className="descriptionDiv">
-//         <span className="descriptionText">
-//           Please provide reason(s) for topic rejection
-//         </span>
-//         <div className="listofReasonContainer">
-//           <ul className="reasonList">
-//             <li>
-//               <img src={radiobutton} alt="Reason Icon" className="reasonIcon" />
-//               <span className="reasonText">
-//                 Inappropriate or Offensive Content
-//               </span>
-//             </li>
-//             <li>
-//               <img src={radiobutton} alt="Reason Icon" className="reasonIcon" />
-//               <span className="reasonText">Violation of Privacy</span>
-//             </li>
-//             <li>
-//               <img src={radiobutton} alt="Reason Icon" className="reasonIcon" />
-//               <span className="reasonText">Technical Errors</span>
-//             </li>
-//             <li>
-//               <img src={radiobutton} alt="Reason Icon" className="reasonIcon" />
-//               <span className="reasonText">Reason 4</span>
-//             </li>
-//             <li>
-//               <img src={radiobutton} alt="Reason Icon" className="reasonIcon" />
-//               <span className="reasonText">
-//                 Request by Platform Administrators
-//               </span>
-//             </li>
-//             <li>
-//               <img src={radiobutton} alt="Reason Icon" className="reasonIcon" />
-//               <span className="reasonText">Others</span>
-//             </li>
-//           </ul>
-//         </div>
-//         <textarea
-//           className="textArea"
-//           placeholder="Please specify the reason"
-//         ></textarea>
-//       </div>
-//       <button className="rejectedSubmitButton">Submit</button>
-//     </div>
-//   );
-// };
-
-// export default RejectedFeedback;
-
 import React, { useState } from "react";
 import "../../styles/dashboard/RejectedFeedback.css";
 import xclose from "../../assets/xclose.png";
-import radiobutton from "../../assets/radiobutton.png";
 
 type Props = {
-  setIsApplicationDetailsOpen: any;
+  setIsApplicationDetailsOpen: (message:boolean) => void;
+  setIsRejectedFeed: (message:boolean) => void;
 };
 
 const RejectedFeedback = (props: Props) => {
-  const { setIsApplicationDetailsOpen } = props;
-  const [selectedReason, setSelectedReason] = useState("");
-  const [specifiedReason, setSpecifiedReason] = useState("");
+  const { setIsApplicationDetailsOpen, setIsRejectedFeed } = props;
+  
 
-  const handleClose = () => {
-    setIsApplicationDetailsOpen(false);
+  const [selectedReason, setSelectedReason] = useState<any>({
+    id:"",
+    radio: "",
+    text: "",
+  });
+  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedReason({ ...selectedReason, radio: e.target.value });
+    
   };
-
-  const handleReasonSelect = (reason: string) => {
-    setSelectedReason(reason);
-  };
-
-  const handleTextareaChange = (
+  const handleTextAreaChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    setSpecifiedReason(event.target.value);
+    setSelectedReason({ ...selectedReason, text: event.target.value });
+  };
+  const handleClose = () => {
+    setIsApplicationDetailsOpen(false);
+    setIsRejectedFeed(false);
   };
 
   const handleSubmit = () => {
-    // Do something with the selected reason and specified reason
-    console.log("Selected Reason:", selectedReason);
-    console.log("Specified Reason:", specifiedReason);
+    console.log("radio Reason", selectedReason);
+    // console.log("text Reason", selectedReason);
+    setIsRejectedFeed(false);
+    setIsApplicationDetailsOpen(false);
   };
 
   return (
@@ -107,50 +47,91 @@ const RejectedFeedback = (props: Props) => {
           Please provide reason(s) for topic rejection
         </span>
         <div className="listofReasonContainer">
-          <ul className="reasonList">
-            <li
-              onClick={() =>
-                handleReasonSelect("Inappropriate or Offensive Content")
-              }
-            >
-              <img src={radiobutton} alt="Reason Icon" className="reasonIcon" />
-              <span className="reasonText">
-                Inappropriate or Offensive Content
-              </span>
-            </li>
-            <li onClick={() => handleReasonSelect("Violation of Privacy")}>
-              <img src={radiobutton} alt="Reason Icon" className="reasonIcon" />
-              <span className="reasonText">Violation of Privacy</span>
-            </li>
-            <li onClick={() => handleReasonSelect("Technical Errors")}>
-              <img src={radiobutton} alt="Reason Icon" className="reasonIcon" />
-              <span className="reasonText">Technical Errors</span>
-            </li>
-            <li onClick={() => handleReasonSelect("Reason 4")}>
-              <img src={radiobutton} alt="Reason Icon" className="reasonIcon" />
-              <span className="reasonText">Reason 4</span>
-            </li>
-            <li
-              onClick={() =>
-                handleReasonSelect("Request by Platform Administrators")
-              }
-            >
-              <img src={radiobutton} alt="Reason Icon" className="reasonIcon" />
-              <span className="reasonText">
-                Request by Platform Administrators
-              </span>
-            </li>
-            <li onClick={() => handleReasonSelect("Others")}>
-              <img src={radiobutton} alt="Reason Icon" className="reasonIcon" />
-              <span className="reasonText">Others</span>
-            </li>
-          </ul>
+          <div className="radioContainer">
+            <input
+              type="radio"
+              id="reason1"
+              name="reason"
+              value="Inappropriate or Offensive Content"
+              className="radioIcon"
+              onChange={handleRadioChange}
+            />
+            <label htmlFor="reason1" className="reasonLabel">
+              Inappropriate or Offensive Content
+            </label>
+          </div>
+          <div className="radioContainer">
+            <input
+              type="radio"
+              id="reason2"
+              name="reason"
+              value="False information"
+              onChange={handleRadioChange}
+              className="radioIcon"
+            />
+            <label htmlFor="reason2" className="reasonLabel">
+              False information
+            </label>
+          </div>
+          <div className="radioContainer">
+            <input
+              type="radio"
+              id="reason3"
+              name="reason"
+              value="Violation of Privacy"
+              onChange={handleRadioChange}
+              className="radioIcon"
+            />
+            <label htmlFor="reason3" className="reasonLabel">
+              Violation of Privacy
+            </label>
+          </div>
+          <div className="radioContainer">
+            <input
+              type="radio"
+              id="reason4"
+              name="reason"
+              onChange={handleRadioChange}
+              value="Technical Errors"
+              className="radioIcon"
+            />
+            <label htmlFor="reason4" className="reasonLabel">
+              Technical Errors
+            </label>
+          </div>
+          <div className="radioContainer">
+            <input
+              type="radio"
+              id="reason5"
+              onChange={handleRadioChange}
+              name="reason"
+              value="Request by Platform Administrators"
+              className="radioIcon"
+            />
+            <label htmlFor="reason5" className="reasonLabel">
+              Request by Platform Administrators
+            </label>
+          </div>
+          <div className="radioContainer">
+            <input
+              type="radio"
+              id="reason6"
+              name="reason"
+              onChange={handleRadioChange}
+              value="Others"
+              className="radioIcon"
+            />
+            <label htmlFor="reason6" className="reasonLabel">
+              Others
+            </label>
+          </div>
         </div>
         <textarea
           className="textArea"
           placeholder="Please specify the reason"
-          value={specifiedReason}
-          onChange={handleTextareaChange}
+          value={selectedReason.text}
+          onChange={handleTextAreaChange}
+          
         ></textarea>
       </div>
       <button className="rejectedSubmitButton" onClick={handleSubmit}>
