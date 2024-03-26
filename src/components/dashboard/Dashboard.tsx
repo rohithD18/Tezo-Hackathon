@@ -6,6 +6,7 @@ import Users from "./Users";
 import ViewBlur from "./ViewBlur";
 import DashboardNav from "./DashboardNav";
 import { useParams } from "react-router-dom";
+import Events from "./Events";
 
 
 const Dashboard:React.FC = () => {
@@ -13,7 +14,6 @@ const Dashboard:React.FC = () => {
   const [isApplication, setIsApplication] = useState(false);
   const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =
     useState(false);
-    console.log(id);
     
 
   //setting state for rating pop up
@@ -29,7 +29,9 @@ const Dashboard:React.FC = () => {
         )}
         {
           id === "UserManagement" ? <Users /> :<></>
+          
         }
+         {id === "EventsManagement" && <Events />}
     </div>
   );
 };

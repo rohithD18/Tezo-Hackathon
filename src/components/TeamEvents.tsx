@@ -13,7 +13,7 @@ export const TeamEvents: React.FC<IProps> = ({
 }: IProps) => {
   const [querySearch,setQuerySearch]=useState<string>();
   return (
-    <div>
+    <div className="eventsSection">
       {validUpcomingEvents ? (
         <div className="upcomingEventStyle">Upcoming Events</div>
       ) : (

@@ -6,8 +6,13 @@ export interface IMembers {
 export interface IEvents {
   id: number;
   teamName: string;
-  image: string;
-  teamShedule: string;
+  image?: string;
+  teamShedule?: string;
+  captain?: string;
+  topic?: string; 
+  dateAndTime?: Date;
+  status?: string; 
+  review?: boolean;
 }
 export interface ITeamMembers {
   name: string,
