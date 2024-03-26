@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import 'react-time-picker/dist/TimePicker.css';
  import '../../styles/dashboard/EventSchedulePopUp.css';
 import xclose from "../../assets/xclose.png";
-import { Teams,ITeams } from "../../services/Data";
+import { Teams} from "../../services/Data";
 import Dropdown from "../Dropdown";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -12,6 +12,7 @@ import { MultiSectionDigitalClock } from "@mui/x-date-pickers/MultiSectionDigita
 import { DesktopDatePicker, DesktopTimePicker, TimePicker } from "@mui/x-date-pickers";
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, TextField } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
+import { ITeams } from "../../Interfaces";
  
 interface PopupProps {
     isOpen: boolean;
@@ -80,13 +81,13 @@ const EventSchedulePopUp =({ isOpen, onClose }:PopupProps)=>{
     </FormControl></div>
             <div className="dateAndTime">
             
-               <DatePicker className="datePicker" selected={selectedDate} onChange={handleDateChange} dateFormat="YYYY-MM-dd" placeholderText="Select Date"/>
+               <DatePicker className="scheduleDatePicker" selected={selectedDate} onChange={handleDateChange} dateFormat="YYYY-MM-dd" placeholderText="Select Date"/>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                  
                  <TimePicker   label="Select Time" // Placeholder text
         value={selectedTime}
         onChange={handleTimeChange}
-        views={['hours','minutes']}  className="timePicker"/>
+        views={['hours','minutes']}  className="scheduleTimePicker"/>
                  </LocalizationProvider>
                  
 

@@ -76,7 +76,7 @@ export const ProjectManagement:React.FC=()=>{
  </div>
  <div>
     
- <PaginationSection setCurrentItem={setCurrentData} data={projects} />
+ <PaginationSection setCurrentItem={setCurrentData} data={projects} screen=""/>
          {isProjectManagementDetailsOpen && (
           <ApplicationDetails
           isProjectManagement={isProjectManagement}
