@@ -11,7 +11,6 @@ import { useNavigate, useParams } from "react-router-dom";
 const DashboardNav: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log("activeBtn", id);
 
   const [activeButton, setActiveButton] = useState<string | undefined>(id);
 
@@ -22,16 +21,16 @@ const DashboardNav: React.FC = () => {
   return (
     <div className="navContainer">
       <button
-        className={`dashboard ${!activeButton ? "activeNav" : ""}`}
+        className={`btnLabel ${!activeButton ? "activeNav" : ""}`}
         onClick={() => handleButtonClick("")}
       >
-        {/* <img src={category22} alt="dashboard" className="imgDashboard" /> */}
         <svg
           width="20"
           height="20"
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className={!activeButton  ? "activeSVG" : ""}
         >
           <path
             d="M4.1665 8.33268H5.83317C7.49984 8.33268 8.33317 7.49935 8.33317 5.83268V4.16602C8.33317 2.49935 7.49984 1.66602 5.83317 1.66602H4.1665C2.49984 1.66602 1.6665 2.49935 1.6665 4.16602V5.83268C1.6665 7.49935 2.49984 8.33268 4.1665 8.33268Z"
@@ -69,18 +68,18 @@ const DashboardNav: React.FC = () => {
         Dashboard
       </button>
       <button
-        className={`dashboard ${
+        className={`btnLabel ${
           activeButton === "UserManagement" ? "activeNav" : ""
         }`}
         onClick={() => handleButtonClick("UserManagement")}
       >
-        {/* <img src={Users} alt="dashboard" className="imgDashboard" /> */}
         <svg
           width="20"
           height="20"
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className={activeButton === "UserManagement" ? "activeSVG" : ""}
         >
           <path
             d="M14.9999 5.96602C14.9499 5.95769 14.8916 5.95769 14.8416 5.96602C13.6916 5.92435 12.7749 4.98268 12.7749 3.81602C12.7749 2.62435 13.7332 1.66602 14.9249 1.66602C16.1166 1.66602 17.0749 2.63268 17.0749 3.81602C17.0666 4.98268 16.1499 5.92435 14.9999 5.96602Z"
@@ -128,18 +127,18 @@ const DashboardNav: React.FC = () => {
         User Management
       </button>
       <button
-        className={`dashboard ${
+        className={`btnLabel ${
           activeButton === "Applications" ? "activeNav" : ""
         }`}
         onClick={() => handleButtonClick("Applications")}
       >
-        {/* <img src={square3} alt="dashboard" className="imgDashboard" /> */}
         <svg
           width="20"
           height="20"
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className={activeButton === "Applications" ? "activeSVG" : ""}
         >
           <path
             d="M9.99984 14.1667V16.15C9.99984 17.7083 9.37484 18.3333 7.80817 18.3333H3.84984C2.2915 18.3333 1.6665 17.7083 1.6665 16.15V12.1917C1.6665 10.625 2.2915 10 3.84984 10H5.83317V11.975C5.83317 13.5417 6.45817 14.1667 8.0165 14.1667H9.99984Z"
@@ -166,13 +165,13 @@ const DashboardNav: React.FC = () => {
         Applications
       </button>
       <button
-        className={`dashboard ${
+        className={`btnLabel ${
           activeButton === "ProjectManagement" ? "activeNav" : ""
         }`}
         onClick={() => handleButtonClick("ProjectManagement")}
       >
-        {/* <img src={document_code_2} alt="dashboard" className="imgDashboard" /> */}
         <svg
+          className={activeButton === "ProjectManagement" ? "activeSVG" : ""}
           width="20"
           height="20"
           viewBox="0 0 20 20"
@@ -215,13 +214,13 @@ const DashboardNav: React.FC = () => {
         Project Management
       </button>
       <button
-        className={`dashboard ${
+        className={`btnLabel ${
           activeButton === "EventsManagement" ? "activeNav" : ""
         }`}
         onClick={() => handleButtonClick("EventsManagement")}
       >
-        {/* <img src={calendar} alt="dashboard" className="imgDashboard" /> */}
         <svg
+          className={activeButton === "EventsManagement" ? "activeSVG" : ""}
           width="20"
           height="20"
           viewBox="0 0 20 20"

@@ -7,7 +7,25 @@
     background-color: #273144;
   }
   
-  .dashboard {
+  .btnLabel {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 56px;
+    padding: 12px;
+    gap: 10px;
+    background-color: inherit;
+    border: none;
+    color: #b4b4b4;
+    /* font-family: Inter; */
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    text-align: left;
+    cursor: pointer;
+  }
+  /* .userManagement {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -24,11 +42,11 @@
     line-height: 22px;
     text-align: left;
     cursor: pointer;
-  }
+  } */
   
   .activeNav {
-    background: #3B4A61; /* Background color when active */
-    color: #ffffff; /* Text color when active */
+    background: #3B4A61; 
+    color: #ffffff; 
   }
   
   
@@ -36,4 +54,10 @@
     width: 24px;
     height: 24px;
   }
+.activeSVG{
+  fill: #ffffff;
+}
   
+  /* .svg-icon {
+
+  } */

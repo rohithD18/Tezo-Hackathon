@@ -89,7 +89,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
   return (
     <div className="applicationDetails">
       <div className="headerBar">
-      { isProjectManagement ?<div className="title">Project Details</div>:<div className="title">Application Details</div>}
+      { isProjectManagement ?<div className="title">Project Details</div>:<span className="title">Application Details</span>}
         <img
           src={xclose}
           alt="Cancel"

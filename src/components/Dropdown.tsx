@@ -14,7 +14,7 @@ const Dropdown = () => {
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdownComp">
       <button
         className="dropdown-toggle"
         type="button"
@@ -25,7 +25,7 @@ const Dropdown = () => {
           border: "1px solid rgb(61, 90, 128)",
           color: "white",
           fontSize: "small",
-          padding: "6px 15px",
+          padding: "10px 15px",
           borderRadius: "5px",
         }}
       >
