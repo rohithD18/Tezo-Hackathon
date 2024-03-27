@@ -6,22 +6,21 @@ import category from "../../assets/category2.png";
 
 import { ApplicationData, IApplications } from "../../services/Data";
 
-import Feedback from "../../assets/Feedback.png";
-import Feedback1 from "../../assets/Feedback1.png";
-import profilepic from "../../assets/profilepic.jpg";
 import PaginationSection from "../pagination/PaginationSection";
 import ApplicationDetails from "./ApplicationDetails";
 import DashboardNav from "./DashboardNav";
 import ViewBlur from "./ViewBlur";
-
+import ApplicationTable from "./ApplicationTable";
+import DisplayCard from "./DisplayCard";
 
 const Application: React.FC = () => {
-  // const { setIsApplicationDetailsOpen, setIsRating, setIsRejectedFeed } = props;
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [isShedule,setShedule] = useState<boolean>(false);
   const [isApplicationDetails, setIsApplicationDetails] =
     useState<boolean>(false);
-  const [appliDetailsData, setAppliDetailsData] = useState<IApplications>(ApplicationData[0]);
+  const [appliDetailsData, setAppliDetailsData] = useState<IApplications>(
+    ApplicationData[0]
+  );
   const [total, setTotal] = useState(0);
   const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =
     useState<boolean>(false);
@@ -57,7 +56,7 @@ const Application: React.FC = () => {
   >([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredData, setFilteredData] = useState<IApplications[]>([]);
-
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   useEffect(() => {
     const counts = {
       Accepted: 0,
@@ -72,8 +71,14 @@ const Application: React.FC = () => {
 
     setStatusCounts(counts);
     setTotal(ApplicationData.length);
-    setCurrApplicationData(ApplicationData);
-  }, []);
+    setCurrApplicationData(
+      ApplicationData.sort((a, b) => {
+        const dateA = new Date(a.SubmissionDate).getTime();
+        const dateB = new Date(b.SubmissionDate).getTime();
+        return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+      })
+    );
+  }, [sortOrder]);
 
   useEffect(() => {
     const filtered = currApplicationData.filter((application: IApplications) =>
@@ -89,30 +94,28 @@ const Application: React.FC = () => {
   const handleFilterClick = (status: string) => {
     setActiveFilter(status);
     if (status === "All") {
-      setCurrApplicationData(ApplicationData);
+      const filtered = ApplicationData.filter((application) =>
+        application.TeamName.toLowerCase().includes(searchQuery.toLowerCase())
+      ).sort((a, b) => {
+        const dateA = new Date(a.SubmissionDate).getTime();
+        const dateB = new Date(b.SubmissionDate).getTime();
+        return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+      });
+      setCurrApplicationData(filtered);
     } else {
       const filtered = ApplicationData.filter(
         (application) => application.Status === status
-      );
+      ).sort((a, b) => {
+        const dateA = new Date(a.SubmissionDate).getTime();
+        const dateB = new Date(b.SubmissionDate).getTime();
+        return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+      });
       setCurrApplicationData(filtered);
     }
   };
-
-  const formatDate = (date: Date | string): string => {
-    if (typeof date === "string") {
-      return date;
-    } else {
-      const options: any = {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      };
-      return new Intl.DateTimeFormat("en-US", options).format(date);
-    }
-  };
+  useEffect(() => {
+    handleFilterClick(activeFilter);
+  }, [sortOrder, activeFilter]);
 
   const cardData = [
     { title: "All", image: profile, count: total },
@@ -129,150 +132,101 @@ const Application: React.FC = () => {
     setIsApplicationDetails(true);
     setAppliDetailsData(data);
   };
+
+  const [userRole, setUserRole] = useState<string>("admin");
+  // const handleUserRoleChange = (role: string) => {
+  //   setUserRole(role);
+  // };
+
+  const renderFilterButtons = () => {
+    if (userRole === "admin") {
+      return (
+        <>
+          <button
+            className={`btnAll ${activeFilter === "All" ? "hovered" : ""}`}
+            onClick={() => handleFilterClick("All")}
+          >
+            All
+          </button>
+          <button
+            className={`btnPending ${
+              activeFilter === "Pending" ? "hovered" : ""
+            }`}
+            onClick={() => handleFilterClick("Pending")}
+          >
+            Pending
+          </button>
+          <button
+            className={`btnAccepted ${
+              activeFilter === "Accepted" ? "hovered" : ""
+            }`}
+            onClick={() => handleFilterClick("Accepted")}
+          >
+            Accepted
+          </button>
+          <button
+            className={`btnRejected ${
+              activeFilter === "Rejected" ? "hovered" : ""
+            }`}
+            onClick={() => handleFilterClick("Rejected")}
+          >
+            Rejected
+          </button>
+        </>
+      );
+    } else {
+      return (
+        <button
+          className={`btnAll ${activeFilter === "All" ? "hovered" : ""}`}
+          onClick={() => handleFilterClick("All")}
+        >
+          All
+        </button>
+      );
+    }
+  };
+
+
   return (
     <div className="applicationView">
       <DashboardNav />
       <div className="ApplicationScreen">
         <div className="cardContainer">
-          {cardData.map((card, index) => (
-            <div className="Applicationcard" key={index}>
-              <div className="cardContainer2">
-                <div className="cardImageContainer">
-                  <img src={card.image} alt="" className="cardImage" />
-                </div>
-                <div className="cardText">
-                  <span className="cardTitle">{card.title}</span>
-                  <span className="cardNum">{card.count}</span>
-                </div>
-              </div>
-            </div>
-          ))}
+          <DisplayCard cardData={cardData} />
         </div>
         <div className="tableContainer">
           <div className="tableTopContainer">
             <span className="tableTitle">Applications</span>
-
-            <div className="filterContainer">
-              <div className="searchBox">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-search"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                </svg>
-                <input
-                  type="search"
-                  name=""
-                  className="searchInput"
-                  placeholder="Search by Team Name"
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                />
-              </div>
+            <div className="searchbox">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="currentColor"
+                className="bi bi-search"
+                viewBox="0 0 16 16"
+              >
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+              </svg>
+              <input
+                type="search"
+                name=""
+                className="searchInput"
+                placeholder="Search by Team Name"
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
             </div>
           </div>
 
           <div className="displayTable">
-            <div className="filterButtonContainer">
-              <button
-                className={`btnAll ${activeFilter === "All" ? "hovered" : ""}`}
-                onClick={() => handleFilterClick("All")}
-              >
-                All
-              </button>
-              <button
-                className={`btnPending ${
-                  activeFilter === "Pending" ? "hovered" : ""
-                }`}
-                onClick={() => handleFilterClick("Pending")}
-              >
-                Pending
-              </button>
-              <button
-                className={`btnAccepted ${
-                  activeFilter === "Accepted" ? "hovered" : ""
-                }`}
-                onClick={() => handleFilterClick("Accepted")}
-              >
-                Accepted
-              </button>
-              <button
-                className={`btnRejected ${
-                  activeFilter === "Rejected" ? "hovered" : ""
-                }`}
-                onClick={() => handleFilterClick("Rejected")}
-              >
-                Rejected
-              </button>
-            </div>
-            <table className="table">
-              <thead className="tableRow">
-                <th className="teamTitle">Team Name</th>
-                <th className="captTitle">Captain</th>
-                <th className="projectTitle">Project Name</th>
-                <th className="projectSubmit">Project Submitted</th>
-                <th className="dateTitle">Submission Date</th>
-                <th className="statusTitle">Status</th>
-              </thead>
-
-              {displayOnApplication.map((application, index) => (
-                <tr
-                  className="tableRowData"
-                  key={index}
-                  onClick={() => handleAppliDetailsData(application)}
-                >
-                  <td className="teamTitle">{application.TeamName}</td>
-                  <td className="captTitleData">
-                    <span
-                      style={{ background: "none" }}
-                      className="captTitleDataSpan"
-                    >
-                      <img
-                        src={profilepic}
-                        alt="img"
-                        style={{
-                          width: "24px",
-                          height: "24px",
-                          background: "none",
-                          border: "none",
-                        }}
-                      />
-                      {application.TeamCaptian}
-                    </span>
-                  </td>
-                  <td className="projectTitle">{application.ProjectName}</td>
-                  <td className="projectSubmit">
-                    {application.ProjectedSubmitted ? (
-                      <img
-                        src={Feedback}
-                        alt="feedback"
-                        className="ProjectedSubmittedImg"
-                      />
-                    ) : (
-                      <img
-                        src={Feedback1}
-                        alt="Feedback"
-                        className="ProjectedSubmittedImg"
-                      />
-                    )}
-                  </td>
-                  <td className="dateTitle">
-                    {formatDate(application.SubmissionDate)}
-                  </td>
-                  <td className="statusTitle">
-                    <div
-                      className={`statusTitleData ${application.Status.toLowerCase()}`}
-                    >
-                      {application.Status}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </table>
+            <div className="filterButtonContainer">{renderFilterButtons()}</div>
+            <ApplicationTable
+              displayOnApplication={displayOnApplication}
+              handleAppliDetailsData={handleAppliDetailsData}
+              userRole={userRole}
+              setSortOrder={setSortOrder}
+            />
           </div>
         </div>
         {isApplicationDetails && (
