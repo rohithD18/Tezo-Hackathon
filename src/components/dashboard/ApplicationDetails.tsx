@@ -62,11 +62,6 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     // Formatting the time
     formattedTime = `${hours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
   }
-  const handleShedule=()=>{
-    // setShedule(true);
-    setIsApplicationDetailsOpen(false);
-    setIsRating(true);
-  }
 
   const handleClose = () => {
     setIsApplicationDetails(false);

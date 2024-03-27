@@ -41,14 +41,6 @@ const ViewBlur: React.FC<Props> = (props: Props) => {
             setIsRejectedFeed={setIsRejectedFeed}
           />
         )}
-        {isShedule && (
-          <Rating
-          setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
-          setIsProjectManagementDetailsOpen={setIsProjectManagementDetailsOpen}
-          setIsRating={setIsRating}
-        />
-
-        )}
       </div>
     </div>
   );
