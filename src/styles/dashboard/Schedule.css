@@ -1,10 +1,10 @@
-.scheduleMeetingPopup > div{
+.scheduleMeetingPopUp > div{
     display:flex
 }
-.scheduleMeetingPopup img{
+.scheduleMeetingPopUp img{
     float:right
 }
-.scheduleMeetingPopup {
+.scheduleMeetingPopUp {
     background-color:#03162f ;
     Width:45%;
     height:160px;
