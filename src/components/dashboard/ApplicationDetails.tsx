@@ -2,15 +2,17 @@ import React from "react";
 import xclose from "../../assets/xclose.png";
 import arrow_up_right from "../../assets/arrow_up_right.png";
 import Ellipse811 from "../../assets/Ellipse811.png";
+import NextButton from "../../assets/NextButton.png";
 import "../../styles/dashboard/ApplicationDetails.css";
 import { ApplicationData, IApplications } from "../../services/Data";
 type Props = {
-  setIsApplicationDetails: (message: boolean) => void;
-  appliDetailsData: IApplications;
-  // appliDetailsData: any;
-  setIsRating: (message: boolean) => void;
-  setIsApplicationDetailsOpen: (message: boolean) => void;
-  setIsRejectedFeed: (message: boolean) => void;
+  setIsApplicationDetails: any;
+  appliDetailsData: any;
+  setIsRating: any;
+  setIsApplicationDetailsOpen: any;
+  setIsRejectedFeed: any;
+  isProjectManagement: boolean
+  setShedule : (message : boolean) => void
 };
 
 const ApplicationDetails: React.FC<Props> = (props: Props) => {
@@ -20,6 +22,8 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     setIsRating,
     setIsApplicationDetailsOpen,
     setIsRejectedFeed,
+    isProjectManagement,
+    setShedule
   } = props;
   // console.log(appliDetailsData);
 
@@ -58,35 +62,34 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     // Formatting the time
     formattedTime = `${hours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
   }
+  const handleShedule=()=>{
+    setShedule(true);
+    setIsApplicationDetailsOpen(false);
+    setIsRating(false);
+  }
 
   const handleClose = () => {
     setIsApplicationDetails(false);
     setIsApplicationDetailsOpen(false);
+    setShedule(false);
   };
 
   const handleAccept = () => {
-    setIsApplicationDetails(false);
-    setIsRating(true);
-
-    // const id = appliDetailsData.Id; // Convert to string
-    // const updatedData = ApplicationData.map((application) =>
-    //   application.Id === id
-    //  (ApplicationData[id].Status = "Accepted")
-    //     : application
-    // );
-    // console.log(updatedData);
-    // setIsApplicationDetails(false);
+    setIsRating(true);   
+    setIsApplicationDetailsOpen(false);
+    setIsApplicationDetails(true); 
   };
 
   const handleReject = () => {
     setIsApplicationDetails(false);
     setIsRejectedFeed(true);
+    setIsApplicationDetailsOpen(false);
   };
 
   return (
     <div className="applicationDetails">
       <div className="headerBar">
-        <span className="title">Application Details</span>
+      { isProjectManagement ?<div className="title">Project Details</div>:<span className="title">Application Details</span>}
         <img
           src={xclose}
           alt="Cancel"
@@ -95,8 +98,8 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
         />
       </div>
       <div className="detailsContainer">
-        <table className="table1">
-          <span className="tableHeader">Team Details</span>
+        <table className="tablefirst">
+          <p className="tableHeader">Team Details</p>
           <tbody>
             <tr>
               <td style={{ color: "#B4B4B4" }}>Team Name</td>
@@ -124,18 +127,22 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
                 {appliDetailsData?.TeamName}
               </td>
             </tr>
-            <tr>
-              <td style={{ color: "#B4B4B4" }}>Date</td>
-              <td>{formattedDate}</td>
-            </tr>
-            <tr>
-              <td style={{ color: "#B4B4B4" }}>Time</td>
-              <td>{formattedTime}</td>
-            </tr>
+            {!props.isProjectManagement ? (
+  <>
+    <tr>
+      <td style={{ color: "#B4B4B4" }}>Date</td>
+      <td>{formattedDate}</td>
+    </tr>
+    <tr>
+      <td style={{ color: "#B4B4B4" }}>Time</td>
+      <td>{formattedTime}</td>
+    </tr>
+  </>
+) : <></>}
           </tbody>
         </table>
         <table className="table1">
-          <span className="table2Header">Topic Submission Details</span>
+          <p className="table2Header">Topic Submission Details</p>
           <tbody>
             <tr>
               <td style={{ color: "#B4B4B4" }}>Topic</td>
@@ -151,6 +158,27 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
                 🌐💻
               </td>
             </tr>
+            {props.isProjectManagement ? (
+  <>
+    <tr>
+      <td style={{ color: "#B4B4B4" }}>project Descripition</td>
+      <td>Collaborative coding for diverse teams! Create solutions
+                enhancing teamwork, code integration, and inclusivity. How can
+                tech bring harmony to coding practices? Propose ideas empowering
+                efficient collaboration. Let's harmonize the coding experience!
+                🌐💻</td>
+    </tr>
+    <tr>
+      <td style={{ color: "#B4B4B4" }}>Submission</td>
+      <td>Collaborative coding for diverse teams! Create solutions
+                enhancing teamwork, code integration, and inclusivity. How can
+                tech bring harmony to coding practices? Propose ideas empowering
+                efficient collaboration. Let's harmonize the coding experience!
+                🌐💻</td>
+    </tr>
+  </>
+) : <></>}
+     
           </tbody>
         </table>
         {appliDetailsData.Status === "Pending" ? (
@@ -169,6 +197,16 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
         ) : (
           <></>
         )}
+        {appliDetailsData.Status === "Accepted" && props.isProjectManagement ? (
+          <div className="btnConatainer">
+            <button
+              className="sheduleButton"
+              style={{ cursor: "pointer" }}
+              onClick={handleShedule}
+            >
+             Shedule a demo<span className="nextButton"><img src={NextButton} alt=""/></span>
+            </button>
+            </div>):<></>}
       </div>
     </div>
   );

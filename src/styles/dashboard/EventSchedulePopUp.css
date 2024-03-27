@@ -1,0 +1,240 @@
+.popup {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+   .dropdown {
+    width:100%;
+padding: 12px;
+gap: 8px;
+border-radius: 4px;
+border: 1px solid #3D5A80;
+color: #2B3647;
+background: #2B3647;
+  }
+  .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select{
+    height: 100%;
+  }
+#dropdown-label{
+    color: #878787;
+
+}
+#dropdown{
+border-radius: 8px;
+background-color: #273144;
+border: 1px solid #3D5A80;
+color: white;
+
+}
+
+    .css-bpeome-MuiSvgIcon-root-MuiSelect-icon{
+        color: white  !important;
+    }
+    .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon{
+        color: white  !important; 
+    }
+.dateAndTime{
+    display: flex;
+    flex-direction:row;
+    gap:24px
+}
+
+.scheduleMeetingPopup > div{
+    display:flex
+}
+.scheduleMeetingPopup img{
+    float:right;
+    cursor: pointer;
+}
+.scheduleMeetingPopup {
+    background: #273144;
+    border-radius: 8px;
+    width:30%;
+    height:35%;
+    padding: 24px 24px 12px 24px;
+    display: flex;
+    gap:10px;
+    flex-direction: column;
+ 
+}
+.schedule{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    
+}
+.scheduleDatePicker,.scheduleTimePicker{
+    background-color: transparent;
+    border:2px solid #3D5A80;
+    width:250px;
+    height: 100%;
+    padding: 12px ;
+    gap: 8px;
+    border-radius: 4px;
+    border: 1px;
+    border-radius: 4px;
+border: 1px solid #3D5A80;
+color:white;
+background: #2B3647;
+}
+.scheduleDatePicker input{
+    background-color: transparent;
+    border:none;
+    color: #878787;
+}
+.scheduleTimePicker input{
+    background-color: transparent;
+    border:none;
+    color:white;
+}
+.scheduleDatePicker input::placeholder{
+    padding-left:10px;
+    font-size: 16px;
+    color:#878787
+}
+.scheduleTimePicker label{
+    padding-left:10px;
+    font-size: 16px;
+    color:#878787
+}
+
+.scheduleTimePicker .css-1d3z3hw-MuiOutlinedInput-notchedOutline:hover,.scheduleTimePicker .css-1d3z3hw-MuiOutlinedInput-notchedOutline:active
+    {
+    border: 1px solid #3D5A80;
+    color:#878787;
+background: #2B3647;
+input{
+        background-color: transparent;
+        border:none;
+        color: #878787;
+    
+}
+ 
+}
+.react-datepicker{
+   background-color:  #2B3647;
+}
+.react-datepicker__day:hover{
+    width: 39px;
+    height: 32px;
+padding:2px;
+gap: 8px;
+border-radius: 1000px ;
+opacity: 0px;
+background: #FDF6FD;
+color: #EE6C4D;
+}
+.react-datepicker__header{
+    background-color:  #2B3647;
+    border-bottom: none;
+
+}
+.react-datepicker__day--keyboard-selected,.react-datepicker__day--selected{
+    width: 39px;
+height: 32px;
+padding:2px;
+gap: 8px;
+border-radius: 1000px ;
+opacity: 0px;
+background: #FDF6FD;
+color: #EE6C4D !important;
+
+
+
+}
+.react-datepicker__day-name{
+color:white
+}
+.react-datepicker__day-names> :first-child,.react-datepicker__day-names> :last-child{
+    color: #F36A6A;
+
+}
+.react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+    color: #EEEEEE;
+
+    
+}
+.react-datepicker__month-container{
+    width: 284px;
+height: 300px;
+
+padding: 20px;
+gap: 20px;
+border-radius: 11px;
+border: 1px;
+
+}
+.react-datepicker__day{
+font-size: 14px;
+font-weight: 400;
+line-height: 25px;
+text-align: center;
+color: #B4B4B4;
+padding-top: 2px;
+
+
+}
+.react-datepicker__week{
+    width:38.14px;
+    height:32px;
+    gap: 12px;
+    opacity: 0px;
+    position:  relative!important;
+
+    
+}
+.css-i4bv87-MuiSvgIcon-root{
+color: #878787;
+}
+.css-1g7nc1s-MuiPickersLayout-root{
+  
+    padding: 0px 16px 0px 16px;
+    background: #2B3647;
+    border: 1px solid #3D5A80;
+    border-radius: 8px ;
+    color: #B4B4B4;
+ 
+
+    
+    
+}
+.css-1e3wlyl-MuiButtonBase-root-MuiMenuItem-root-MuiMultiSectionDigitalClockSection-item.Mui-selected{
+    color:white;
+    background: #2B3647 !important;
+}
+.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper{
+border-radius: 8px ;
+border: 1px ;
+background-color: #273144 !important;
+border: 1px solid #3D5A80
+
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root{
+height: 36px;
+padding: 8px 16px 8px 16px;
+gap: 8px;
+border-radius: 6px;
+color: #B4B4B4 !important;
+
+
+}
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root:hover{
+    background-color:#3D5A80;
+
+    color: white !important;
+
+}
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected{
+    color: white !important;
+}

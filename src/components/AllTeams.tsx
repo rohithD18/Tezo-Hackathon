@@ -16,7 +16,7 @@ const AllTeams: React.FC = () => {
         ))}
       </div>
       <div className="Bodyofpagination">
-        <PaginationSection setCurrentItem={setCurrentItem} data={TeamsData} />
+        <PaginationSection setCurrentItem={setCurrentItem} data={TeamsData} screen="teams"/>
       </div>
     </>
   );

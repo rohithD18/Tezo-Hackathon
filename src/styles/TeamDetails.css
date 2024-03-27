@@ -9,7 +9,7 @@
     margin-top: 40px;
     margin-bottom: 40px;
 }
-.teamName{
+.teamNameDiv{
     background: url('../assets/bgimageTeam1.png') ,
     url('../assets/bgimageTeam2.png') ,#2B3647; 
     background-position: left, top right; /* Set the positions of the background images */

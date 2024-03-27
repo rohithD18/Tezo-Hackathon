@@ -1,0 +1,126 @@
+{ "Teams" :[
+  {
+    "Id": 1,
+    "TeamName": "Team One",
+    "TeamMembers": [
+      {
+        "Id": 1,
+        "Name": "Rohith",
+        "EmailAddress": "rohith.d@technovert.com",
+        "Department" : "Developer",
+        "IsCaptain": true
+      },
+      {
+        "Id": 2,
+        "Name": "Naveen",
+        "EmailAddress": "naveen.t@technovert.com",
+        "Department" : "Developer",
+        "IsCaptain": false
+      },
+      {
+        "Id": 3,
+        "Name": "Likitha K",
+        "EmailAddress": "likitha.k@technovert.com",
+        "Department" : "Developer",
+        "IsCaptain": false
+      },
+      {
+        "Id": 4,
+        "Name": "Swati G",
+        "EmailAddress": "swati.g@technovert.com",
+        "Department" : "Developer",
+        "IsCaptain": false
+      },
+      {
+        "Id": 5,
+        "Name": "Prashanth E",
+        "EmailAddress": "prashanth.e@technovert.com",
+        "Department" : "QA",
+        "IsCaptain": false
+      }
+    ],
+    "Rank": 1,
+    "Score": 45
+  },
+  {
+    "Id": 2,
+    "TeamName": "Team Two",
+    "TeamMembers": [
+      {
+        "Id": 1,
+        "Name": "Gnani",
+        "EmailAddress": "gnani.g@technovert.com",
+        "Department" : "Developer",
+        "IsCaptain": true
+      },
+      {
+        "Id": 2,
+        "Name": "Naresh Chakali",
+        "EmailAddress": "naresh.c@technovert.com",
+        "Department" : "Developer",
+        "IsCaptain": false
+      },
+      {
+        "Id": 3,
+        "Name": "Tarun V",
+        "EmailAddress": "tarun.v@technovert.com",
+        "Department" : "Developer",
+        "IsCaptain": false
+      },
+      {
+        "Id": 4,
+        "Name": "Naga Shashank G",
+        "EmailAddress": "shahshank.g@technovert.com",
+        "Department" : "Developer",
+        "IsCaptain": false
+      },
+      {
+        "Id": 5,
+        "Name": "Aditya N",
+        "EmailAddress": "aditya.n@technovert.com",
+        "Department" : "QA",
+        "IsCaptain": false
+        
+      }
+    ],
+    "Rank": 2,
+    "Score": 40
+  }
+  ],
+  "TeamMembers" :[{
+    "Id": 1,
+    "Name": "Gnani",
+    "EmailAddress": "gnani.g@technovert.com",
+    "Department" : "Developer",
+    "IsCaptain": true
+  },
+  {
+    "Id": 2,
+    "Name": "Naresh Chakali",
+    "EmailAddress": "naresh.c@technovert.com",
+    "Department" : "Developer",
+    "IsCaptain": false
+  },
+  {
+    "Id": 3,
+    "Name": "Tarun V",
+    "EmailAddress": "tarun.v@technovert.com",
+    "Department" : "Developer",
+    "IsCaptain": false
+  },
+  {
+    "Id": 4,
+    "Name": "Naga Shashank G",
+    "EmailAddress": "shahshank.g@technovert.com",
+    "Department" : "Developer",
+    "IsCaptain": false
+  },
+  {
+    "Id": 5,
+    "Name": "Aditya N",
+    "EmailAddress": "aditya.n@technovert.com",
+    "Department" : "QA",
+    "IsCaptain": false
+    
+  }]
+}

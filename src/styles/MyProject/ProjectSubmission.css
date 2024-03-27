@@ -35,7 +35,7 @@
   .dropFile label,.dropFile ul{
     font-size: 14px;
     width:70%;
-    height:200px;
+    min-height:200px;
     border: 1px solid  rgb(61, 90, 128);
     background-color: transparent;
     padding:10px 10px 10px 10px;
@@ -44,7 +44,7 @@
     text-align: center;
   }
   .formSection1 {
-    width:900px;
+    width:50%;
     border: 1px solid rgb(56 66 82);
     /* height: 500px; */
     border-radius: 20px;
@@ -126,7 +126,6 @@
     color: gray;
   }
   .dropFile textarea{
-    /* height: 150px; */
     min-height: 100px;
   }
   li{

@@ -15,6 +15,7 @@ import DisplayCard from "./DisplayCard";
 
 const Application: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>("All");
+  const [isShedule,setShedule] = useState<boolean>(false);
   const [isApplicationDetails, setIsApplicationDetails] =
     useState<boolean>(false);
   const [appliDetailsData, setAppliDetailsData] = useState<IApplications>(
@@ -25,7 +26,7 @@ const Application: React.FC = () => {
     useState<boolean>(false);
   const [isRating, setIsRating] = useState<boolean>(false);
   const [isRejectedFeed, setIsRejectedFeed] = useState<boolean>(false);
-  
+  const [isProjectManagement,setprojectManagement]=useState<boolean>(false) ;
 
   useEffect(() => {
     if (isApplicationDetails === true) {
@@ -230,9 +231,11 @@ const Application: React.FC = () => {
         </div>
         {isApplicationDetails && (
           <ApplicationDetails
+          isProjectManagement={isProjectManagement}
             setIsApplicationDetails={setIsApplicationDetails}
             appliDetailsData={appliDetailsData}
             setIsRating={setIsRating}
+            setShedule={setShedule}
             setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
             setIsRejectedFeed={setIsRejectedFeed}
           />
@@ -241,15 +244,18 @@ const Application: React.FC = () => {
         <PaginationSection
           setCurrentItem={setDisplayOnApplication}
           data={filteredData}
+          screen="application"
         />
       </div>
       {isApplicationDetailsOpen && (
         <ViewBlur
+        isShedule={isShedule}
           isRating={isRating}
           setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
           isRejectedFeed={isRejectedFeed}
           setIsRejectedFeed={setIsRejectedFeed}
           setIsRating={setIsRating}
+          setShedule={setShedule}
         />
       )}
     </div>

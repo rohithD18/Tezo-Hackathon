@@ -22,6 +22,8 @@ const Rating = (props: Props) => {
   const handleClose = () => {
     setIsRating(false);
     setIsApplicationDetailsOpen(false);
+    setIsRating(false);
+
   };
 
   return (

@@ -1,7 +1,7 @@
 .applicationDetails {
   position: absolute;
   width: 734.88px;
-  height: 100vh;
+  min-height: 110vh;
   top: 0;
   right: 0;
   background-color: #273144;
@@ -22,8 +22,7 @@
 .title {
   width: auto;
   height: 23px;
-  font: Raleway;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
   line-height: 23px;
   text-align: left;
@@ -47,15 +46,19 @@
   left: 31.83px;
   justify-content: space-between;
 }
-.table1 {
+.tablefirst {
   width: 671.71px;
-  height: 213px;
+  min-height: 150px;
   padding: 0 0 26.49px 0;
+  margin:10px 0px;
   gap: 26.49px;
-  border: 0 0 1px 0;
   border-bottom: 1px solid #3d5a80;
 }
-
+.nextButton img{
+  width:30px;
+  height:30px;
+  margin-left:20px;
+}
 .tableHeader {
   width: auto;
   height: 27px;
@@ -87,6 +90,9 @@
   text-align: left;
   color: #b4b4b4;
 }
+.table1 tr{
+  border-bottom: 20px solid transparent;
+}
 
 .teamTable td:hover img {
   filter: invert(40%) sepia(90%) saturate(6401%) hue-rotate(300deg)
@@ -107,7 +113,7 @@
 }
 .acceptButton,
 .rejectButton {
-  width: 125px;
+  min-width: 125px;
   height: 50px;
   border-radius: 8px;
   font: Roboto Flex;
@@ -129,8 +135,12 @@
   margin-right: 20px; /* Added margin for gap */
 }
 
-.acceptButton {
+.acceptButton,.sheduleButton {
   color: #ffffff;
   background: #ee6c4d;
   border: none;
+}
+.sheduleButton{
+  border-radius:8px;
+  padding:10px 20px
 }

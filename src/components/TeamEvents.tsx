@@ -11,15 +11,15 @@ export const TeamEvents: React.FC<IProps> = ({
   upcomingEvents,
   validUpcomingEvents,
 }: IProps) => {
-  const [querySearch,setQuerySearch]=useState<string>();
+  const [querySearch, setQuerySearch] = useState<string>();
   return (
-    <div>
+    <div className="eventsSection">
       {validUpcomingEvents ? (
         <div className="upcomingEventStyle">Upcoming Events</div>
       ) : (
         <div className="allEvents">
           <div>All Events</div>
-          <InputSearch setQuerySearch={setQuerySearch}/>
+          <InputSearch setQuerySearch={setQuerySearch} />
         </div>
       )}
       {upcomingEvents.map((item) => (

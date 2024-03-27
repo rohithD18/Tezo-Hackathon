@@ -1,7 +1,6 @@
 .Schedule{
     display:flex;
-    padding: 15px 0 100px 0;
-     height: 100%; 
-     margin:2% 6%; 
+    justify-content: center;
+    margin-top: 25px;
      min-height:100vh;
 }

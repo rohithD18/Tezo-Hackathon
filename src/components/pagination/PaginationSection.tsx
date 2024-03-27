@@ -8,6 +8,7 @@ import "./pagination.css";
 type Props = {
   setCurrentItem: React.Dispatch<React.SetStateAction<any[]>>;
   data: any[];
+  screen:string
 };
 
 const PaginationSection: React.FC<Props> = (props: Props) => {
@@ -56,7 +57,7 @@ const PaginationSection: React.FC<Props> = (props: Props) => {
   const lastIndex = Math.min(endOffset, totalData);
 
   return (
-    <div className="pagination">
+    <div className="pagination" id={props.screen ? 'userPagin' : undefined}>
       <div className="paginationBox122">
         <span className="showingText">Showing</span>
         <div className="dropdownDiv">

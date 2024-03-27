@@ -4,8 +4,8 @@ import { ITeamData } from "../services/Interface/TeamData";
 import star01 from "../assets/star01.png";
 import Ellipse810 from "../assets/Ellipse810.png";
 import { FaHashtag } from "react-icons/fa";
-import {Teams} from "../services/Data";
-import { ITeamMembers } from "../services/Data";
+import { Teams } from "../services/Data";
+// import { ITeamMembers } from "../services/Data";
 import MyTeam from "./MyTeam";
 import { Link } from "react-router-dom";
 type Props = {
@@ -15,9 +15,8 @@ type Props = {
 const TeamCard: React.FC<Props> = (props: Props) => {
   const { data } = props;
   const handleCardClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-  
-    e.preventDefault()
-    window.location.href =`/teams/${data.teamName}`;
+    e.preventDefault();
+    window.location.href = `/teams/${data.teamName}`;
   };
   return (
     <>
