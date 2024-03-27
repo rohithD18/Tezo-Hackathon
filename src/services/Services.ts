@@ -3,8 +3,8 @@ import { Teams } from "../services/Data";
 import { membersArray } from "../components/registration/MembersA";
 import { UsersData } from "./Data";
 import { useEffect, useState } from "react";
-import { ITeams } from "../Interfaces";
-
+import { IEvents, ITeams } from "../Interfaces";
+import { EventsData } from "./EventData";
 export const getAMember = (value: string) => {
   const member = UsersData.filter((entry) =>
     entry.Name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
@@ -13,7 +13,11 @@ export const getAMember = (value: string) => {
   // AllTeams.TeamMembers[0] = member[0];
   return member;
 };
-
+// export const getArrayItems = (Data:IEvents[]) => {
+  
+  // AllTeams.TeamMembers[0] = member[0];
+//   return Data;
+// };
 export const useFetch = (
   queary: string,
   setQueary: (message: string) => void
@@ -63,4 +67,57 @@ export const getFilteredTeams = (name: string): ITeams[] => {
   );
   console.log(filtered);
   return filtered;
+};
+const combineDateAndTime = (date: Date, time: string): Date => { 
+const [timePart, amPm] = time.split(' '); 
+let [hoursStr, minutesStr] = timePart.split(':'); 
+let hours = parseInt(hoursStr, 10);
+let minutes = parseInt(minutesStr, 10);
+
+if (amPm === 'PM' && hours < 12) {
+  hours += 12;
+} else if (amPm === 'AM' && hours === 12) {
+  hours = 0;
+}
+  const combinedDate = new Date(date);
+  combinedDate.setHours(hours, minutes);
+  return combinedDate;
+};
+export const addNewEvent = (newEvent:any) => {
+
+  let status=""
+  let captain="";
+  
+  const team = EventsData.find((team) => team.teamName === newEvent.selectedOption);
+  const today = new Date();
+  const dateObj = new Date(newEvent.formattedDate);
+  dateObj.setHours(0,0,0,0);
+  today.setHours(0,0,0,0)
+  if (dateObj < today) {
+    
+   status='Pending';
+  } else {
+    status='Upcoming';
+  }
+  
+  // const captainName=team ? team.captainName : undefined;
+  // EventsData.push( {
+  //   id: EventsData.length+1,
+  //   teamName: newEvent.teamName,
+  //   captain: team?.captain,
+  //   topic: "Topic X - Exploring the depths of Artificial Intelligence",
+  //   dateAndTime:combineDateAndTime(newEvent.formattedDate,newEvent.formattedTime), 
+  //   status: status,
+  //   review: false
+  // },);
+console.log(combineDateAndTime(newEvent.formattedDate,newEvent.formattedTime));
+return  {
+  id: EventsData.length+1,
+  teamName: newEvent.selectedOption,
+  captain: team?.captain,
+  topic: "Topic X - Exploring the depths of Artificial Intelligence",
+  dateAndTime:combineDateAndTime(newEvent.formattedDate,newEvent.formattedTime), 
+  status: status,
+  review: false
+}
 };

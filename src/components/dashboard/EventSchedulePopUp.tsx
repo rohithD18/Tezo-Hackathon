@@ -4,7 +4,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import 'react-time-picker/dist/TimePicker.css';
  import '../../styles/dashboard/EventSchedulePopUp.css';
 import xclose from "../../assets/xclose.png";
-import { Teams} from "../../services/Data";
 import Dropdown from "../Dropdown";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -12,13 +11,18 @@ import { MultiSectionDigitalClock } from "@mui/x-date-pickers/MultiSectionDigita
 import { DesktopDatePicker, DesktopTimePicker, TimePicker } from "@mui/x-date-pickers";
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, TextField } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
-import { ITeams } from "../../Interfaces";
+import { IEvents, ITeams } from "../../Interfaces";
+import { addNewEvent } from "../../services/Services";
+import { EventsData } from "../../services/EventData";
+// import { EventsData } from "../../services/EventData";
  
 interface PopupProps {
     isOpen: boolean;
     onClose: () => void;
+  updateEvents?:(item: IEvents) => void
+  
   }
-const EventSchedulePopUp =({ isOpen, onClose }:PopupProps)=>{
+const EventSchedulePopUp =({ isOpen, onClose,updateEvents }:PopupProps)=>{
     const [selectedDate, setSelectedDate] = useState<Date|null>();
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -29,7 +33,7 @@ const EventSchedulePopUp =({ isOpen, onClose }:PopupProps)=>{
     const [selectedTime, setSelectedTime] = useState<Dayjs | null | undefined> (null);
 
     const handleTimeChange = (newTime:Dayjs | null | undefined) => {
-     
+      setSelectedTime(newTime)
     };
     const handleDateChange = (newDate:any) => {
    
@@ -48,6 +52,9 @@ const EventSchedulePopUp =({ isOpen, onClose }:PopupProps)=>{
         day: '2-digit',
         year: 'numeric'
       });
+       const item=addNewEvent({formattedDate,formattedTime,selectedOption});
+      //  const newArray = [...EventsData,item ];
+       updateEvents?.(item)
       onClose();
     }
     if (!isOpen) return null;
@@ -72,9 +79,9 @@ const EventSchedulePopUp =({ isOpen, onClose }:PopupProps)=>{
         onChange={handleSelectChange}
         // style={{ color: '#888' }}
       >
-      {(Teams.map((team:ITeams) => (
-            <MenuItem key={team.Id} value={team.TeamName}>
-              {team.TeamName}
+      {(EventsData.map((team:IEvents) => (
+            <MenuItem key={team.id} value={team.teamName}>
+              {team.teamName}
             </MenuItem>
           )))}
       </Select>
@@ -89,8 +96,7 @@ const EventSchedulePopUp =({ isOpen, onClose }:PopupProps)=>{
         onChange={handleTimeChange}
         views={['hours','minutes']}  className="scheduleTimePicker"/>
                  </LocalizationProvider>
-                 
-
+            
             </div>
             <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
             <button className="addNew" onClick={handleSubmit}>Schedule</button>

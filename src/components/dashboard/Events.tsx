@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/dashboard/Events.css";
-import { EventsData } from "../../services/EventData";
+// import { EventsData } from "../../services/EventData";
 import { IEvents} from "../../Interfaces";
 import profilepic from "../../assets/profilepic.jpg";
 import PaginationSection from "../pagination/PaginationSection";
@@ -8,11 +8,13 @@ import DashboardNav from "./DashboardNav";
 import Feedback from "../../assets/Feedback.png";
 import Feedback1 from "../../assets/Feedback1.png";
 import  EventSchedulePopUp  from "./EventSchedulePopUp";
+// import { getArrayItems } from "../../services/Services";
+import { EventsData as Data} from "../../services/EventData";
 
 const Events = () => {
   const [currEventData, setCurrEventData] = useState<
     IEvents[]
-  >([]);
+  >(Data);
   const [statusCounts, setStatusCounts] = useState<{
     Completed: number;
     Upcoming: number;
@@ -30,26 +32,28 @@ const Events = () => {
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [total, setTotal] = useState(0);
   const [scheduledData, setScheduledData] = useState(null);
-
-  // const [showPopup, setShowPopup] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  useEffect(() => {
-   
-    setCurrEventData(EventsData);
-  }, [EventsData]);
+  const [EventsData, setEventsData] = useState<IEvents[]>(Data);
 
   useEffect(() => {
-    const filtered = currEventData.filter((event:IEvents ) =>
-      event.teamName.toLowerCase().includes(searchQuery.toLowerCase())
+    setCurrEventData(EventsData);
+    // getArrayItems(EventsData);
+  }, [EventsData]);
+  const updateEvents = (newitem: IEvents) => {
+    setEventsData([...EventsData,newitem]);
+  };
+  useEffect(() => {
+    const filtered = currEventData.filter((event:IEvents ) =>{
+      console.log("jdhciu",event);
+      if(event.teamName){  
+        return event.teamName.toLowerCase().includes(searchQuery.toLowerCase()) }
+      else{
+        return event
+      }
+    }
     );
     setFilteredData(filtered);
   }, [currEventData, searchQuery]);
-//  const handleSchedule = (date, time, teamName) => {
-//     console.log("Scheduled Date:", date);
-//     console.log("Scheduled Time:", time);
-//     console.log("Team Name:", teamName);
-//     setScheduledData({ date, time, teamName });
-//   };
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
@@ -78,17 +82,9 @@ const Events = () => {
     setStatusCounts(counts);
     setTotal(EventsData.length);
     setCurrEventData(EventsData);
-  }, []);
+  }, [EventsData]);
 
-  // const formatDate = (date: Date | string): string => {
-  //   if (typeof date === "string") {
-  //     return date
-  //   } else {
-  //     const day = date.getDate();
-  //     const month = date.toLocaleString('en-US', { month: 'short' });
-  //     return `${day}, ${month}`;
-  //   }
-  // };
+
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
   };
@@ -254,7 +250,7 @@ const Events = () => {
         </div>
       </div>
       </div>
-      <EventSchedulePopUp isOpen={isPopupOpen} onClose={handleClosePopup}  />
+      <EventSchedulePopUp isOpen={isPopupOpen} onClose={handleClosePopup} updateEvents={updateEvents}/>
 
     </>
   );

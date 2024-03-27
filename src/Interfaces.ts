@@ -10,7 +10,7 @@ export interface IEvents {
   teamShedule?: string;
   captain?: string;
   topic?: string; 
-  dateAndTime?: Date;
+  dateAndTime?: Date |string;
   status?: string; 
   review?: boolean;
 }
