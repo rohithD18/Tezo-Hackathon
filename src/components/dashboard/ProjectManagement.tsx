@@ -3,6 +3,7 @@ import Participant from '../../assets/participant.png';
 import RegistrationIcon from '../../assets/registrationIcon.png';
 import Submittedicon from '../../assets/submittedIcon.png';
 import { DisplayCount } from "./DisplayCount";
+import filterIcon from '../../assets/FilterIcon.png';
 import InputSearch from '../InputSearch'
 import image from '../../assets/image.png';
 import PaginationSection from "../pagination/PaginationSection";
@@ -23,7 +24,7 @@ import ViewBlur from "./ViewBlur";
 
 export const ProjectManagement:React.FC=()=>{
   const [isProjectManagementDetailsOpen, setIsProjectManagementDetailsOpen] =useState<boolean>(false)
-    const [isProjectManagement,setprojectManagement]=useState<boolean>(true) ;
+    const [isProjectManagement,setIsProjectManagement]=useState<boolean>(false) ;
     const [isApplicationDetails, setIsApplicationDetails] = useState<boolean>(false);
     const [querySearch,setQuerySearch] = useState<string>("");
     const [isShedule,setShedule]=useState<boolean>(false);
@@ -32,20 +33,25 @@ export const ProjectManagement:React.FC=()=>{
   const [isApplication, setIsApplication] = useState<boolean>(false);
     
   const [appliDetailsData, setAppliDetailsData] = useState<IApplications[]>([]);
+  const sortDate=()=>{
+    const sortedData = [...currentData].sort((a, b) => new Date(a.submittedOn).getTime() - new Date(b.submittedOn).getTime());
+    setCurrentData(sortedData);
+  }
 
     const handleAppliDetailsData = (data: any) => {
         setAppliDetailsData(data);
         setIsApplicationDetails(true);
         setIsProjectManagementDetailsOpen(true);
+        setIsProjectManagement(true)
       };
     const [currentData, setCurrentData] = useState<IProject[]>([])
     console.log(currentData)
     return(
-      <>
+      < >
       <DashboardNav />
         <div className="projectManagement">
         <DisplayCount/>  
-        <div>
+        <div className="projectManagementData">
             <div className="projectHeader">
                 <p>Project Management</p>
                 <InputSearch  setQuerySearch={setQuerySearch}/>
@@ -55,8 +61,7 @@ export const ProjectManagement:React.FC=()=>{
     <tr className="headerTable">
       <th scope="col"className="colTeamName" >Team Name</th>
       <th scope="col" className="colTeamDescripition">Description</th>
-      <th scope="col"className="colSubmit">Submitted on</th>
-      <th scope="col"className="colStatus">Status</th>
+      <th scope="col"className="colSubmit">Submitted on <span onClick={sortDate}><img src={filterIcon} alt="FilterIcon"/></span></th>
     </tr>
   </thead>
   
@@ -66,7 +71,7 @@ export const ProjectManagement:React.FC=()=>{
                 <td scope="row"><img src={image}/>{record.TeamName}</td>
                 <td className="recordDescription">{record.descripition}</td>
                 <td>{record.submittedOn}</td>
-                <td>{record.Status}</td>
+                
               </tr>
             ))}
         
@@ -74,9 +79,9 @@ export const ProjectManagement:React.FC=()=>{
 </table>
  
  </div>
- <div>
+ <div >
     
- <PaginationSection setCurrentItem={setCurrentData} data={projects} screen=""/>
+ <div className="userPagination"><PaginationSection setCurrentItem={setCurrentData} data={projects} screen=""/></div>
          {isProjectManagementDetailsOpen && (
           <ApplicationDetails
           isProjectManagement={isProjectManagement}
@@ -89,7 +94,7 @@ export const ProjectManagement:React.FC=()=>{
           />
         )}
  </div>
- {(isShedule || isRating || isRejectedFeed ||isProjectManagementDetailsOpen)&& (
+ {(isProjectManagementDetailsOpen ||isRating)&& (
         <ViewBlur
           isRating={isRating}
           setIsApplicationDetailsOpen={setIsProjectManagementDetailsOpen}

@@ -25,7 +25,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     isProjectManagement,
     setShedule
   } = props;
-  // console.log(appliDetailsData);
+  console.log(appliDetailsData,isProjectManagement);
 
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -63,9 +63,9 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     formattedTime = `${hours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
   }
   const handleShedule=()=>{
-    setShedule(true);
+    // setShedule(true);
     setIsApplicationDetailsOpen(false);
-    setIsRating(false);
+    setIsRating(true);
   }
 
   const handleClose = () => {
@@ -197,14 +197,14 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
         ) : (
           <></>
         )}
-        {appliDetailsData.Status === "Accepted" && props.isProjectManagement ? (
+        {props.isProjectManagement ? (
           <div className="btnConatainer">
             <button
               className="sheduleButton"
               style={{ cursor: "pointer" }}
-              onClick={handleShedule}
+              onClick={handleAccept}
             >
-             Shedule a demo<span className="nextButton"><img src={NextButton} alt=""/></span>
+             {/* Shedule a demo<span className="nextButton"><img src={NextButton} alt=""/></span> */}Review
             </button>
             </div>):<></>}
       </div>

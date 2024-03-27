@@ -6,7 +6,7 @@ export const projects: IProject[] = [
       TeamName: "Team Alpha",
       descripition: "descripition for Team Alpha",
       Status: "Accepted",
-      submittedOn: "2024-01-01",
+      submittedOn: "2024-10-01",
     },
     {
       id: 2,
