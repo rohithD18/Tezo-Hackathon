@@ -35,7 +35,7 @@ const MyProject: React.FC = () => {
               {" "}
               <p
                 id={
-                  currentProjectForm !== "ProjectSubmissionForm"
+                  currentProjectForm !== "TopicDetailsForm"
                     ? "currentStep"
                     : "notReached"
                 }
