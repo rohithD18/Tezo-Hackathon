@@ -50,7 +50,7 @@ const TeamCard: React.FC<Props> = (props: Props) => {
           </div>
         </div>
         <div className="team">
-          <span className="teamName">{data.teamName}</span>
+          <span className="teamNames">{data.teamName}</span>
         </div>
       </div>
       <div className="card2">

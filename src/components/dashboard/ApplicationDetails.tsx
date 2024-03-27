@@ -86,7 +86,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
   return (
     <div className="applicationDetails">
       <div className="headerBar">
-        <div className="title">Application Details</div>
+        <span className="title">Application Details</span>
         <img
           src={xclose}
           alt="Cancel"

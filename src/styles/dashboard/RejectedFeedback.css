@@ -7,6 +7,15 @@
   background: #273144;
   z-index: 10000;
 }
+#reason1:not(:checked):not(:disabled) {
+  appearance: none;
+  background: transparent;
+  border: 2px solid grey;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+
+}
 
 .imgSpanDiv {
   display: flex;

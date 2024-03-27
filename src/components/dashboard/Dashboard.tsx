@@ -10,10 +10,10 @@ import { useParams } from "react-router-dom";
 
 const Dashboard:React.FC = () => {
   const {id } = useParams();
-  const [isApplication, setIsApplication] = useState<boolean>(false);
-  const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =
-    useState<boolean>(false);
-    console.log(id);
+  // const [isApplication, setIsApplication] = useState<boolean>(false);
+  // const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =
+  //   useState<boolean>(false);
+    // console.log(id);
     
 
   //setting state for rating pop up

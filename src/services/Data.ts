@@ -9,14 +9,24 @@ export interface IApplications {
   ProjectDescription: string;
 }
 
+function getRandomDate(): Date {
+  const start = new Date(2022, 0, 1); // Start date (Jan 1, 2022)
+  const end = new Date(); // Current date
+
+  // Get a random time between start and end dates
+  const randomTime = start.getTime() + Math.random() * (end.getTime() - start.getTime());
+
+  return new Date(randomTime);
+}
 export const ApplicationData: IApplications[] = [
+  
   {
     Id: 1,
     TeamName: "Rohith D",
     ProjectName: "Project One Application Manager",
     TeamCaptian: "Captain One",
     ProjectedSubmitted: false,
-    SubmissionDate: new Date(),
+    SubmissionDate: getRandomDate(),
     Status: "Accepted",
     ProjectDescription: "Description",
   },
@@ -26,7 +36,7 @@ export const ApplicationData: IApplications[] = [
     ProjectName: "Project Two",
     TeamCaptian: "Captain Two",
     ProjectedSubmitted: true,
-    SubmissionDate: new Date(),
+    SubmissionDate: getRandomDate(),
     Status: "Rejected",
     ProjectDescription: "Description for second team",
   },
@@ -36,7 +46,7 @@ export const ApplicationData: IApplications[] = [
     ProjectName: "Project Three",
     TeamCaptian: "Captain Three",
     ProjectedSubmitted: true,
-    SubmissionDate: new Date(),
+    SubmissionDate: getRandomDate(),
     Status: "Accepted",
     ProjectDescription: "Description for third team",
   },
@@ -46,7 +56,7 @@ export const ApplicationData: IApplications[] = [
     ProjectName: "Project Four",
     TeamCaptian: "Captain Four",
     ProjectedSubmitted: true,
-    SubmissionDate: new Date(),
+    SubmissionDate: getRandomDate(),
     Status: "Accepted",
     ProjectDescription: "Description for fourth team",
   },
@@ -56,7 +66,7 @@ export const ApplicationData: IApplications[] = [
     ProjectName: "Project Five",
     TeamCaptian: "Captain Five",
     ProjectedSubmitted: false,
-    SubmissionDate: new Date(),
+    SubmissionDate: getRandomDate(),
     Status: "Pending",
     ProjectDescription: "Description for fifth team",
   },
@@ -66,7 +76,7 @@ export const ApplicationData: IApplications[] = [
     ProjectName: "Project Six",
     TeamCaptian: "Captain Six",
     ProjectedSubmitted: true,
-    SubmissionDate: new Date(),
+    SubmissionDate: getRandomDate(),
     Status: "Accepted",
     ProjectDescription: "Description for sixth team",
   },
@@ -76,7 +86,7 @@ export const ApplicationData: IApplications[] = [
     ProjectName: "Project Seven",
     TeamCaptian: "Captain Seven",
     ProjectedSubmitted: false,
-    SubmissionDate: "",
+    SubmissionDate: getRandomDate(),
     Status: "Rejected",
     ProjectDescription: "Description for seventh team",
   },
@@ -86,7 +96,7 @@ export const ApplicationData: IApplications[] = [
     ProjectName: "Project Eight",
     TeamCaptian: "Captain Eight",
     ProjectedSubmitted: true,
-    SubmissionDate: new Date(),
+    SubmissionDate: getRandomDate(),
     Status: "Pending",
     ProjectDescription: "Description for eighth team",
   },
@@ -96,7 +106,7 @@ export const ApplicationData: IApplications[] = [
     ProjectName: "Project Nine",
     TeamCaptian: "Captain Nine",
     ProjectedSubmitted: true,
-    SubmissionDate: new Date(),
+    SubmissionDate: getRandomDate(),
     Status: "Accepted",
     ProjectDescription: "Description for ninth team",
   },
@@ -106,7 +116,7 @@ export const ApplicationData: IApplications[] = [
     ProjectName: "Project Ten",
     TeamCaptian: "Captain Ten",
     ProjectedSubmitted: true,
-    SubmissionDate: new Date(),
+    SubmissionDate: getRandomDate(),
     Status: "Accepted",
     ProjectDescription: "Description for tenth team",
   },
@@ -126,7 +136,7 @@ export const ApplicationData: IApplications[] = [
     ProjectName: "Project Twelve",
     TeamCaptian: "Captain Twelve",
     ProjectedSubmitted: true,
-    SubmissionDate: new Date(),
+    SubmissionDate:getRandomDate(),
     Status: "Pending",
     ProjectDescription: "Description for twelfth team",
   },

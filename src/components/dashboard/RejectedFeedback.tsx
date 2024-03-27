@@ -63,7 +63,7 @@ const RejectedFeedback = (props: Props) => {
           <div className="radioContainer">
             <input
               type="radio"
-              id="reason2"
+              id="reason1"
               name="reason"
               value="False information"
               onChange={handleRadioChange}
@@ -76,7 +76,7 @@ const RejectedFeedback = (props: Props) => {
           <div className="radioContainer">
             <input
               type="radio"
-              id="reason3"
+              id="reason1"
               name="reason"
               value="Violation of Privacy"
               onChange={handleRadioChange}
@@ -89,7 +89,7 @@ const RejectedFeedback = (props: Props) => {
           <div className="radioContainer">
             <input
               type="radio"
-              id="reason4"
+              id="reason1"
               name="reason"
               onChange={handleRadioChange}
               value="Technical Errors"
@@ -102,7 +102,7 @@ const RejectedFeedback = (props: Props) => {
           <div className="radioContainer">
             <input
               type="radio"
-              id="reason5"
+              id="reason1"
               onChange={handleRadioChange}
               name="reason"
               value="Request by Platform Administrators"
@@ -115,7 +115,7 @@ const RejectedFeedback = (props: Props) => {
           <div className="radioContainer">
             <input
               type="radio"
-              id="reason6"
+              id="reason1"
               name="reason"
               onChange={handleRadioChange}
               value="Others"
