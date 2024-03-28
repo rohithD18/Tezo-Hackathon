@@ -19,7 +19,10 @@ export const TeamEvents: React.FC<IProps> = ({
       ) : (
         <div className="allEvents">
           <div>All Events</div>
-          <InputSearch setQuerySearch={setQuerySearch} />
+          <InputSearch
+            setQuerySearch={setQuerySearch}
+            currentScreen={"TeamEvents"}
+          />
         </div>
       )}
       {upcomingEvents.map((item) => (

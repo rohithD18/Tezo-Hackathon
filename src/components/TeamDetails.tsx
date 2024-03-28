@@ -44,7 +44,10 @@ const TeamDetails = () => {
   return (
     <div className="root">
       <div className="search">
-        <InputSearch setQuerySearch={setQuerySearch} />
+        <InputSearch
+          setQuerySearch={setQuerySearch}
+          currentScreen={"TeamDetails"}
+        />
       </div>
       <div className="teamNameDiv">
         <label id="initials">

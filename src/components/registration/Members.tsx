@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "../../styles/registrationStyles/Registration.css";
 import profilePic from "../../assets/profilepic.jpg";
 import { IUsers } from "../../Interfaces";
-import { membersArray } from "./MembersA";
 interface IProps {
   teamMembers: IUsers[];
 }
