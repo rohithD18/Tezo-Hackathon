@@ -39,7 +39,7 @@ const Home: React.FC<HomeProps> = (props) => {
       <div className="mainDiv">
         <div className="left1">
           <div className="members">
-            <div className="profileContainer">
+            <div className="profileContainer1">
               {visibleImages.map((item, index) => (
                 <img
                   src={item.profileUrl}
