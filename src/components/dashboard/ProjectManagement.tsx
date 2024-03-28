@@ -31,11 +31,11 @@ export const ProjectManagement:React.FC=()=>{
     const [isRating, setIsRating] = useState<boolean>(false);
   const [isRejectedFeed, setIsRejectedFeed] = useState<boolean>(false);
   const [isApplication, setIsApplication] = useState<boolean>(false);
-    
   const [appliDetailsData, setAppliDetailsData] = useState<IApplications[]>([]);
   const sortDate=()=>{
-    const sortedData = [...currentData].sort((a, b) => new Date(a.submittedOn).getTime() - new Date(b.submittedOn).getTime());
-    setCurrentData(sortedData);
+    const sortedData = [...projects].sort((a, b) => new Date(a.submittedOn).getTime() - new Date(b.submittedOn).getTime());
+    
+    
   }
 
     const handleAppliDetailsData = (data: any) => {
