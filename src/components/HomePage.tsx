@@ -21,7 +21,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 
   useEffect(() => {
     const intervalId = setInterval(calculateRemainingTime, 1000);
-    calculateRemainingTime(); 
+    calculateRemainingTime();
     return () => clearInterval(intervalId);
   }, []);
 
@@ -49,7 +49,6 @@ const HomePage: React.FC<HomePageProps> = (props) => {
       remainingSeconds,
     ]);
   };
-
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -103,7 +102,9 @@ const HomePage: React.FC<HomePageProps> = (props) => {
           <div className="cards">
             {remainingTimeArray.map((item, index) => (
               <div className="card" key={index}>
-                <label className="number">{item}</label>
+                <label className="number">
+                  {item < 10 ? "0" + item : item}
+                </label>
                 {index === 0 ? (
                   <label className="timeValue">days</label>
                 ) : index === 1 ? (
