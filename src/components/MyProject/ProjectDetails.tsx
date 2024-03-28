@@ -20,7 +20,7 @@ export const ProjectDetail = () => {
 
 
     return (
-        <div className="fo">
+        <div>
             <div className="projectDetail">
                 <h5>Topic Details</h5>
                 <div className="timeRemainder">

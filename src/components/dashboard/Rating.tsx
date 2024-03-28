@@ -4,6 +4,7 @@ import xclose from "../../assets/xclose.png";
 type Props = {
   setIsApplicationDetailsOpen: (message:boolean) => void;
   setIsRating: (message:boolean) => void;
+  setIsProjectManagementDetailsOpen?:boolean;
 };
 const Rating = (props: Props) => {
   const { setIsApplicationDetailsOpen, setIsRating } = props;
@@ -23,7 +24,6 @@ const Rating = (props: Props) => {
     setIsRating(false);
     setIsApplicationDetailsOpen(false);
     setIsRating(false);
-
   };
 
   return (

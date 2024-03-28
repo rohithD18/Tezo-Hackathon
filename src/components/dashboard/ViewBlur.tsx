@@ -3,8 +3,10 @@ import "../../styles/dashboard/ViewBlur.css"; // Import CSS file for styling
 import Rating from "./Rating";
 import RejectedFeedback from "./RejectedFeedback";
 import { Shedule } from "./Shedule";
+import EventSchedulePopUp from "./EventSchedulePopUp";
 
 type Props = {
+  setIsProjectManagementDetailsOpen?:boolean;
   isRating: boolean;
   setIsApplicationDetailsOpen: (message: boolean) => void;
   isRejectedFeed: boolean;
@@ -15,6 +17,7 @@ type Props = {
 };
 const ViewBlur: React.FC<Props> = (props: Props) => {
   const {
+    setIsProjectManagementDetailsOpen,
     isRating,
     setIsApplicationDetailsOpen,
     isRejectedFeed,
@@ -36,12 +39,6 @@ const ViewBlur: React.FC<Props> = (props: Props) => {
           <RejectedFeedback
             setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
             setIsRejectedFeed={setIsRejectedFeed}
-          />
-        )}
-        {isShedule && (
-          <Shedule
-            setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
-            setShedule={setShedule}
           />
         )}
       </div>

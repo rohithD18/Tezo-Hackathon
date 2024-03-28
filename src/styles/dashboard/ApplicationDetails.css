@@ -139,6 +139,8 @@
   color: #ffffff;
   background: #ee6c4d;
   border: none;
+  font-weight: 700;
+  font-size: 16px;
 }
 .sheduleButton{
   border-radius:8px;

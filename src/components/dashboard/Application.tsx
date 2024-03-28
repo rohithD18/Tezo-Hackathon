@@ -240,12 +240,13 @@ const Application: React.FC = () => {
             setIsRejectedFeed={setIsRejectedFeed}
           />
         )}
-        <div className="applicationPagination"></div>
+        <div className=" userPagination">
         <PaginationSection
           setCurrentItem={setDisplayOnApplication}
           data={filteredData}
           screen="application"
         />
+        </div>
       </div>
       {isApplicationDetailsOpen && (
         <ViewBlur
