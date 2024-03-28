@@ -54,6 +54,9 @@
   gap: 26.49px;
   border-bottom: 1px solid #3d5a80;
 }
+.tablefirstBody tr{
+  height: 40px;
+}
 .nextButton img{
   width:30px;
   height:30px;

@@ -99,8 +99,8 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
       <div className="detailsContainer">
         <table className="tablefirst">
           <p className="tableHeader">Team Details</p>
-          <tbody>
-            <tr>
+          <tbody className="tablefirstBody" >
+            <tr >
               <td style={{ color: "#B4B4B4" }}>Team Name</td>
               <td>
                 {appliDetailsData?.TeamName}

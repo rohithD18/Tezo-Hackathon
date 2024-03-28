@@ -1,67 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Home from "./Home";
 import "../styles/HomePageMain.css";
 import scroll from "../assets/scroll.png";
 import { judges } from "../components/Judges";
 import { IJudges } from "../Interfaces";
 import ribbon from "../assets/ribbon.png";
-interface DataEntry {
-  typeOfTime: string;
-  value: string;
-}
-interface timeLineEntries {
-  title: string;
-  content: string;
-  date: string;
-}
+import { events } from "../services/ScheduleData";
+// interface DataEntry {
+//   typeOfTime: string;
+//   value: number;
+// }
 interface HomePageProps {
   isRegister: boolean;
 }
 const HomePage: React.FC<HomePageProps> = (props) => {
-  const data: DataEntry[] = [
-    { typeOfTime: "days", value: "24" },
-    { typeOfTime: "hours", value: "12" },
-    { typeOfTime: "minutes", value: "13" },
-    { typeOfTime: "seconds", value: "02" },
-  ];
-  const events: timeLineEntries[] = [
-    {
-      title: "Opening Ceremony",
-      content:
-        "Join us for the opening ceremony of the hackathon, where we will kick off the event and introduce the teams.",
-      date: "Friday, October 15th",
-    },
-    {
-      title: "Opening Ceremony",
-      content:
-        "Join us for the opening ceremony of the hackathon, where we will kick off the event and introduce the teams.",
-      date: "Friday, October 15th",
-    },
-    {
-      title: "Opening Ceremony",
-      content:
-        "Join us for the opening ceremony of the hackathon, where we will kick off the event and introduce the teams.",
-      date: "Friday, October 15th",
-    },
-    {
-      title: "Opening Ceremony",
-      content:
-        "Join us for the opening ceremony of the hackathon, where we will kick off the event and introduce the teams.",
-      date: "Friday, October 15th",
-    },
-    {
-      title: "Opening Ceremony",
-      content:
-        "Join us for the opening ceremony of the hackathon, where we will kick off the event and introduce the teams.",
-      date: "Friday, October 15th",
-    },
-    {
-      title: "Opening Ceremony",
-      content:
-        "Join us for the opening ceremony of the hackathon, where we will kick off the event and introduce the teams.",
-      date: "Friday, October 15th",
-    },
-  ];
+  //Reamning Days Timmer
+  const [remainingTimeArray, setRemainingTimeArray] = useState<number[]>([
+    0, 0, 0, 0,
+  ]);
+
+  useEffect(() => {
+    const intervalId = setInterval(calculateRemainingTime, 1000);
+    calculateRemainingTime(); 
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const calculateRemainingTime = () => {
+    const eventDate = new Date("April 1, 2024 00:00:00").getTime();
+    const nowDate = new Date().getTime();
+    const dateDiff = eventDate - nowDate;
+
+    const remainingDays = Math.floor(dateDiff / (1000 * 60 * 60 * 24));
+
+    const remainingHours = Math.floor(
+      (dateDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+
+    const remainingMinutes = Math.floor(
+      (dateDiff % (1000 * 60 * 60)) / (1000 * 60)
+    );
+
+    const remainingSeconds = Math.floor((dateDiff % (1000 * 60)) / 1000);
+
+    setRemainingTimeArray([
+      remainingDays,
+      remainingHours,
+      remainingMinutes,
+      remainingSeconds,
+    ]);
+  };
+
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -101,7 +90,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
             time. However, unlike the elements in my code, time refuses to be
             debugged or optimised. So, make sure you do not run out of time.
           </p>
-          <button className="addButton">Add to Calender</button>
+          {/* <button className="addButton">Add to Calender</button> */}
           {/* </p> */}
         </div>
 
@@ -112,10 +101,18 @@ const HomePage: React.FC<HomePageProps> = (props) => {
             summary section and Log In using your registered account
           </p>
           <div className="cards">
-            {data.map((item, index) => (
+            {remainingTimeArray.map((item, index) => (
               <div className="card" key={index}>
-                <label className="number"> {item.value}</label>
-                <label className="timeValue">{item.typeOfTime}</label>
+                <label className="number">{item}</label>
+                {index === 0 ? (
+                  <label className="timeValue">days</label>
+                ) : index === 1 ? (
+                  <label className="timeValue">hours</label>
+                ) : index === 2 ? (
+                  <label className="timeValue">minutes</label>
+                ) : (
+                  <label className="timeValue">seconds</label>
+                )}
               </div>
             ))}
           </div>
