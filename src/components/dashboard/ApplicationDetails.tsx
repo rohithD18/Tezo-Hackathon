@@ -8,11 +8,11 @@ import { ApplicationData, IApplications } from "../../services/Data";
 type Props = {
   setIsApplicationDetails: any;
   appliDetailsData: any;
-  setIsRating: any;
+  setIsRating: (message: boolean) => void;
   setIsApplicationDetailsOpen: any;
-  setIsRejectedFeed: any;
-  isProjectManagement: boolean
-  setShedule : (message : boolean) => void
+  setIsRejectedFeed: (message: boolean) => void;
+  isProjectManagement: boolean;
+  setShedule: (message: boolean) => void;
 };
 
 const ApplicationDetails: React.FC<Props> = (props: Props) => {
@@ -23,7 +23,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     setIsApplicationDetailsOpen,
     setIsRejectedFeed,
     isProjectManagement,
-    setShedule
+    setShedule,
   } = props;
   console.log(appliDetailsData,isProjectManagement);
 
@@ -70,21 +70,25 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
   };
 
   const handleAccept = () => {
-    setIsRating(true);   
-    setIsApplicationDetailsOpen(false);
-    setIsApplicationDetails(true); 
+    setIsRating(true);
+    setIsApplicationDetails(false);
+    setIsApplicationDetailsOpen(true);
   };
 
   const handleReject = () => {
-    setIsApplicationDetails(false);
     setIsRejectedFeed(true);
-    setIsApplicationDetailsOpen(false);
+    setIsApplicationDetails(false);
+    setIsApplicationDetailsOpen(true);
   };
 
   return (
     <div className="applicationDetails">
       <div className="headerBar">
-      { isProjectManagement ?<div className="title">Project Details</div>:<span className="title">Application Details</span>}
+        {isProjectManagement ? (
+          <div className="title">Project Details</div>
+        ) : (
+          <span className="title">Application Details</span>
+        )}
         <img
           src={xclose}
           alt="Cancel"
@@ -123,17 +127,19 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
               </td>
             </tr>
             {!props.isProjectManagement ? (
-  <>
-    <tr>
-      <td style={{ color: "#B4B4B4" }}>Date</td>
-      <td>{formattedDate}</td>
-    </tr>
-    <tr>
-      <td style={{ color: "#B4B4B4" }}>Time</td>
-      <td>{formattedTime}</td>
-    </tr>
-  </>
-) : <></>}
+              <>
+                <tr>
+                  <td style={{ color: "#B4B4B4" }}>Date</td>
+                  <td>{formattedDate}</td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#B4B4B4" }}>Time</td>
+                  <td>{formattedTime}</td>
+                </tr>
+              </>
+            ) : (
+              <></>
+            )}
           </tbody>
         </table>
         <table className="table1">
@@ -154,26 +160,31 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
               </td>
             </tr>
             {props.isProjectManagement ? (
-  <>
-    <tr>
-      <td style={{ color: "#B4B4B4" }}>project Descripition</td>
-      <td>Collaborative coding for diverse teams! Create solutions
-                enhancing teamwork, code integration, and inclusivity. How can
-                tech bring harmony to coding practices? Propose ideas empowering
-                efficient collaboration. Let's harmonize the coding experience!
-                🌐💻</td>
-    </tr>
-    <tr>
-      <td style={{ color: "#B4B4B4" }}>Submission</td>
-      <td>Collaborative coding for diverse teams! Create solutions
-                enhancing teamwork, code integration, and inclusivity. How can
-                tech bring harmony to coding practices? Propose ideas empowering
-                efficient collaboration. Let's harmonize the coding experience!
-                🌐💻</td>
-    </tr>
-  </>
-) : <></>}
-     
+              <>
+                <tr>
+                  <td style={{ color: "#B4B4B4" }}>project Descripition</td>
+                  <td>
+                    Collaborative coding for diverse teams! Create solutions
+                    enhancing teamwork, code integration, and inclusivity. How
+                    can tech bring harmony to coding practices? Propose ideas
+                    empowering efficient collaboration. Let's harmonize the
+                    coding experience! 🌐💻
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#B4B4B4" }}>Submission</td>
+                  <td>
+                    Collaborative coding for diverse teams! Create solutions
+                    enhancing teamwork, code integration, and inclusivity. How
+                    can tech bring harmony to coding practices? Propose ideas
+                    empowering efficient collaboration. Let's harmonize the
+                    coding experience! 🌐💻
+                  </td>
+                </tr>
+              </>
+            ) : (
+              <></>
+            )}
           </tbody>
         </table>
         
