@@ -11,8 +11,8 @@ type Props = {
   setIsRating: any;
   setIsApplicationDetailsOpen: any;
   setIsRejectedFeed: any;
-  isProjectManagement: boolean
-  setShedule : (message : boolean) => void
+  isProjectManagement: boolean;
+  setShedule: (message: boolean) => void;
 };
 
 const ApplicationDetails: React.FC<Props> = (props: Props) => {
@@ -23,9 +23,9 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     setIsApplicationDetailsOpen,
     setIsRejectedFeed,
     isProjectManagement,
-    setShedule
+    setShedule,
   } = props;
-  console.log(appliDetailsData,isProjectManagement);
+  console.log(appliDetailsData, isProjectManagement);
 
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -70,9 +70,9 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
   };
 
   const handleAccept = () => {
-    setIsRating(true);   
+    setIsRating(true);
     setIsApplicationDetailsOpen(false);
-    setIsApplicationDetails(true); 
+    setIsApplicationDetails(true);
   };
 
   const handleReject = () => {
@@ -84,7 +84,11 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
   return (
     <div className="applicationDetails">
       <div className="headerBar">
-      { isProjectManagement ?<div className="title">Project Details</div>:<span className="title">Application Details</span>}
+        {isProjectManagement ? (
+          <div className="title">Project Details</div>
+        ) : (
+          <span className="title">Application Details</span>
+        )}
         <img
           src={xclose}
           alt="Cancel"
@@ -123,17 +127,19 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
               </td>
             </tr>
             {!props.isProjectManagement ? (
-  <>
-    <tr>
-      <td style={{ color: "#B4B4B4" }}>Date</td>
-      <td>{formattedDate}</td>
-    </tr>
-    <tr>
-      <td style={{ color: "#B4B4B4" }}>Time</td>
-      <td>{formattedTime}</td>
-    </tr>
-  </>
-) : <></>}
+              <>
+                <tr>
+                  <td style={{ color: "#B4B4B4" }}>Date</td>
+                  <td>{formattedDate}</td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#B4B4B4" }}>Time</td>
+                  <td>{formattedTime}</td>
+                </tr>
+              </>
+            ) : (
+              <></>
+            )}
           </tbody>
         </table>
         <table className="table1">
@@ -154,29 +160,45 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
               </td>
             </tr>
             {props.isProjectManagement ? (
-  <>
-    <tr>
-      <td style={{ color: "#B4B4B4" }}>project Descripition</td>
-      <td>Collaborative coding for diverse teams! Create solutions
-                enhancing teamwork, code integration, and inclusivity. How can
-                tech bring harmony to coding practices? Propose ideas empowering
-                efficient collaboration. Let's harmonize the coding experience!
-                🌐💻</td>
-    </tr>
-    <tr>
-      <td style={{ color: "#B4B4B4" }}>Submission</td>
-      <td>Collaborative coding for diverse teams! Create solutions
-                enhancing teamwork, code integration, and inclusivity. How can
-                tech bring harmony to coding practices? Propose ideas empowering
-                efficient collaboration. Let's harmonize the coding experience!
-                🌐💻</td>
-    </tr>
-  </>
-) : <></>}
-     
+              <>
+                <tr>
+                  <td style={{ color: "#B4B4B4" }}>project Descripition</td>
+                  <td>
+                    Collaborative coding for diverse teams! Create solutions
+                    enhancing teamwork, code integration, and inclusivity. How
+                    can tech bring harmony to coding practices? Propose ideas
+                    empowering efficient collaboration. Let's harmonize the
+                    coding experience! 🌐💻
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#B4B4B4" }}>Submission</td>
+                  <td>
+                    Collaborative coding for diverse teams! Create solutions
+                    enhancing teamwork, code integration, and inclusivity. How
+                    can tech bring harmony to coding practices? Propose ideas
+                    empowering efficient collaboration. Let's harmonize the
+                    coding experience! 🌐💻
+                  </td>
+                </tr>
+              </>
+            ) : (
+              <></>
+            )}
           </tbody>
         </table>
-        {appliDetailsData.Status === "Pending" ? (
+
+        {props.isProjectManagement ? (
+          <div className="btnConatainer">
+            <button
+              className="sheduleButton"
+              style={{ cursor: "pointer" }}
+              onClick={handleAccept}
+            >
+              Review
+            </button>
+          </div>
+        ) : appliDetailsData.Status === "Pending" ? (
           <div className="btnConatainer">
             <button
               className="rejectButton"
@@ -192,16 +214,6 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
         ) : (
           <></>
         )}
-        {props.isProjectManagement ? (
-          <div className="btnConatainer">
-            <button
-              className="sheduleButton"
-              style={{ cursor: "pointer" }}
-              onClick={handleAccept}
-            >
-             {/* Shedule a demo<span className="nextButton"><img src={NextButton} alt=""/></span> */}Review
-            </button>
-            </div>):<></>}
       </div>
     </div>
   );
