@@ -40,10 +40,10 @@ const PaginationSection: React.FC<Props> = (props: Props) => {
   const itemsPerPage = 9;
   const endOffset = itemOffset + itemsPerPage;
   const pageCount = Math.ceil(data.length / itemsPerPage);
-  console.log("mathh",pageCount, data)
+  // console.log("mathh",pageCount, data)
 
   const handlePageClick = (event: { selected: number }) => {
-   console.log(event.selected);    
+  //  console.log(event.selected);    
     const newOffset = event.selected * itemsPerPage
     setItemOffset(newOffset);
   };

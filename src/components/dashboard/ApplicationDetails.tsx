@@ -8,9 +8,9 @@ import { ApplicationData, IApplications } from "../../services/Data";
 type Props = {
   setIsApplicationDetails: any;
   appliDetailsData: any;
-  setIsRating: any;
+  setIsRating: (message: boolean) => void;
   setIsApplicationDetailsOpen: any;
-  setIsRejectedFeed: any;
+  setIsRejectedFeed: (message: boolean) => void;
   isProjectManagement: boolean;
   setShedule: (message: boolean) => void;
 };
@@ -71,14 +71,14 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
 
   const handleAccept = () => {
     setIsRating(true);
-    setIsApplicationDetailsOpen(false);
-    setIsApplicationDetails(true);
+    setIsApplicationDetails(false);
+    setIsApplicationDetailsOpen(true);
   };
 
   const handleReject = () => {
-    setIsApplicationDetails(false);
     setIsRejectedFeed(true);
-    setIsApplicationDetailsOpen(false);
+    setIsApplicationDetails(false);
+    setIsApplicationDetailsOpen(true);
   };
 
   return (
