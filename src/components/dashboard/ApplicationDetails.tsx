@@ -176,7 +176,17 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
      
           </tbody>
         </table>
-        {appliDetailsData.Status === "Pending" ? (
+        
+        {props.isProjectManagement ? (
+          <div className="btnConatainer">
+            <button
+              className="sheduleButton"
+              style={{ cursor: "pointer" }}
+              onClick={handleAccept}
+            >
+             Review
+            </button>
+            </div>):appliDetailsData.Status === "Pending" ? (
           <div className="btnConatainer">
             <button
               className="rejectButton"
@@ -192,16 +202,6 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
         ) : (
           <></>
         )}
-        {props.isProjectManagement ? (
-          <div className="btnConatainer">
-            <button
-              className="sheduleButton"
-              style={{ cursor: "pointer" }}
-              onClick={handleAccept}
-            >
-             {/* Shedule a demo<span className="nextButton"><img src={NextButton} alt=""/></span> */}Review
-            </button>
-            </div>):<></>}
       </div>
     </div>
   );
