@@ -101,7 +101,7 @@ export const ProjectManagement: React.FC = () => {
    
   </Select>
 </FormControl>
-            <InputSearch setQuerySearch={setQuerySearch} />
+            <InputSearch currentScreen={"ProjectManagment"}setQuerySearch={setQuerySearch} />
             </div>
           </div>
           <table className="table table-borderless projectData">
