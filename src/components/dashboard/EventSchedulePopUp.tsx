@@ -17,12 +17,12 @@ import { EventsData } from "../../services/EventData";
 // import { EventsData } from "../../services/EventData";
  
 interface PopupProps {
-    isOpen: boolean;
+    // isOpen: boolean;
     onClose: () => void;
   updateEvents?:(item: IEvents) => void
   
   }
-const EventSchedulePopUp =({ isOpen, onClose,updateEvents }:PopupProps)=>{
+const EventSchedulePopUp =({onClose,updateEvents }:PopupProps)=>{
     const [selectedDate, setSelectedDate] = useState<Date|null>();
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -40,6 +40,7 @@ const EventSchedulePopUp =({ isOpen, onClose,updateEvents }:PopupProps)=>{
       setSelectedDate(newDate);
     
     };
+    
     const handleSubmit = (e:any) => {
 
       var formattedTime="";
@@ -56,9 +57,7 @@ const EventSchedulePopUp =({ isOpen, onClose,updateEvents }:PopupProps)=>{
       //  const newArray = [...EventsData,item ];
        updateEvents?.(item)
       onClose();
-    }
-    if (!isOpen) return null;
-    
+    }    
     return(
         <div className="popup">
         
@@ -88,7 +87,7 @@ const EventSchedulePopUp =({ isOpen, onClose,updateEvents }:PopupProps)=>{
     </FormControl></div>
             <div className="dateAndTime">
             
-               <DatePicker className="scheduleDatePicker" selected={selectedDate} onChange={handleDateChange} dateFormat="YYYY-MM-dd" placeholderText="Select Date"/>
+               <DatePicker className="scheduleDatePicker"  minDate={new Date()}   selected={selectedDate} onChange={handleDateChange} dateFormat="YYYY-MM-dd" placeholderText="Select Date"/>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                  
                  <TimePicker   label="Select Time" // Placeholder text

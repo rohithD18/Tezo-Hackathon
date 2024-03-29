@@ -228,7 +228,7 @@ padding-right: 90px; */
   flex-direction: column;
   padding-top: 30px;
 
-  height: 550px;
+  height: 100vh;
   padding-left: 13%;
   padding-right: 13%;
 }
@@ -237,17 +237,17 @@ padding-right: 90px; */
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  gap: 100px;
+  gap: 160px;
   padding-top: 50px;
-  padding-left: 25px;
+  padding-left: 30px;
 }
 .judgeCard {
   display: flex;
   flex-direction: column;
 }
 .judgeProfile {
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   top: 10px;
   left: 10px;
   border-radius: 100%;
