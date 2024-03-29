@@ -25,7 +25,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     isProjectManagement,
     setShedule,
   } = props;
-  console.log(appliDetailsData, isProjectManagement);
+  // console.log(appliDetailsData, isProjectManagement);
 
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
