@@ -48,19 +48,8 @@ const TeamDetailsForm: React.FC = () => {
       <div className="profilePicSelectDiv">
         <p>Team Logo</p>
         <p style={{ fontSize: "16px" }} onClick={() => fileInput?.click()}>
-          Click to upload team logo to personalise the team{"  "}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="18"
-            fill="currentColor"
-            className="bi bi-upload"
-            viewBox="0 0 16 16"
-            fontWeight="700"
-          >
-            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-            <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
-          </svg>{" "}
+          Click to {selectedFile ? "change" : "upload"} team logo to personalise
+          the team
         </p>
         <input
           type="file"
@@ -71,11 +60,25 @@ const TeamDetailsForm: React.FC = () => {
             setFileInput(fileInput);
           }} // For accessing the input element
         />
-        <img
-          onClick={() => fileInput?.click()}
-          src={selectedFile ? URL.createObjectURL(selectedFile) : profileImg}
-          alt="Profile"
-        />
+        {!selectedFile ? (
+          <svg
+            onClick={() => fileInput?.click()}
+            xmlns="http://www.w3.org/2000/svg"
+            width="54"
+            height="44"
+            fill="rgba(140, 140, 140, 1)"
+            className="bi bi-file-earmark-arrow-up-fill"
+            viewBox="0 0 16 16"
+          >
+            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707z" />
+          </svg>
+        ) : (
+          <img
+            onClick={() => fileInput?.click()}
+            src={selectedFile ? URL.createObjectURL(selectedFile) : profileImg}
+            alt="Profile"
+          />
+        )}
       </div>
       <div className="teamNameInpDiv">
         <p>Team Name</p>

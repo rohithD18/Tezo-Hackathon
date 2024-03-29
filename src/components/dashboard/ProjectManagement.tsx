@@ -1,50 +1,51 @@
-import React, { useState } from "react";
-import Participant from "../../assets/participant.png";
-import RegistrationIcon from "../../assets/registrationIcon.png";
-import Submittedicon from "../../assets/submittedIcon.png";
+import React, { useEffect, useState } from "react";
 import { DisplayCount } from "./DisplayCount";
 import filterIcon from "../../assets/FilterIcon.png";
 import InputSearch from "../InputSearch";
 import image from "../../assets/image.png";
 import PaginationSection from "../pagination/PaginationSection";
 import "../../styles/dashboard/ProjectManagement.css";
-import { projects } from "../../services/ProjectManagementEvents";
-import { IProject, IProjectDetail } from "../../Interfaces";
+import { Projects } from "../../services/ProjectManagementEvents";
+import { IProject } from "../../Interfaces";
 import ApplicationDetails from "./ApplicationDetails";
-import { IApplications } from "../../services/Data";
 import DashboardNav from "./DashboardNav";
 import ViewBlur from "./ViewBlur";
 
 export const ProjectManagement: React.FC = () => {
-  const [isProjectManagementDetailsOpen, setIsProjectManagementDetailsOpen] =
-    useState<boolean>(false);
   const [isProjectManagement, setIsProjectManagement] =
     useState<boolean>(false);
-  const [isApplicationDetails, setIsApplicationDetails] =
-    useState<boolean>(false);
   const [querySearch, setQuerySearch] = useState<string>("");
-  const [isShedule, setShedule] = useState<boolean>(false);
   const [isRating, setIsRating] = useState<boolean>(false);
   const [isRejectedFeed, setIsRejectedFeed] = useState<boolean>(false);
-  const [isApplication, setIsApplication] = useState<boolean>(false);
 
-  const [appliDetailsData, setAppliDetailsData] = useState<IApplications[]>([]);
+  const [appliDetailsData, setAppliDetailsData] = useState<IProject>(
+    Projects[0]
+  );
   const sortDate = () => {
     const sortedData = [...currentData].sort(
       (a, b) =>
-        new Date(a.submittedOn).getTime() - new Date(b.submittedOn).getTime()
+        new Date(a.SubmissionDate).getTime() -
+        new Date(b.SubmissionDate).getTime()
     );
     setCurrentData(sortedData);
   };
 
-  const handleAppliDetailsData = (data: any) => {
+  const handleAppliDetailsData = (data: IProject) => {
     setAppliDetailsData(data);
-    setIsApplicationDetails(true);
-    setIsProjectManagementDetailsOpen(true);
     setIsProjectManagement(true);
   };
   const [currentData, setCurrentData] = useState<IProject[]>([]);
   console.log(currentData);
+  useEffect(() => {
+    querySearch &&
+      setCurrentData(
+        currentData.filter((item) =>
+          item.TeamName.toLocaleLowerCase().includes(
+            querySearch.toLocaleLowerCase()
+          )
+        )
+      );
+  }, [querySearch]);
   return (
     <>
       <DashboardNav />
@@ -84,12 +85,12 @@ export const ProjectManagement: React.FC = () => {
                     className="tableRowDataa"
                     onClick={() => handleAppliDetailsData(record)}
                   >
-                    <td scope="row">
+                    <td>
                       <img src={image} alt="teamPic" />
                       {record.TeamName}
                     </td>
                     <td className="recordDescription">{record.descripition}</td>
-                    <td>{record.submittedOn}</td>
+                    <td>{record.SubmissionDate}</td>
                   </tr>
                 ))}
             </tbody>
@@ -99,35 +100,29 @@ export const ProjectManagement: React.FC = () => {
           <div className="userPagination">
             <PaginationSection
               setCurrentItem={setCurrentData}
-              data={projects}
+              data={Projects}
               screen=""
             />
           </div>
-          {isProjectManagementDetailsOpen && (
+          {isProjectManagement && (
             <ApplicationDetails
               isProjectManagement={isProjectManagement}
-              setIsApplicationDetails={setIsApplicationDetails}
+              setIsApplicationDetails={setIsProjectManagement}
               appliDetailsData={appliDetailsData}
               setIsRating={setIsRating}
-              setShedule={setShedule}
-              setIsApplicationDetailsOpen={setIsProjectManagementDetailsOpen}
               setIsRejectedFeed={setIsRejectedFeed}
             />
           )}
         </div>
-        {(isProjectManagementDetailsOpen || isRating) && (
+        {(isRejectedFeed || isRating || isProjectManagement) && (
           <ViewBlur
             isRating={isRating}
-            setIsApplicationDetailsOpen={setIsProjectManagementDetailsOpen}
             isRejectedFeed={isRejectedFeed}
             setIsRejectedFeed={setIsRejectedFeed}
             setIsRating={setIsRating}
-            isShedule={isShedule}
-            setShedule={setShedule}
           />
         )}
       </div>
     </>
   );
 };
-

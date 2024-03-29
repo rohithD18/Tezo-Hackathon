@@ -2,17 +2,15 @@ import React from "react";
 import xclose from "../../assets/xclose.png";
 import arrow_up_right from "../../assets/arrow_up_right.png";
 import Ellipse811 from "../../assets/Ellipse811.png";
-import NextButton from "../../assets/NextButton.png";
 import "../../styles/dashboard/ApplicationDetails.css";
-import { ApplicationData, IApplications } from "../../services/Data";
+import { IApplications } from "../../services/Data";
+import { IProject } from "../../Interfaces";
 type Props = {
-  setIsApplicationDetails: any;
-  appliDetailsData: any;
+  setIsApplicationDetails: (message: boolean) => void;
+  appliDetailsData: IApplications | IProject;
   setIsRating: (message: boolean) => void;
-  setIsApplicationDetailsOpen: any;
   setIsRejectedFeed: (message: boolean) => void;
   isProjectManagement: boolean;
-  setShedule: (message: boolean) => void;
 };
 
 const ApplicationDetails: React.FC<Props> = (props: Props) => {
@@ -20,19 +18,20 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     setIsApplicationDetails,
     appliDetailsData,
     setIsRating,
-    setIsApplicationDetailsOpen,
     setIsRejectedFeed,
     isProjectManagement,
-    setShedule,
   } = props;
   // console.log(appliDetailsData, isProjectManagement);
 
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      const modal = document.querySelector(".ApplicationScreen");
-      if (modal && !modal.contains(event.target as Node)) {
+      const modal1 = document.querySelector(".ApplicationScreen");
+      const modal2 = document.querySelector(".projectManagementData");
+      if (modal1 && !modal1.contains(event.target as Node)) {
         setIsApplicationDetails(false);
-        setIsApplicationDetailsOpen(false);
+      }
+      if (modal2 && !modal2.contains(event.target as Node)) {
+        setIsApplicationDetails(false);
       }
     };
 
@@ -41,14 +40,13 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, [setIsApplicationDetails, setIsApplicationDetailsOpen]);
+  }, [setIsApplicationDetails]);
 
   let formattedDate: string = "";
   let formattedTime: string = "";
 
-  const submissionDate = appliDetailsData?.SubmissionDate;
-  if (submissionDate) {
-    const dateObject = new Date(submissionDate);
+  if (appliDetailsData?.SubmissionDate) {
+    const dateObject = new Date(appliDetailsData?.SubmissionDate);
     formattedDate = `${dateObject.getDate()} ${dateObject.toLocaleString(
       "default",
       { month: "short" }
@@ -65,20 +63,18 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
 
   const handleClose = () => {
     setIsApplicationDetails(false);
-    setIsApplicationDetailsOpen(false);
-    setShedule(false);
+    setIsRating(false);
+    setIsRejectedFeed(false);
   };
 
   const handleAccept = () => {
     setIsRating(true);
     setIsApplicationDetails(false);
-    setIsApplicationDetailsOpen(true);
   };
 
   const handleReject = () => {
     setIsRejectedFeed(true);
     setIsApplicationDetails(false);
-    setIsApplicationDetailsOpen(true);
   };
 
   return (
@@ -99,8 +95,8 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
       <div className="detailsContainer">
         <table className="tablefirst">
           <p className="tableHeader">Team Details</p>
-          <tbody className="tablefirstBody" >
-            <tr >
+          <tbody className="tablefirstBody">
+            <tr>
               <td style={{ color: "#B4B4B4" }}>Team Name</td>
               <td>
                 {appliDetailsData?.TeamName}
@@ -126,7 +122,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
                 {appliDetailsData?.TeamName}
               </td>
             </tr>
-            {!props.isProjectManagement ? (
+            {!isProjectManagement ? (
               <>
                 <tr>
                   <td style={{ color: "#B4B4B4" }}>Date</td>
@@ -188,7 +184,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
           </tbody>
         </table>
 
-        {props.isProjectManagement ? (
+        {isProjectManagement ? (
           <div className="btnConatainer">
             <button
               className="sheduleButton"

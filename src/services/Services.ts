@@ -3,8 +3,9 @@ import { Teams } from "../services/Data";
 import { membersArray } from "../components/registration/MembersA";
 import { UsersData } from "./Data";
 import { useEffect, useState } from "react";
-import { IEvents, ITeams, IUsers } from "../Interfaces";
+import { IProject, ITeams, IUsers } from "../Interfaces";
 import { EventsData } from "./EventData";
+import { Projects } from "./ProjectManagementEvents";
 export const getAMember = (value: string) => {
   const member = UsersData.filter((entry) =>
     entry.Name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
@@ -13,18 +14,12 @@ export const getAMember = (value: string) => {
   // AllTeams.TeamMembers[0] = member[0];
   return member;
 };
-// export const getArrayItems = (Data:IEvents[]) => {
 
-// AllTeams.TeamMembers[0] = member[0];
-//   return Data;
-// };
 export const useFetch = (
   queary: string,
   setQueary: (message: string) => void
 ) => {
-  // const [queary, setQueary] = useState<string>("");
   const [isQA, setIsQA] = useState<boolean>(false);
-  // console.log(membersArray, isQA);
 
   useEffect(() => {
     if (membersArray.filter((item) => item?.Department === "QA").length > 0) {
@@ -63,13 +58,20 @@ export const getFilteredTeams = (name: string): ITeams[] => {
     item.TeamName.toLowerCase().includes(name.toLowerCase())
   );
   console.log(filtered);
-  return filtered;
+  return filtered.slice(0, 6);
 };
 export const getFilteredMembers = (name: string): IUsers[] => {
   const filtered = UsersData.filter((item) =>
     item.Name.toLowerCase().includes(name.toLowerCase())
   );
   console.log(filtered, membersArray);
+  return filtered.slice(0, 6);
+};
+export const getFilteredProjects = (name: string): IProject[] => {
+  const filtered = Projects.filter((item) =>
+    item.TeamName.toLowerCase().includes(name.toLowerCase())
+  );
+  console.log(filtered);
   return filtered.slice(0, 6);
 };
 const combineDateAndTime = (date: Date, time: string): Date => {

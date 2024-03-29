@@ -15,28 +15,15 @@ import DisplayCard from "./DisplayCard";
 
 const Application: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>("All");
-  const [isShedule,setShedule] = useState<boolean>(false);
   const [isApplicationDetails, setIsApplicationDetails] =
     useState<boolean>(false);
   const [appliDetailsData, setAppliDetailsData] = useState<IApplications>(
     ApplicationData[0]
   );
   const [total, setTotal] = useState(0);
-  const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =
-    useState<boolean>(false);
   const [isRating, setIsRating] = useState<boolean>(false);
   const [isRejectedFeed, setIsRejectedFeed] = useState<boolean>(false);
-  const [isProjectManagement,setprojectManagement]=useState<boolean>(false) ;
 
-  useEffect(() => {
-    if (isApplicationDetails === true) {
-      setIsApplicationDetailsOpen(true);
-    } else {
-      if (activeFilter === "Pending") {
-        setIsApplicationDetailsOpen(false);
-      }
-    }
-  }, [isApplicationDetails, setIsApplicationDetailsOpen, activeFilter]);
   const [statusCounts, setStatusCounts] = useState<{
     Accepted: number;
     Rejected: number;
@@ -128,7 +115,7 @@ const Application: React.FC = () => {
       count: statusCounts.Rework,
     },
   ];
-  const handleAppliDetailsData = (data: any) => {
+  const handleAppliDetailsData = (data: IApplications) => {
     setIsApplicationDetails(true);
     setAppliDetailsData(data);
   };
@@ -186,7 +173,6 @@ const Application: React.FC = () => {
     }
   };
 
-
   return (
     <div className="applicationView">
       <DashboardNav />
@@ -231,32 +217,27 @@ const Application: React.FC = () => {
         </div>
         {isApplicationDetails && (
           <ApplicationDetails
-          isProjectManagement={isProjectManagement}
+            isProjectManagement={false}
             setIsApplicationDetails={setIsApplicationDetails}
             appliDetailsData={appliDetailsData}
             setIsRating={setIsRating}
-            setShedule={setShedule}
-            setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
             setIsRejectedFeed={setIsRejectedFeed}
           />
         )}
         <div className=" userPagination">
-        <PaginationSection
-          setCurrentItem={setDisplayOnApplication}
-          data={filteredData}
-          screen="application"
-        />
+          <PaginationSection
+            setCurrentItem={setDisplayOnApplication}
+            data={filteredData}
+            screen="application"
+          />
         </div>
       </div>
-      {isApplicationDetailsOpen && (
+      {(isRating || isRejectedFeed || isApplicationDetails) && (
         <ViewBlur
-        isShedule={isShedule}
           isRating={isRating}
-          setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
           isRejectedFeed={isRejectedFeed}
           setIsRejectedFeed={setIsRejectedFeed}
           setIsRating={setIsRating}
-          setShedule={setShedule}
         />
       )}
     </div>
