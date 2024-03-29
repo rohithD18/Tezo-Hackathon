@@ -1,17 +1,15 @@
-.root{
+.root1{
     color:aliceblue;
   margin-left: 10%;
   margin-right: 10%;
- /* height:100vh; / */
  font-family: 'Roboto', sans-serif;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 .item{
 padding: 20px;
-margin-left: 4px;
-margin-right: 5px;
+height: 60px;
 gap: 8px;
 font-size: 16px;
 font-weight: 400;
@@ -20,7 +18,14 @@ letter-spacing: 0em;
 text-align: center;
 color: #B4B4B4;  
 border-bottom: 2px solid transparent; 
-
+margin: 0;
+}
+.topContainer hr{
+  margin-top: -2px;
+  height: 2px;
+  /* border-bottom: 2px solid #3d5a80; */
+  color: #3235f7;
+  margin-bottom: 40px;
 }
 .item:hover{
     color:#EE6C4D;
@@ -36,11 +41,6 @@ border-bottom: 2px solid transparent;
     text-decoration: none;
     font-weight:600;
     z-index: 1;
-}
-.borderStyling {
-  margin-top: -2px;
-  border-bottom: 2px solid #3d5a80;
-  margin-bottom: 40px;
 }
 .cardStyling{
     width: 350px;

@@ -53,7 +53,10 @@ export const ProjectManagement: React.FC = () => {
         <div className="projectManagementData">
           <div className="projectHeader">
             <p>Project Management</p>
-            <InputSearch setQuerySearch={setQuerySearch} />
+            <InputSearch
+              setQuerySearch={setQuerySearch}
+              currentScreen={"ProjectManagment"}
+            />
           </div>
           <table className="table table-borderless projectData">
             <thead>

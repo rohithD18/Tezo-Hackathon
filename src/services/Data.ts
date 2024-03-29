@@ -16,12 +16,12 @@ function getRandomDate(): Date {
   const end = new Date(); // Current date
 
   // Get a random time between start and end dates
-  const randomTime = start.getTime() + Math.random() * (end.getTime() - start.getTime());
+  const randomTime =
+    start.getTime() + Math.random() * (end.getTime() - start.getTime());
 
   return new Date(randomTime);
 }
 export const ApplicationData: IApplications[] = [
-  
   {
     Id: 1,
     TeamName: "Rohith D",
@@ -138,7 +138,7 @@ export const ApplicationData: IApplications[] = [
     ProjectName: "Project Twelve",
     TeamCaptian: "Captain Twelve",
     ProjectedSubmitted: true,
-    SubmissionDate:getRandomDate(),
+    SubmissionDate: getRandomDate(),
     Status: "Pending",
     ProjectDescription: "Description for twelfth team",
   },
@@ -438,63 +438,63 @@ export const UsersData: IUsers[] = [
     Id: 2,
     Name: "James Johnson",
     EmailAddress: "james.johnson@example.com",
-    Department: "Developer",
+    Department: "Digital Transformation",
     IsCaptain: false,
   },
   {
     Id: 3,
     Name: "Olivia Brown",
     EmailAddress: "olivia.brown@example.com",
-    Department: "Developer",
+    Department: "Product Engineering",
     IsCaptain: false,
   },
   {
     Id: 4,
     Name: "William Wilson",
     EmailAddress: "william.wilson@example.com",
-    Department: "Developer",
+    Department: "Data Analytics",
     IsCaptain: false,
   },
   {
     Id: 5,
     Name: "Ava Taylor",
     EmailAddress: "ava.taylor@example.com",
-    Department: "Developer",
+    Department: "Digital Marketing",
     IsCaptain: false,
   },
   {
     Id: 6,
     Name: "Alexander Lee",
     EmailAddress: "alexander.lee@example.com",
-    Department: "Developer",
+    Department: "Digital Transformation",
     IsCaptain: false,
   },
   {
     Id: 7,
     Name: "Mia Martinez",
     EmailAddress: "mia.martinez@example.com",
-    Department: "Developer",
+    Department: "Data Analytics",
     IsCaptain: false,
   },
   {
     Id: 8,
     Name: "Ethan Anderson",
     EmailAddress: "ethan.anderson@example.com",
-    Department: "Developer",
+    Department: "Data Analytics",
     IsCaptain: false,
   },
   {
     Id: 9,
     Name: "Sophia Thomas",
     EmailAddress: "sophia.thomas@example.com",
-    Department: "Developer",
+    Department: "Digital Transformation",
     IsCaptain: false,
   },
   {
     Id: 10,
     Name: "Isabella Jackson",
     EmailAddress: "isabella.jackson@example.com",
-    Department: "Developer",
+    Department: "Data Analytics",
     IsCaptain: false,
   },
   {
@@ -508,42 +508,42 @@ export const UsersData: IUsers[] = [
     Id: 12,
     Name: "Charlotte Harris",
     EmailAddress: "charlotte.harris@example.com",
-    Department: "Developer",
+    Department: "Digital Transformation",
     IsCaptain: false,
   },
   {
     Id: 13,
     Name: "Liam Martin",
     EmailAddress: "liam.martin@example.com",
-    Department: "Developer",
+    Department: "Digital Marketing",
     IsCaptain: false,
   },
   {
     Id: 14,
     Name: "Amelia Thompson",
     EmailAddress: "amelia.thompson@example.com",
-    Department: "Developer",
+    Department: "Product Engineering",
     IsCaptain: false,
   },
   {
     Id: 15,
     Name: "Benjamin Garcia",
     EmailAddress: "benjamin.garcia@example.com",
-    Department: "Developer",
+    Department: "Digital Marketing",
     IsCaptain: false,
   },
   {
     Id: 16,
     Name: "Harper Martinez",
     EmailAddress: "harper.martinez@example.com",
-    Department: "Developer",
+    Department: "Product Engineering",
     IsCaptain: false,
   },
   {
     Id: 17,
     Name: "Emma Martinez",
     EmailAddress: "harper.martinez@example.com",
-    Department: "Developer",
+    Department: "Digital Transformation",
     IsCaptain: false,
   },
   {

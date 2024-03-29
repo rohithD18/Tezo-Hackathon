@@ -6,7 +6,7 @@ import AllTeams from "./AllTeams";
 const MyTeam = () => {
   const [showAll, setShowAll] = useState(true);
   return (
-    <div className="root">
+    <div className="root1">
       <SubNavBar setShowAll={setShowAll} />
       <div className="row">
         {showAll ? (
@@ -21,6 +21,7 @@ const MyTeam = () => {
                 width={64}
                 height={64}
                 className="imgStyling"
+                alt="profile"
               ></img>
               <div className="memberDetails">
                 <label className="name">{item.name}</label>
