@@ -20,10 +20,11 @@ const HomePage: React.FC<HomePageProps> = (props) => {
   ]);
 
   useEffect(() => {
-    const intervalId = setInterval(calculateRemainingTime, 1000);
-    calculateRemainingTime();
-    return () => clearInterval(intervalId);
+    calculateRemainingTime(); 
+    const intervalId = setInterval(calculateRemainingTime, 1000); 
+    return () => clearInterval(intervalId); 
   }, []);
+
 
   const calculateRemainingTime = () => {
     const eventDate = new Date("April 1, 2024 00:00:00").getTime();
@@ -64,6 +65,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
     }
     return color;
   }
+  // console.log("Home Render");
   return (
     <div className="homePageDiv">
       <Home isRegister={props.isRegister} />
@@ -89,7 +91,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
             time. However, unlike the elements in my code, time refuses to be
             debugged or optimised. So, make sure you do not run out of time.
           </p>
-          {/* <button className="addButton">Add to Calender</button> */}
+          <button className="addButton">Add to Calender</button>
           {/* </p> */}
         </div>
 

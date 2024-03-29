@@ -26,7 +26,8 @@ const ViewProfile: React.FC<Props> = ({
     window.history.pushState({},'', '/profile')
   };
   const userName: any = localStorage.getItem("userDataL");
-  console.log(userName);
+  console.log(userName)
+  // console.log(userName);
   const userNameFromLogInLogOutComp = (data: string) => {
     setUserName(""); // or set the data to a state
   };
