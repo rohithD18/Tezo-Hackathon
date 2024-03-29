@@ -39,7 +39,7 @@ export const ProjectManagement: React.FC = () => {
   useEffect(() => {
     querySearch &&
       setCurrentData(
-        currentData.filter((item) =>
+        Projects.filter((item) =>
           item.TeamName.toLocaleLowerCase().includes(
             querySearch.toLocaleLowerCase()
           )
