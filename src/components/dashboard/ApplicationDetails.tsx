@@ -7,7 +7,7 @@ import "../../styles/dashboard/ApplicationDetails.css";
 import { ApplicationData, IApplications } from "../../services/Data";
 type Props = {
   setIsApplicationDetails: any;
-  appliDetailsData: any;
+  appliDetailsData: any;                    
   setIsRating: (message: boolean) => void;
   setIsApplicationDetailsOpen: any;
   setIsRejectedFeed: (message: boolean) => void;

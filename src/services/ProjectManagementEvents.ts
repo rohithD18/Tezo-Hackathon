@@ -7,6 +7,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team Alpha",
       Status: "Accepted",
       submittedOn: "2024-10-01",
+      score:0
       
     },
     {
@@ -15,6 +16,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team Bravo",
       Status: "Pending",
       submittedOn: "2024-01-02",
+      score:0
     },
     {
       id: 3,
@@ -22,6 +24,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team Charlie",
       Status: "Accepted",
       submittedOn: "2024-01-03",
+      score:0
     },
     {
       id: 4,
@@ -29,6 +32,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team Delta",
       Status: "Pending",
       submittedOn: "2024-01-04",
+      score:20
     },
     {
       id: 5,
@@ -36,6 +40,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team Echo",
       Status: "Accepted",
       submittedOn: "2024-01-05",
+      score:70
     },
     {
       id: 6,
@@ -43,6 +48,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team Foxtrot",
       Status: "Pending",
       submittedOn: "2024-01-06",
+      score:0
     },
     {
       id: 7,
@@ -50,6 +56,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team Golf",
       Status: "Accepted",
       submittedOn: "2024-01-07",
+      score:50
     },
     {
       id: 8,
@@ -57,6 +64,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team Hotel",
       Status: "Pending",
       submittedOn: "2024-01-08",
+      score:50
     },
     {
       id: 9,
@@ -64,6 +72,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team India",
       Status: "Accepted",
       submittedOn: "2024-01-09",
+      score:0
     },
     {
       id: 10,
@@ -71,6 +80,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team Juliet",
       Status: "Pending",
       submittedOn: "2024-01-10",
+      score:0
     },
     {
       id: 11,
@@ -78,6 +88,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team Kilo",
       Status: "Accepted",
       submittedOn: "2024-01-11",
+      score:0
     },
     {
       id: 12,
@@ -85,6 +96,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team Lima",
       Status: "Pending",
       submittedOn: "2024-01-12",
+      score:0
     },
     {
       id: 13,
@@ -92,6 +104,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team Mike",
       Status: "Accepted",
       submittedOn: "2024-01-13",
+      score:40
     },
     {
       id: 14,
@@ -99,6 +112,7 @@ export const projects: IProject[] = [
       descripition: "descripition for Team November",
       Status: "Pending",
       submittedOn: "2024-01-14",
+      score:0
     },
     {
       id: 15,
@@ -106,5 +120,6 @@ export const projects: IProject[] = [
       descripition: "descripition for Team Oscar",
       Status: "Accepted",
       submittedOn: "2024-01-15",
+      score:0
     },
   ];
