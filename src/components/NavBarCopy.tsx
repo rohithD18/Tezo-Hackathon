@@ -1,13 +1,16 @@
 import "../styles/NavBar.css";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 import logo from "../assets/Logo.png";
+import bellIcon from "../assets/bellIcon.png";
 import profilepic from "../assets/profilepic.jpg";
 import { useState } from "react";
 import ViewProfile from "./ViewProfile";
 function NavBarCopy() {
-  const [activeItem, setActiveItem] = useState<null | string>();
-  const handleItemClick = (itemName: string) => {
-    setActiveItem(itemName);
+  // const handleItemClick = (itemName: string) => {
+  //   setActiveItem(itemName);
+  // };
+  const isActive = (path: string): boolean => {
+    return window.location.pathname === path;
   };
   const activeButton = "Dashboard";
    const [showProfile, setShowProfile] = useState(false);
@@ -20,7 +23,9 @@ function NavBarCopy() {
   return (
     <>
       <div className="container-fluid custom-navbar">
-        <div className="container ">
+        <div className={`${
+                      isActive('/dashboard') ? "containerDashboard" : "container"
+                    }`}>
           <div className="row align-items-center">
             <div className="col-1">
               <img
@@ -36,9 +41,9 @@ function NavBarCopy() {
                 <li className="nav-item">
                   <a
                     className={`nav-link navLinkItem ${
-                      activeItem === "Home" ? "itemActive disable-hover" : ""
+                      isActive('/')  ? "itemActive disable-hover" : ""
                     }`}
-                    onClick={() => handleItemClick("Home")}
+                   
                     href="/"
                   >
                     Home
@@ -47,11 +52,11 @@ function NavBarCopy() {
                 <li className="nav-item">
                   <a
                     className={`nav-link navLinkItem ${
-                      activeItem === "schedule"
+                      isActive('/schedule')
                         ? "itemActive disable-hover"
                         : ""
                     }`}
-                    onClick={() => handleItemClick("schedule")}
+                 
                     href="/schedule"
                   >
                     Schedule
@@ -60,11 +65,11 @@ function NavBarCopy() {
                 <li className="nav-item">
                   <a
                     className={`nav-link navLinkItem ${
-                      activeItem === "myproject"
+                      isActive('/myProject')
                         ? "itemActive disable-hover"
                         : ""
                     }`}
-                    onClick={() => handleItemClick("myproject")}
+                   
                     href="/myProject"
                   >
                     MyProject
@@ -73,9 +78,9 @@ function NavBarCopy() {
                 <li className="nav-item">
                   <a
                     className={`nav-link navLinkItem ${
-                      activeItem === "teams" ? "itemActive disable-hover" : ""
+                      isActive('/teams') ? "itemActive disable-hover" : ""
                     }`}
-                    onClick={() => handleItemClick("teams")}
+                
                     href="/teams"
                   >
                     Teams
@@ -84,9 +89,9 @@ function NavBarCopy() {
                 <li className="nav-item">
                   <a
                     className={`nav-link navLinkItem ${
-                      activeItem === "rules" ? "itemActive disable-hover" : ""
+                      isActive('/rules') ? "itemActive disable-hover" : ""
                     }`}
-                    onClick={() => handleItemClick("rules")}
+                 
                     href="/rules"
                   >
                     Rules
@@ -95,9 +100,9 @@ function NavBarCopy() {
                 <li className="nav-item">
                   <a
                     className={`nav-link navLinkItem ${
-                      activeItem === "updates" ? "itemActive disable-hover" : ""
+                      isActive('/dashboard') ? "itemActive disable-hover " : ""
                     }`}
-                    onClick={() => handleItemClick("dashboard")}
+                  
                     href={`/dashboard`}
                   >
                     Dashboard
@@ -112,7 +117,7 @@ function NavBarCopy() {
             >
               <div className="row align-items-center " >
                 <div className="col-3 iconDivStyling">
-                  <i className="far fa-bell text-white icon-class"></i>
+                 <img src={bellIcon} width={20} height={24} style={{paddingBottom:3}}></img>
                 </div>
                 <div className={`col-4 ${showProfile ? 'profileActiveImage' : ''}`}>
                   <img

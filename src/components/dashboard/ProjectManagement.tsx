@@ -40,6 +40,7 @@ export const ProjectManagement: React.FC = () => {
   const [isRating, setIsRating] = useState<boolean>(false);
   const [isRejectedFeed, setIsRejectedFeed] = useState<boolean>(false);
   const [isApplication, setIsApplication] = useState<boolean>(false);
+
   const [appliDetailsData, setAppliDetailsData] = useState<IApplications[]>([]);
   const sortDate = () => {
     

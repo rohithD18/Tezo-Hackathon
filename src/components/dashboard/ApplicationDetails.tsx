@@ -25,7 +25,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     isProjectManagement,
     setShedule,
   } = props;
-  console.log(appliDetailsData,isProjectManagement);
+  // console.log(appliDetailsData, isProjectManagement);
 
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -99,8 +99,8 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
       <div className="detailsContainer">
         <table className="tablefirst">
           <p className="tableHeader">Team Details</p>
-          <tbody>
-            <tr>
+          <tbody className="tablefirstBody" >
+            <tr >
               <td style={{ color: "#B4B4B4" }}>Team Name</td>
               <td>
                 {appliDetailsData?.TeamName}
@@ -187,7 +187,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
             )}
           </tbody>
         </table>
-        
+
         {props.isProjectManagement ? (
           <div className="btnConatainer">
             <button
@@ -195,9 +195,10 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
               style={{ cursor: "pointer" }}
               onClick={handleAccept}
             >
-             Review
+              Review
             </button>
-            </div>):appliDetailsData.Status === "Pending" ? (
+          </div>
+        ) : appliDetailsData.Status === "Pending" ? (
           <div className="btnConatainer">
             <button
               className="rejectButton"

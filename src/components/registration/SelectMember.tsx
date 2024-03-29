@@ -6,10 +6,7 @@ import { useFetch } from "../../services/Services";
 
 const SelectMember: React.FC = () => {
   const [querySearch, setQuerySearch] = useState<string>("");
-  const { isQA, isLimitAchieved, membersArray } = useFetch(
-    querySearch,
-    setQuerySearch
-  );
+  const { isQA, membersArray } = useFetch(querySearch, setQuerySearch);
 
   const greenChecksvg = (
     <svg
@@ -44,8 +41,11 @@ const SelectMember: React.FC = () => {
         An email invite will be sent on your behalf to the selected members
       </p>
       <div className="searchIcon">
-        <InputSearch setQuerySearch={setQuerySearch} />
-        <Dropdown />
+        <InputSearch
+          setQuerySearch={setQuerySearch}
+          currentScreen={"SelectMembers"}
+        />
+        {/* <Dropdown /> */}
       </div>
       <div className="rulForTeam">
         <p>Your team must have:</p>
@@ -57,7 +57,8 @@ const SelectMember: React.FC = () => {
           members
         </p>
         <p id="svgP">
-          {isLimitAchieved ? greenChecksvg : fadedChecksvg} Maximum of 7 members
+          {membersArray.length >= 7 ? greenChecksvg : fadedChecksvg} Maximum of
+          7 members
         </p>
       </div>
       <div className="teamMembersDiv">
