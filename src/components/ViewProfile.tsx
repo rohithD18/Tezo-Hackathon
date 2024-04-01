@@ -11,9 +11,6 @@ type Props = {
   setShowProfile: (message: boolean) => void;
   setUserName: (message: string) => void;
 };
-interface IProps2 {
-  setUserName: (message: string) => void;
-}
 
 const ViewProfile: React.FC<Props> = ({
   setShowProfile,
@@ -25,11 +22,8 @@ const [isDashboard, setIsDashboard] = useState(false);
   const handleCancel = () => {
     setShowProfile(false);
   };
-  const handleProfileClick = () => {
-    window.history.pushState({},'', '/profile')
-  };
   const userName: any = localStorage.getItem("userDataL");
-  console.log(userName)
+  console.log(userName);
   // console.log(userName);
   const userNameFromLogInLogOutComp = (data: string) => {
     setUserName(""); // or set the data to a state
@@ -64,17 +58,17 @@ const [isDashboard, setIsDashboard] = useState(false);
           </div>
         </div>
         <div className="profilePicDiv2">
-        <a href={`/profile`} style={{textDecoration:"none"}} >
-          <button className="btn1" >
-            <div className="Statelayer">
-              <span className="iconBox">
-                <img src={userIcon} alt="userIcon" className="icon" />
-              </span>
-              <label htmlFor="text" className="IblViewProfile" >
-                View Profile
-              </label>
-            </div>
-          </button>
+          <a href={`/profile`} style={{ textDecoration: "none" }}>
+            <button className="btn1">
+              <div className="Statelayer">
+                <span className="iconBox">
+                  <img src={userIcon} alt="userIcon" className="icon" />
+                </span>
+                <label htmlFor="text" className="IblViewProfile">
+                  View Profile
+                </label>
+              </div>
+            </button>
           </a>
           <MsalProvider instance={pca}>
             <LogInLogOutComp
