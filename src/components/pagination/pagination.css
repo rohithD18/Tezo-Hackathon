@@ -1,6 +1,6 @@
 .pagination {
   height: 48px;
-  margin: 0px 26px;
+  /* margin: 0px 26px; */
   display: flex;
   top: 976px;
   left: 140px;
@@ -15,7 +15,8 @@
   cursor: pointer;
 }
 #userPagin{
-  margin: 0px;
+  margin-right: 4px;
+  margin-left: 28px;
 }
 .dropdownDiv {
   display: flex;

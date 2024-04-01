@@ -22,5 +22,12 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "node_modules/@types":{
+    "compilerOptions": {
+      "typeRoots": [
+        "node_modules/@types"
+      ]
+    }
+  }
 }

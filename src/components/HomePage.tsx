@@ -6,50 +6,13 @@ import { judges } from "../components/Judges";
 import { IJudges } from "../Interfaces";
 import ribbon from "../assets/ribbon.png";
 import { events } from "../services/ScheduleData";
-// interface DataEntry {
-//   typeOfTime: string;
-//   value: number;
-// }
+import RemainingTime from "./RemainingTime";
+
 interface HomePageProps {
   isRegister: boolean;
 }
 const HomePage: React.FC<HomePageProps> = (props) => {
   //Reamning Days Timmer
-  const [remainingTimeArray, setRemainingTimeArray] = useState<number[]>([
-    0, 0, 0, 0,
-  ]);
-
-  useEffect(() => {
-    calculateRemainingTime(); 
-    const intervalId = setInterval(calculateRemainingTime, 1000); 
-    return () => clearInterval(intervalId); 
-  }, []);
-
-
-  const calculateRemainingTime = () => {
-    const eventDate = new Date("April 1, 2024 00:00:00").getTime();
-    const nowDate = new Date().getTime();
-    const dateDiff = eventDate - nowDate;
-
-    const remainingDays = Math.floor(dateDiff / (1000 * 60 * 60 * 24));
-
-    const remainingHours = Math.floor(
-      (dateDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-
-    const remainingMinutes = Math.floor(
-      (dateDiff % (1000 * 60 * 60)) / (1000 * 60)
-    );
-
-    const remainingSeconds = Math.floor((dateDiff % (1000 * 60)) / 1000);
-
-    setRemainingTimeArray([
-      remainingDays,
-      remainingHours,
-      remainingMinutes,
-      remainingSeconds,
-    ]);
-  };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -65,7 +28,6 @@ const HomePage: React.FC<HomePageProps> = (props) => {
     }
     return color;
   }
-  // console.log("Home Render");
   return (
     <div className="homePageDiv">
       <Home isRegister={props.isRegister} />
@@ -101,7 +63,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
             Don't forget to submit your Final Stage assignment in the dashboard
             summary section and Log In using your registered account
           </p>
-          <div className="cards">
+          {/* <div className="cards">
             {remainingTimeArray.map((item, index) => (
               <div className="card" key={index}>
                 <label className="number">
@@ -118,7 +80,8 @@ const HomePage: React.FC<HomePageProps> = (props) => {
                 )}
               </div>
             ))}
-          </div>
+          </div> */}
+          <RemainingTime />
         </div>
 
         <img src={ribbon} id="ribbon" alt="ribbon"></img>
