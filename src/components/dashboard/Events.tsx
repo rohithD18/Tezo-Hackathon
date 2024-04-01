@@ -250,7 +250,7 @@ const Events = () => {
         </div>
       </div>
       </div>
-       {isPopupOpen && <EventSchedulePopUp onClose={handleClosePopup} updateEvents={updateEvents}/>}
+       {isPopupOpen && <EventSchedulePopUp onClose={handleClosePopup} updateEvents={updateEvents} DataOfEvents={EventsData}/>}
 
     </>
   );

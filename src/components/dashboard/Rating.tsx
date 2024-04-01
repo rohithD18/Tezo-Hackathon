@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import "../../styles/dashboard/Rating.css";
 import xclose from "../../assets/xclose.png";
 type Props = {
-  setIsApplicationDetailsOpen: (message:boolean) => void;
-  setIsRating: (message:boolean) => void;
-  setIsProjectManagementDetailsOpen?:boolean;
+  setIsRating: (message: boolean) => void;
 };
 const Rating = (props: Props) => {
-  const { setIsApplicationDetailsOpen, setIsRating } = props;
+  const { setIsRating } = props;
   const ratings = Array.from({ length: 10 }, (_, index) => index + 1);
   const [selectedRating, setSelectedRating] = useState(null);
 
@@ -16,13 +14,11 @@ const Rating = (props: Props) => {
   };
 
   const handleSubmit = () => {
-    setIsApplicationDetailsOpen(false);
     setIsRating(false);
     console.log("Selected rating:", selectedRating);
   };
   const handleClose = () => {
     setIsRating(false);
-    setIsApplicationDetailsOpen(false);
     setIsRating(false);
   };
 
