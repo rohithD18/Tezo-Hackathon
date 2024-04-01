@@ -129,7 +129,7 @@ function NavBarCopy() {
                   />
                 </div>
                 <div className={`col-4 text-start details ${showProfile ? 'profileActiveDetails' : ''}`}>
-                  <div className="nameStyling">Venkatesh</div>
+                  <div className="nameStyling"> {localStorage.getItem("fullName")?.toString()}{}</div>
                   <div className="teamStyling">Team1</div>
                 </div>
               </div>

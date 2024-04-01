@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ic_round_close from "../assets/ic_round_close.png";
 import Group7334 from "../assets/Group7334.png";
 import Icon from "../assets/Icon.png";
@@ -19,6 +19,9 @@ const ViewProfile: React.FC<Props> = ({
   setShowProfile,
   setUserName,
 }: Props) => {
+     
+
+const [isDashboard, setIsDashboard] = useState(false);
   const handleCancel = () => {
     setShowProfile(false);
   };
@@ -31,9 +34,13 @@ const ViewProfile: React.FC<Props> = ({
   const userNameFromLogInLogOutComp = (data: string) => {
     setUserName(""); // or set the data to a state
   };
-
+  useEffect(() => {
+    window.location.pathname === '/dashboard' && setIsDashboard(true);
+    
+  });
+  
   return (
-    <div className="profileContainer">
+    <div className="profileContainer" style={isDashboard?{left:"80.4%"} : {left:"68.6%"} }>
       <div className="profileDiv">
         <span className="cancelContainer">
           <img

@@ -217,12 +217,14 @@ color: #878787;
 
 background-color: #273144 !important;
 border: 1px solid #3D5A80;
-width:28%;
-height:452px;
+width:26%;
+min-height: 16px;
+height:auto;
+max-height:452px ;
 padding: 8px;
 border-radius: 8px;
 border: 1px;
-margin-left: 20px;
+margin-left: 5px;
 
 
 }

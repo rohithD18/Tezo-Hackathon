@@ -72,7 +72,7 @@ export const getFilteredMembers = (name: string): IUsers[] => {
   console.log(filtered, membersArray);
   return filtered.slice(0, 6);
 };
-const combineDateAndTime = (date: Date, time: string): Date => {
+export const combineDateAndTime = (date: Date, time: string): Date => {
   const [timePart, amPm] = time.split(" ");
   let [hoursStr, minutesStr] = timePart.split(":");
   let hours = parseInt(hoursStr, 10);
@@ -88,21 +88,21 @@ const combineDateAndTime = (date: Date, time: string): Date => {
   return combinedDate;
 };
 export const addNewEvent = (newEvent: any) => {
-  let status = "";
-  let captain = "";
+  // let status = "";
+  // let captain = "";
 
   const team = EventsData.find(
     (team) => team.teamName === newEvent.selectedOption
   );
-  const today = new Date();
-  const dateObj = new Date(newEvent.formattedDate);
-  dateObj.setHours(0, 0, 0, 0);
-  today.setHours(0, 0, 0, 0);
-  if (dateObj < today) {
-    status = "Pending";
-  } else {
-    status = "Upcoming";
-  }
+  // const today = new Date();
+  // const dateObj = new Date(newEvent.formattedDate);
+  // dateObj.setHours(0, 0, 0, 0);
+  // today.setHours(0, 0, 0, 0);
+  // if (dateObj < today) {
+  //   status = "Pending";
+  // } else {
+  //   status = "Upcoming";
+  // }
 
   // const captainName=team ? team.captainName : undefined;
   // EventsData.push( {
@@ -120,13 +120,13 @@ export const addNewEvent = (newEvent: any) => {
   return {
     id: EventsData.length + 1,
     teamName: newEvent.selectedOption,
-    captain: team?.captain,
+    captain: team?.captain ? team.captain :"Captain H",
     topic: "Topic X - Exploring the depths of Artificial Intelligence",
     dateAndTime: combineDateAndTime(
       newEvent.formattedDate,
       newEvent.formattedTime
     ),
-    status: status,
+    status: "Upcoming",
     review: false,
   };
 };

@@ -12,20 +12,22 @@ import { DesktopDatePicker, DesktopTimePicker, TimePicker } from "@mui/x-date-pi
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, TextField } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 import { IEvents, ITeams } from "../../Interfaces";
-import { addNewEvent } from "../../services/Services";
-import { EventsData } from "../../services/EventData";
-// import { EventsData } from "../../services/EventData";
+import { addNewEvent, combineDateAndTime } from "../../services/Services";
+import { teamNames } from "../../services/TeamNames";
+
+
  
 interface PopupProps {
-    // isOpen: boolean;
     onClose: () => void;
+    DataOfEvents?:IEvents[];
   updateEvents?:(item: IEvents) => void
   
   }
-const EventSchedulePopUp =({onClose,updateEvents }:PopupProps)=>{
+const EventSchedulePopUp =({onClose,updateEvents,DataOfEvents }:PopupProps)=>{
     const [selectedDate, setSelectedDate] = useState<Date|null>();
     const [selectedOption, setSelectedOption] = useState('');
-
+    const [filteredTeams,setFilteredTeams]=useState<string[]>([]);
+    
     const handleSelectChange = (event:  SelectChangeEvent<string>) => {
       const option = event.target.value;
       setSelectedOption(option);
@@ -33,31 +35,51 @@ const EventSchedulePopUp =({onClose,updateEvents }:PopupProps)=>{
     const [selectedTime, setSelectedTime] = useState<Dayjs | null | undefined> (null);
 
     const handleTimeChange = (newTime:Dayjs | null | undefined) => {
-      setSelectedTime(newTime)
+     setSelectedTime(newTime);
     };
     const handleDateChange = (newDate:any) => {
-   
       setSelectedDate(newDate);
     
     };
-    
+  
     const handleSubmit = (e:any) => {
-
-      var formattedTime="";
-      if(selectedTime){
-      const parsedTime = dayjs(selectedTime, 'h:mm:A'); 
-      formattedTime = parsedTime.format('h:mm A');
+       if (!selectedDate || !selectedOption || !selectedTime) {
+        alert('Please select date, team name, and time');
+        return;
+      }
+      const currentTime = new Date();
+      if (selectedTime === null || selectedTime === undefined) {
+        return;
       }
       const formattedDate = selectedDate && selectedDate.toLocaleDateString('en-US', {
         month: '2-digit',
         day: '2-digit',
         year: 'numeric'
       });
+      var formattedTime="";
+      if(selectedTime){
+      const parsedTime = dayjs(selectedTime, 'h:mm:A'); 
+      formattedTime = parsedTime.format('h:mm A');
+      }
+      const selectedTimeLocal=combineDateAndTime(new Date(formattedDate), formattedTime)
+      if (selectedTimeLocal < currentTime) {
+        alert('Selected time cannot be earlier than the current time');
+        return;
+      }
+     else{
+      const dayjsTime = dayjs(selectedTime);
+      setSelectedTime(dayjsTime);
+     }
+    
+     
        const item=addNewEvent({formattedDate,formattedTime,selectedOption});
-      //  const newArray = [...EventsData,item ];
        updateEvents?.(item)
       onClose();
     }    
+    useEffect(() => {
+      const eventTeamNames =DataOfEvents && DataOfEvents.map(event => event.teamName);
+  setFilteredTeams(teamNames.filter(name => eventTeamNames && !eventTeamNames.includes(name)));
+    }, [teamNames]);
     return(
         <div className="popup">
         
@@ -69,7 +91,7 @@ const EventSchedulePopUp =({onClose,updateEvents }:PopupProps)=>{
             <p>Please provide the details for the Event scheduled</p>
             <div className="schedule">
                 <div>
-                    <FormControl className="dropdown" >
+                    <FormControl className="dropdown">
       <InputLabel id="dropdown-label">Select Team</InputLabel>
       <Select
         labelId="Select Team"
@@ -78,16 +100,16 @@ const EventSchedulePopUp =({onClose,updateEvents }:PopupProps)=>{
         onChange={handleSelectChange}
         // style={{ color: '#888' }}
       >
-      {(EventsData.map((team:IEvents) => (
-            <MenuItem key={team.id} value={team.teamName}>
-              {team.teamName}
+      {(filteredTeams.map((team:string,id:number) => (
+            <MenuItem key={id} value={team}>
+              {team}
             </MenuItem>
           )))}
       </Select>
     </FormControl></div>
             <div className="dateAndTime">
             
-               <DatePicker className="scheduleDatePicker"  minDate={new Date()}   selected={selectedDate} onChange={handleDateChange} dateFormat="YYYY-MM-dd" placeholderText="Select Date"/>
+               <DatePicker className="scheduleDatePicker" strictParsing={false} minDate={new Date()}   selected={selectedDate} onChange={handleDateChange}  placeholderText="Select Date"/>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                  
                  <TimePicker   label="Select Time" // Placeholder text
@@ -110,3 +132,4 @@ const EventSchedulePopUp =({onClose,updateEvents }:PopupProps)=>{
  
 }
 export default EventSchedulePopUp;
+
