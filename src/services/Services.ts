@@ -74,7 +74,7 @@ export const getFilteredProjects = (name: string): IProject[] => {
   console.log(filtered);
   return filtered.slice(0, 6);
 };
-const combineDateAndTime = (date: Date, time: string): Date => {
+export const combineDateAndTime = (date: Date, time: string): Date => {
   const [timePart, amPm] = time.split(" ");
   let [hoursStr, minutesStr] = timePart.split(":");
   let hours = parseInt(hoursStr, 10);
