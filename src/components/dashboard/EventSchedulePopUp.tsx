@@ -7,7 +7,6 @@ import xclose from "../../assets/xclose.png";
 import Dropdown from "../Dropdown";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { MultiSectionDigitalClock } from "@mui/x-date-pickers/MultiSectionDigitalClock";
 import { DesktopDatePicker, DesktopTimePicker, TimePicker } from "@mui/x-date-pickers";
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, TextField } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
@@ -15,15 +14,18 @@ import { IEvents, ITeams } from "../../Interfaces";
 import { addNewEvent, combineDateAndTime } from "../../services/Services";
 import { teamNames } from "../../services/TeamNames";
 
-
  
 interface PopupProps {
     onClose: () => void;
     DataOfEvents?:IEvents[];
-  updateEvents?:(item: IEvents) => void
+  updateEvents?:(item: IEvents) => void;
+  appliDetailsData?:IEvents;
+  setIsApplicationDetails?:(message:boolean)=>void;
+
+  
   
   }
-const EventSchedulePopUp =({onClose,updateEvents,DataOfEvents }:PopupProps)=>{
+const EventSchedulePopUp =({onClose,updateEvents,DataOfEvents,appliDetailsData,setIsApplicationDetails }:PopupProps)=>{
     const [selectedDate, setSelectedDate] = useState<Date|null>();
     const [selectedOption, setSelectedOption] = useState('');
     const [filteredTeams,setFilteredTeams]=useState<string[]>([]);
@@ -74,19 +76,36 @@ const EventSchedulePopUp =({onClose,updateEvents,DataOfEvents }:PopupProps)=>{
      
        const item=addNewEvent({formattedDate,formattedTime,selectedOption});
        updateEvents?.(item)
+       
       onClose();
+      setIsApplicationDetails && setIsApplicationDetails(false)
+      
     }    
     useEffect(() => {
-      const eventTeamNames =DataOfEvents && DataOfEvents.map(event => event.teamName);
-  setFilteredTeams(teamNames.filter(name => eventTeamNames && !eventTeamNames.includes(name)));
+  //     const eventTeamNames =DataOfEvents && DataOfEvents.map(event => event.TeamName);
+  // setFilteredTeams(teamNames.filter(name => eventTeamNames && !eventTeamNames.includes(name)));
+
+  const eventTeamNames = DataOfEvents && DataOfEvents
+  .filter(event => event.Status !== 'Pending') // Filter events with status 'pending'
+  .map(event => event.TeamName); // Extract team names
+
+setFilteredTeams(teamNames.filter(name => 
+  eventTeamNames && !eventTeamNames.includes(name)
+
+));
     }, [teamNames]);
+    useEffect(()=>{
+       appliDetailsData && setSelectedOption(appliDetailsData.TeamName)
+    })
+    
     return(
         <div className="popup">
         
      
         <div className="scheduleMeetingPopup">
             <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
-            <img src={xclose} alt="closeIcon" onClick={onClose} width={24} height={24}></img>
+            <img src={xclose} alt="closeIcon" onClick={()=>{onClose();
+            }} width={24} height={24}></img>
             </div>
             <p>Please provide the details for the Event scheduled</p>
             <div className="schedule">
@@ -97,8 +116,10 @@ const EventSchedulePopUp =({onClose,updateEvents,DataOfEvents }:PopupProps)=>{
         labelId="Select Team"
         id="dropdown"
         value={selectedOption} 
-        onChange={handleSelectChange}
-        // style={{ color: '#888' }}
+        onChange={handleSelectChange} 
+        disabled={appliDetailsData&&( appliDetailsData ? true : false)}
+        style={{color: appliDetailsData ? '#666666' : 'white', }}
+          
       >
       {(filteredTeams.map((team:string,id:number) => (
             <MenuItem key={id} value={team}>

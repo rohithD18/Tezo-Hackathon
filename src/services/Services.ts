@@ -74,7 +74,7 @@ export const getFilteredProjects = (name: string): IProject[] => {
   console.log(filtered);
   return filtered.slice(0, 6);
 };
-const combineDateAndTime = (date: Date, time: string): Date => {
+export const combineDateAndTime = (date: Date, time: string): Date => {
   const [timePart, amPm] = time.split(" ");
   let [hoursStr, minutesStr] = timePart.split(":");
   let hours = parseInt(hoursStr, 10);
@@ -94,7 +94,7 @@ export const addNewEvent = (newEvent: any) => {
   // let captain = "";
 
   const team = EventsData.find(
-    (team) => team.teamName === newEvent.selectedOption
+    (team) => team.TeamName === newEvent.selectedOption
   );
   // const today = new Date();
   // const dateObj = new Date(newEvent.formattedDate);
@@ -121,14 +121,14 @@ export const addNewEvent = (newEvent: any) => {
   );
   return {
     id: EventsData.length + 1,
-    teamName: newEvent.selectedOption,
+    TeamName: newEvent.selectedOption,
     captain: team?.captain ? team.captain :"Captain H",
     topic: "Topic X - Exploring the depths of Artificial Intelligence",
-    dateAndTime: combineDateAndTime(
+    SubmissionDate: combineDateAndTime(
       newEvent.formattedDate,
       newEvent.formattedTime
     ),
-    status: "Upcoming",
+    Status: "Upcoming",
     review: false,
   };
 };

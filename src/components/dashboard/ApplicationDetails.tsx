@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import xclose from "../../assets/xclose.png";
 import arrow_up_right from "../../assets/arrow_up_right.png";
 import Ellipse811 from "../../assets/Ellipse811.png";
+import clock from "../../assets/clock.png";
 import "../../styles/dashboard/ApplicationDetails.css";
 import { IApplications } from "../../services/Data";
-import { IProject } from "../../Interfaces";
+import { IEvents, IProject } from "../../Interfaces";
 type Props = {
   setIsApplicationDetails: (message: boolean) => void;
-  appliDetailsData: IApplications | IProject;
+  appliDetailsData?: IApplications | IProject |IEvents;
   setIsRating: (message: boolean) => void;
   setIsRejectedFeed: (message: boolean) => void;
   isProjectManagement: boolean;
+  isEventManagement?:boolean;
+  setScheduleEvent?:(message: boolean) => void;
+  scheduleEvent?:boolean
 };
 
 const ApplicationDetails: React.FC<Props> = (props: Props) => {
@@ -20,19 +24,24 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     setIsRating,
     setIsRejectedFeed,
     isProjectManagement,
+    isEventManagement,
+    setScheduleEvent,
+    scheduleEvent
+   
   } = props;
   // console.log(appliDetailsData, isProjectManagement);
 
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       const modal1 = document.querySelector(".ApplicationScreen");
+      const modal3 = document.querySelector(".EventManagement");
       const modal2 = document.querySelector(".projectManagementData");
-      if (modal1 && !modal1.contains(event.target as Node)) {
-        setIsApplicationDetails(false);
-      }
-      if (modal2 && !modal2.contains(event.target as Node)) {
-        setIsApplicationDetails(false);
-      }
+      if ((modal1 && !modal1.contains(event.target as Node)) || 
+    (modal2 && !modal2.contains(event.target as Node)) ||
+    (modal3 && !modal3.contains(event.target as Node))) {
+  setIsApplicationDetails(false);
+}
+
     };
 
     document.addEventListener("click", handleOutsideClick);
@@ -44,7 +53,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
 
   let formattedDate: string = "";
   let formattedTime: string = "";
-
+//  const [schedule,setSchedule]=useState<boolean>(false);
   if (appliDetailsData?.SubmissionDate) {
     const dateObject = new Date(appliDetailsData?.SubmissionDate);
     formattedDate = `${dateObject.getDate()} ${dateObject.toLocaleString(
@@ -71,7 +80,14 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     setIsRating(true);
     setIsApplicationDetails(false);
   };
-
+  const handleScheduleEvent=()=>{
+   
+  
+    setScheduleEvent !==undefined && scheduleEvent!==undefined && setScheduleEvent(!scheduleEvent);
+  
+   
+  }
+ 
   const handleReject = () => {
     setIsRejectedFeed(true);
     setIsApplicationDetails(false);
@@ -80,11 +96,14 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
   return (
     <div className="applicationDetails">
       <div className="headerBar">
-        {isProjectManagement ? (
-          <div className="title">Project Details</div>
-        ) : (
-          <span className="title">Application Details</span>
-        )}
+      {isProjectManagement ? (
+  <div className="title">Project Details</div>
+) : isEventManagement ? (
+  <div className="title">Event Details</div>
+) : (
+  <span className="title">Application Details</span>
+)}
+
         <img
           src={xclose}
           alt="Cancel"
@@ -93,6 +112,53 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
         />
       </div>
       <div className="detailsContainer">
+        {isEventManagement && <>
+          { appliDetailsData?.Status === "Pending" && <div className="tableHeaderContainer"><h5>Overview</h5>
+          <div  onClick={handleScheduleEvent}>
+                <img
+                  src={clock}
+                  alt="Captain"
+                  className="clockImage"
+                />
+            <label className="scheduleNow">Schedule Now</label>
+            </div>
+             
+          </div>}
+      <table className="tablefirst">
+          
+          <tbody className="tablefirstBody">
+            {/* <tr>
+              <td style={{ color: "#B4B4B4" }}>Team Name</td>
+              <td>
+                {appliDetailsData?.TeamName}
+                <img
+                  src={arrow_up_right}
+                  alt="Arrow Up Right"
+                  style={{ width: "24px", height: "24px" }}
+                />
+              </td>
+            </tr> */}
+            <tr>
+              <td style={{ color: "#B4B4B4" }}>Status</td>
+              <td className={`statusTitleData ${appliDetailsData?.Status}`}>
+
+                {appliDetailsData?.Status}
+              </td>
+            </tr>
+            
+               
+                <tr>
+                  <td style={{ color: "#B4B4B4" }}>Date</td>
+                  <td>{formattedDate ? formattedDate: "----"}</td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#B4B4B4" }}>Time</td>
+                  <td>{formattedTime ?formattedTime:"----"}</td>
+                </tr>
+
+          </tbody>
+        </table>
+        </>}
         <table className="tablefirst">
           <p className="tableHeader">Team Details</p>
           <tbody className="tablefirstBody">
@@ -122,7 +188,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
                 {appliDetailsData?.TeamName}
               </td>
             </tr>
-            {!isProjectManagement ? (
+            {!isProjectManagement  && !isEventManagement  ? (
               <>
                 <tr>
                   <td style={{ color: "#B4B4B4" }}>Date</td>
@@ -155,10 +221,10 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
                 🌐💻
               </td>
             </tr>
-            {props.isProjectManagement ? (
+            {props.isProjectManagement || props.isEventManagement ? (
               <>
                 <tr>
-                  <td style={{ color: "#B4B4B4" }}>project Descripition</td>
+                  <td style={{ color: "#B4B4B4" }}>Project Descripition</td>
                   <td>
                     Collaborative coding for diverse teams! Create solutions
                     enhancing teamwork, code integration, and inclusivity. How
@@ -184,7 +250,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
           </tbody>
         </table>
 
-        {isProjectManagement ? (
+        {isProjectManagement || (isEventManagement  && appliDetailsData?.Status === "Completed") ? (
           <div className="btnConatainer">
             <button
               className="sheduleButton"
@@ -194,7 +260,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
               Review
             </button>
           </div>
-        ) : appliDetailsData.Status === "Pending" ? (
+        ) : appliDetailsData?.Status === "Pending" && !isEventManagement? (
           <div className="btnConatainer">
             <button
               className="rejectButton"
@@ -211,6 +277,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
           <></>
         )}
       </div>
+      
     </div>
   );
 };

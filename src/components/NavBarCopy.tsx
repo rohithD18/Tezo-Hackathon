@@ -98,11 +98,11 @@ function NavBarCopy() {
               </ul>
             </div>
             <div
-              className="col-3 d-flex justify-content-end "
+              className="col-3 d-flex "
               onClick={handleProfileClick}
             >
               <div className="row align-items-center ">
-                <div className="col-3 iconDivStyling">
+                <div className=" iconDivStyling">
                   <img
                     src={bellIcon}
                     width={20}
@@ -112,7 +112,7 @@ function NavBarCopy() {
                   ></img>
                 </div>
                 <div
-                  className={`col-4 ${showProfile ? "profileActiveImage" : ""}`}
+                  className={`col-3 ${showProfile ? "profileActiveImage" : ""}`}
                 >
                   <img
                     src={profilepic}
@@ -122,7 +122,7 @@ function NavBarCopy() {
                     alt="Profile"
                   />
                 </div>
-                <div className={`col-4 text-start details ${showProfile ? 'profileActiveDetails' : ''}`}>
+                <div className={`col-10 text-start details ${showProfile ? 'profileActiveDetails' : ''}`}>
                   <div className="nameStyling"> {localStorage.getItem("fullName")?.toString()}{}</div>
                   <div className="teamStyling">Team1</div>
                 </div>
