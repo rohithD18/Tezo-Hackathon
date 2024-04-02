@@ -78,6 +78,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
 
   const handleAccept = () => {
     setIsApplicationDetails(false);
+    setIsRating(true)
   };
   const handleScheduleEvent=()=>{
    
