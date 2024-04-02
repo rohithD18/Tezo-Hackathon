@@ -1,11 +1,18 @@
-.allCardBody {
+/* .allCardBody {
   padding: 0%;
-  width: 100%;
-  gap: 20px;
-  background-color: #1b2531;
+  width: 100%; */
+  /* gap: 20px; */
+  /* background-color: #1b2531; */
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center; */
+/* } */
+
+.allCardBody {
+  background-color: #1b2531; 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
+  gap: 30px;
 }
 /* Pagination Styles */
 .pagination {

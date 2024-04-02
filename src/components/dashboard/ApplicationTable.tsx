@@ -42,7 +42,6 @@ const ApplicationTable = (props: Props) => {
     );
   };
 
- 
   return (
     <>
       <table className="table">

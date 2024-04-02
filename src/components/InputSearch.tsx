@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "../styles/InputSearch.css";
-import { ITeams, IUsers } from "../Interfaces";
-import { getFilteredMembers, getFilteredTeams } from "../services/Services";
+import { IProject, ITeams, IUsers } from "../Interfaces";
+import {
+  getFilteredMembers,
+  getFilteredProjects,
+  getFilteredTeams,
+} from "../services/Services";
 interface SearchComponentProps {
   setQuerySearch: (query: string) => void;
   currentScreen: string;
@@ -13,8 +17,9 @@ const InputSearch: React.FC<SearchComponentProps> = ({
 }: SearchComponentProps) => {
   console.log(currentScreen);
 
-  const [filteredTeams, setFilteredTeams] = useState<ITeams[]>([]);
+  const [filteredTeams, setFilteredTeams] = useState<ITeams[] | IProject[]>([]);
   const [filteredMembers, setFilteredMembers] = useState<IUsers[]>([]);
+
   const [inputValue, setInputValue] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -22,6 +27,8 @@ const InputSearch: React.FC<SearchComponentProps> = ({
       setFilteredTeams([]);
     } else if (currentScreen === "SelectMembers") {
       setFilteredMembers(getFilteredMembers(e.target.value));
+    } else if (currentScreen === "ProjectManagment") {
+      setFilteredTeams(getFilteredProjects(e.target.value));
     } else {
       setFilteredTeams(getFilteredTeams(e.target.value));
     }
@@ -40,6 +47,8 @@ const InputSearch: React.FC<SearchComponentProps> = ({
     if (e.key === "Enter") {
       setQuerySearch(inputValue);
       setInputValue("");
+      setFilteredMembers([]);
+      setFilteredTeams([]);
     }
   };
   return (
@@ -71,7 +80,7 @@ const InputSearch: React.FC<SearchComponentProps> = ({
             <li
               key={index}
               className="dropDownItem"
-              onClick={(e) => {
+              onClick={() => {
                 // handleSelectItem(team);
                 handleClickItem(team.TeamName);
               }}
@@ -87,7 +96,7 @@ const InputSearch: React.FC<SearchComponentProps> = ({
               <li
                 key={index}
                 className="dropDownItem"
-                onClick={(e) => {
+                onClick={() => {
                   // handleSelectItem(team);
                   handleClickItem(team.Name);
                 }}

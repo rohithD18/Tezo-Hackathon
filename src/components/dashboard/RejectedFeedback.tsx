@@ -3,22 +3,19 @@ import "../../styles/dashboard/RejectedFeedback.css";
 import xclose from "../../assets/xclose.png";
 
 type Props = {
-  setIsApplicationDetailsOpen: (message:boolean) => void;
-  setIsRejectedFeed: (message:boolean) => void;
+  setIsRejectedFeed: (message: boolean) => void;
 };
 
 const RejectedFeedback = (props: Props) => {
-  const { setIsApplicationDetailsOpen, setIsRejectedFeed } = props;
-  
+  const { setIsRejectedFeed } = props;
 
   const [selectedReason, setSelectedReason] = useState<any>({
-    id:"",
+    id: "",
     radio: "",
     text: "",
   });
   const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedReason({ ...selectedReason, radio: e.target.value });
-    
   };
   const handleTextAreaChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -26,7 +23,6 @@ const RejectedFeedback = (props: Props) => {
     setSelectedReason({ ...selectedReason, text: event.target.value });
   };
   const handleClose = () => {
-    setIsApplicationDetailsOpen(false);
     setIsRejectedFeed(false);
   };
 
@@ -34,7 +30,6 @@ const RejectedFeedback = (props: Props) => {
     console.log("radio Reason", selectedReason);
     // console.log("text Reason", selectedReason);
     setIsRejectedFeed(false);
-    setIsApplicationDetailsOpen(false);
   };
 
   return (
@@ -131,7 +126,6 @@ const RejectedFeedback = (props: Props) => {
           placeholder="Please specify the reason"
           value={selectedReason.text}
           onChange={handleTextAreaChange}
-          
         ></textarea>
       </div>
       <button className="rejectedSubmitButton" onClick={handleSubmit}>

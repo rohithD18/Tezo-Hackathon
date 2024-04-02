@@ -9,9 +9,9 @@ export interface IEvents {
   image?: string;
   teamShedule?: string;
   captain?: string;
-  topic?: string; 
-  dateAndTime?: Date |string;
-  status?: string; 
+  topic?: string;
+  dateAndTime?: Date | string;
+  status?: string;
   review?: boolean;
 }
 export interface ITeamMembers {
@@ -45,7 +45,7 @@ export interface IProject {
   TeamName: string;
   descripition: string;
   Status: string;
-  submittedOn: string;
+  SubmissionDate: string;
   score:number
 }
 export interface IUsers {
