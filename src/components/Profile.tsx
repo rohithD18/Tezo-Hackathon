@@ -3,10 +3,12 @@ import "../styles/Profile.css";
 import image from "../assets/image.png";
 import { Teams } from "../services/Data";
 import { ITeamMems, IUsers } from "../Interfaces";
+import { userName } from "../services/Profile";
+import { userEmail } from "../services/Profile";
 const Profile = () => {
-  const Name: string = "Venkatesh";
+  // const Name: string = "Venkatesh";
   const TeamName: string = "Team One";
-  const Email: string = "venkatesh.g@gmail.com";
+  // const Email: string = "venkatesh.g@gmail.com";
   const [teamName, setTeamName] = useState<string | undefined>();
   const [teamMembers, setTeamMembers] = useState<IUsers[] | undefined>();
 
@@ -32,8 +34,8 @@ const Profile = () => {
           alt="profile"
         ></img>
         <div className="profileMemberDetails">
-          <label className="profileNameInProfile">{Name}</label>
-          <label className="emailStyling">{Email}</label>
+          <label className="profileNameInProfile">{userName}</label>
+          <label className="emailStyling">{userEmail}</label>
           <label className="empIdStyling">Emp. ID 2456</label>
         </div>
       </div>
@@ -48,10 +50,11 @@ const Profile = () => {
             >
               <img
                 src={image}
+                alt=""
                 width={64}
                 height={64}
                 className="imgStyling"
-              ></img>
+              />
               <div className="memberDetails">
                 <label className="name">{item.Name}</label>
                 <label className="emailStyling">{item.Email}</label>

@@ -1,13 +1,15 @@
 .cardAll {
-  width: 375px;
-  height: 316px;
+  width: 100%;
+  height: 325px;
   border-radius: 8px;
-  border: 1px;
-  gap: 24px;
   background: #273144;
   border: 1px solid #3d5a80;
   border-bottom: 4px solid #ee6c4d;
   text-decoration: none;
+}
+.card1,
+.card2 {
+  padding: 20px;
 }
 
 .card1 {
@@ -29,7 +31,7 @@
   border: 0px, 0px, 4px, 0px;
   gap: 12px;
   border-left: 4px;
-  padding: 0px 24px;
+  padding: 12px 24px;
   position: relative;
 }
 .cradLogo1 {
@@ -53,7 +55,7 @@
   width: 78px;
   height: 91px;
   color: rgba(238, 108, 77, 1);
-  /* border: 1px solid rgba(238, 108, 77, 1); */
+
   position: relative;
 }
 
@@ -62,7 +64,7 @@
   height: 91px;
   border: 1px;
   color: rgba(253, 246, 253, 0.1);
-  /* border: 1px solid rgba(250, 209, 200, 0.4); */
+
   position: absolute;
 }
 .cardRank {
@@ -96,15 +98,15 @@
   color: #ffd54f;
 }
 .cardPoint1 {
-  width: 120px;
+  width: 130px;
   height: 64px;
   padding: 16px;
   gap: 8px;
 }
 .cardPoint2 {
-  width: 88px;
+  width: 100%;
   height: 32px;
-  padding: 8px, 12px, 8px, 12px;
+  padding: 8px 12px 8px 12px;
   border-radius: 18px;
   border: 1px;
   gap: 8px;
@@ -125,17 +127,15 @@ img.starIcon {
   height: 16px;
 }
 .cardPoint {
-  /* padding-top: 3px; */
   width: 40px;
   height: 16px;
   font: Roboto;
   font-size: 14px;
-  font-weight: 500;
-  line-height: 16px;
+  font-weight: 700;
+  line-height: 18px;
   letter-spacing: 0em;
   text-align: left;
   color: rgba(255, 255, 255, 1);
-  /* padding-left: 0.7rem; */
 }
 .team {
   width: auto;
@@ -143,15 +143,11 @@ img.starIcon {
   margin-top: 4.375rem;
   padding: 16px, 24px, 16px, 24px;
   gap: 8px;
-  /* background-color: rgba(43, 54, 71, 0.4); */
   background-color: #2b364766;
 }
 .teamNames {
-  padding-left: 17px;
-  position: absolute;
   width: auto;
   height: 17px;
-  margin: 7px;
   font: Roboto;
   font-size: 24px;
   font-weight: 800;

@@ -6,6 +6,8 @@ import userIcon from "../assets/userIcon.png";
 import "../styles/ViewProfile.css";
 import { LogInLogOutComp, pca } from "./Login";
 import { MsalProvider } from "@azure/msal-react";
+import { userName } from "../services/Profile";
+import { userEmail } from "../services/Profile";
 
 type Props = {
   setShowProfile: (message: boolean) => void;
@@ -16,25 +18,22 @@ const ViewProfile: React.FC<Props> = ({
   setShowProfile,
   setUserName,
 }: Props) => {
-     
-
-const [isDashboard, setIsDashboard] = useState(false);
+  const [isDashboard, setIsDashboard] = useState(false);
   const handleCancel = () => {
     setShowProfile(false);
   };
-  const userName: any = localStorage.getItem("userDataL");
-  console.log(userName);
-  // console.log(userName);
   const userNameFromLogInLogOutComp = (data: string) => {
     setUserName(""); // or set the data to a state
   };
   useEffect(() => {
-    window.location.pathname === '/dashboard' && setIsDashboard(true);
-    
-  });
-  
+    window.location.pathname === "/dashboard" && setIsDashboard(true);
+  }, []);
+
   return (
-    <div className="profileContainer" style={isDashboard?{left:"80.4%"} : {left:"68.6%"} }>
+    <div
+      className="profileContainer"
+      style={isDashboard ? { left: "80.4%" } : { left: "68.6%" }}
+    >
       <div className="profileDiv">
         <span className="cancelContainer">
           <img
@@ -44,17 +43,13 @@ const [isDashboard, setIsDashboard] = useState(false);
             onClick={handleCancel}
           />
         </span>
-        <span className="emailSpan">
-          {localStorage.getItem("username".toString())}
-        </span>
+        <span className="emailSpan">{userEmail}</span>
         <div className="profilePicDiv">
           <div className="profileGroup">
             <img src={Group7334} alt="profilePic" className="profileGroupImg" />
           </div>
           <div className="profileNameContainer">
-            <span className="profileName">
-              {localStorage.getItem("fullName")?.toString()}{" "}
-            </span>
+            <span className="profileName">{userName}</span>
           </div>
         </div>
         <div className="profilePicDiv2">
