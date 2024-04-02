@@ -97,11 +97,48 @@ function NavBarCopy() {
                 </li>
               </ul>
             </div>
-            <div
-              className="col-3 d-flex "
-              onClick={handleProfileClick}
-            >
-              <div className="row align-items-center ">
+            <div className="col-3 d-flex justify-content-end">
+              <div className="row align-items-center justify-content-end">
+                <div className="iconDivStyling">
+                  <img
+                    src={bellIcon}
+                    width={20}
+                    height={24}
+                    style={{ paddingBottom: 3 }}
+                    alt="notificationIcon"
+                  />
+                </div>
+                <div
+                  className={`col-3 ${showProfile ? "profileActiveImage" : ""}`}
+                  onClick={handleProfileClick}
+                >
+                  <img
+                    src={
+                      "https://s3-alpha-sig.figma.com/img/9902/5026/ef545fce7a758188585b742e3d5aba25?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fEwFrsdK9jOHRGmMAKaa~pfqLETLTsLwzeqEV5NuQdR2~IjRG2cmUwXbwoK5P4iRQvWh993x5bJdRBA91KAKdEwE8U4e5c0dl4qhwUUoXbzVNGp8iKAmxxuMDUEAV538Fwl2bNq7gVsg5lBznWJhNHTl99W-i-OTqcjH6koweJLm2mw3yNm3c5rMDjhIzCGgOwLl7xWLIqZhtdAM~4Zu4NuzVzR8hIX6Z0hF~C~GH~EnxMY4uOsDEAVX4Wf0lxUwdq4G9Wqut7fZ11ZQiQysx7qcci6odULRTIDjEgRPBSP8qC2ARxCE3OdQTMvK538fYnvEgZovP5nMycfFeffY2Q__"
+                    }
+                    width="40"
+                    height="40"
+                    className="profile"
+                    alt="Profile"
+                  />
+                </div>
+                <div
+                  className={`col-10 text-start details ${
+                    showProfile ? "profileActiveDetails" : ""
+                  }`}
+                  onClick={handleProfileClick}
+                  style={{ float: "right" }} // Added style to float this div to the right
+                >
+                  <div className="nameStyling">
+                    {" "}
+                    {localStorage.getItem("fullName")?.toString()}
+                    {}
+                  </div>
+                  <div className="teamStyling">Team1</div>
+                </div>
+              </div>
+
+              {/* <div className="row align-items-center" >
                 <div className=" iconDivStyling">
                   <img
                     src={bellIcon}
@@ -113,6 +150,7 @@ function NavBarCopy() {
                 </div>
                 <div
                   className={`col-3 ${showProfile ? "profileActiveImage" : ""}`}
+                  onClick={handleProfileClick}
                 >
                   <img
                     src={profilepic}
@@ -122,11 +160,11 @@ function NavBarCopy() {
                     alt="Profile"
                   />
                 </div>
-                <div className={`col-10 text-start details ${showProfile ? 'profileActiveDetails' : ''}`}>
+                <div className={`col-10 text-start details ${showProfile ? 'profileActiveDetails' : ''}`} onClick={handleProfileClick}>
                   <div className="nameStyling"> {localStorage.getItem("fullName")?.toString()}{}</div>
                   <div className="teamStyling">Team1</div>
                 </div>
-              </div>
+              </div> */}
             </div>
             {showProfile && (
               <ViewProfile

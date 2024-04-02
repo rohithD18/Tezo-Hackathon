@@ -1,15 +1,31 @@
 .cardAll {
   width: 100%;
-  height: 325px;
+  height: 316px;
   border-radius: 8px;
   background: #273144;
   border: 1px solid #3d5a80;
   border-bottom: 4px solid #ee6c4d;
   text-decoration: none;
 }
+
 .card1,
 .card2 {
   padding: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .allCardBody {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .allCardBody {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(200px, 1fr)
+    ); 
+  }
 }
 
 .card1 {
@@ -97,14 +113,16 @@
 .cardRank.rank3 {
   color: #ffd54f;
 }
+
 .cardPoint1 {
-  width: 130px;
-  height: 64px;
+  width: auto;
+  height: auto;
   padding: 16px;
-  gap: 8px;
+  display: flex;
+  align-items: center;
 }
+
 .cardPoint2 {
-  width: 100%;
   height: 32px;
   padding: 8px 12px 8px 12px;
   border-radius: 18px;
@@ -112,31 +130,23 @@
   gap: 8px;
   background: rgba(164, 96, 142, 1);
   border: 1px solid rgba(252, 245, 250, 1);
-  align-items: center;
-  justify-content: center;
   display: flex;
+  align-items: center;
 }
-.starIcon {
-  width: 16px;
-  height: 16px;
-  color: yellow;
-  margin-left: 0.5rem;
-}
-img.starIcon {
-  width: 16px;
-  height: 16px;
-}
+
 .cardPoint {
-  width: 40px;
-  height: 16px;
   font: Roboto;
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 700;
-  line-height: 18px;
   letter-spacing: 0em;
-  text-align: left;
   color: rgba(255, 255, 255, 1);
 }
+
+.starIcon {
+  width: 18px;
+  height: 18px;
+}
+
 .team {
   width: auto;
   height: 49px;
@@ -193,138 +203,3 @@ img.captainImage {
 
   color: #ffffff;
 }
-
-/* //pagination */
-/* .pagination {
-  display: flex;
-  top: 976px;
-  left: 140px;
-  padding: 0px, 20px;
-  border-top: 1px;
-  gap: 8px;
-  background-color: #273144;
-
-  justify-content: space-around;
-
-  color: #b4b4b4;
-  cursor: pointer;
-}
-ul.pagination {
-  padding-top: 10px;
-  list-style: none;
-}
-
-ul.pagination li {
-  color: gray;
-  text-decoration: none;
-}
-
-ul.pagination li a {
-  color: white;
-  text-decoration: none;
-}
-
-.paginationBox122 {
-  align-items: center;
-  display: flex;
-  width: 729px;
-  height: 48px;
-  gap: 8px;
-}
-
-.paginationBox2Num {
-  width: 384px;
-  margin-top: 10px;
-  height: 48px;
-  border-radius: 4px;
-  border: 0px, 1px, 0px, 1px;
-}
-
-.showingText {
-  width: 58px;
-  height: 24px;
-  font: Inter;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: gray;
-}
-
-.dropdownDiv {
-  width: 90px;
-  height: 48px;
-  border: 1px;
-  gap: 8px;
-  color: 1px solid #3d5a80;
-}
-
-.totalRecords {
-  width: 565px;
-  height: 24px;
-  font-family: Inter;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: left;
-
-  color: gray;
-}
-.dropdownInput {
-  display: contents;
-  display: flex;
-  width: 90px;
-  height: 21px;
-  padding: 12px;
-  border-radius: 4px;
-  gap: 8px;
-}
-.righttext {
-  width: 60px;
-  height: 24px;
-  gap: 10px;
-}
-.totalRender {
-  width: 29px;
-  height: 24px;
-  font: Inter;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: #eeeeee;
-}
-.dropdownImgDiv {
-  width: 24px;
-  height: 24px;
-  padding: 0px, 6.37px, 0px, 6.34px;
-}
-
-img.dropdownImage {
-  width: 11.29px;
-  height: 6.39px;
-  top: 8.86px;
-  left: 6.34px;
-  color: #eeeeee;
-}
-
-
-.pageNum {
-  text-decoration: none;
-  border: 1px solid transparent; 
-  cursor: pointer;
-  outline: none; 
-}
-
-.active {
-  color: #fff;
-  background: #3d5a80;
-  padding: 19px;
-  padding-bottom: 16px;
-
-  width: 48px;
-  height: 48px;
-} */
