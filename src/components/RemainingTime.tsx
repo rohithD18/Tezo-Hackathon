@@ -1,49 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles/HomePageMain.css";
 
 const RemainingTime = () => {
   const [remainingTimeArray, setRemainingTimeArray] = useState<number[]>([
     0, 0, 0, 0,
   ]);
+  
+  const intervalIdRef = useRef<NodeJS.Timeout | null>(null); // Create a ref for intervalId
 
   useEffect(() => {
+    const calculateRemainingTime = () => {
+      // const eventDate = new Date("April 1, 2024 00:00:00").getTime();
+      const eventDate = new Date("April 3, 2024 00:00:00").getTime();
+
+      const nowDate = new Date().getTime();
+      const dateDiff = eventDate - nowDate;
+
+      const remainingDays = Math.floor(dateDiff / (1000 * 60 * 60 * 24));
+      const remainingHours = Math.floor(
+        (dateDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const remainingMinutes = Math.floor(
+        (dateDiff % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const remainingSeconds = Math.floor((dateDiff % (1000 * 60)) / 1000);
+
+      const newRemainingTimeArray = [
+        remainingDays,
+        remainingHours,
+        remainingMinutes,
+        remainingSeconds,
+      ];
+
+      setRemainingTimeArray(newRemainingTimeArray);
+    };
+
     calculateRemainingTime();
-    const intervalId = setInterval(calculateRemainingTime, 1000);
-    return () => clearInterval(intervalId);
+    intervalIdRef.current = setInterval(calculateRemainingTime, 1000);
+
+    return () => clearInterval(intervalIdRef.current!);
   }, []);
-
-  const calculateRemainingTime = () => {
-    const eventDate = new Date("April 1, 2024 00:00:00").getTime();
-    const nowDate = new Date().getTime();
-    const dateDiff = eventDate - nowDate;
-
-    const remainingDays = Math.floor(dateDiff / (1000 * 60 * 60 * 24));
-
-    const remainingHours = Math.floor(
-      (dateDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-
-    const remainingMinutes = Math.floor(
-      (dateDiff % (1000 * 60 * 60)) / (1000 * 60)
-    );
-
-    const remainingSeconds = Math.floor((dateDiff % (1000 * 60)) / 1000);
-
-    setRemainingTimeArray([
-      remainingDays,
-      remainingHours,
-      remainingMinutes,
-      remainingSeconds,
-    ]);
-  };
-
-  // console.log("Remaining Time");
 
   return (
     <div className="cards">
       {remainingTimeArray.map((item, index) => (
         <div className="card" key={index}>
-          <label className="number">{item < 10 ? "0" + item : item}</label>
+          <label className="number">{item < 0 ? "00" : item <10 ? "0" + item : item}</label>
           {index === 0 ? (
             <label className="timeValue">days</label>
           ) : index === 1 ? (
