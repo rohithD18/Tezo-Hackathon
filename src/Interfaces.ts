@@ -5,13 +5,13 @@ export interface IMembers {
 }
 export interface IEvents {
   id: number;
-  teamName: string;
+TeamName: string;
   image?: string;
   teamShedule?: string;
   captain?: string;
   topic?: string;
-  dateAndTime?: Date | string;
-  status?: string;
+  SubmissionDate?: Date | string;
+  Status?: string;
   review?: boolean;
 }
 export interface ITeamMembers {

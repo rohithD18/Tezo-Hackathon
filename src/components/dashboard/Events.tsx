@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/dashboard/Events.css";
 // import { EventsData } from "../../services/EventData";
-import { IEvents} from "../../Interfaces";
+import { IEvents, IProject} from "../../Interfaces";
 import profilepic from "../../assets/profilepic.jpg";
 import PaginationSection from "../pagination/PaginationSection";
 import DashboardNav from "./DashboardNav";
@@ -10,6 +10,8 @@ import Feedback1 from "../../assets/Feedback1.png";
 import  EventSchedulePopUp  from "./EventSchedulePopUp";
 // import { getArrayItems } from "../../services/Services";
 import { EventsData as Data} from "../../services/EventData";
+import ApplicationDetails from "./ApplicationDetails";
+import ViewBlur from "./ViewBlur";
 
 const Events = () => {
   const [currEventData, setCurrEventData] = useState<
@@ -31,8 +33,19 @@ const Events = () => {
   const [filteredData, setFilteredData] = useState<IEvents[]>([]);
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [total, setTotal] = useState(0);
-  const [scheduledData, setScheduledData] = useState(null);
+  // const [isProjectManagement, setIsProjectManagement] =
+  // useState<boolean>(false);
+  const [isEventManagement, setIsEventManagement] =
+  useState<boolean>(false);
+const [querySearch, setQuerySearch] = useState<string>("");
+const [isRating, setIsRating] = useState<boolean>(false);
+const [isRejectedFeed, setIsRejectedFeed] = useState<boolean>(false);
+
+const [appliDetailsData, setAppliDetailsData] = useState<IEvents>(
+);
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [scheduleEvent, setScheduleEvent] = useState<boolean>(false);
   const [EventsData, setEventsData] = useState<IEvents[]>(Data);
 
   useEffect(() => {
@@ -40,17 +53,26 @@ const Events = () => {
     // getArrayItems(EventsData);
   }, [EventsData]);
   const updateEvents = (newitem: IEvents) => {
-    setEventsData([...EventsData,newitem]);
+    const updatedItems = EventsData.filter(item => !(item.Status === 'Pending' && item.TeamName=== newitem.TeamName));
+    setEventsData([...updatedItems,newitem]);
+  };
+  
+  const handleAppliDetailsData = (data: IEvents) => {
+    setAppliDetailsData(data);
+    setIsEventManagement(true);
   };
   useEffect(() => {
+
     const filtered = currEventData.filter((event:IEvents ) =>{
-      console.log("jdhciu",event);
-      if(event.teamName){  
-        return event.teamName.toLowerCase().includes(searchQuery.toLowerCase()) }
+   
+      // handleClosePopup();
+      if(event.TeamName){  
+        return event.TeamName.toLowerCase().includes(searchQuery.toLowerCase()) }
       else{
         return event
       }
     }
+   
     );
     setFilteredData(filtered);
   }, [currEventData, searchQuery]);
@@ -63,7 +85,7 @@ const Events = () => {
         setCurrEventData(EventsData);
     } else {
       const filtered = EventsData.filter(
-        (event) => event.status === status
+        (event) => event.Status === status
       );
       setCurrEventData(filtered);
     }
@@ -76,14 +98,18 @@ const Events = () => {
     };
 
     EventsData.forEach((event) => {
-      counts[event.status as keyof typeof counts]++;
+      counts[event.Status as keyof typeof counts]++;
     });
 
     setStatusCounts(counts);
     setTotal(EventsData.length);
     setCurrEventData(EventsData);
   }, [EventsData]);
+  useEffect(() => {
 
+    scheduleEvent && setIsPopupOpen(true)
+
+  }, [scheduleEvent,appliDetailsData]);
 
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -171,6 +197,7 @@ const Events = () => {
                 <tr
                   className="tableRowDataEvent"
                   key={index}
+                  onClick={() => handleAppliDetailsData(event)}
                 >
                 
                   <td className="tableRowTitle">
@@ -188,7 +215,7 @@ const Events = () => {
                           border: "none",
                         }}
                       />
-                      {event.teamName}
+                      {event.TeamName}
                     </span>
                   </td>
                   <td className="tableRowTitle">
@@ -210,14 +237,14 @@ const Events = () => {
                     </span>
                   </td>
                   <td className="tableRowTitle">{event.topic}</td>
-                  <td className="tableRowTitle">{event.dateAndTime ? event.dateAndTime.toLocaleString() : "--"
+                  <td className="tableRowTitle">{event.SubmissionDate ? event.SubmissionDate.toLocaleString() : "--"
 }</td>
                
 <td className="statusTitle">
                     <div
-                      className={`statusTitleData ${event.status}`}
+                      className={`statusTitleData ${event.Status}`}
                     >
-                      {event.status}
+                      {event.Status}
                     </div>
                   </td>
                   <td className="tableRowTitle">
@@ -248,9 +275,31 @@ const Events = () => {
           screen="events"
         />
         </div>
+        {isEventManagement && (
+            <ApplicationDetails
+              isProjectManagement={false}
+              isEventManagement={isEventManagement}
+              appliDetailsData={appliDetailsData}
+              setIsApplicationDetails={setIsEventManagement}
+              setIsRating={setIsRating}
+              setIsRejectedFeed={setIsRejectedFeed}
+              setScheduleEvent={setScheduleEvent}
+              scheduleEvent={scheduleEvent}
+            />
+          )}
       </div>
+      {(isRejectedFeed || isRating || isEventManagement) && (
+          <ViewBlur
+            isRating={isRating}
+            isRejectedFeed={isRejectedFeed}
+            setIsRejectedFeed={setIsRejectedFeed}
+            setIsRating={setIsRating}
+          />
+        )}
       </div>
-       {isPopupOpen && <EventSchedulePopUp onClose={handleClosePopup} updateEvents={updateEvents} DataOfEvents={EventsData}/>}
+       {(isPopupOpen && !scheduleEvent) && <EventSchedulePopUp onClose={handleClosePopup} updateEvents={updateEvents} DataOfEvents={EventsData} />}
+       {(isPopupOpen && scheduleEvent) && <EventSchedulePopUp onClose={handleClosePopup} updateEvents={updateEvents} DataOfEvents={EventsData} appliDetailsData={appliDetailsData} setIsApplicationDetails={setIsEventManagement}/>}
+
 
     </>
   );
