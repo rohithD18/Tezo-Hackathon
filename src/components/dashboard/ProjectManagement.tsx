@@ -39,11 +39,11 @@ export const ProjectManagement: React.FC = () => {
     const sortedData = [...curSortData].sort((a, b) => {
       if (sortClick) {
         return (
-          new Date(a.submittedOn).getTime() - new Date(b.submittedOn).getTime()
+          new Date(a.SubmissionDate).getTime() - new Date(b.SubmissionDate).getTime()
         );
       } else {
         return (
-          -new Date(a.submittedOn).getTime() + new Date(b.submittedOn).getTime()
+          -new Date(a.SubmissionDate).getTime() + new Date(b.SubmissionDate).getTime()
         );
       }
     });
@@ -62,12 +62,12 @@ export const ProjectManagement: React.FC = () => {
     const value = event.target.value as string;
 
     if (value === "All") {
-      setSortData([...projects]);
+      setSortData([...Projects]);
     } else if (value === "Pending") {
-      const sortedData = projects.filter((project) => project.score === 0);
+      const sortedData = Projects.filter((item) => item.score === 0);
       setSortData([...sortedData]);
     } else if (value === "Submit") {
-      const sortedData = projects.filter((project) => project.score !== 0);
+      const sortedData = Projects.filter((item) => item.score !== 0);
       setSortData([...sortedData]);
     }
   }
@@ -149,7 +149,7 @@ export const ProjectManagement: React.FC = () => {
                       {record.TeamName}
                     </td>
                     <td className="recordDescription">{record.descripition}</td>
-                    <td>{record.submittedOn}</td>
+                    <td>{record.SubmissionDate}</td>
                     <td>
                       {record.score != 0 ? (
                         <img
