@@ -17,7 +17,7 @@ import ViewBlur from "./ViewBlur";
 import Feedback from "../../assets/Feedback.png";
 import Feedback1 from "../../assets/Feedback1.png";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { SelectChangeEvent } from '@mui/material';
+import { SelectChangeEvent } from "@mui/material";
 // type Props = {
 //     setIsRating:any;
 //     setIsApplicationDetailsOpen: any;
@@ -27,8 +27,8 @@ import { SelectChangeEvent } from '@mui/material';
 //   };
 
 export const ProjectManagement: React.FC = () => {
-  const [curSortData,setSortData]=useState<IProject[]>(projects);
-  const[sortClick,setSortClick]=useState<boolean>(true);
+  const [curSortData, setSortData] = useState<IProject[]>(projects);
+  const [sortClick, setSortClick] = useState<boolean>(true);
   const [isProjectManagementDetailsOpen, setIsProjectManagementDetailsOpen] =
     useState<boolean>(false);
   const [isProjectManagement, setIsProjectManagement] =
@@ -43,20 +43,24 @@ export const ProjectManagement: React.FC = () => {
 
   const [appliDetailsData, setAppliDetailsData] = useState<IApplications[]>([]);
   const sortDate = () => {
-    
     const sortedData = [...curSortData].sort((a, b) => {
       if (sortClick) {
-        return new Date(a.submittedOn).getTime() - new Date(b.submittedOn).getTime();
+        return (
+          new Date(a.submittedOn).getTime() - new Date(b.submittedOn).getTime()
+        );
       } else {
-        return -new Date(a.submittedOn).getTime() + new Date(b.submittedOn).getTime();
+        return (
+          -new Date(a.submittedOn).getTime() + new Date(b.submittedOn).getTime()
+        );
       }
     });
-  
-    setSortClick(prevState => !prevState);
+
+    setSortClick((prevState) => !prevState);
     setSortData(sortedData);
   };
 
   const handleAppliDetailsData = (data: any) => {
+    setIsRating(false);
     setAppliDetailsData(data);
     setIsApplicationDetails(true);
     setIsProjectManagementDetailsOpen(true);
@@ -66,20 +70,20 @@ export const ProjectManagement: React.FC = () => {
   console.log(currentData);
   function handleChange(event: SelectChangeEvent<unknown>): void {
     const value = event.target.value as string;
-    
+
     if (value === "All") {
       setSortData([...projects]);
     } else if (value === "Pending") {
-      const sortedData = projects.filter(project => project.score === 0);
+      const sortedData = projects.filter((project) => project.score === 0);
       setSortData([...sortedData]);
     } else if (value === "Submit") {
-      const sortedData = projects.filter(project => project.score !== 0);
+      const sortedData = projects.filter((project) => project.score !== 0);
       setSortData([...sortedData]);
     }
   }
 
   return (
-    <>
+    < >
       <DashboardNav />
       <div className="projectManagement">
         <DisplayCount />
@@ -87,21 +91,28 @@ export const ProjectManagement: React.FC = () => {
           <div className="projectHeader">
             <p>Project Management</p>
             <div className="filterProjectManagement">
-            <FormControl  className="formControlDropdown"  >
-  <InputLabel className="reviewLabel" id="demo-simple-select-label">Review</InputLabel>
-  <Select
-    labelId="demo-simple-select-label"
-    id="demo-simple-select"
-    label="Review"
-    onChange={ handleChange}
-  >
-    <MenuItem value="All">All</MenuItem>
-    <MenuItem value="Pending">Pending</MenuItem>
-    <MenuItem value="Submit">Submit</MenuItem>
-   
-  </Select>
-</FormControl>
-            <InputSearch currentScreen={"ProjectManagment"}setQuerySearch={setQuerySearch} />
+              <FormControl className="formControlDropdown">
+                <InputLabel
+                  className="reviewLabel"
+                  id="demo-simple-select-label"
+                >
+                  Review
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Review"
+                  onChange={handleChange}
+                >
+                  <MenuItem value="All">All</MenuItem>
+                  <MenuItem value="Pending">Pending</MenuItem>
+                  <MenuItem value="Submit">Submit</MenuItem>
+                </Select>
+              </FormControl>
+              <InputSearch
+                currentScreen={"ProjectManagment"}
+                setQuerySearch={setQuerySearch}
+              />
             </div>
           </div>
           <table className="table table-borderless projectData">
@@ -134,32 +145,30 @@ export const ProjectManagement: React.FC = () => {
                     onClick={() => handleAppliDetailsData(record)}
                   >
                     <td scope="row">
-                      <img className="capatainImg"src={image} />
+                      <img className="capatainImg" src={image} />
                       {record.TeamName}
                     </td>
                     <td className="recordDescription">{record.descripition}</td>
                     <td>{record.submittedOn}</td>
                     <td>
-                    {record.score!=0 ? (
-                      <img
-                        src={Feedback}
-                        alt="feedback"
-                        className="reviewImg"
-                      />
-                    ) : (
-                      <img
-                        src={Feedback1}
-                        alt="Feedback"
-                        className="reviewImg"
-                      />
-                    )}
+                      {record.score != 0 ? (
+                        <img
+                          src={Feedback}
+                          alt="feedback"
+                          className="reviewImg"
+                        />
+                      ) : (
+                        <img
+                          src={Feedback1}
+                          alt="Feedback"
+                          className="reviewImg"
+                        />
+                      )}
                     </td>
                   </tr>
                 ))}
             </tbody>
           </table>
-        </div>
-        <div>
           <div className="userPagination">
             <PaginationSection
               setCurrentItem={setCurrentData}
@@ -167,6 +176,9 @@ export const ProjectManagement: React.FC = () => {
               screen=""
             />
           </div>
+        </div>
+        
+        <div>
           {isProjectManagementDetailsOpen && (
             <ApplicationDetails
               isProjectManagement={isProjectManagement}
@@ -179,7 +191,7 @@ export const ProjectManagement: React.FC = () => {
             />
           )}
         </div>
-        {(isProjectManagementDetailsOpen ) && (
+        {isProjectManagementDetailsOpen  && (
           <ViewBlur
             isRating={isRating}
             setIsApplicationDetailsOpen={setIsProjectManagementDetailsOpen}

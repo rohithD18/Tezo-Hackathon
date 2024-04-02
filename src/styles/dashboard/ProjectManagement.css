@@ -1,12 +1,12 @@
 .projectManagement {
     width: 100%;
     padding: 20px;
-    min-height: 100vh;
+    height: 100vh;
 }
 .projectManagementData{
     min-height: 80vh;
     padding-right: 90px;
-    background-color: #2B3647
+    
 }
 .projectHeader {
     display: flex;
@@ -33,13 +33,13 @@
     min-height:400px;
     border-collapse: collapse;
     margin-left: 26px;
+    background-color: #2B3647
     /* margin-right: 40px; */
 }
 .reviewImg{
     height:20px;
     width:20px
 }
-
 
 .headerTable {
     height: 52px;
@@ -98,22 +98,30 @@
  
 }
 #demo-simple-select-label{
-    color: white;
+    color: rgb(80, 77, 77) !important;
 }
 .filterProjectManagement{
     display:flex;
     
 }
-
-.filterProjectManagement .MuiFormControl-root.formControlDropdown {
-    background-color:rgb(39,49,68);
-    
+.filterProjectManagement{
+    color: white;
 }
+
 .filterProjectManagement .MuiFormControl-root.formControlDropdown .MuiInputBase-root.MuiOutlinedInput-root{
-    background-color:rgb(39,49,68);
+
     border-color: 1px solid rgb(61, 90, 128);
 }
 .filterProjectManagement .MuiFormControl-root.formControlDropdown label.MuiFormLabel-root.MuiInputLabel-root{
     color: black !important;
     font-size: 20px;
+}
+.filterProjectManagement .MuiFormControl-root.formControlDropdown{
+    margin-right: 40px;
+}
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.MuiMenu-paper.MuiMenu-paper {
+    max-height: 250px ;
+    max-width: 260px;
+    margin-left: 0px;
+    
 }

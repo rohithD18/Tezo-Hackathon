@@ -70,8 +70,8 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
   };
 
   const handleAccept = () => {
-    setIsRating(true);
     setIsApplicationDetails(false);
+    setIsRating(true);
     setIsApplicationDetailsOpen(true);
   };
 
