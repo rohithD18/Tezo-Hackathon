@@ -14,7 +14,7 @@ type Props = {
   isProjectManagement: boolean;
   isEventManagement?:boolean;
   setScheduleEvent?:(message: boolean) => void;
-  scheduleEvent?:boolean
+ 
 };
 
 const ApplicationDetails: React.FC<Props> = (props: Props) => {
@@ -26,21 +26,24 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     isProjectManagement,
     isEventManagement,
     setScheduleEvent,
-    scheduleEvent
    
   } = props;
-  // console.log(appliDetailsData, isProjectManagement);
+
 
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       const modal1 = document.querySelector(".ApplicationScreen");
-      const modal3 = document.querySelector(".EventManagement");
+      const modal3 = document.querySelector(".table");
       const modal2 = document.querySelector(".projectManagementData");
-      if ((modal1 && !modal1.contains(event.target as Node)) || 
-    (modal2 && !modal2.contains(event.target as Node)) ||
-    (modal3 && !modal3.contains(event.target as Node))) {
-  setIsApplicationDetails(false);
-}
+      if (modal1 && !modal1.contains(event.target as Node) ) {
+        setIsApplicationDetails(false);
+      }
+      if (modal2 && !modal2.contains(event.target as Node)) {
+        setIsApplicationDetails(false);
+      }
+      if (modal3 && !modal3.contains(event.target as Node)) {
+        setIsApplicationDetails(false);
+      }
 
     };
 
@@ -81,11 +84,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     setIsRating(true)
   };
   const handleScheduleEvent=()=>{
-   
-  
-    setScheduleEvent !==undefined && scheduleEvent!==undefined && setScheduleEvent(!scheduleEvent);
-  
-   
+    setScheduleEvent !==undefined && setScheduleEvent(true);
   }
  
   const handleReject = () => {
