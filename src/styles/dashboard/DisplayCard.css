@@ -1,6 +1,6 @@
 /* displayComponent.css */
 
-.displayComponents {
+/* .displayComponents {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -37,5 +37,53 @@
     font-size: 24px;
     line-height: 32px;
     color: #eeeeee;
+  } */
+  /* General styles */
+.displayComponents {
+  padding-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.displayComponents img {
+  width: 100%;
+  max-width: 40px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.singleCard {
+  flex-basis: calc(19% - 20px);
+  margin-bottom: 20px;
+  padding: 24px;
+  border: 2px solid #273144;
+  border-radius: 8px;
+  background-color: #273144;
+}
+
+/* Media queries */
+@media screen and (max-width: 1200px) {
+  .singleCard {
+    flex-basis: calc(25% - 20px);
   }
-  
+}
+
+@media screen and (max-width: 992px) {
+  .singleCard {
+    flex-basis: calc(33.33% - 20px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .singleCard {
+    flex-basis: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .singleCard {
+    flex-basis: calc(100% - 20px);
+  }
+}

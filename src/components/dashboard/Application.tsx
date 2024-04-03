@@ -171,15 +171,14 @@ const Application: React.FC = () => {
   };
 
   return (
-    <div className="applicationView">
+    <>
+      {/* // <div className="applicationView"> */}
       <DashboardNav />
       <div className="ApplicationScreen">
-        <div className="cardContainer">
-          <DisplayCard cardData={cardData} />
-        </div>
-        <div className="tableContainer">
-          <div className="tableTopContainer">
-            <span className="tableTitle">Applications</span>
+        <DisplayCard cardData={cardData} />
+        <div className="tableContainerr">
+          <div className="tableTopContainerr">
+            <span className="tableTitlee">Applications</span>
             <div className="searchbox">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -221,7 +220,7 @@ const Application: React.FC = () => {
             setIsRejectedFeed={setIsRejectedFeed}
           />
         )}
-        <div className=" userPagination">
+        <div className="PaginationContainer">
           <PaginationSection
             setCurrentItem={setDisplayOnApplication}
             data={filteredData}
@@ -237,7 +236,7 @@ const Application: React.FC = () => {
           setIsRating={setIsRating}
         />
       )}
-    </div>
+    </>
   );
 };
 
