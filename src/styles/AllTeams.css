@@ -8,12 +8,20 @@
   justify-items: center; */
 /* } */
 
-.allCardBody {
+/* .allCardBody {
   background-color: #1b2531; 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+} */
+
+
+.allCardBody {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - 20px), 1fr)); /* Adjust the gap value and minmax function as needed */
+  gap: 30px;
 }
+
 /* Pagination Styles */
 .pagination {
   height: 48px;
