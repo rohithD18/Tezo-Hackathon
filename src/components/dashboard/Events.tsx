@@ -47,14 +47,33 @@ const [appliDetailsData, setAppliDetailsData] = useState<IEvents>(
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [scheduleEvent, setScheduleEvent] = useState<boolean>(false);
   const [EventsData, setEventsData] = useState<IEvents[]>(Data);
+  const [addItem, setAddItem]=useState<boolean>(false);
 
   useEffect(() => {
     setCurrEventData(EventsData);
+   
     // getArrayItems(EventsData);
   }, [EventsData]);
-  const updateEvents = (newitem: IEvents) => {
-    const updatedItems = EventsData.filter(item => !(item.Status === 'Pending' && item.TeamName=== newitem.TeamName));
+  const updateEvents = (newitem: IEvents,appliDetailsData:any) => {
+   if(appliDetailsData==undefined){
+    const updatedItems = EventsData;
     setEventsData([...updatedItems,newitem]);
+  }
+    if(appliDetailsData!=undefined){
+      const updateItems =EventsData.map(item => {
+
+      if (item.Status === 'Pending' && item.TeamName === newitem.TeamName) {
+
+        return { ...item,Status:newitem.Status,SubmissionDate:newitem.SubmissionDate };
+
+      }
+
+      return item;
+
+    });
+    setEventsData(updateItems);
+  }
+    
   };
   
   const handleAppliDetailsData = (data: IEvents) => {
@@ -74,7 +93,9 @@ const [appliDetailsData, setAppliDetailsData] = useState<IEvents>(
     }
    
     );
+  
     setFilteredData(filtered);
+    
   }, [currEventData, searchQuery]);
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -104,19 +125,23 @@ const [appliDetailsData, setAppliDetailsData] = useState<IEvents>(
     setStatusCounts(counts);
     setTotal(EventsData.length);
     setCurrEventData(EventsData);
+  
   }, [EventsData]);
   useEffect(() => {
 
     scheduleEvent && setIsPopupOpen(true)
-
+  
   }, [scheduleEvent,appliDetailsData]);
 
   const handleOpenPopup = () => {
+   setAddItem(true)
     setIsPopupOpen(true);
   };
 
   const handleClosePopup = () => {
+    setAddItem(false);
     setIsPopupOpen(false);
+    setScheduleEvent(false)
   };
   return (
     <><DashboardNav/>
@@ -284,7 +309,7 @@ const [appliDetailsData, setAppliDetailsData] = useState<IEvents>(
               setIsRating={setIsRating}
               setIsRejectedFeed={setIsRejectedFeed}
               setScheduleEvent={setScheduleEvent}
-              scheduleEvent={scheduleEvent}
+
             />
           )}
       </div>
@@ -297,7 +322,7 @@ const [appliDetailsData, setAppliDetailsData] = useState<IEvents>(
           />
         )}
       </div>
-       {(isPopupOpen && !scheduleEvent) && <EventSchedulePopUp onClose={handleClosePopup} updateEvents={updateEvents} DataOfEvents={EventsData} />}
+       {(isPopupOpen && addItem) && <EventSchedulePopUp onClose={handleClosePopup} updateEvents={updateEvents} DataOfEvents={EventsData} />}
        {(isPopupOpen && scheduleEvent) && <EventSchedulePopUp onClose={handleClosePopup} updateEvents={updateEvents} DataOfEvents={EventsData} appliDetailsData={appliDetailsData} setIsApplicationDetails={setIsEventManagement}/>}
 
 
