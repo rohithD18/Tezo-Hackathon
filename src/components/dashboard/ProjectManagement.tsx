@@ -115,7 +115,7 @@ export const ProjectManagement: React.FC = () => {
               />
             </div>
           </div>
-          <table className="table table-borderless projectData">
+          <table className="projectData">
             <thead>
               <tr className="headerTable">
                 <th scope="col" className="colTeamName">
@@ -169,7 +169,7 @@ export const ProjectManagement: React.FC = () => {
                 ))}
             </tbody>
           </table>
-          <div className="userPagination">
+          <div className="userPaginationPM">
             <PaginationSection
               setCurrentItem={setCurrentData}
               data={curSortData}

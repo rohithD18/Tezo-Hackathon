@@ -1,10 +1,12 @@
 .navContainer {
     width: 16%;
-    top: 71.4px;
-    height: 100vh;
     padding: 18.48px;
     gap: 63.35px;
-    background-color: #273144;
+    background-color: #273144;  
+  }
+  .adminHomeDiv {
+    display: flex;
+     height: 100vh; 
   }
   
   .btnLabel {

@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import AdminNavBar from "./DashboardNav";
 import Application from "./Application";
 import DashboardView from "./DashboardView";
 import Users from "./Users";
-import ViewBlur from "./ViewBlur";
-import DashboardNav from "./DashboardNav";
 import { useParams } from "react-router-dom";
 import { ProjectManagement } from "./ProjectManagement";
 import Events from "./Events";
@@ -33,10 +30,7 @@ const Dashboard:React.FC = () => {
         }
 
         {
-          id === "ProjectManagement" ? <ProjectManagement
-          //  setIsApplicationDetailsOpen={setIsApplicationDetailsOpen} setIsRating={setIsRating}
-          // setIsRejectedFeed={setIsRejectedFeed} isRejectedFeed={isRejectedFeed} isRating={isRating}
-          /> : <></>
+          id === "ProjectManagement" ? <ProjectManagement /> : <></>
         }
          {id === "EventsManagement" && <Events />}
     </div>

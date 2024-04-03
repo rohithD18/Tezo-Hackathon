@@ -1,18 +1,16 @@
 .projectManagement {
     width: 100%;
     padding: 20px;
-    height: 100vh;
+    /* height: 100vh; */
+    background-color: transparent;
 }
-.projectManagementData{
-    min-height: 80vh;
-    padding-right: 90px;
-    
-}
+
+
 .projectHeader {
     display: flex;
     justify-content: space-between;
-    margin: 30px 0px 20px;
-    padding:15px 27px 0px 25px
+    margin: 30px 0px 20px; 
+    /* padding:15px 27px 0px 25px */
 }
 .headerTable img{
     width:20px;
@@ -29,12 +27,11 @@
     --bs-table-bg: transparent;
     --bs-table-color: #FFFFFF;
     padding: 10px;
-    width: 96.5%;
-    min-height:400px;
+    width: 100%;
+    /* height: 48px !important; */
     border-collapse: collapse;
-    margin-left: 26px;
-    background-color: #2B3647
-    /* margin-right: 40px; */
+    /* margin-left: 26px; */
+    background-color: #2B3647;
 }
 .reviewImg{
     height:20px;
@@ -48,6 +45,7 @@
 }
 
 .headerTable th {
+    vertical-align: middle;
     font-size: 20px;
     font-weight: 600;
 }
@@ -86,7 +84,11 @@
 .dataTable tr{
     cursor:pointer;
     border-bottom: 1px solid #3D5A80;
+    height: 60px;
 } 
+.dataTable td{
+    padding-left: 8px;
+}
 .dataTable tr:hover{
     cursor:pointer;
     background-color: #3D5A80;
@@ -98,7 +100,7 @@
  
 }
 #demo-simple-select-label{
-    color: rgb(80, 77, 77) !important;
+    color:#B4B4B4 !important;
 }
 .filterProjectManagement{
     display:flex;
@@ -117,11 +119,43 @@
     font-size: 20px;
 }
 .filterProjectManagement .MuiFormControl-root.formControlDropdown{
-    margin-right: 40px;
+    margin:7px 40px 0px 0px;
+    background-color: #2B3647;
+    border-radius: 4px;
+    border:1px solid #3D5A80;
+    height: 40px;
 }
 .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.MuiMenu-paper.MuiMenu-paper {
     max-height: 250px ;
     max-width: 260px;
     margin-left: 0px;
     
+}
+
+.filterProjectManagement .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl{
+    margin-top: 0px;
+    height:40px;
+
+}
+
+.filterProjectManagement .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl:active{
+    border-color: none;
+}
+.filterProjectManagement .MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input{
+    padding:0px 10px 30px;
+    margin-top: 25px;
+    color:white
+
+}
+.userPaginationPM{
+    position: fixed;
+    bottom: 0;
+    width:84%;
+    
+}
+#demo-simple-select-label{
+    margin-top:-10px;
+}
+.filterProjectManagement .MuiTouchRipple-root :hover{
+    background-color: red;
 }
