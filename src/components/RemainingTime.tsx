@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/HomePageMain.css";
+import { eventDate } from "../services/Profile";
 
 const RemainingTime = () => {
   const [remainingTimeArray, setRemainingTimeArray] = useState<number[]>([
@@ -11,7 +12,7 @@ const RemainingTime = () => {
   useEffect(() => {
     const calculateRemainingTime = () => {
       // const eventDate = new Date("April 1, 2024 00:00:00").getTime();
-      const eventDate = new Date("April 3, 2024 00:00:00").getTime();
+      
 
       const nowDate = new Date().getTime();
       const dateDiff = eventDate - nowDate;

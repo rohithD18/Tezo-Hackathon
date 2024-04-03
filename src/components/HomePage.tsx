@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "add-to-calendar-button";
 import Home from "./Home";
 import "../styles/HomePageMain.css";
 import scroll from "../assets/scroll.png";
@@ -7,12 +8,17 @@ import { IJudges } from "../Interfaces";
 import ribbon from "../assets/ribbon.png";
 import { events } from "../services/ScheduleData";
 import RemainingTime from "./RemainingTime";
-
+import { eventDate } from "../services/Profile";
 interface HomePageProps {
   isRegister: boolean;
 }
 const HomePage: React.FC<HomePageProps> = (props) => {
-  //Reamning Days Timmer
+  const formattedDate = new Date(eventDate);
+  const formattedStartDate = `${formattedDate.getFullYear()}-${
+    formattedDate.getMonth() + 1 < 10 ? "0" : ""
+  }${formattedDate.getMonth() + 1}-${
+    formattedDate.getDate() < 10 ? "0" : ""
+  }${formattedDate.getDate()}`;
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -53,8 +59,20 @@ const HomePage: React.FC<HomePageProps> = (props) => {
             time. However, unlike the elements in my code, time refuses to be
             debugged or optimised. So, make sure you do not run out of time.
           </p>
-          <button className="addButton">Add to Calender</button>
-          {/* </p> */}
+          <div className="addButton">
+            <add-to-calendar-button
+              name="Hackathon Event"
+              description="Reminder for hackathon"
+              startDate={formattedStartDate}
+              startTime="12:00"
+              endTime="19:00"
+              timeZone="Asia/Calcutta"
+              location="World Wide Web"
+              options="'Microsoft365'"
+              hideIconButton
+              hideCheckmark
+            ></add-to-calendar-button>
+          </div>
         </div>
 
         <div className="finalStage">
@@ -63,24 +81,6 @@ const HomePage: React.FC<HomePageProps> = (props) => {
             Don't forget to submit your Final Stage assignment in the dashboard
             summary section and Log In using your registered account
           </p>
-          {/* <div className="cards">
-            {remainingTimeArray.map((item, index) => (
-              <div className="card" key={index}>
-                <label className="number">
-                  {item < 10 ? "0" + item : item}
-                </label>
-                {index === 0 ? (
-                  <label className="timeValue">days</label>
-                ) : index === 1 ? (
-                  <label className="timeValue">hours</label>
-                ) : index === 2 ? (
-                  <label className="timeValue">minutes</label>
-                ) : (
-                  <label className="timeValue">seconds</label>
-                )}
-              </div>
-            ))}
-          </div> */}
           <RemainingTime />
         </div>
 
