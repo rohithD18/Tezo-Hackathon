@@ -8,7 +8,7 @@ import Dropdown from "../Dropdown";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker, DesktopTimePicker, TimePicker } from "@mui/x-date-pickers";
-import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, TextField } from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, TextField, Box } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 import { IEvents, ITeams } from "../../Interfaces";
 import { addNewEvent, combineDateAndTime } from "../../services/Services";
@@ -18,7 +18,7 @@ import { teamNames } from "../../services/TeamNames";
 interface PopupProps {
     onClose: () => void;
     DataOfEvents?:IEvents[];
-  updateEvents?:(item: IEvents) => void;
+  updateEvents?:(item: IEvents,appliDetailsData:any) => void;
   appliDetailsData?:IEvents;
   setIsApplicationDetails?:(message:boolean)=>void;
 
@@ -75,7 +75,7 @@ const EventSchedulePopUp =({onClose,updateEvents,DataOfEvents,appliDetailsData,s
     
      
        const item=addNewEvent({formattedDate,formattedTime,selectedOption});
-       updateEvents?.(item)
+       updateEvents?.(item,appliDetailsData)
        
       onClose();
       setIsApplicationDetails && setIsApplicationDetails(false)
@@ -84,19 +84,37 @@ const EventSchedulePopUp =({onClose,updateEvents,DataOfEvents,appliDetailsData,s
     useEffect(() => {
   //     const eventTeamNames =DataOfEvents && DataOfEvents.map(event => event.TeamName);
   // setFilteredTeams(teamNames.filter(name => eventTeamNames && !eventTeamNames.includes(name)));
+ if(appliDetailsData!=undefined){
 
-  const eventTeamNames = DataOfEvents && DataOfEvents
-  .filter(event => event.Status !== 'Pending') // Filter events with status 'pending'
+
+const eventTeamNames = DataOfEvents && DataOfEvents
+  .filter(event => event.Status !== 'Pending') // Filter events with status 'Pending'
+  .map(event => event.TeamName); // Extract TeamName values
+  
+  setFilteredTeams(teamNames.filter(name => 
+    eventTeamNames && !eventTeamNames.includes(name)
+  
+   
+  
+  ));}
+else{
+  
+  const eventTeamNames = DataOfEvents && DataOfEvents// Filter events with status 'pending'
   .map(event => event.TeamName); // Extract team names
 
 setFilteredTeams(teamNames.filter(name => 
   eventTeamNames && !eventTeamNames.includes(name)
 
+ 
+
 ));
-    }, [teamNames]);
+
+}
+
+    }, [DataOfEvents,appliDetailsData]);
     useEffect(()=>{
        appliDetailsData && setSelectedOption(appliDetailsData.TeamName)
-    })
+    },[])
     
     return(
         <div className="popup">
@@ -109,8 +127,8 @@ setFilteredTeams(teamNames.filter(name =>
             </div>
             <p>Please provide the details for the Event scheduled</p>
             <div className="schedule">
-                <div>
-                    <FormControl className="dropdown">
+                <Box>
+                    <FormControl className="dropdown" fullWidth>
       <InputLabel id="dropdown-label">Select Team</InputLabel>
       <Select
         labelId="Select Team"
@@ -118,16 +136,15 @@ setFilteredTeams(teamNames.filter(name =>
         value={selectedOption} 
         onChange={handleSelectChange} 
         disabled={appliDetailsData&&( appliDetailsData ? true : false)}
-        style={{color: appliDetailsData ? '#666666' : 'white', }}
-          
       >
       {(filteredTeams.map((team:string,id:number) => (
-            <MenuItem key={id} value={team}>
+            <MenuItem key={id} value={team} >
               {team}
             </MenuItem>
           )))}
       </Select>
-    </FormControl></div>
+    </FormControl>
+    </Box>
             <div className="dateAndTime">
             
                <DatePicker className="scheduleDatePicker" strictParsing={false} minDate={new Date()}   selected={selectedDate} onChange={handleDateChange}  placeholderText="Select Date"/>

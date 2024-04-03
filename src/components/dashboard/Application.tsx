@@ -121,9 +121,6 @@ const Application: React.FC = () => {
   };
 
   const [userRole, setUserRole] = useState<string>("admin");
-  // const handleUserRoleChange = (role: string) => {
-  //   setUserRole(role);
-  // };
 
   const renderFilterButtons = () => {
     if (userRole === "admin") {
