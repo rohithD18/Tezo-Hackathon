@@ -106,7 +106,7 @@ export const ProjectManagement: React.FC = () => {
                 >
                   <MenuItem value="All">All</MenuItem>
                   <MenuItem value="Pending">Pending</MenuItem>
-                  <MenuItem value="Submit">Submit</MenuItem>
+                  <MenuItem value="Submit">Completed</MenuItem>
                 </Select>
               </FormControl>
               <InputSearch
