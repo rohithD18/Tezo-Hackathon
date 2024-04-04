@@ -43,13 +43,17 @@ const ViewProfile: React.FC<Props> = ({
             onClick={handleCancel}
           />
         </span>
-        <span className="emailSpan">{userEmail}</span>
+        <span className="emailSpan">
+          {localStorage.getItem("username".toString())}
+        </span>
         <div className="profilePicDiv">
           <div className="profileGroup">
             <img src={Group7334} alt="profilePic" className="profileGroupImg" />
           </div>
           <div className="profileNameContainer">
-            <span className="profileName">{userName}</span>
+            <span className="profileName">
+              {localStorage.getItem("fullName")?.toString()}
+            </span>
           </div>
         </div>
         <div className="profilePicDiv2">
@@ -65,11 +69,11 @@ const ViewProfile: React.FC<Props> = ({
               </div>
             </button>
           </a>
-          <MsalProvider instance={pca}>
-            <LogInLogOutComp
-              userNameFromLogInLogOutComp={userNameFromLogInLogOutComp}
-            />
-          </MsalProvider>
+          {/* <MsalProvider instance={pca}> */}
+          <LogInLogOutComp
+            userNameFromLogInLogOutComp={userNameFromLogInLogOutComp}
+          />
+          {/* </MsalProvider> */}
         </div>
       </div>
     </div>
