@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/registrationStyles/Registration.css";
 import "../../styles/MyProject/ProjectSubmission.css";
 import "../../styles/MyProject/Demo.css";
@@ -6,11 +6,37 @@ import { ProjectDetail } from "./ProjectDetails";
 import { ProjectDemo } from "./Demo";
 import { ProjectSubmission } from "./ProjectSubmission";
 import { IProjectDetail } from "../../Interfaces";
-
+import { IProjectInfo } from "../../Interfaces";
+import {projectInfoArray} from '../../services/ProjectInfoDetails'
+interface MyProjectProps {
+  onSubmit: (data: IProjectInfo) => void;
+}
 const MyProject: React.FC = () => {
-  const [currentProjectForm, setCurrentProjectForm] =
-    useState<string>("TopicDetailsForm");
+  
+  const [currentProjectForm, setCurrentProjectForm] =useState<string>("ProjectDetailForm");
+  const [formData, setFormData] = useState<IProjectInfo[]>(projectInfoArray);
+  const [duplicateData,setDuplicateData]=useState<IProjectInfo[]|null>();
+  const handleSubmit = (data: IProjectInfo) => {
+    setFormData(prevData => [...prevData, data]);
+    console.log("Form Data:", data);
+  };
+  const renderCurrentForm = () => {
+    console.log(currentProjectForm)
+    if (currentProjectForm === "ProjectDetailForm") {
+      setDuplicateData(null);
+    } else if (currentProjectForm === "ProjectSubmissionForm" || currentProjectForm === "ProjectDescriptionForm") {
+      // Assuming you have an array of items named 'currentProjectFormArray' containing objects with 'teamid' property
+      const x = formData.filter(item => item.TeamId === 1);
+      setDuplicateData(x);
+    
 
+    }
+  useEffect(() => {
+    renderCurrentForm();
+  }, [currentProjectForm]);
+ 
+  }
+  
   return (
     <div className="registerHome">
       {/* <div className="navThroughFormD1"> */}
@@ -25,7 +51,7 @@ const MyProject: React.FC = () => {
               <p id="currentStep">1</p>{" "}
               <hr
                 id={
-                  currentProjectForm !== "TopicDetailsForm"
+                  currentProjectForm !== "ProjectDetailForm"
                     ? "currentHr"
                     : "notReachedHr"
                 }
@@ -35,7 +61,7 @@ const MyProject: React.FC = () => {
               {" "}
               <p
                 id={
-                  currentProjectForm !== "TopicDetailsForm"
+                  currentProjectForm !== "ProjectDetailForm"
                     ? "currentStep"
                     : "notReached"
                 }
@@ -44,7 +70,7 @@ const MyProject: React.FC = () => {
               </p>{" "}
               <hr
                 id={
-                  currentProjectForm === "TopicDescriptionForm"
+                  currentProjectForm === "ProjectDescripitionForm"
                     ? "currentHr"
                     : "notReachedHr"
                 }
@@ -54,7 +80,7 @@ const MyProject: React.FC = () => {
               {" "}
               <p
                 id={
-                  currentProjectForm === "TopicDescriptionForm"
+                  currentProjectForm === "ProjectDescripitionForm"
                     ? "currentStep"
                     : "notReached"
                 }
@@ -78,21 +104,23 @@ const MyProject: React.FC = () => {
       </div>
       <div
         className={
-          currentProjectForm === "TopicDescriptionForm"
+          currentProjectForm === "ProjectDescripitionForm"
             ? "topicForm"
             : "formSection1"
         }
+       
       >
-        {currentProjectForm === "TopicDetailsForm" ? (
-          <ProjectDetail />
-        ) : currentProjectForm === "TeamDetailsForm" ? (
-          <ProjectSubmission />
+        {currentProjectForm === "ProjectDetailForm" ? (
+          <ProjectDetail onSubmit={handleSubmit} setDuplicateData={(data:IProjectInfo[])=>{setDuplicateData(data)}} />
+        ) : currentProjectForm === "ProjectSubmissionForm" ? (
+          <ProjectSubmission onSubmit={handleSubmit} setDuplicateData={(data:IProjectInfo[])=>{setDuplicateData(data)}}
+             />
         ) : (
-          <ProjectDemo />
+          <ProjectDemo onSubmit={handleSubmit} setDuplicateData={(data:IProjectInfo[])=>{setDuplicateData(data)}} />
         )}
         <div className="nextCancelDiv">
           <button
-            onClick={() => setCurrentProjectForm("TopicDetailsForm")}
+            onClick={() => setCurrentProjectForm("ProjectDetailForm")}
             id="cancelBtn"
           >
             Cancel
@@ -101,14 +129,14 @@ const MyProject: React.FC = () => {
           <button
             onClick={() =>
               setCurrentProjectForm(
-                currentProjectForm === "TopicDetailsForm"
-                  ? "TeamDetailsForm"
-                  : "TopicDescriptionForm"
+                currentProjectForm === "ProjectDetailForm"
+                  ? "ProjectSubmissionForm"
+                  : "ProjectDescripitionForm"
               )
             }
             id="nextBtn"
           >
-            {currentProjectForm === "TopicDetailsForm" ? "Next" : "Submit"}
+            {currentProjectForm === "ProjectDetailForm" ? "Next" : "Submit"}
           </button>
         </div>
       </div>

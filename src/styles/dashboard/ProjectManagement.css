@@ -109,7 +109,9 @@
 .filterProjectManagement{
     color: white;
 }
-
+.filterProjectManagement .inputWithSearchIcon input{
+    height:55px;
+}
 .filterProjectManagement .MuiFormControl-root.formControlDropdown .MuiInputBase-root.MuiOutlinedInput-root{
 
     border-color: 1px solid rgb(61, 90, 128);
@@ -119,11 +121,11 @@
     font-size: 20px;
 }
 .filterProjectManagement .MuiFormControl-root.formControlDropdown{
-    margin:7px 40px 0px 0px;
+    margin:0px 40px 0px 0px;
     background-color: #2B3647;
     border-radius: 4px;
     border:1px solid #3D5A80;
-    height: 40px;
+    height: 55px;
 }
 .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.MuiMenu-paper.MuiMenu-paper {
     max-height: 250px ;
@@ -134,7 +136,7 @@
 
 .filterProjectManagement .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl{
     margin-top: 0px;
-    height:40px;
+    height:55px;
 
 }
 
@@ -154,7 +156,7 @@
     
 }
 #demo-simple-select-label{
-    margin-top:-10px;
+    margin-top:-3px;
 }
 .filterProjectManagement .MuiTouchRipple-root :hover{
     background-color: red;

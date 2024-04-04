@@ -1,20 +1,34 @@
 import React, { useState, useEffect } from "react";
 import TimeICon from '../../assets/TimeIcon.png'
-
-export const ProjectDetail = () => {
+import { IProjectInfo } from "../../Interfaces";
+interface ProjectDetailProps {
+    onSubmit: (data: IProjectInfo) => void;
+    setDuplicateData:(data: IProjectInfo[]) => void;
+  }
+  
+ 
+export const ProjectDetail : React.FC<ProjectDetailProps> = ({ onSubmit,setDuplicateData }) => {
     const [topic, setTopic] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const handleTopicChange = (event:React.ChangeEvent<HTMLInputElement>) => {
         const text = event.target.value;
-        setTopic(text);
-        
+        setTopic(text); 
+        updateDuplicateData(text, description);
+
     };
 
     const handleDescriptionChange = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
         const text = event.target.value;
         setDescription(text);
+        updateDuplicateData(text, description);
         
     };
+    const updateDuplicateData = (newTopic: string, newDescription: string) => {
+        // Create a new project info object with the updated topic and description
+        const newData: IProjectInfo[] = [{ Id: 1, ProjectName: "", Description: newDescription, ProjectStatus: 0, DetailedDescription: "", ProjectRegisteredDate: new Date(), SubmittedDate: new Date(), PresentationDate: new Date(), Comments: "", TeamId: 0 }];
+        // Call setDuplicateData with the new data
+        setDuplicateData(newData);
+      };
     const topicCharacterCount = topic.length;
     const descriptionCharacterCount = description.length;
 
@@ -29,7 +43,7 @@ export const ProjectDetail = () => {
                 </div>
                 
             </div>
-            <p className="dd">Share your project's vision and impact</p>
+            <p className="projectDetailTopic">Share your project's vision and impact</p>
             <div className="topicSec">
                 <p>Mention Topic</p>
                 <input type="text" placeholder="Enter the topic" value={topic} onChange={handleTopicChange} />
@@ -40,7 +54,7 @@ export const ProjectDetail = () => {
                 <textarea placeholder="Enter the topic description" value={description} onChange={handleDescriptionChange}></textarea>
             </div>
             <div className="count">{descriptionCharacterCount}/500</div>
-            <div id="ss">
+            <div id="projectDetailNote">
                 Note : The topic details will be sent for review after you click on Next.
             </div>
         </div>

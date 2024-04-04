@@ -78,3 +78,15 @@ export interface IUser {
   TeamName: string;
   RegisteredOn: Date | string;
 }
+ export interface IProjectInfo {
+  Id: number;
+  ProjectName: string;
+  Description: string;
+  ProjectStatus: number;
+  DetailedDescription: string;
+  ProjectRegisteredDate: Date;
+  SubmittedDate: Date;
+  PresentationDate: Date;
+  Comments: string;
+  TeamId: number;
+}
