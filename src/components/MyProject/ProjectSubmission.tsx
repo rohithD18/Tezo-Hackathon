@@ -66,7 +66,7 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ onSubmit,s
     const pdfUrl = URL.createObjectURL(file);
     setPdfUrl(pdfUrl);
     setPdfOpen(true);
-    setIsPdfView(true);
+    // setIsPdfView(true);
   };
   console.log(pdfUrl);
   // const closePDF = () => {
