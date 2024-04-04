@@ -7,16 +7,19 @@ import AddIcon from "../../assets/AddIcon.png";
 import TimeICon from "../../assets/TimeIcon.png";
 // import PdfViewer from "./PDFViewer";
 // import PDFViewer from "./PDFViewer";
+type Props = {
+  setIsPdfView: any;
+};
 
-export const ProjectSubmission: React.FC = () => {
+export const ProjectSubmission = (props: Props) => {
+  const { setIsPdfView } = props;
+
   const [files, setFiles] = useState<File[]>([]);
-  // const [pdfOpen, setPdfOpen] = useState(false);
-  // const [pdfUrl, setPdfUrl] = useState<string>("");
-  // const pdfUrl = 'https://example.com/ashu-ticket.pdf';
+  const [pdfOpen, setPdfOpen] = useState(false);
+  const [pdfUrl, setPdfUrl] = useState<string>("");
   const handleFileSelection = (selectedFiles: File[]) => {
     const updatedFiles1 = [...files, ...selectedFiles];
     setFiles(updatedFiles1);
-    // setPdfUrl(`https://example.com/+{files}`)
   };
   const formatFileSize = (bytes: number) => {
     if (bytes < 1024) {
@@ -59,11 +62,13 @@ export const ProjectSubmission: React.FC = () => {
     handleFileSelection(selectedFiles || []);
   };
 
-  // const openPDF = (url: any) => {
-  //   // setPdfUrl(url);
-  //   setPdfOpen(true);
-  // };
-
+  const openPDF = (file: File) => {
+    const pdfUrl = URL.createObjectURL(file);
+    setPdfUrl(pdfUrl);
+    setPdfOpen(true);
+    setIsPdfView(true);
+  };
+  console.log(pdfUrl);
   // const closePDF = () => {
   //   setPdfOpen(false);
   //   // setPdfUrl(null);
@@ -103,19 +108,16 @@ export const ProjectSubmission: React.FC = () => {
             multiple
             onChange={handleFileInputChange}
             accept=".pdf"
-            // Hide the default file input
           />
           {files?.length > 0 ? (
             <>
               <ul>
                 {files.map((file, index) => (
-
                   <li
                     className="projectDoc"
                     key={index}
-                    // onClick={openPDF}
+                    onClick={() => openPDF(file)}
                   >
-                    
                     <img id="pdf" src={pdf} alt="pdf icon" />
                     <div className="fileData">
                       <input type="text" value={file.name}></input>
@@ -152,7 +154,7 @@ export const ProjectSubmission: React.FC = () => {
           )}
         </div>
       </div>
-      {/* {pdfOpen && <PdfViewer pdfUrl={pdfUrl}></PdfViewer>} */}
+      {/* {pdfOpen && <PdfViewer pdfUrl={pdfUrl} ></PdfViewer>} */}
     </>
   );
 };

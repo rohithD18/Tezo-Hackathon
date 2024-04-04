@@ -386,7 +386,7 @@ span.captTitleDataSpan img {
   display: flex;
 }
 .PaginationContainer{
-  width: 100%;
-  position: relative;
+  width: 81%;
+  position: fixed;
   bottom: 0px;
 }
