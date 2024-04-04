@@ -295,7 +295,7 @@ text-align: center;
 .projectDetail p{
   color:rgba(238, 238, 238, 1)
 }
-.dd{
+.projectDetailTopic{
   font:
   Roboto Flex;
   font-weight:400;
@@ -308,7 +308,7 @@ text-align: center;
   float:right;
   color:rgba(180, 180, 180, 1);
 }
-#ss{
+#projectDetailNote{
   background-color: rgba(128, 68, 64, 1);
   margin-top: 30px;
   padding: 6px 12px;

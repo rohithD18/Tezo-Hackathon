@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import {PresenationDemo} from './PresentationDemo'
 import '../../styles/MyProject/Demo.css';
 import BackIcon from '../../assets/BackIcon.png';
-
-export const ProjectDemo=()=>{
+import { IProjectInfo } from "../../Interfaces";
+interface ProjectDemoProps {
+    onSubmit: (data: IProjectInfo) => void;
+    setDuplicateData:(data: IProjectInfo[]) => void;
+  }
+export const ProjectDemo: React.FC<ProjectDemoProps> = ({ onSubmit,setDuplicateData })=>{
     const [currentPresentation,setPresentation]=useState<boolean>(false)
     return(
         <div>
