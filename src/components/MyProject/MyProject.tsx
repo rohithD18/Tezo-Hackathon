@@ -41,7 +41,7 @@ const MyProject: React.FC = () => {
   
   return (
     <>
-      {isPdfView === true ? (
+      {isPdfView ? (
         <ViewPdfModal  setIsPdfView={setIsPdfView}/>
       ) : (
         <div className="registerHome">
