@@ -9,7 +9,8 @@ export interface IApplications {
   SubmissionDate: Date | string;
   Status: string;
   ProjectDescription: string;
-  review?:boolean
+  review?:boolean;
+  score?:number
 }
 
 function getRandomDate(): Date {

@@ -131,6 +131,7 @@
 padding-right: 90px; */
   background-color: #2b3647;
   margin-bottom: 40px;
+  padding-bottom: 5%;
   /* width: 75%; */
 }
 .title {
@@ -227,8 +228,7 @@ padding-right: 90px; */
   display: flex;
   flex-direction: column;
   padding-top: 30px;
-
-  height: 100vh;
+  padding-bottom: 10%;
   padding-left: 13%;
   padding-right: 13%;
 }

@@ -145,7 +145,7 @@ console.log(selectedRatingValue)
             </tr> */}
             <tr>
               <td style={{ color: "#B4B4B4" }}>Status</td>
-              <td className={`statusTitleData ${appliDetailsData?.Status}`}>
+              <td className={`statusTitleData ${(appliDetailsData as IEvents)?.Status}`}>
 
                 {appliDetailsData?.Status}
               </td>

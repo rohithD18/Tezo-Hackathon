@@ -44,6 +44,7 @@ export const EventsData:IEvents[] = [
       topic: "Topic V - Sustainable Energy Solutions for Tomorrow",
       SubmissionDate: new Date("2024-02-10T11:00:00"), 
       Status: "Completed",
+      projectDemoScore:0,
       review: false
     },
     {
