@@ -48,7 +48,7 @@ const [appliDetailsData, setAppliDetailsData] = useState<IEvents>(
   const [scheduleEvent, setScheduleEvent] = useState<boolean>(false);
   const [EventsData, setEventsData] = useState<IEvents[]>(Data);
   const [addItem, setAddItem]=useState<boolean>(false);
-
+  const [selectedRating, setSelectedRating]=useState<number>(0);
   useEffect(() => {
     setCurrEventData(EventsData);
    
@@ -142,6 +142,11 @@ const [appliDetailsData, setAppliDetailsData] = useState<IEvents>(
     setAddItem(false);
     setIsPopupOpen(false);
     setScheduleEvent(false)
+  };
+  const handleChildData = (data:number) => {
+    setSelectedRating(data)
+    console.log("hi")
+    // Do something with the data received from the child
   };
   return (
     <><DashboardNav/>
@@ -309,6 +314,7 @@ const [appliDetailsData, setAppliDetailsData] = useState<IEvents>(
               setIsRating={setIsRating}
               setIsRejectedFeed={setIsRejectedFeed}
               setScheduleEvent={setScheduleEvent}
+              selectedRatingValue={selectedRating}
 
             />
           )}
@@ -319,6 +325,7 @@ const [appliDetailsData, setAppliDetailsData] = useState<IEvents>(
             isRejectedFeed={isRejectedFeed}
             setIsRejectedFeed={setIsRejectedFeed}
             setIsRating={setIsRating}
+            selectedRatingValue={handleChildData}
           />
         )}
       </div>
