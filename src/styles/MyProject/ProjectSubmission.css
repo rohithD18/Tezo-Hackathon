@@ -53,6 +53,7 @@
     height: fit-content;
   }
   .projectDoc{
+    cursor: pointer;
     display:flex;
     justify-content: space-around;
     align-items: center;
