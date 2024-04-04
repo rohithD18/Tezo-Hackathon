@@ -14,6 +14,7 @@ type Props = {
   isProjectManagement: boolean;
   isEventManagement?:boolean;
   setScheduleEvent?:(message: boolean) => void;
+  selectedRatingValue?:number
  
 };
 
@@ -26,6 +27,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     isProjectManagement,
     isEventManagement,
     setScheduleEvent,
+    selectedRatingValue
    
   } = props;
 
@@ -56,6 +58,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
 
   let formattedDate: string = "";
   let formattedTime: string = "";
+  const [review,setReview]=useState<boolean>(false)
 //  const [schedule,setSchedule]=useState<boolean>(false);
   if (appliDetailsData?.SubmissionDate) {
     const dateObject = new Date(appliDetailsData?.SubmissionDate);
@@ -72,7 +75,11 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     // Formatting the time
     formattedTime = `${hours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
   }
-
+useEffect(()=>{
+  selectedRatingValue!==0 && 
+setReview(true);
+console.log(selectedRatingValue)
+},[setReview])
   const handleClose = () => {
     setIsApplicationDetails(false);
     setIsRating(false);
@@ -81,7 +88,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
 
   const handleAccept = () => {
     setIsApplicationDetails(false);
-    setIsRating(true)
+    setIsRating(true);
   };
   const handleScheduleEvent=()=>{
     setScheduleEvent !==undefined && setScheduleEvent(true);
@@ -91,7 +98,6 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     setIsRejectedFeed(true);
     setIsApplicationDetails(false);
   };
-
   return (
     <div className="applicationDetails">
       <div className="headerBar">
@@ -139,7 +145,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
             </tr> */}
             <tr>
               <td style={{ color: "#B4B4B4" }}>Status</td>
-              <td className={`statusTitleData ${appliDetailsData?.Status}`}>
+              <td className={`statusTitleData ${(appliDetailsData as IEvents)?.Status}`}>
 
                 {appliDetailsData?.Status}
               </td>
@@ -165,11 +171,13 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
               <td style={{ color: "#B4B4B4" }}>Team Name</td>
               <td>
                 {appliDetailsData?.TeamName}
+                <a href={`/teams/${appliDetailsData?.TeamName}`} style={{ textDecoration: "none" }}>
                 <img
                   src={arrow_up_right}
                   alt="Arrow Up Right"
                   style={{ width: "24px", height: "24px" }}
                 />
+                </a>
               </td>
             </tr>
             <tr>
@@ -249,7 +257,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
           </tbody>
         </table>
 
-        {isProjectManagement || (isEventManagement  && appliDetailsData?.Status === "Completed") ? (
+        {isProjectManagement || (isEventManagement  && appliDetailsData?.Status === "Completed" && (review === false) ) ? (
           <div className="btnConatainer">
             <button
               className="sheduleButton"
@@ -272,9 +280,9 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
               Accept
             </button>
           </div>
-        ) : (
-          <></>
-        )}
+        ) : 
+          isEventManagement &&(review=== true) &&   appliDetailsData?.Status === "Completed"  && <p>Score: {selectedRatingValue&&selectedRatingValue}</p>
+        }
       </div>
       
     </div>

@@ -64,10 +64,10 @@ export const ProjectManagement: React.FC = () => {
     if (value === "All") {
       setSortData([...Projects]);
     } else if (value === "Pending") {
-      const sortedData = Projects.filter((item) => item.score === 0);
+      const sortedData = Projects.filter((item) => item.projectDemoScore === 0);
       setSortData([...sortedData]);
     } else if (value === "Submit") {
-      const sortedData = Projects.filter((item) => item.score !== 0);
+      const sortedData = Projects.filter((item) => item.projectDemoScore !== 0);
       setSortData([...sortedData]);
     }
   }
@@ -106,7 +106,7 @@ export const ProjectManagement: React.FC = () => {
                 >
                   <MenuItem value="All">All</MenuItem>
                   <MenuItem value="Pending">Pending</MenuItem>
-                  <MenuItem value="Submit">Submit</MenuItem>
+                  <MenuItem value="Submit">Completed</MenuItem>
                 </Select>
               </FormControl>
               <InputSearch
@@ -151,7 +151,7 @@ export const ProjectManagement: React.FC = () => {
                     <td className="recordDescription">{record.descripition}</td>
                     <td>{record.SubmissionDate}</td>
                     <td>
-                      {record.score != 0 ? (
+                      {record.projectDemoScore != 0 ? (
                         <img
                           src={Feedback}
                           alt="feedback"

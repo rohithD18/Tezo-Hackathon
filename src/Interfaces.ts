@@ -13,6 +13,7 @@ TeamName: string;
   SubmissionDate?: Date | string;
   Status?: string;
   review?: boolean;
+  projectDemoScore?:number
 }
 export interface ITeamMembers {
   name: string;
@@ -46,7 +47,8 @@ export interface IProject {
   descripition: string;
   Status: string;
   SubmissionDate: string;
-  score:number
+  review?:boolean;
+  projectDemoScore?:number
 }
 export interface IUsers {
   Id: number;
@@ -77,4 +79,16 @@ export interface IUser {
   EmailAddress: string;
   TeamName: string;
   RegisteredOn: Date | string;
+}
+ export interface IProjectInfo {
+  Id: number;
+  ProjectName: string;
+  Description: string;
+  ProjectStatus: number;
+  DetailedDescription: string;
+  ProjectRegisteredDate: Date;
+  SubmittedDate: Date;
+  PresentationDate: Date;
+  Comments: string;
+  TeamId: number;
 }

@@ -5,15 +5,15 @@ import pdf from "../../assets/Pdf.png";
 import deleteIcon from "../../assets/deleteIcon.png";
 import AddIcon from "../../assets/AddIcon.png";
 import TimeICon from "../../assets/TimeIcon.png";
+import { IProjectInfo } from "../../Interfaces";
 // import PdfViewer from "./PDFViewer";
 // import PDFViewer from "./PDFViewer";
-type Props = {
-  setIsPdfView: any;
-};
+interface ProjectSubmissionProps {
+  onSubmit: (data: IProjectInfo) => void;
+  setDuplicateData:(data: IProjectInfo[]) => void;
+}
 
-export const ProjectSubmission = (props: Props) => {
-  const { setIsPdfView } = props;
-
+export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ onSubmit,setDuplicateData }) => {
   const [files, setFiles] = useState<File[]>([]);
   const [pdfOpen, setPdfOpen] = useState(false);
   const [pdfUrl, setPdfUrl] = useState<string>("");

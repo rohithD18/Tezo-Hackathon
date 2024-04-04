@@ -3,7 +3,7 @@ import { IEvents } from "../Interfaces";
 export const EventsData:IEvents[] = [
     {
       id: 1,
-      TeamName: "Team 1",
+      TeamName: "Team One",
       captain: "Captain A",
       topic: "Topic X - Exploring the depths of Artificial Intelligence",
       SubmissionDate: new Date("2024-04-01T09:00:00"), 
@@ -12,7 +12,7 @@ export const EventsData:IEvents[] = [
     },
     {
       id: 2,
-      TeamName: "Team 2",
+      TeamName: "Team Two",
       captain: "Captain B",
       topic: "Topic Y - Journey into Quantum Computing",
       SubmissionDate: new Date("2023-12-15T14:00:00"), 
@@ -21,7 +21,7 @@ export const EventsData:IEvents[] = [
     },
     {
       id: 3,
-      TeamName: "Team 3",
+      TeamName: "Team Three",
       captain: "Captain C",
       topic: "Topic Z - Cybersecurity: Challenges and Solutions",
       SubmissionDate: undefined,
@@ -30,7 +30,7 @@ export const EventsData:IEvents[] = [
     },
     {
       id: 4,
-      TeamName: "Team 4",
+      TeamName: "Team Four",
       captain: "Captain D",
       topic: "Topic W - The Future of Space Exploration",
       SubmissionDate: new Date("2024-03-22T16:45:00"), 
@@ -39,16 +39,17 @@ export const EventsData:IEvents[] = [
     },
     {
       id: 5,
-      TeamName: "Team 5",
+      TeamName: "Team Five",
       captain: "Captain E",
       topic: "Topic V - Sustainable Energy Solutions for Tomorrow",
       SubmissionDate: new Date("2024-02-10T11:00:00"), 
       Status: "Completed",
-      review: true
+      projectDemoScore:0,
+      review: false
     },
     {
       id: 6,
-      TeamName: "Team 6",
+      TeamName: "Team Six",
       captain: "Captain F",
       topic: "Topic U - Exploring the Unknown: Frontiers of Science",
       SubmissionDate: new Date("2024-05-20T13:30:00"), 
@@ -57,7 +58,7 @@ export const EventsData:IEvents[] = [
     },
     {
       id: 7,
-      TeamName: "Team 7",
+      TeamName: "Team Seven",
       captain: "Captain G",
       topic: "Topic T - The Art of Data Visualization",
       SubmissionDate: new Date("2024-01-05T15:00:00"), 
