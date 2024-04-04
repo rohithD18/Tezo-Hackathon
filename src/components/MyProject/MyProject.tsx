@@ -31,11 +31,12 @@ const MyProject: React.FC = () => {
     
 
     }
+  }
   useEffect(() => {
     renderCurrentForm();
   }, [currentProjectForm]);
  
-  }
+  
   
   return (
     <div className="registerHome">
