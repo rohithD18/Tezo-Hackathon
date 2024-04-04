@@ -46,7 +46,8 @@ export interface IProject {
   descripition: string;
   Status: string;
   SubmissionDate: string;
-  score:number
+  score:number;
+  review?:boolean
 }
 export interface IUsers {
   Id: number;

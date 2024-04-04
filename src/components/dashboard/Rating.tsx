@@ -3,11 +3,12 @@ import "../../styles/dashboard/Rating.css";
 import xclose from "../../assets/xclose.png";
 type Props = {
   setIsRating: (message: boolean) => void;
+  selectedRatingValue: (data: number) => void;
 };
 const Rating = (props: Props) => {
-  const { setIsRating } = props;
+  const { setIsRating,selectedRatingValue } = props;
   const ratings = Array.from({ length: 10 }, (_, index) => index + 1);
-  const [selectedRating, setSelectedRating] = useState(null);
+  const [selectedRating, setSelectedRating] = useState(0);
 
   const handleRatingClick = (rating: any) => {
     setSelectedRating(rating);
@@ -16,6 +17,7 @@ const Rating = (props: Props) => {
   const handleSubmit = () => {
     setIsRating(false);
     console.log("Selected rating:", selectedRating);
+    selectedRatingValue(selectedRating)
   };
   const handleClose = () => {
     setIsRating(false);
