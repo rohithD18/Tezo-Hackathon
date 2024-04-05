@@ -20,7 +20,6 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ pdfUrl }) => {
         src={pdfUrl}
         width="100%"
         height="500px"
-        frameBorder="0"
       ></iframe>
 
       {/* Display page number */}

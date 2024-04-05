@@ -15,7 +15,9 @@
   gap: 30px;
 } */
 
-
+.Bodyofpagination{
+  width: 100%;
+}
 .allCardBody {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - 20px), 1fr)); /* Adjust the gap value and minmax function as needed */
@@ -23,7 +25,7 @@
 }
 
 /* Pagination Styles */
-.pagination {
+/* .pagination {
   height: 48px;
   display: flex;
   top: 976px;
@@ -41,8 +43,7 @@
 .dropdownDiv {
   display: flex;
   align-items: center;
-  position: relative; /* Center the text vertically */
-}
+  position: relative; 
 
 .pagination .paginationBox122 {
   align-items: center;
@@ -64,13 +65,6 @@
   color: gray;
 }
 
-/* .pagination .dropdownDiv {
-  width: 90px;
-  height: 100%;
-  border: 1px solid #3d5a80;
-  gap: 8px;
-  color: 1px solid #3d5a80;
-} */
 .pagination .dropdownDiv {
   display: flex;
   align-items: center;
@@ -88,14 +82,6 @@
   color: gray;
 }
 
-/* .pagination .dropdownInput {
-  display: contents;
-  display: flex;
-  width: 90px;
-  padding: 12px;
-  border-radius: 4px;
-  gap: 8px;
-} */
 .pagination .dropdownInput {
   display: flex;
   gap: 12px;
@@ -147,16 +133,16 @@
 }
 
 ul.pagination {
-  padding: 10px 0; /* Adjust top and bottom padding */
+  padding: 10px 0;
   list-style: none;
-  display: flex; /* Use flexbox */
-  justify-content: center; /* Horizontally center */
-  align-items: center; /* Vertically center */
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
 }
 
 ul.pagination li {
   text-decoration: none;
-  margin: 0 5px; /* Adjust margin between items */
+  margin: 0 5px; 
 }
 
 ul.pagination li a {
@@ -168,7 +154,7 @@ ul.pagination li a {
   color: #fff;
   background: #3d5a80;
   padding: 18px;
-  padding-bottom: 12px; /* Adjust padding for active element */
+  padding-bottom: 12px; 
   width: 48px;
   height: 48px;
 }
@@ -188,4 +174,4 @@ ul.pagination li a {
   width: max-content;
   cursor: pointer;
   padding: 5px;
-}
+} */
