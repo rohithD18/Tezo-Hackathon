@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { IProject, ITeams, IUsers } from "../Interfaces";
 import { EventsData } from "./EventData";
 import { Projects } from "./ProjectManagementEvents";
+import { projectInfoArray } from "./ProjectInfoDetails";
+import { IProjectInfo } from "../Interfaces";
 export const getAMember = (value: string) => {
   const member = UsersData.filter((entry) =>
     entry.Name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
@@ -131,4 +133,22 @@ export const addNewEvent = (newEvent: any) => {
     Status: "Upcoming",
     review: false,
   };
+};
+
+export const updateDuplicateData = (key: string, value: string) => {
+    // Create a new project info object with the updated key and value
+    const newData: IProjectInfo[] = [{
+        Id: 1,
+        ProjectName: "",
+        Description: key === "Description" ? value : "",
+        ProjectStatus: 0,
+        DetailedDescription: key === "DetailedDescription" ? value :"",
+        ProjectRegisteredDate: new Date(),
+        SubmittedDate: new Date(),
+        PresentationDate: new Date(),
+        Comments: "",
+        TeamId: 6
+    }];
+    return
+    // Call setDuplicateData with the new data
 };
