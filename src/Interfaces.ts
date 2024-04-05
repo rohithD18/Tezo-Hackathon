@@ -13,7 +13,7 @@ TeamName: string;
   SubmissionDate?: Date | string;
   Status?: string;
   review?: boolean;
-  projectDemoScore?:number
+  ProjectSubmissionScore?:number
 }
 export interface ITeamMembers {
   name: string;
@@ -48,7 +48,7 @@ export interface IProject {
   Status: string;
   SubmissionDate: string;
   review?:boolean;
-  projectDemoScore?:number
+  projectSubmissionScore?:number
 }
 export interface IUsers {
   Id: number;

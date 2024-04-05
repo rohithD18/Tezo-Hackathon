@@ -12,11 +12,11 @@ const TeamCard: React.FC<Props> = (props: Props) => {
   const { data } = props;
   const handleCardClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
-    window.location.href = `/teams/${data.teamName}`;
+    window.location.href = `/teams/${data.teamName.replace(/\s+/g, '_')}`;
   };
   return (
     <>
-      <a href={`/teams/${data.teamName}`} style={{ textDecoration: "none" }}>
+      <a href={`/teams/${data.teamName.replace(/\s+/g, '_')}`} style={{ textDecoration: "none" }}>
         <div className="cardAll" key={data.id} onClick={handleCardClick}>
           <div className="card1">
             <div className="cardLogo">
