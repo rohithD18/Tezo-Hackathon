@@ -22,11 +22,11 @@ const TeamDetails = () => {
     });
     console.log("sss", teamNameParam, querySearch);
 
-    querySearch && window.history.pushState({}, "", `/teams/${querySearch}`);
+    querySearch && window.history.pushState({}, "", `/teams/${querySearch.replace(/\s+/g, '_')}`);
   }, [querySearch]); //
   useEffect(() => {
     Teams.forEach((item) => {
-      if (teamNameParam === item.TeamName) {
+      if (teamNameParam === item.TeamName.replace(/\s+/g, '_')) {
         setTeamMembers(item.TeamMembers);
         setTeamName(item.TeamName);
       }

@@ -10,7 +10,6 @@ export interface IApplications {
   Status: string;
   ProjectDescription: string;
   review?:boolean;
-  score?:number
 }
 
 function getRandomDate(): Date {
