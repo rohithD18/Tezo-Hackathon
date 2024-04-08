@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../styles/dashboard/Application.css";
 import profile from "../../assets/profile.png";
 import clipboard_tick from "../../assets/clipboard_tick.png";
@@ -12,8 +12,11 @@ import DashboardNav from "./DashboardNav";
 import ViewBlur from "./ViewBlur";
 import ApplicationTable from "./ApplicationTable";
 import DisplayCard from "./DisplayCard";
+import HackathonContext from "../../services/Context/HackathonContext";
 
 const Application: React.FC = () => {
+  const hackathonContext = useContext(HackathonContext);
+
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [isApplicationDetails, setIsApplicationDetails] =
     useState<boolean>(false);
@@ -81,6 +84,7 @@ const Application: React.FC = () => {
   const handleFilterClick = (status: string) => {
     setActiveFilter(status);
     if (status === "All") {
+      hackathonContext.setActivePage(0);
       const filtered = ApplicationData.filter((application) =>
         application.TeamName.toLowerCase().includes(searchQuery.toLowerCase())
       ).sort((a, b) => {

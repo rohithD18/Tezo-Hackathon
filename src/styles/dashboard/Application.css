@@ -111,7 +111,7 @@ img.cardImage {
 .teamTitle {
   width: 20%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -126,7 +126,7 @@ img.cardImage {
   padding-left: 8px;
   width: 20%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -141,7 +141,7 @@ img.cardImage {
   text-overflow: ellipsis;
   width: 20%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -154,7 +154,7 @@ img.cardImage {
 .projectSubmit {
   width: 10%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -167,7 +167,7 @@ img.cardImage {
 .dateTitle {
   width: 20%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -179,7 +179,7 @@ img.cardImage {
 .statusTitle {
   width: 20%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   vertical-align: middle;
   font-weight: 500;
@@ -224,7 +224,7 @@ img.ProjectedSubmittedImg:hover {
 .captTitleDataValue {
   width: 10%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -249,7 +249,7 @@ span.captTitleDataSpan img {
 .statusTitleData {
   width: 95px;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -348,7 +348,7 @@ span.captTitleDataSpan img {
 }
 
 .tableTitlee {
-  font-family: Raleway;
+  /* font-family: Raleway; */
   font-size: 24px;
   font-weight: 600;
   line-height: 28px;

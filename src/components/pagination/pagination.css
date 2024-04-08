@@ -130,15 +130,14 @@ ul.pagination li a {
 }
 
 .entriesPerPagePopup {
-  position: absolute;
-  left: 100%;
-  bottom: 0;
+  position: relative;
   background-color: rgba(61, 90, 128, 1);
   border: 1px solid #273144;
   padding: 10px;
   z-index: 1;
   max-height: 200px;
   overflow-y: auto;
+  bottom: 22px;
 }
 
 .popupItem {

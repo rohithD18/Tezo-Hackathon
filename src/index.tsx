@@ -6,16 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes } from "react-router-dom";
 import MyProject from "./components/MyProject/MyProject";
 
-
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+      
       <App />
     </BrowserRouter>
-    
+
     {/* <App /> */}
   </React.StrictMode>
 );

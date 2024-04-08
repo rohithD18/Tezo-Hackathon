@@ -202,7 +202,7 @@ border:none
      .statusTitle {
         width: 15%;
         height: 22px;
-        font-family: Inter;
+        font: Inter;
         font-size: 14px;
         vertical-align: middle;
         font-weight: 500;

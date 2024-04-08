@@ -20,6 +20,7 @@ import Profile from "./components/Profile";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { msalConfig } from "./authConfig";
 import { MsalProvider } from "@azure/msal-react";
+import { HackathonContextProvider } from "./services/Context/HackathonContext";
 
 export const pca = new PublicClientApplication(msalConfig);
 
@@ -37,22 +38,24 @@ const App: React.FC = () => {
         ) : (
           <>
             <NavBarCopy />
-            <Routes>
-              <Route
-                path="/"
-                Component={() => <HomePage isRegister={false} />}
-              />
-              <Route path="/registration-form" Component={RegistrationForm} />
-              <Route path="/schedule" Component={Schedule} />
-              <Route path="/teams" Component={MyTeam} />
-              <Route path="/teams/:teamNameParam" Component={TeamDetails} />
-              <Route path="/rules" Component={RejectedRework} />
-              <Route path="/myProject" Component={MyProject} />
-              <Route path="/allteams" Component={AllTeams} />
-              <Route path="/dashboard/" Component={Dashboard} />
-              <Route path="/dashboard/:id" Component={Dashboard} />
-              <Route path="/profile" Component={Profile} />
-            </Routes>
+            <HackathonContextProvider>
+              <Routes>
+                <Route
+                  path="/"
+                  Component={() => <HomePage isRegister={false} />}
+                />
+                <Route path="/registration-form" Component={RegistrationForm} />
+                <Route path="/schedule" Component={Schedule} />
+                <Route path="/teams" Component={MyTeam} />
+                <Route path="/teams/:teamNameParam" Component={TeamDetails} />
+                <Route path="/rules" Component={RejectedRework} />
+                <Route path="/myProject" Component={MyProject} />
+                <Route path="/allteams" Component={AllTeams} />
+                <Route path="/profile" Component={Profile} />
+                <Route path="/dashboard/" Component={Dashboard} />
+                <Route path="/dashboard/:id" Component={Dashboard} />
+              </Routes>
+            </HackathonContextProvider>
           </>
         )}
       </MsalProvider>

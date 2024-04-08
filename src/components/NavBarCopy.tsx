@@ -150,8 +150,8 @@ function NavBarCopy() {
                   alt="pic"
                 />
 
-                <div className="">
-                  <span className="nameStyling">
+                <div className="nameStyling">
+                  <span className="fullName">
                     {localStorage.getItem("fullName")?.toString()}
                   </span>
                   <br />
