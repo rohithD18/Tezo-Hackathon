@@ -134,6 +134,10 @@ color: #EE6C4D;
 cursor: pointer;
 
 }
+.descriptionHeading{
+  color: #B4B4B4;
+  vertical-align:top 
+}
 .btnConatainer {
   /* position: absolute; */
   width: 671.71px;

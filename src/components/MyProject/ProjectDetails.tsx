@@ -1,33 +1,34 @@
 import React, { useState } from "react";
 import TimeICon from '../../assets/TimeIcon.png'
 import { IProjectInfo } from "../../Interfaces";
+// /import {updateDuplicateData1} from "../../services/Services"
 interface ProjectDetailProps {
-    onSubmit: (data: IProjectInfo) => void;
+    
     setDuplicateData:(data: IProjectInfo[]) => void;
   }
   
  
-export const ProjectDetail : React.FC<ProjectDetailProps> = ({ onSubmit,setDuplicateData }) => {
+export const ProjectDetail : React.FC<ProjectDetailProps> = ({ setDuplicateData }) => {
     const [topic, setTopic] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const handleTopicChange = (event:React.ChangeEvent<HTMLInputElement>) => {
         const text = event.target.value;
         setTopic(text); 
-        updateDuplicateData(text, description);
+        updateDuplicateData("description",topic );
 
     };
 
     const handleDescriptionChange = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
         const text = event.target.value;
         setDescription(text);
-        updateDuplicateData(text, description);
+        updateDuplicateData("DetailedDescription", description);
         
     };
     const updateDuplicateData = (newTopic: string, newDescription: string) => {
         // Create a new project info object with the updated topic and description
-        const newData: IProjectInfo[] = [{ Id: 1, ProjectName: "", Description: newDescription, ProjectStatus: 0, DetailedDescription: "", ProjectRegisteredDate: new Date(), SubmittedDate: new Date(), PresentationDate: new Date(), Comments: "", TeamId: 0 }];
+        const newData: IProjectInfo[] = [{ Id: 1, ProjectName: "", Description: newTopic, ProjectStatus: 0, DetailedDescription: newDescription, ProjectRegisteredDate: new Date(), SubmittedDate: new Date(), PresentationDate: new Date(), Comments: "", TeamId: 6 }];
         // Call setDuplicateData with the new data
-        setDuplicateData(newData);
+        setDuplicateData(newData)
       };
     const topicCharacterCount = topic.length;
     const descriptionCharacterCount = description.length;

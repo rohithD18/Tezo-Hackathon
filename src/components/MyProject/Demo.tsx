@@ -4,10 +4,9 @@ import '../../styles/MyProject/Demo.css';
 import BackIcon from '../../assets/BackIcon.png';
 import { IProjectInfo } from "../../Interfaces";
 interface ProjectDemoProps {
-    onSubmit: (data: IProjectInfo) => void;
     setDuplicateData:(data: IProjectInfo[]) => void;
   }
-export const ProjectDemo: React.FC<ProjectDemoProps> = ({ onSubmit,setDuplicateData })=>{
+export const ProjectDemo: React.FC<ProjectDemoProps> = ({setDuplicateData })=>{
     const [currentPresentation,setPresentation]=useState<boolean>(false)
     return(
         <div>

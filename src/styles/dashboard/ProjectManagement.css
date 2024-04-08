@@ -111,6 +111,7 @@
 }
 .filterProjectManagement .inputWithSearchIcon input{
     height:55px;
+    font-size: 20px;
 }
 .filterProjectManagement .MuiFormControl-root.formControlDropdown .MuiInputBase-root.MuiOutlinedInput-root{
 
@@ -160,4 +161,14 @@
 }
 .filterProjectManagement .MuiTouchRipple-root :hover{
     background-color: red;
+}
+.filterProjectManagement .inputWithSearchIcon input::placeholder{
+    font-size:18px;
+    margin-left:5px
+
+}
+.filterProjectManagement .inputWithSearchIcon svg {
+    width:20px;
+    height:25px
+
 }

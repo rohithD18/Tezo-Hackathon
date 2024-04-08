@@ -6,6 +6,8 @@ import clock from "../../assets/clock.png";
 import "../../styles/dashboard/ApplicationDetails.css";
 import { IApplications } from "../../services/Data";
 import { IEvents, IProject } from "../../Interfaces";
+import { Projects } from "../../services/ProjectManagementEvents";
+import { log } from "console";
 type Props = {
   setIsApplicationDetails: (message: boolean) => void;
   appliDetailsData?: IApplications | IProject |IEvents;
@@ -14,7 +16,7 @@ type Props = {
   isProjectManagement: boolean;
   isEventManagement?:boolean;
   setScheduleEvent?:(message: boolean) => void;
-  selectedRatingValue?:number
+  // selectedRatingValue?:number
  
 };
 
@@ -27,11 +29,13 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     isProjectManagement,
     isEventManagement,
     setScheduleEvent,
-    selectedRatingValue
+    // selectedRatingValue
    
   } = props;
 
+ useEffect(()=>{
 
+ })
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       const modal1 = document.querySelector(".ApplicationScreen");
@@ -50,16 +54,29 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     };
 
     document.addEventListener("click", handleOutsideClick);
-
+ console.log("appli",appliDetailsData)
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
+  
   }, [setIsApplicationDetails]);
+useEffect(()=>{
+ if(isProjectManagement || isEventManagement  ){
+  const filteredProject = Projects.filter((event:IProject ) =>{
+    if(event.TeamName===appliDetailsData?.TeamName){  
+      console.log("inside")
+      return event
+    }
+  })
+  filteredProject !=null && setFilteredEvent(filteredProject)
+}
 
+},[appliDetailsData])
   let formattedDate: string = "";
   let formattedTime: string = "";
-  const [review,setReview]=useState<boolean>(false)
-//  const [schedule,setSchedule]=useState<boolean>(false);
+  // const [review,setReview]=useState<boolean>(false);
+  // const [type,setType]=useState<string|null>(null)
+ const [filteredEvent,setFilteredEvent]=useState<IProject[]|null>(null);
   if (appliDetailsData?.SubmissionDate) {
     const dateObject = new Date(appliDetailsData?.SubmissionDate);
     formattedDate = `${dateObject.getDate()} ${dateObject.toLocaleString(
@@ -75,11 +92,19 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     // Formatting the time
     formattedTime = `${hours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
   }
-useEffect(()=>{
-  selectedRatingValue!==0 && 
-setReview(true);
-console.log(selectedRatingValue)
-},[setReview])
+// useEffect(()=>{
+//   selectedRatingValue!==0 && 
+// setReview(true);
+// console.log(selectedRatingValue)
+// console.log(type)
+// },[setReview])
+// useEffect(()=>{
+// if (appliDetailsData?.type) {
+//   setType(appliDetailsData.type);
+// } else {
+//   setType(null);
+// }
+// },[appliDetailsData?.type])
   const handleClose = () => {
     setIsApplicationDetails(false);
     setIsRating(false);
@@ -145,7 +170,7 @@ console.log(selectedRatingValue)
             </tr> */}
             <tr>
               <td style={{ color: "#B4B4B4" }}>Status</td>
-              <td className={`statusTitleData ${(appliDetailsData as IEvents)?.Status}`}>
+              <td className={`statusTitleData ${appliDetailsData?.Status}`}>
 
                 {appliDetailsData?.Status}
               </td>
@@ -171,7 +196,7 @@ console.log(selectedRatingValue)
               <td style={{ color: "#B4B4B4" }}>Team Name</td>
               <td>
                 {appliDetailsData?.TeamName}
-                <a href={`/teams/${appliDetailsData?.TeamName}`} style={{ textDecoration: "none" }}>
+                <a href={`/teams/${appliDetailsData?.TeamName.replace(/\s+/g, '_')}`} style={{ textDecoration: "none" }}>
                 <img
                   src={arrow_up_right}
                   alt="Arrow Up Right"
@@ -215,11 +240,11 @@ console.log(selectedRatingValue)
           <p className="table2Header">Topic Submission Details</p>
           <tbody>
             <tr>
-              <td style={{ color: "#B4B4B4" }}>Topic</td>
+              <td className="descriptionHeading">Topic</td>
               <td>CodeHarmony: Bridging Tech Gaps</td>
             </tr>
             <tr>
-              <td style={{ color: "#B4B4B4" }}>Topic Description</td>
+              <td className="descriptionHeading">Topic Description</td>
               <td>
                 Collaborative coding for diverse teams! Create solutions
                 enhancing teamwork, code integration, and inclusivity. How can
@@ -228,36 +253,38 @@ console.log(selectedRatingValue)
                 🌐💻
               </td>
             </tr>
-            {props.isProjectManagement || props.isEventManagement ? (
+            {filteredEvent!=null ? (
               <>
                 <tr>
-                  <td style={{ color: "#B4B4B4" }}>Project Descripition</td>
+                  <td className="descriptionHeading">Project Descripition</td>
                   <td>
-                    Collaborative coding for diverse teams! Create solutions
+                    {/* Collaborative coding for diverse teams! Create solutions
                     enhancing teamwork, code integration, and inclusivity. How
                     can tech bring harmony to coding practices? Propose ideas
                     empowering efficient collaboration. Let's harmonize the
-                    coding experience! 🌐💻
+                    coding experience! 🌐💻 */}
+                    {filteredEvent[0].descripition}
                   </td>
                 </tr>
                 <tr>
-                  <td style={{ color: "#B4B4B4" }}>Submission</td>
+                  <td className="descriptionHeading">Submission</td>
                   <td>
-                    Collaborative coding for diverse teams! Create solutions
+                    {/* Collaborative coding for diverse teams! Create solutions
                     enhancing teamwork, code integration, and inclusivity. How
                     can tech bring harmony to coding practices? Propose ideas
                     empowering efficient collaboration. Let's harmonize the
-                    coding experience! 🌐💻
+                    coding experience!  */}
+                    {filteredEvent[0].descripition}
                   </td>
                 </tr>
               </>
-            ) : (
+             ) : (
               <></>
-            )}
+            )} 
           </tbody>
         </table>
 
-        {isProjectManagement || (isEventManagement  && appliDetailsData?.Status === "Completed" && (review === false) ) ? (
+        {isProjectManagement || (isEventManagement  && appliDetailsData?.Status === "Completed" && appliDetailsData?.review === false ) ? (
           <div className="btnConatainer">
             <button
               className="sheduleButton"
@@ -281,7 +308,7 @@ console.log(selectedRatingValue)
             </button>
           </div>
         ) : 
-          isEventManagement &&(review=== true) &&   appliDetailsData?.Status === "Completed"  && <p>Score: {selectedRatingValue&&selectedRatingValue}</p>
+          (isEventManagement &&(appliDetailsData?.review===true) &&   appliDetailsData?.Status === "Completed" ) && <p className="descriptionHeading">Score <label style={{paddingLeft:150,color:"white"}}>{appliDetailsData && (appliDetailsData as IEvents).ProjectSubmissionScore}</label></p>
         }
       </div>
       

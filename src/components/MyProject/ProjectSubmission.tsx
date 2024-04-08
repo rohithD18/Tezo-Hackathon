@@ -9,11 +9,11 @@ import { IProjectInfo } from "../../Interfaces";
 // import PdfViewer from "./PDFViewer";
 // import PDFViewer from "./PDFViewer";
 interface ProjectSubmissionProps {
-  onSubmit: (data: IProjectInfo) => void;
+  
   setDuplicateData:(data: IProjectInfo[]) => void;
 }
 
-export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ onSubmit,setDuplicateData }) => {
+export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ setDuplicateData }) => {
   const [files, setFiles] = useState<File[]>([]);
   const [pdfOpen, setPdfOpen] = useState(false);
   const [pdfUrl, setPdfUrl] = useState<string>("");

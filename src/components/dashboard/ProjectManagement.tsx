@@ -64,10 +64,10 @@ export const ProjectManagement: React.FC = () => {
     if (value === "All") {
       setSortData([...Projects]);
     } else if (value === "Pending") {
-      const sortedData = Projects.filter((item) => item.projectDemoScore === 0);
+      const sortedData = Projects.filter((item) => item.projectSubmissionScore === 0);
       setSortData([...sortedData]);
     } else if (value === "Submit") {
-      const sortedData = Projects.filter((item) => item.projectDemoScore !== 0);
+      const sortedData = Projects.filter((item) => item.projectSubmissionScore !== 0);
       setSortData([...sortedData]);
     }
   }
@@ -151,7 +151,7 @@ export const ProjectManagement: React.FC = () => {
                     <td className="recordDescription">{record.descripition}</td>
                     <td>{record.SubmissionDate}</td>
                     <td>
-                      {record.projectDemoScore != 0 ? (
+                      {record.projectSubmissionScore != 0 ? (
                         <img
                           src={Feedback}
                           alt="feedback"
