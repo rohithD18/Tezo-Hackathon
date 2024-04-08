@@ -140,7 +140,6 @@ function NavBarCopy() {
                 onClick={handleProfileClick}
               >
                 <img
-                  // src={profileImage}
                   src={
                     "https://s3-alpha-sig.figma.com/img/9902/5026/ef545fce7a758188585b742e3d5aba25?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fEwFrsdK9jOHRGmMAKaa~pfqLETLTsLwzeqEV5NuQdR2~IjRG2cmUwXbwoK5P4iRQvWh993x5bJdRBA91KAKdEwE8U4e5c0dl4qhwUUoXbzVNGp8iKAmxxuMDUEAV538Fwl2bNq7gVsg5lBznWJhNHTl99W-i-OTqcjH6koweJLm2mw3yNm3c5rMDjhIzCGgOwLl7xWLIqZhtdAM~4Zu4NuzVzR8hIX6Z0hF~C~GH~EnxMY4uOsDEAVX4Wf0lxUwdq4G9Wqut7fZ11ZQiQysx7qcci6odULRTIDjEgRPBSP8qC2ARxCE3OdQTMvK538fYnvEgZovP5nMycfFeffY2Q__"
                   }

@@ -84,8 +84,9 @@ const Application: React.FC = () => {
   const handleFilterClick = (status: string) => {
     setActiveFilter(status);
     if (status === "All") {
-      hackathonContext.setActivePage(0);
+     
       const filtered = ApplicationData.filter((application) =>
+      
         application.TeamName.toLowerCase().includes(searchQuery.toLowerCase())
       ).sort((a, b) => {
         const dateA = new Date(a.SubmissionDate).getTime();
@@ -93,6 +94,8 @@ const Application: React.FC = () => {
         return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
       });
       setCurrApplicationData(filtered);
+      hackathonContext.setActivePage(0);
+      console.log(hackathonContext.activePage)
     } else {
       const filtered = ApplicationData.filter(
         (application) => application.Status === status
@@ -102,6 +105,8 @@ const Application: React.FC = () => {
         return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
       });
       setCurrApplicationData(filtered);
+      hackathonContext.setActivePage(0);
+      console.log(hackathonContext.activePage)
     }
   };
   useEffect(() => {
