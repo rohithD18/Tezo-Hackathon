@@ -68,10 +68,10 @@
   text-align: center;
 }
 .nameStyling {
-  flex-grow: 1; 
-  overflow: hidden; 
-  white-space: nowrap; 
-  text-overflow: ellipsis; 
+  flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-family: "Inter";
   font-size: 18px;
   /* width: 200px;
@@ -132,13 +132,17 @@
     transform: rotate(-5deg);
   }
 }
+.iconDivStyling.clicked svg path {
+  transform: rotate(10deg);
+  fill: white;
+}
 
 .icon-class {
   font-size: 20px;
 }
 .profileActiveImage {
   background-color: #273144;
-  /* padding: 7px 12px 7px 16px; */
+  padding: 7px 12px 7px 16px;
 
   border-radius: 8px 0px 0px 8px;
 
@@ -177,7 +181,6 @@
 }
 .fullName {
   width: fit-content;
-  
 }
 /* 
 .profile {
@@ -190,7 +193,7 @@
   align-items: center; /* Make it take the full width initially */
   padding: 4.5px 10px;
   cursor: pointer;
-  gap:20px;
+  gap: 20px;
 }
 
 .fullName {
