@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useContext, useEffect, useState } from "react";
 import "../../styles/dashboard/Application.css";
 import profile from "../../assets/profile.png";
@@ -81,6 +82,9 @@ const Application: React.FC = () => {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
+  useEffect(() => {
+    handleFilterClick(activeFilter);
+  }, [sortOrder, activeFilter]);
 
   const handleFilterClick = (status: string) => {
     setActiveFilter(status);
@@ -109,9 +113,6 @@ const Application: React.FC = () => {
       hackathonContext.setItemOffset(0);
     }
   };
-  useEffect(() => {
-    handleFilterClick(activeFilter);
-  }, [sortOrder, activeFilter]);
 
   const cardData = [
     { title: "All", image: profile, count: total },
@@ -129,7 +130,7 @@ const Application: React.FC = () => {
     setAppliDetailsData(data);
   };
 
-  const [userRole, setUserRole] = useState<string>("admin");
+  const [userRole] = useState<string>("admin");
 
   const renderFilterButtons = () => {
     if (userRole === "admin") {
@@ -182,7 +183,7 @@ const Application: React.FC = () => {
   return (
     <>
       {/* // <div className="applicationView"> */}
-      <DashboardNav />
+      {/* <DashboardNav /> */}
       <div className="ApplicationScreen">
         <DisplayCard cardData={cardData} />
         <div className="tableContainerr">

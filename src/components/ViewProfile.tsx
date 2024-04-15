@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ic_round_close from "../assets/ic_round_close.png";
 import Group7334 from "../assets/Group7334.png";
-import Icon from "../assets/Icon.png";
+
 import userIcon from "../assets/userIcon.png";
 import "../styles/ViewProfile.css";
-import { LogInLogOutComp, pca } from "./Login";
-import { MsalProvider } from "@azure/msal-react";
-import { userName } from "../services/Profile";
-import { userEmail } from "../services/Profile";
+import { LogInLogOutComp } from "./Login";
 
 type Props = {
   setShowProfile: (message: boolean) => void;

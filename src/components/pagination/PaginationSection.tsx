@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect, useContext } from "react";
 import ReactPaginate from "react-paginate";
 import angle_double_left from "../../assets/angle_double_left.png";
@@ -16,8 +17,6 @@ const PaginationSection: React.FC<Props> = (props: Props) => {
   const hackathonContext = useContext(HackathonContext);
   const { setCurrentItem, data } = props;
   const [showPopup, setShowPopup] = useState(false);
-  // const [activePage, setActivePage] = useState(0);
-  // const [itemOffset, setItemOffset] = useState(0);
 
   useEffect(() => {
     hackathonContext.setItemOffset(0);

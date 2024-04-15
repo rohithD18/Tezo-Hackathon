@@ -22,7 +22,7 @@ import { SelectChangeEvent } from "@mui/material";
 //     isRating:boolean
 //   };
 
-export const ProjectManagement: React.FC = () => {
+const ProjectManagement: React.FC = () => {
   const [curSortData, setSortData] = useState<IProject[]>(Projects);
   const [sortClick, setSortClick] = useState<boolean>(true);
 
@@ -84,7 +84,7 @@ export const ProjectManagement: React.FC = () => {
   }, [querySearch]);
   return (
     < >
-      <DashboardNav />
+
       <div className="projectManagement">
         <DisplayCount />
         <div className="projectManagementData">
@@ -198,3 +198,5 @@ export const ProjectManagement: React.FC = () => {
     </>
   );
 };
+
+export default ProjectManagement

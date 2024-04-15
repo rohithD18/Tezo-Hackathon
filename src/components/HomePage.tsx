@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "add-to-calendar-button";
 import Home from "./Home";
 import "../styles/HomePageMain.css";

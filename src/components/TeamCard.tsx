@@ -12,18 +12,21 @@ const TeamCard: React.FC<Props> = (props: Props) => {
   const { data } = props;
   const handleCardClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
-    window.location.href = `/teams/${data.teamName.replace(/\s+/g, '_')}`;
+    window.location.href = `/teams/${data.teamName.replace(/\s+/g, "_")}`;
   };
   return (
     <>
-      <a href={`/teams/${data.teamName.replace(/\s+/g, '_')}`} style={{ textDecoration: "none" }}>
-        <div className="cardAll" key={data.id} onClick={handleCardClick}>
+      <a
+        href={`/teams/${data.teamName.replace(/\s+/g, "_")}`}
+        style={{ textDecoration: "none" }}
+      >
+        <div className="cardAll" key={data?.id} onClick={handleCardClick}>
           <div className="card1">
             <div className="cardLogo">
               <div className="cardgroup">
                 <span
                   className={`cardRank ${
-                    data.rank === 1
+                    data?.rank === 1
                       ? "rank1"
                       : data.rank === 2
                       ? "rank2"
@@ -32,7 +35,7 @@ const TeamCard: React.FC<Props> = (props: Props) => {
                       : ""
                   }`}
                 >
-                  {data.rank}
+                  {data?.rank}
                 </span>
                 <FaHashtag className="hashIcon" />
               </div>

@@ -12,7 +12,7 @@ import DashboardNav from "./DashboardNav";
 const DashboardView: React.FC = () => {
   return (
     <>
-      <DashboardNav />
+      
       <div className="DashboardView">
         <div className="countDiv">
         <DisplayCount/>

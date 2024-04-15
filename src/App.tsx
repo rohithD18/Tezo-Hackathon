@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import "./App.css";
 import { Login } from "./components/Login";
 import { Route, Routes } from "react-router-dom";
@@ -12,7 +12,7 @@ import SubmissionAccepeted from "./components/submissionStatus/SubmissionAccepet
 import RejectedRework from "./components/submissionStatus/RejectedRework";
 import HomePage from "./components/HomePage";
 import MyProject from "./components/MyProject/MyProject";
-import Dashboard from "./components/dashboard/Dashboard";
+// import Dashboard from "./components/dashboard/Dashboard";
 import AllTeams from "./components/AllTeams";
 import RegistrationForm from "./components/registration/RegistrationForm";
 import TeamDetails from "./components/TeamDetails";
@@ -29,7 +29,9 @@ const App: React.FC = () => {
   const setUserName = (data: string) => {
     setUser(data);
   };
-  // const { instance } = useMsal();
+
+  const Dashboard = lazy(() => import("./components/dashboard/Dashboard"));
+
   return (
     <div className="App">
       <MsalProvider instance={pca}>
@@ -52,8 +54,24 @@ const App: React.FC = () => {
                 <Route path="/myProject" Component={MyProject} />
                 <Route path="/allteams" Component={AllTeams} />
                 <Route path="/profile" Component={Profile} />
-                <Route path="/dashboard/" Component={Dashboard} />
-                <Route path="/dashboard/:id" Component={Dashboard} />
+                {/* <Route path="/dashboard/*" element={<Dashboard />} /> */}
+                <Route
+                  path="/dashboard/*"
+                  element={
+                    <Suspense>
+                      <Dashboard />
+                    </Suspense>
+                  }
+                />
+                {/* 
+                <Route
+                  path="/dashboard/:id"
+                  element={
+                    <Suspense>
+                      <Dashboard />
+                    </Suspense>
+                  }
+                /> */}
               </Routes>
             </HackathonContextProvider>
           </>
