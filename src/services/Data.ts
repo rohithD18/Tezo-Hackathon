@@ -565,6 +565,7 @@ export const UsersData: IUsers[] = [
     EmailAddress: "emma.smith@example.com",
     Department: "QA",
     IsCaptain: false,
+    IsRegistered:true
   },
   {
     Id: 2,

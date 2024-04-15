@@ -56,6 +56,7 @@ export interface IUsers {
   EmailAddress: string;
   Department: string;
   IsCaptain: boolean;
+  IsRegistered?:boolean
 }
 export interface ITeamMems {
   Id: number;
@@ -79,6 +80,7 @@ export interface IUser {
   EmailAddress: string;
   TeamName: string;
   RegisteredOn: Date | string;
+  isRegistered:boolean
 }
  export interface IProjectInfo {
   Id: number;
