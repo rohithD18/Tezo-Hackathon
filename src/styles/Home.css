@@ -6,7 +6,7 @@
  /* position: relative;  */
  background-image: url("../assets/mainBG.png"), url("../assets/mainBG.png");
  background-position: calc(0px - 80px) calc(100% + 0px), calc(100% + 0px) calc(0px - 20px); 
- background-size:500px 400px; 
+ background-size:430px 400px; 
  background-repeat: no-repeat;
  /* border: 2px solid white; */
 }

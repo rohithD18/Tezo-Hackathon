@@ -5,6 +5,7 @@ import { IUser } from "../../Interfaces";
 import profilepic from "../../assets/profilepic.jpg";
 import PaginationSection from "../pagination/PaginationSection";
 import DashboardNav from "./DashboardNav";
+import InputSearch from "../InputSearch";
 
 const Users = () => {
   const [currUserData, setCurrUserData] = useState<
@@ -23,15 +24,10 @@ const Users = () => {
 
   useEffect(() => {
     const filtered = currUserData.filter((application: IUser) =>
-      application.TeamName.toLowerCase().includes(searchQuery.toLowerCase())
+      application.Name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredData(filtered);
   }, [currUserData, searchQuery]);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-  };
-
   const formatDate = (date: Date | string): string => {
     if (typeof date === "string") {
       return date
@@ -48,7 +44,7 @@ const Users = () => {
     <div className="UserManagement">
       <div className="UsersScreen1">
             <span className="tableTitle">Users</span>
-            <div className="userSearchBox">
+            {/* <div className="userSearchBox">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -67,7 +63,11 @@ const Users = () => {
                   value={searchQuery}
                   onChange={handleSearchChange}
                 />
-              </div>
+              </div> */}
+               <InputSearch
+                currentScreen={"SelectMembers"}
+                setQuerySearch={setSearchQuery}
+              />
 
             
         
@@ -110,7 +110,7 @@ const Users = () => {
                   <td className="rowTitle">{user.TeamName}</td>
                
                   <td className="rowTitle">
-                    {formatDate(user.RegisteredOn)}
+                    {user.isRegistered?formatDate(user.RegisteredOn):"--"}
                   </td>
                   <td className="rowTitle">
                    

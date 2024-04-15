@@ -9,7 +9,8 @@ export interface IApplications {
   SubmissionDate: Date | string;
   Status: string;
   ProjectDescription: string;
-  review?:boolean;
+  review?: boolean;
+  score?: number;
 }
 
 function getRandomDate(): Date {
@@ -25,7 +26,7 @@ function getRandomDate(): Date {
 export const ApplicationData: IApplications[] = [
   {
     Id: 1,
-    TeamName: "Rohith D",
+    TeamName: "Team One",
     ProjectName: "Project One Application Manager",
     TeamCaptian: "Captain One",
     ProjectedSubmitted: false,
@@ -35,7 +36,7 @@ export const ApplicationData: IApplications[] = [
   },
   {
     Id: 2,
-    TeamName: "Naveen T",
+    TeamName: "Team Two",
     ProjectName: "Project Two",
     TeamCaptian: "Captain Two",
     ProjectedSubmitted: true,
@@ -45,7 +46,7 @@ export const ApplicationData: IApplications[] = [
   },
   {
     Id: 3,
-    TeamName: "Swati G",
+    TeamName: "Team Three",
     ProjectName: "Project Three",
     TeamCaptian: "Captain Three",
     ProjectedSubmitted: true,
@@ -55,7 +56,7 @@ export const ApplicationData: IApplications[] = [
   },
   {
     Id: 4,
-    TeamName: "Likitha K",
+    TeamName: "Team Four",
     ProjectName: "Project Four",
     TeamCaptian: "Captain Four",
     ProjectedSubmitted: true,
@@ -65,7 +66,7 @@ export const ApplicationData: IApplications[] = [
   },
   {
     Id: 5,
-    TeamName: "Gnani G",
+    TeamName: "Team Five",
     ProjectName: "Project Five",
     TeamCaptian: "Captain Five",
     ProjectedSubmitted: false,
@@ -75,7 +76,7 @@ export const ApplicationData: IApplications[] = [
   },
   {
     Id: 6,
-    TeamName: "Naresh Chakali",
+    TeamName: "Team Six",
     ProjectName: "Project Six",
     TeamCaptian: "Captain Six",
     ProjectedSubmitted: true,
@@ -85,7 +86,7 @@ export const ApplicationData: IApplications[] = [
   },
   {
     Id: 7,
-    TeamName: "John Doe",
+    TeamName: "Team Seven",
     ProjectName: "Project Seven",
     TeamCaptian: "Captain Seven",
     ProjectedSubmitted: false,
@@ -95,7 +96,7 @@ export const ApplicationData: IApplications[] = [
   },
   {
     Id: 8,
-    TeamName: "Jane Smith",
+    TeamName: "Team Eight",
     ProjectName: "Project Eight",
     TeamCaptian: "Captain Eight",
     ProjectedSubmitted: true,
@@ -105,7 +106,7 @@ export const ApplicationData: IApplications[] = [
   },
   {
     Id: 9,
-    TeamName: "Alice Johnson",
+    TeamName: "Team Nine",
     ProjectName: "Project Nine",
     TeamCaptian: "Captain Nine",
     ProjectedSubmitted: true,
@@ -115,7 +116,7 @@ export const ApplicationData: IApplications[] = [
   },
   {
     Id: 10,
-    TeamName: "Michael Scott",
+    TeamName: "Team Ten",
     ProjectName: "Project Ten",
     TeamCaptian: "Captain Ten",
     ProjectedSubmitted: true,
@@ -125,7 +126,7 @@ export const ApplicationData: IApplications[] = [
   },
   {
     Id: 11,
-    TeamName: "Andy Bernard",
+    TeamName: "Team Eleven",
     ProjectName: "Project Eleven",
     TeamCaptian: "Captain Eleven",
     ProjectedSubmitted: true,
@@ -135,7 +136,137 @@ export const ApplicationData: IApplications[] = [
   },
   {
     Id: 12,
-    TeamName: "Dwight Schrute",
+    TeamName: "Team Twelve",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: getRandomDate(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
+  },
+  {
+    Id: 13,
+    TeamName: "Team Twelve",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: getRandomDate(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
+  },
+  {
+    Id: 14,
+    TeamName: "Team Twelve",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: getRandomDate(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
+  },
+  {
+    Id: 15,
+    TeamName: "Team Twelve",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: getRandomDate(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
+  },
+  {
+    Id: 16,
+    TeamName: "Team Twelve",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: getRandomDate(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
+  },
+  {
+    Id: 17,
+    TeamName: "Team Twelve",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: getRandomDate(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
+  },
+  {
+    Id: 18,
+    TeamName: "Team Twelve",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: getRandomDate(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
+  },
+  {
+    Id: 19,
+    TeamName: "Team Twelve",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: getRandomDate(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
+  },
+  {
+    Id: 20,
+    TeamName: "Team Twelve",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: getRandomDate(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
+  },
+  {
+    Id: 21,
+    TeamName: "Team Twelve",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: getRandomDate(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
+  },
+  {
+    Id: 22,
+    TeamName: "Team Twelve",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: getRandomDate(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
+  },
+  {
+    Id: 23,
+    TeamName: "Team Twelve",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: getRandomDate(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
+  },
+  {
+    Id: 24,
+    TeamName: "Team Twelve",
+    ProjectName: "Project Twelve",
+    TeamCaptian: "Captain Twelve",
+    ProjectedSubmitted: true,
+    SubmissionDate: getRandomDate(),
+    Status: "Pending",
+    ProjectDescription: "Description for twelfth team",
+  },
+  {
+    Id: 25,
+    TeamName: "Team Twelve",
     ProjectName: "Project Twelve",
     TeamCaptian: "Captain Twelve",
     ProjectedSubmitted: true,
@@ -434,6 +565,7 @@ export const UsersData: IUsers[] = [
     EmailAddress: "emma.smith@example.com",
     Department: "QA",
     IsCaptain: false,
+    IsRegistered:true
   },
   {
     Id: 2,

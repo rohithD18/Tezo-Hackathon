@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../styles/dashboard/Application.css";
 import profile from "../../assets/profile.png";
 import clipboard_tick from "../../assets/clipboard_tick.png";
@@ -12,8 +12,11 @@ import DashboardNav from "./DashboardNav";
 import ViewBlur from "./ViewBlur";
 import ApplicationTable from "./ApplicationTable";
 import DisplayCard from "./DisplayCard";
+import HackathonContext from "../../services/Context/HackathonContext";
 
 const Application: React.FC = () => {
+  const hackathonContext = useContext(HackathonContext);
+
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [isApplicationDetails, setIsApplicationDetails] =
     useState<boolean>(false);
@@ -44,6 +47,7 @@ const Application: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredData, setFilteredData] = useState<IApplications[]>([]);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+
   useEffect(() => {
     const counts = {
       Accepted: 0,
@@ -89,6 +93,9 @@ const Application: React.FC = () => {
         return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
       });
       setCurrApplicationData(filtered);
+      hackathonContext.setActivePage(0);
+      hackathonContext.setItemOffset(0);
+      // console.log(hackathonContext.activePage);
     } else {
       const filtered = ApplicationData.filter(
         (application) => application.Status === status
@@ -98,6 +105,8 @@ const Application: React.FC = () => {
         return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
       });
       setCurrApplicationData(filtered);
+      hackathonContext.setActivePage(0);
+      hackathonContext.setItemOffset(0);
     }
   };
   useEffect(() => {

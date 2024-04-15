@@ -1,63 +1,66 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ReactPaginate from "react-paginate";
 import angle_double_left from "../../assets/angle_double_left.png";
 import chevron_down from "../../assets/chevron_down.png";
 import EntriesPerPagePopup from "./EntriesPerPagePopup";
 import "./pagination.css";
+import HackathonContext from "../../services/Context/HackathonContext";
 
 type Props = {
   setCurrentItem: React.Dispatch<React.SetStateAction<any[]>>;
   data: any[];
-  screen:string
+  screen: string;
 };
 
 const PaginationSection: React.FC<Props> = (props: Props) => {
+  const hackathonContext = useContext(HackathonContext);
   const { setCurrentItem, data } = props;
   const [showPopup, setShowPopup] = useState(false);
-  const [activePage, setActivePage] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
+  // const [activePage, setActivePage] = useState(0);
+  // const [itemOffset, setItemOffset] = useState(0);
+
+  useEffect(() => {
+    hackathonContext.setItemOffset(0);
+  }, [data]);
 
   useEffect(() => {
     const itemsPerPage = 9;
-    const endOffset = itemOffset + itemsPerPage;
-    const currentItem = data.slice(itemOffset, endOffset);
+    const endOffset = hackathonContext.itemOffset + itemsPerPage;
+    const currentItem = data.slice(hackathonContext.itemOffset, endOffset);
     setCurrentItem(currentItem);
-  }, [itemOffset, setCurrentItem, data]);
+  }, [hackathonContext.itemOffset, setCurrentItem, data]);
 
   const handlePopupClick = () => {
     setShowPopup(!showPopup);
   };
 
   const handleSelectEntriesPerPage = (start: number) => {
-    setItemOffset(start - 1);
+    hackathonContext.setItemOffset(start - 1);
     setShowPopup(false);
   };
 
-  const handlePageChange = (pageNumber: number) => {
-    setActivePage(pageNumber);
-  };
-
   const itemsPerPage = 9;
-  const endOffset = itemOffset + itemsPerPage;
+  const endOffset = hackathonContext.itemOffset + itemsPerPage;
   const pageCount = Math.ceil(data.length / itemsPerPage);
-  // console.log("mathh",pageCount, data)
-
-  const handlePageClick = (event: { selected: number }) => {
-  //  console.log(event.selected);    
-    const newOffset = event.selected * itemsPerPage
-    setItemOffset(newOffset);
-  };
-  useEffect(() => {
-   setItemOffset(0);
-  },[pageCount])
-
-
   const totalData = data.length;
-  const firstIndex = itemOffset + 1;
+  const firstIndex = hackathonContext.itemOffset + 1;
   const lastIndex = Math.min(endOffset, totalData);
 
+  // const handlePageClick = (event: { selected: number }) => {
+  //   const newOffset = event.selected * itemsPerPage;
+  //   hackathonContext.setItemOffset(newOffset);
+  // };
+  const handlePageClick = (event: { selected: number }) => {
+    const newOffset = event.selected * itemsPerPage;
+    hackathonContext.setItemOffset(newOffset);
+    hackathonContext.setActivePage(event.selected); // Update active page
+  };
+  const handlePageChange = (pageNumber: number) => {
+    hackathonContext.setActivePage(pageNumber);
+  };
+
   return (
-    <div className="pagination" id={props.screen ? 'userPagin' : undefined}>
+    <div className="pagination" id={props.screen ? "userPagin" : undefined}>
       <div className="paginationBox122">
         <span className="showingText">Showing</span>
         <div className="dropdownDiv">
@@ -96,7 +99,7 @@ const PaginationSection: React.FC<Props> = (props: Props) => {
           previousLinkClassName="pageNum"
           nextClassName="pageNum"
           activeLinkClassName="active"
-          forcePage={activePage}
+          forcePage={hackathonContext.activePage}
         />
       </div>
     </div>

@@ -28,7 +28,9 @@ const EntriesPerPagePopup: React.FC<Props> = (props: Props) => {
     onClose();
 
     // Calculate the page number from the start value
-    const pageNumber = Math.ceil(start / itemsPerPage) - 1;
+    // const pageNumber = Math.ceil(start / itemsPerPage) - 1;
+    const pageNumber = Math.floor(start / itemsPerPage);
+
     onPageChange(pageNumber); // Update active page number
   };
 

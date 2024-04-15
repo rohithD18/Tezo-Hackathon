@@ -17,6 +17,7 @@
 @media screen and (min-width: 1440px) {
   .container {
     width: 80%;
+    height: 100%;
   }
 }
 
@@ -26,12 +27,15 @@
     width: 77%;
   }
 }
+.row {
+  /* height: 100%; */
+}
 .col-3 {
   width: 20%;
-  /* cursor: pointer; */
+  height: 100%;
   align-items: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
 }
 .navLinkItem {
   color: white;
@@ -64,11 +68,15 @@
   text-align: center;
 }
 .nameStyling {
+  flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-family: "Inter";
   font-size: 18px;
-  width: 200px;
-  min-width: 100px;
-  max-width: fit-content;
+  /* width: 200px;
+  min-width: 100px; */
+  width: auto;
   font-weight: 500;
   line-height: 22px;
   letter-spacing: 0em;
@@ -94,7 +102,7 @@
   padding: 14px;
   border-radius: 8px;
   gap: 6px;
-  margin-left: 40px;
+  /* margin-left: 40px; */
 }
 .notificationCountCircle {
   position: absolute;
@@ -124,13 +132,17 @@
     transform: rotate(-5deg);
   }
 }
+.iconDivStyling.clicked svg path {
+  transform: rotate(10deg);
+  fill: white;
+}
 
 .icon-class {
   font-size: 20px;
 }
 .profileActiveImage {
   background-color: #273144;
-  /* padding: 7px 12px 7px 16px; */
+  padding: 7px 12px 7px 16px;
 
   border-radius: 8px 0px 0px 8px;
 
@@ -148,23 +160,54 @@
   width: 100px;
 }
 
-.navProfileContainer {
+/* .navProfileContainer {
   align-items: center;
-  width: 70%;
+  width: auto;
+  padding: 4.5px 10px;
   cursor: pointer;
   display: flex;
   justify-content: space-around;
+  
+  gap: 20px;
   align-items: center;
-}
+} */
 
 .col-1 {
-  width: 8.6%;
+  width: 10%;
 }
 .col-8 {
   flex: 0 0 auto;
-  width: 70.666667%;
+  width: 70%;
+}
+.fullName {
+  width: fit-content;
 }
 /* 
 .profile {
   margin-left: auto; 
 } */
+.navProfileContainer {
+  display: flex;
+  justify-content: flex-end; /* Align items to the right initially */
+  width: auto;
+  align-items: center; /* Make it take the full width initially */
+  padding: 4.5px 10px;
+  cursor: pointer;
+  gap: 20px;
+}
+
+.fullName {
+  flex-grow: 1; /* Allow the text to grow within the container */
+  overflow: hidden; /* Hide overflow text */
+  white-space: nowrap; /* Prevent text from wrapping */
+  text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #ffffff;
+}
+.profile {
+  flex-shrink: 0; /* Prevent profile from shrinking */
+}

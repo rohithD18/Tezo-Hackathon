@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TimeICon from '../../assets/TimeIcon.png'
 import { IProjectInfo } from "../../Interfaces";
 // /import {updateDuplicateData1} from "../../services/Services"
