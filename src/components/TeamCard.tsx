@@ -4,20 +4,22 @@ import { ITeamData } from "../services/Interface/TeamData";
 import star01 from "../assets/star01.png";
 import Ellipse810 from "../assets/Ellipse810.png";
 import { FaHashtag } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 type Props = {
   data: ITeamData;
 };
 
 const TeamCard: React.FC<Props> = (props: Props) => {
   const { data } = props;
-  const handleCardClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.preventDefault();
-    window.location.href = `/teams/${data.teamName.replace(/\s+/g, '_')}`;
-  };
+  const navigate = useNavigate();
+  // const handleCardClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  //   e.preventDefault();
+  //   window.location.href = `/teams/${data.teamName.replace(/\s+/g, '_')}`;
+  // };
   return (
     <>
-      <a href={`/teams/${data.teamName.replace(/\s+/g, '_')}`} style={{ textDecoration: "none" }}>
-        <div className="cardAll" key={data.id} onClick={handleCardClick}>
+      <div style={{cursor:"pointer"}}onClick={()=>navigate(`/teams/${data.teamName.replace(/\s+/g, '_')}`)}>
+        <div className="cardAll" key={data.id}>
           <div className="card1">
             <div className="cardLogo">
               <div className="cardgroup">
@@ -59,7 +61,7 @@ const TeamCard: React.FC<Props> = (props: Props) => {
             </div>
           </div>
         </div>
-      </a>
+      </div>
     </>
   );
 };

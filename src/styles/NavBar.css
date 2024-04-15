@@ -37,6 +37,8 @@
   display: flex;
   justify-content: end;
 }
+/* Prevent the dragged item from turning blue */
+
 .navLinkItem {
   color: white;
   padding-right: 20px !important;
@@ -45,14 +47,15 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 16px;
-
   letter-spacing: 0em;
   text-align: left;
   text-decoration: none;
+  
 }
 .navLinkItem:hover {
   text-decoration: underline;
   color: white;
+  cursor:pointer
 }
 .itemActive {
   text-decoration: underline;

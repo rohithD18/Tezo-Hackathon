@@ -565,7 +565,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "emma.smith@example.com",
     Department: "QA",
     IsCaptain: false,
-    IsRegistered:true
+    RegisteredOn: "",
+    IsRegistered:false,
+    TeamName: "",
   },
   {
     Id: 2,
@@ -573,6 +575,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "james.johnson@example.com",
     Department: "Digital Transformation",
     IsCaptain: false,
+    RegisteredOn: "",
+    IsRegistered:false,
+    TeamName: "",
   },
   {
     Id: 3,
@@ -580,6 +585,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "olivia.brown@example.com",
     Department: "Product Engineering",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Three",
   },
   {
     Id: 4,
@@ -587,6 +595,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "william.wilson@example.com",
     Department: "Data Analytics",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Three",
   },
   {
     Id: 5,
@@ -594,6 +605,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "ava.taylor@example.com",
     Department: "Digital Marketing",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Six",
   },
   {
     Id: 6,
@@ -601,6 +615,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "alexander.lee@example.com",
     Department: "Digital Transformation",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Seven",
   },
   {
     Id: 7,
@@ -608,6 +625,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "mia.martinez@example.com",
     Department: "Data Analytics",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Six",
   },
   {
     Id: 8,
@@ -615,6 +635,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "ethan.anderson@example.com",
     Department: "Data Analytics",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Five",
   },
   {
     Id: 9,
@@ -622,6 +645,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "sophia.thomas@example.com",
     Department: "Digital Transformation",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Three",
   },
   {
     Id: 10,
@@ -629,6 +655,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "isabella.jackson@example.com",
     Department: "Data Analytics",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Two",
   },
   {
     Id: 11,
@@ -636,6 +665,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "michael.white@example.com",
     Department: "QA",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Two",
   },
   {
     Id: 12,
@@ -643,6 +675,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "charlotte.harris@example.com",
     Department: "Digital Transformation",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Four",
   },
   {
     Id: 13,
@@ -650,6 +685,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "liam.martin@example.com",
     Department: "Digital Marketing",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Three",
   },
   {
     Id: 14,
@@ -657,6 +695,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "amelia.thompson@example.com",
     Department: "Product Engineering",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Four",
   },
   {
     Id: 15,
@@ -664,6 +705,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "benjamin.garcia@example.com",
     Department: "Digital Marketing",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Three",
   },
   {
     Id: 16,
@@ -671,6 +715,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "harper.martinez@example.com",
     Department: "Product Engineering",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team Two",
   },
   {
     Id: 17,
@@ -678,6 +725,9 @@ export const UsersData: IUsers[] = [
     EmailAddress: "harper.martinez@example.com",
     Department: "Digital Transformation",
     IsCaptain: false,
+    RegisteredOn: new Date(),
+    IsRegistered:true,
+    TeamName: "Team One",
   },
   {
     Id: 18,
@@ -685,5 +735,8 @@ export const UsersData: IUsers[] = [
     EmailAddress: "harper.martinez@example.com",
     Department: "QA",
     IsCaptain: false,
+    RegisteredOn: "",
+    IsRegistered:false,
+    TeamName: "",
   },
 ];

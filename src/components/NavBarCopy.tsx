@@ -4,9 +4,11 @@ import bellIcon from "../assets/bellIcon.png";
 import profilepic from "../assets/profilepic.jpg";
 import { useEffect, useState } from "react";
 import ViewProfile from "./ViewProfile";
+import { useNavigate } from "react-router-dom";
 // import NextPage from "../services/Profile";
 function NavBarCopy() {
   // const [notificationAvailable] = useState<string>("hello");
+  const navigate = useNavigate();
   const isActive = (path: string): boolean => {
     return window.location.pathname === path;
   };
@@ -57,65 +59,61 @@ function NavBarCopy() {
             </div>
             <div className="col-8">
               <ul className="nav">
-                <li className="nav-item">
-                  <a
+                <li className="nav-item" onClick={()=>navigate("/")}>
+                  <label
                     className={`nav-link navLinkItem ${
                       isActive("/") ? "itemActive disable-hover" : ""
                     }`}
-                    href="/"
+                    
                   >
                     Home
-                  </a>
+                  </label>
                 </li>
-                <li className="nav-item">
-                  <a
+                <li className="nav-item" onClick={()=>navigate("/schedule")}>
+                  <label
                     className={`nav-link navLinkItem ${
                       isActive("/schedule") ? "itemActive disable-hover" : ""
                     }`}
-                    href="/schedule"
                   >
                     Schedule
-                  </a>
+                  </label>
                 </li>
-                <li className="nav-item">
-                  <a
+                <li className="nav-item" onClick={()=>navigate("/myProject")}>
+                  <label
                     className={`nav-link navLinkItem ${
                       isActive("/myProject") ? "itemActive disable-hover" : ""
                     }`}
-                    href="/myProject"
                   >
                     MyProject
-                  </a>
+                  </label>
                 </li>
-                <li className="nav-item">
-                  <a
+                <li className="nav-item" onClick={()=>navigate("/teams")}>
+                  <label
                     className={`nav-link navLinkItem ${
                       isActive("/teams") ? "itemActive disable-hover" : ""
                     }`}
-                    href="/teams"
                   >
                     Teams
-                  </a>
+                  </label>
                 </li>
-                <li className="nav-item">
-                  <a
+                <li className="nav-item" onClick={()=>navigate("/rules")}>
+                  <label
                     className={`nav-link navLinkItem ${
                       isActive("/rules") ? "itemActive disable-hover" : ""
                     }`}
-                    href="/rules"
                   >
                     Rules
-                  </a>
+                  </label>
                 </li>
-                <li className="nav-item">
-                  <a
+                <li className="nav-item" onClick={()=>navigate("/dashboard")}>
+                  <label
                     className={`nav-link navLinkItem ${
                       isActive("/dashboard") ? "itemActive disable-hover " : ""
                     }`}
-                    href={`/dashboard`}
+                  
                   >
                     Dashboard
-                  </a>
+                  </label>
                 </li>
               </ul>
             </div>

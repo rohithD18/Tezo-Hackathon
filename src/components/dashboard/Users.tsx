@@ -1,30 +1,46 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/dashboard/Users.css";
-import { UserData } from "../../services/UserData";
-import { IUser } from "../../Interfaces";
+import { UsersData } from "../../services/Data";
+
+import { IUsers } from "../../Interfaces";
 import profilepic from "../../assets/profilepic.jpg";
 import PaginationSection from "../pagination/PaginationSection";
 import DashboardNav from "./DashboardNav";
 import InputSearch from "../InputSearch";
+import UserEditPopUp from "./UserEditPopUp";
 
 const Users = () => {
   const [currUserData, setCurrUserData] = useState<
-    IUser[]
-  >([]);
+    IUsers[]
+  >(UsersData);
   const [displayOnUser, setDisplayOnUser] = useState<
-    IUser[]
+    IUsers[]
   >([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredData, setFilteredData] = useState<IUser[]>([]);
+  const [filteredData, setFilteredData] = useState<IUsers[]>([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [userData, setUserDetailsData] = useState<IUsers>();
+  const handleOpenPopup = () => {
 
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+    
+  };
+  const handleUserDetailsData = (data: IUsers) => {
+    setUserDetailsData(data);
+    
+  };
   useEffect(() => {
    
-    setCurrUserData(UserData);
+    setCurrUserData(UsersData);
   }, []);
 
   useEffect(() => {
-    const filtered = currUserData.filter((application: IUser) =>
-      application.Name.toLowerCase().includes(searchQuery.toLowerCase())
+    const filtered = currUserData.filter((user: IUsers) =>
+      user.Name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredData(filtered);
   }, [currUserData, searchQuery]);
@@ -37,7 +53,22 @@ const Users = () => {
       return `${day}, ${month}`;
     }
   };
-
+  const updateEvents = (teamName:string) => {
+    console.log(teamName)
+    // if (UsersData != undefined) {
+      const updateItems = currUserData.map((item:any) => {
+        if (item.Name === userData?.Name) {
+          return {
+            ...item,
+          TeamName: teamName,
+          };
+        }
+        return item;
+      });
+      console.log(updateItems)
+      setCurrUserData(updateItems);
+    
+  };
   
   return (
     <><DashboardNav/>
@@ -86,6 +117,7 @@ const Users = () => {
                 <tr
                   className="tableRowDataUser"
                   key={index}
+                onClick={() => handleUserDetailsData(user)}
                 >
                 
                   <td className="rowTitle">
@@ -107,14 +139,14 @@ const Users = () => {
                     </span>
                   </td>
                   <td className="rowTitle">{user.EmailAddress}</td>
-                  <td className="rowTitle">{user.TeamName}</td>
+                  <td className="rowTitle">{user?.TeamName!=""? user?.TeamName:"--"}</td>
                
                   <td className="rowTitle">
-                    {user.isRegistered?formatDate(user.RegisteredOn):"--"}
+                    {user?.IsRegistered? (user.RegisteredOn && formatDate(user.RegisteredOn)):"--"}
                   </td>
                   <td className="rowTitle">
                    
-      <svg width="36" height="36" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" id="editAndDeleteStyling">
+      <svg width="36" height="36" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" id="editAndDeleteStyling" onClick={handleOpenPopup}>
 <path d="M1.87604 17.1159C1.92198 16.7024 1.94496 16.4957 2.00751 16.3025C2.06301 16.131 2.14143 15.9679 2.24064 15.8174C2.35246 15.6478 2.49955 15.5008 2.79373 15.2066L16 2.0003C17.1046 0.895732 18.8955 0.895734 20 2.0003C21.1046 3.10487 21.1046 4.89573 20 6.0003L6.79373 19.2066C6.49955 19.5008 6.35245 19.6479 6.18289 19.7597C6.03245 19.8589 5.86929 19.9373 5.69785 19.9928C5.5046 20.0553 5.29786 20.0783 4.88437 20.1243L1.5 20.5003L1.87604 17.1159Z" stroke="#B4B4B4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 <svg width="36" height="36" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg" id="editAndDeleteStyling">
@@ -131,8 +163,10 @@ const Users = () => {
           data={filteredData}
           screen="users"
         />
+      
         </div>
       </div>
+      {isPopupOpen && <UserEditPopUp    onClose={handleClosePopup} userData={userData} updateEvents={updateEvents}/>}
       </div>
     </>
   );
