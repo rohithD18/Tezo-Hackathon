@@ -52,7 +52,7 @@ const MyProject: React.FC = () => {
       {isPdfView ? (
         <ViewPdfModal  setIsPdfView={setIsPdfView}/>
       ) : (
-        <div className="registerHome">
+        <div className="registerHome1">
           {/* <div className="navThroughFormD1"> */}
           <div className="sideSteps">
             <div>
@@ -117,7 +117,7 @@ const MyProject: React.FC = () => {
               </div>
             </div>
           </div>
-         { sucessSubmit ? <SubmissionFailed/> :
+         { sucessSubmit ? <SubmissionFailed /> :
           <div
             className={
               currentProjectForm === "ProjectDescripitionForm"

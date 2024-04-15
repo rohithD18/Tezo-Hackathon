@@ -54,7 +54,7 @@ const SubmissionFailed: React.FC = () => {
           : "Topic review can take up to 2 days."}
       </p>
       <button
-        onClick={() => handleClick(submissionStatus)}
+        // onClick={() => handleClick(submissionStatus)}
         id={submissionStatus === "Failed" ? "tryAgainBtn" : "viewTopic"}
       >
         {submissionStatus === "Failed" ? "Try Again" : "View Topic"}
