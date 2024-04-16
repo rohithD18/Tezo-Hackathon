@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import xclose from "../../assets/xclose.png";
 import arrow_up_right from "../../assets/arrow_up_right.png";
 import Ellipse811 from "../../assets/Ellipse811.png";
@@ -10,14 +10,13 @@ import { Projects } from "../../services/ProjectManagementEvents";
 import { log } from "console";
 type Props = {
   setIsApplicationDetails: (message: boolean) => void;
-  appliDetailsData?: IApplications | IProject |IEvents;
+  appliDetailsData?: IApplications | IProject | IEvents;
   setIsRating: (message: boolean) => void;
   setIsRejectedFeed: (message: boolean) => void;
   isProjectManagement: boolean;
-  isEventManagement?:boolean;
-  setScheduleEvent?:(message: boolean) => void;
+  isEventManagement?: boolean;
+  setScheduleEvent?: (message: boolean) => void;
   // selectedRatingValue?:number
- 
 };
 
 const ApplicationDetails: React.FC<Props> = (props: Props) => {
@@ -30,18 +29,15 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     isEventManagement,
     setScheduleEvent,
     // selectedRatingValue
-   
   } = props;
 
- useEffect(()=>{
-
- })
+  
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       const modal1 = document.querySelector(".ApplicationScreen");
       const modal3 = document.querySelector(".table");
       const modal2 = document.querySelector(".projectManagementData");
-      if (modal1 && !modal1.contains(event.target as Node) ) {
+      if (modal1 && !modal1.contains(event.target as Node)) {
         setIsApplicationDetails(false);
       }
       if (modal2 && !modal2.contains(event.target as Node)) {
@@ -50,61 +46,68 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
       if (modal3 && !modal3.contains(event.target as Node)) {
         setIsApplicationDetails(false);
       }
-
     };
 
     document.addEventListener("click", handleOutsideClick);
- console.log("appli",appliDetailsData)
-    return () => {
-      document.removeEventListener("click", handleOutsideClick);
-    };
-  
+
+ 
   }, [setIsApplicationDetails]);
-useEffect(()=>{
- if(isProjectManagement || isEventManagement  ){
-  const filteredProject = Projects.filter((event:IProject ) =>{
-    if(event.TeamName===appliDetailsData?.TeamName){  
-      console.log("inside")
-      return event
+
+  useEffect(() => {
+    if (isProjectManagement || isEventManagement) {
+      const filteredProject = Projects.filter((event: IProject) => {
+        if (event.TeamName === appliDetailsData?.TeamName) {
+          console.log("inside");
+          return event;
+        }
+      });
+      filteredProject != null && setFilteredEvent(filteredProject);
     }
-  })
-  filteredProject !=null && setFilteredEvent(filteredProject)
-}
+  }, [appliDetailsData, isEventManagement, isProjectManagement]);
+  // let formattedDate: string = "";
+  // let formattedTime: string = "";
 
-},[appliDetailsData])
-  let formattedDate: string = "";
-  let formattedTime: string = "";
-  // const [review,setReview]=useState<boolean>(false);
-  // const [type,setType]=useState<string|null>(null)
- const [filteredEvent,setFilteredEvent]=useState<IProject[]|null>(null);
-  if (appliDetailsData?.SubmissionDate) {
-    const dateObject = new Date(appliDetailsData?.SubmissionDate);
-    formattedDate = `${dateObject.getDate()} ${dateObject.toLocaleString(
-      "default",
-      { month: "short" }
-    )} ${dateObject.getFullYear()}`;
+  const [filteredEvent, setFilteredEvent] = useState<IProject[] | null>(null);
+  // if (appliDetailsData?.SubmissionDate) {
+  // const dateObject = new Date(appliDetailsData?.SubmissionDate);
+  // formattedDate = `${dateObject.getDate()} ${dateObject.toLocaleString(
+  //   "default",
+  //   { month: "short" }
+  // )} ${dateObject.getFullYear()}`;
 
-    let hours = dateObject.getHours();
-    const minutes = dateObject.getMinutes();
-    const ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12 || 12;
+  // let hours = dateObject.getHours();
+  // const minutes = dateObject.getMinutes();
+  // const ampm = hours >= 12 ? "PM" : "AM";
+  // hours = hours % 12 || 12;
 
-    // Formatting the time
-    formattedTime = `${hours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
-  }
-// useEffect(()=>{
-//   selectedRatingValue!==0 && 
-// setReview(true);
-// console.log(selectedRatingValue)
-// console.log(type)
-// },[setReview])
-// useEffect(()=>{
-// if (appliDetailsData?.type) {
-//   setType(appliDetailsData.type);
-// } else {
-//   setType(null);
-// }
-// },[appliDetailsData?.type])
+  // Formatting the time
+  // formattedTime = `${hours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
+  // }
+
+  const formattedDate = useMemo(() => {
+    if (appliDetailsData?.SubmissionDate) {
+      const dateObject = new Date(appliDetailsData?.SubmissionDate);
+      return `${dateObject?.getDate()} ${dateObject?.toLocaleString("default", {
+        month: "short",
+      })} ${dateObject?.getFullYear()}`;
+    }
+    return "";
+  }, [appliDetailsData?.SubmissionDate]);
+
+
+
+  const formattedTime = useMemo(() => {
+    if (appliDetailsData?.SubmissionDate) {
+      const dateObject = new Date(appliDetailsData?.SubmissionDate);
+      let hours = dateObject?.getHours();
+      const minutes = dateObject?.getMinutes();
+      const ampm = hours >= 12 ? "PM" : "AM";
+      hours = hours % 12 || 12;
+      return `${hours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
+    }
+    return "";
+  }, [appliDetailsData?.SubmissionDate]);
+
   const handleClose = () => {
     setIsApplicationDetails(false);
     setIsRating(false);
@@ -115,10 +118,10 @@ useEffect(()=>{
     setIsApplicationDetails(false);
     setIsRating(true);
   };
-  const handleScheduleEvent=()=>{
-    setScheduleEvent !==undefined && setScheduleEvent(true);
-  }
- 
+  const handleScheduleEvent = () => {
+    setScheduleEvent !== undefined && setScheduleEvent(true);
+  };
+
   const handleReject = () => {
     setIsRejectedFeed(true);
     setIsApplicationDetails(false);
@@ -126,13 +129,13 @@ useEffect(()=>{
   return (
     <div className="applicationDetails">
       <div className="headerBar">
-      {isProjectManagement ? (
-  <div className="title">Project Details</div>
-) : isEventManagement ? (
-  <div className="title">Event Details</div>
-) : (
-  <span className="title">Application Details</span>
-)}
+        {isProjectManagement ? (
+          <div className="title">Project Details</div>
+        ) : isEventManagement ? (
+          <div className="title">Event Details</div>
+        ) : (
+          <span className="title">Application Details</span>
+        )}
 
         <img
           src={xclose}
@@ -142,53 +145,38 @@ useEffect(()=>{
         />
       </div>
       <div className="detailsContainer">
-        {isEventManagement && <>
-          { appliDetailsData?.Status === "Pending" && <div className="tableHeaderContainer"><h5>Overview</h5>
-          <div  onClick={handleScheduleEvent}>
-                <img
-                  src={clock}
-                  alt="Captain"
-                  className="clockImage"
-                />
-            <label className="scheduleNow">Schedule Now</label>
-            </div>
-             
-          </div>}
-      <table className="tablefirst">
-          
-          <tbody className="tablefirstBody">
-            {/* <tr>
-              <td style={{ color: "#B4B4B4" }}>Team Name</td>
-              <td>
-                {appliDetailsData?.TeamName}
-                <img
-                  src={arrow_up_right}
-                  alt="Arrow Up Right"
-                  style={{ width: "24px", height: "24px" }}
-                />
-              </td>
-            </tr> */}
-            <tr>
-              <td style={{ color: "#B4B4B4" }}>Status</td>
-              <td className={`statusTitleData ${appliDetailsData?.Status}`}>
+        {isEventManagement && (
+          <>
+            {appliDetailsData?.Status === "Pending" && (
+              <div className="tableHeaderContainer">
+                <h5>Overview</h5>
+                <div onClick={handleScheduleEvent}>
+                  <img src={clock} alt="Captain" className="clockImage" />
+                  <label className="scheduleNow">Schedule Now</label>
+                </div>
+              </div>
+            )}
+            <table className="tablefirst">
+              <tbody className="tablefirstBody">
+                <tr>
+                  <td style={{ color: "#B4B4B4" }}>Status</td>
+                  <td className={`statusTitleData ${appliDetailsData?.Status}`}>
+                    {appliDetailsData?.Status}
+                  </td>
+                </tr>
 
-                {appliDetailsData?.Status}
-              </td>
-            </tr>
-            
-               
                 <tr>
                   <td style={{ color: "#B4B4B4" }}>Date</td>
-                  <td>{formattedDate ? formattedDate: "----"}</td>
+                  <td>{formattedDate ? formattedDate : "----"}</td>
                 </tr>
                 <tr>
                   <td style={{ color: "#B4B4B4" }}>Time</td>
-                  <td>{formattedTime ?formattedTime:"----"}</td>
+                  <td>{formattedTime ? formattedTime : "----"}</td>
                 </tr>
-
-          </tbody>
-        </table>
-        </>}
+              </tbody>
+            </table>
+          </>
+        )}
         <table className="tablefirst">
           <p className="tableHeader">Team Details</p>
           <tbody className="tablefirstBody">
@@ -196,12 +184,18 @@ useEffect(()=>{
               <td style={{ color: "#B4B4B4" }}>Team Name</td>
               <td>
                 {appliDetailsData?.TeamName}
-                <a href={`/teams/${appliDetailsData?.TeamName.replace(/\s+/g, '_')}`} style={{ textDecoration: "none" }}>
-                <img
-                  src={arrow_up_right}
-                  alt="Arrow Up Right"
-                  style={{ width: "24px", height: "24px" }}
-                />
+                <a
+                  href={`/teams/${appliDetailsData?.TeamName.replace(
+                    /\s+/g,
+                    "_"
+                  )}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <img
+                    src={arrow_up_right}
+                    alt="Arrow Up Right"
+                    style={{ width: "24px", height: "24px" }}
+                  />
                 </a>
               </td>
             </tr>
@@ -220,7 +214,7 @@ useEffect(()=>{
                 {appliDetailsData?.TeamName}
               </td>
             </tr>
-            {!isProjectManagement  && !isEventManagement  ? (
+            {!isProjectManagement && !isEventManagement ? (
               <>
                 <tr>
                   <td style={{ color: "#B4B4B4" }}>Date</td>
@@ -253,38 +247,27 @@ useEffect(()=>{
                 🌐💻
               </td>
             </tr>
-            {filteredEvent!=null ? (
+            {filteredEvent != null ? (
               <>
                 <tr>
                   <td className="descriptionHeading">Project Descripition</td>
-                  <td>
-                    {/* Collaborative coding for diverse teams! Create solutions
-                    enhancing teamwork, code integration, and inclusivity. How
-                    can tech bring harmony to coding practices? Propose ideas
-                    empowering efficient collaboration. Let's harmonize the
-                    coding experience! 🌐💻 */}
-                    {filteredEvent[0].descripition}
-                  </td>
+                  <td>{filteredEvent[0].descripition}</td>
                 </tr>
                 <tr>
                   <td className="descriptionHeading">Submission</td>
-                  <td>
-                    {/* Collaborative coding for diverse teams! Create solutions
-                    enhancing teamwork, code integration, and inclusivity. How
-                    can tech bring harmony to coding practices? Propose ideas
-                    empowering efficient collaboration. Let's harmonize the
-                    coding experience!  */}
-                    {filteredEvent[0].descripition}
-                  </td>
+                  <td>{filteredEvent[0].descripition}</td>
                 </tr>
               </>
-             ) : (
+            ) : (
               <></>
-            )} 
+            )}
           </tbody>
         </table>
 
-        {isProjectManagement || (isEventManagement  && appliDetailsData?.Status === "Completed" && appliDetailsData?.review === false ) ? (
+        {isProjectManagement ||
+        (isEventManagement &&
+          appliDetailsData?.Status === "Completed" &&
+          appliDetailsData?.review === false) ? (
           <div className="btnConatainer">
             <button
               className="sheduleButton"
@@ -294,7 +277,7 @@ useEffect(()=>{
               Review
             </button>
           </div>
-        ) : appliDetailsData?.Status === "Pending" && !isEventManagement? (
+        ) : appliDetailsData?.Status === "Pending" && !isEventManagement ? (
           <div className="btnConatainer">
             <button
               className="rejectButton"
@@ -307,11 +290,20 @@ useEffect(()=>{
               Accept
             </button>
           </div>
-        ) : 
-          (isEventManagement &&(appliDetailsData?.review===true) &&   appliDetailsData?.Status === "Completed" ) && <p className="descriptionHeading">Score <label style={{paddingLeft:150,color:"white"}}>{appliDetailsData && (appliDetailsData as IEvents).ProjectSubmissionScore}</label></p>
-        }
+        ) : (
+          isEventManagement &&
+          appliDetailsData?.review === true &&
+          appliDetailsData?.Status === "Completed" && (
+            <p className="descriptionHeading">
+              Score{" "}
+              <label style={{ paddingLeft: 150, color: "white" }}>
+                {appliDetailsData &&
+                  (appliDetailsData as IEvents).ProjectSubmissionScore}
+              </label>
+            </p>
+          )
+        )}
       </div>
-      
     </div>
   );
 };

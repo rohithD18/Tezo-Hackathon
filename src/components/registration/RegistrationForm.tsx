@@ -8,7 +8,8 @@ const RegistrationForm: React.FC = () => {
   const [currentForm, setCurrentForm] = useState<string>("SelectMembersForm");
   console.log(membersArray);
 
-  const handleNextAndSubmit = (btn: string) => {
+  const 
+  handleNextAndSubmit = (btn: string) => {
     setCurrentForm(
       currentForm === "SelectMembersForm"
         ? "TeamDetailsForm"

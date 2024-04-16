@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useState } from "react";
+
 export type data = {
   activePage: number;
   setActivePage: (message: number) => void;

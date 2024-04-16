@@ -90,23 +90,11 @@ const Events = () => {
         return event;
       }
     });
-
     setFilteredData(filtered);
   }, [currEventData, searchQuery]);
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
-  // const handleFilterClick = (status: string) => {
-  //   setActiveFilter(status);
-  //   if (status === "All") {
-  //       setCurrEventData(EventsData);
-  //   } else {
-  //     const filtered = EventsData.filter(
-  //       (event) => event.Status === status
-  //     );
-  //     setCurrEventData(filtered);
-  //   }
-  // };
   useEffect(() => {
     const counts = {
       Completed: 0,
@@ -120,38 +108,33 @@ const Events = () => {
 
     setStatusCounts(counts);
     setTotal(EventsData.length);
-    // setCurrEventData(EventsData);
-    setCurrEventData(
-      EventsData.sort((a: any, b: any) => {
-        // if(a instanceof Date &&  typeof a ==='number' && a!==undefined){
-        //   const dateA = new Date(a.SubmissionDate).getTime();
-        // }
-        const dateA = new Date(a.SubmissionDate).getTime();
-        const dateB = new Date(b.SubmissionDate).getTime();
-        return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
-      })
-    );
+    const filtered = [...EventsData].sort((a, b) => {
+      const aValue = a.SubmissionDate instanceof Date ? a.SubmissionDate.getTime() :Infinity;
+      const bValue = b.SubmissionDate instanceof Date ? b.SubmissionDate.getTime() : Infinity;
+      return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+    });
+    console.log(filtered)
+    setCurrEventData(filtered);
   }, [EventsData, sortOrder]);
   const handleFilterClick = (status: string) => {
+   
     setActiveFilter(status);
     if (status === "All") {
-      const filtered = EventsData.filter((event) =>
-        event.TeamName.toLowerCase().includes(searchQuery.toLowerCase())
-      ).sort((a: any, b: any) => {
-        const dateA = new Date(a.SubmissionDate).getTime();
-        const dateB = new Date(b.SubmissionDate).getTime();
-        return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+      const filtered = [...EventsData].sort((a, b) => {
+        const aValue = a.SubmissionDate instanceof Date ? a.SubmissionDate.getTime() :Infinity;
+        const bValue = b.SubmissionDate instanceof Date ? b.SubmissionDate.getTime() : Infinity;
+        return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
       });
       setCurrEventData(filtered);
       hackathonContext.setActivePage(0);
       hackathonContext.setItemOffset(0);
     } else {
-      const filtered = EventsData.filter(
+      const filtered = [...EventsData].filter(
         (event) => event.Status === status
-      ).sort((a: any, b: any) => {
-        const dateA = new Date(a.SubmissionDate).getTime();
-        const dateB = new Date(b.SubmissionDate).getTime();
-        return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+      ).sort((a, b) => {
+        const aValue = a.SubmissionDate instanceof Date ? a.SubmissionDate.getTime() :Infinity;
+        const bValue = b.SubmissionDate instanceof Date ? b.SubmissionDate.getTime() : Infinity;
+        return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
       });
       setCurrEventData(filtered);
       hackathonContext.setActivePage(0);
@@ -176,9 +159,7 @@ const Events = () => {
     setScheduleEvent(false);
   };
   const handleChildData = (data: number) => {
-    // setSelectedRating(data)
     console.log(data);
-    // console.log("hi")
     const updateItems = EventsData.map((item) => {
       if (
         item.Status === "Completed" &&
@@ -198,7 +179,7 @@ const Events = () => {
   };
   return (
     <>
-      <DashboardNav />
+      {/* <DashboardNav /> */}
       <div className="EventManagement">
         <div className="EventsScreen1">
           <span className="eventTitle">Event Management</span>

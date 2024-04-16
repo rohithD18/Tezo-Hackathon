@@ -140,11 +140,6 @@ const ApplicationTable = (props: Props) => {
                   </div>
                 </td>
               ) : undefined
-              // (
-              //   <td className="statusTitle">
-              //     {/* Render an empty string if not admin */}
-              //   </td>
-              // )
             }
           </tr>
         ))}

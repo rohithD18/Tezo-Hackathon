@@ -10,11 +10,11 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const DashboardNav: React.FC = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
 
-  const [activeButton, setActiveButton] = useState<string | undefined>(id);
+  const [activeButton, setActiveButton] = useState<string>("");
 
   const handleButtonClick = (buttonName: string) => {
+    setActiveButton(buttonName);
     navigate(`/dashboard/${buttonName}`);
   };
 
@@ -30,7 +30,7 @@ const DashboardNav: React.FC = () => {
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className={!activeButton  ? "activeSVG" : ""}
+          className={!activeButton ? "activeSVG" : ""}
         >
           <path
             d="M4.1665 8.33268H5.83317C7.49984 8.33268 8.33317 7.49935 8.33317 5.83268V4.16602C8.33317 2.49935 7.49984 1.66602 5.83317 1.66602H4.1665C2.49984 1.66602 1.6665 2.49935 1.6665 4.16602V5.83268C1.6665 7.49935 2.49984 8.33268 4.1665 8.33268Z"
