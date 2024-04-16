@@ -6,7 +6,7 @@ import {
   ITeamMember,
 } from "./Interface/HackathonInterface";
 
-const AllUsers: IAllUsers[] = [
+export const AllUsers: IAllUsers[] = [
   {
     Id: 1,
     Name: "John Doe",
@@ -230,7 +230,7 @@ const AllUsers: IAllUsers[] = [
 ];
 console.log(AllUsers);
 
-const AllProject: IAllProject[] = [
+export const AllProject: IAllProject[] = [
   {
     Id: 1,
     ProjectName: "Project 1",
@@ -355,7 +355,7 @@ const AllProject: IAllProject[] = [
 
 console.log(AllProject);
 
-const AllTeams: IAllTeams[] = [
+export const AllTeams: IAllTeams[] = [
   { Id: 1, TeamName: "Team 1", TeamLogo: "logo_url_for_team_1" },
   { Id: 2, TeamName: "Team 2", TeamLogo: "logo_url_for_team_2" },
   { Id: 3, TeamName: "Team 3", TeamLogo: "logo_url_for_team_3" },
@@ -379,7 +379,7 @@ const AllTeams: IAllTeams[] = [
 ];
 
 console.log(AllTeams);
-const TeamMember: ITeamMember[] = [
+export const TeamMember: ITeamMember[] = [
   { Id: 1, TeamId: 1, PersonId: 1, Role: 1, IsAdmin: true },
   { Id: 2, TeamId: 1, PersonId: 2, Role: 2, IsAdmin: false },
   { Id: 3, TeamId: 2, PersonId: 3, Role: 1, IsAdmin: true },
@@ -403,7 +403,7 @@ const TeamMember: ITeamMember[] = [
 ];
 console.log(TeamMember);
 
-const GetPointTable: IGetPointTable[] = [
+export const PointsTable: IGetPointTable[] = [
   {
     Id: 1,
     TeamId: 1,
@@ -586,4 +586,4 @@ const GetPointTable: IGetPointTable[] = [
   },
 ];
 
-console.log(GetPointTable);
+console.log(PointsTable);
