@@ -13,9 +13,6 @@ function NavBarCopy() {
     return window.location.pathname === path;
   };
   const [showProfile, setShowProfile] = useState(false);
-  const [userName, setUserName] = useState(
-    localStorage.getItem("username")?.toString()
-  );
   const [profileImage] = useState<any>(localStorage.getItem("profileImage"));
   const handleProfileClick = () => {
     setShowProfile(!showProfile);
@@ -59,17 +56,16 @@ function NavBarCopy() {
             </div>
             <div className="col-8">
               <ul className="nav">
-                <li className="nav-item" onClick={()=>navigate("/")}>
+                <li className="nav-item" onClick={() => navigate("/")}>
                   <label
                     className={`nav-link navLinkItem ${
                       isActive("/") ? "itemActive disable-hover" : ""
                     }`}
-                    
                   >
                     Home
                   </label>
                 </li>
-                <li className="nav-item" onClick={()=>navigate("/schedule")}>
+                <li className="nav-item" onClick={() => navigate("/schedule")}>
                   <label
                     className={`nav-link navLinkItem ${
                       isActive("/schedule") ? "itemActive disable-hover" : ""
@@ -78,7 +74,7 @@ function NavBarCopy() {
                     Schedule
                   </label>
                 </li>
-                <li className="nav-item" onClick={()=>navigate("/myProject")}>
+                <li className="nav-item" onClick={() => navigate("/myProject")}>
                   <label
                     className={`nav-link navLinkItem ${
                       isActive("/myProject") ? "itemActive disable-hover" : ""
@@ -87,7 +83,7 @@ function NavBarCopy() {
                     MyProject
                   </label>
                 </li>
-                <li className="nav-item" onClick={()=>navigate("/teams")}>
+                <li className="nav-item" onClick={() => navigate("/teams")}>
                   <label
                     className={`nav-link navLinkItem ${
                       isActive("/teams") ? "itemActive disable-hover" : ""
@@ -96,7 +92,7 @@ function NavBarCopy() {
                     Teams
                   </label>
                 </li>
-                <li className="nav-item" onClick={()=>navigate("/rules")}>
+                <li className="nav-item" onClick={() => navigate("/rules")}>
                   <label
                     className={`nav-link navLinkItem ${
                       isActive("/rules") ? "itemActive disable-hover" : ""
@@ -105,12 +101,11 @@ function NavBarCopy() {
                     Rules
                   </label>
                 </li>
-                <li className="nav-item" onClick={()=>navigate("/dashboard")}>
+                <li className="nav-item" onClick={() => navigate("/dashboard")}>
                   <label
                     className={`nav-link navLinkItem ${
                       isActive("/dashboard") ? "itemActive disable-hover " : ""
                     }`}
-                  
                   >
                     Dashboard
                   </label>
@@ -208,12 +203,7 @@ function NavBarCopy() {
                 </div>
               </div>
             </div>
-            {showProfile && (
-              <ViewProfile
-                setShowProfile={setShowProfile}
-                setUserName={setUserName}
-              />
-            )}
+            {showProfile && <ViewProfile setShowProfile={setShowProfile} />}
           </div>
         </div>
       </div>

@@ -19,14 +19,7 @@ import vector from "../assets/vecktorAll.png";
 
 export const pca = new PublicClientApplication(msalConfig);
 
-interface IProps1 {
-  userNameFromLogInLogOutComp: (message: string) => void;
-}
-interface IProps2 {
-  setUserName: (message: string) => void;
-}
-
-export function LogInLogOutComp({ userNameFromLogInLogOutComp }: IProps1) {
+export function LogInLogOutComp() {
   const navigate = useNavigate();
   const { instance } = useMsal();
   const { accounts } = useMsal();
@@ -37,12 +30,11 @@ export function LogInLogOutComp({ userNameFromLogInLogOutComp }: IProps1) {
   useEffect(() => {
     username && localStorage.setItem("username", username);
     fullName && localStorage.setItem("fullName", fullName);
-    userNameFromLogInLogOutComp(username);
-  }, [username, userNameFromLogInLogOutComp, fullName]);
+  }, [username, fullName]);
 
   const handleLoginPopup = () => {
     instance
-      .loginPopup()
+      .loginRedirect()
       .catch((error) => console.log(error))
       .then((res) => {
         localStorage.setItem("userDataL", JSON.stringify(res));
@@ -80,10 +72,7 @@ export function LogInLogOutComp({ userNameFromLogInLogOutComp }: IProps1) {
   );
 }
 
-export const Login = ({ setUserName }: IProps2) => {
-  const userNameFromLogInLogOutComp = (data: string) => {
-    setUserName(data); // or set the data to a state
-  };
+export const Login = () => {
   return (
     <div className="loginSection">
       <div className="welcomeDiv">
@@ -102,9 +91,7 @@ export const Login = ({ setUserName }: IProps2) => {
       <img src={vector} alt="vecktor" id="vector" />
 
       <div className="logInOutComp">
-        <LogInLogOutComp
-          userNameFromLogInLogOutComp={userNameFromLogInLogOutComp}
-        />
+        <LogInLogOutComp />
       </div>
     </div>
   );
