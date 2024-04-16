@@ -11,19 +11,14 @@ import {UserEditPopUp} from "./UserEditPopUp";
 import {UserDeletePopUp} from "./UserDeletePopUp";
 
 const Users = () => {
-  const [currUserData, setCurrUserData] = useState<
-    IUsers[]
-  >(UsersData);
-  const [displayOnUser, setDisplayOnUser] = useState<
-    IUsers[]
-  >([]);
+  const [currUserData, setCurrUserData] = useState<IUsers[]>(UsersData);
+  const [displayOnUser, setDisplayOnUser] = useState<IUsers[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState<IUsers[]>([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
   const [userData, setUserDetailsData] = useState<IUsers>();
   const handleOpenPopup = () => {
-
     setIsPopupOpen(true);
   };
   const handleDeleteOpenPopup = () => {
@@ -36,14 +31,11 @@ const Users = () => {
   };
   const handleClosePopup = () => {
     setIsPopupOpen(false);
-    
   };
   const handleUserDetailsData = (data: IUsers) => {
     setUserDetailsData(data);
-    
   };
   useEffect(() => {
-   
     setCurrUserData(UsersData);
   }, []);
 
@@ -55,10 +47,10 @@ const Users = () => {
   }, [currUserData, searchQuery]);
   const formatDate = (date: Date | string): string => {
     if (typeof date === "string") {
-      return date
+      return date;
     } else {
       const day = date.getDate();
-      const month = date.toLocaleString('en-US', { month: 'short' });
+      const month = date.toLocaleString("en-US", { month: "short" });
       return `${day}, ${month}`;
     }
   };
@@ -96,54 +88,31 @@ const Users = () => {
     }
     
   };
-  
+
   return (
-    <><DashboardNav/>
-    <div className="UserManagement">
-      <div className="UsersScreen1">
-            <span className="tableTitle">Users</span>
-            {/* <div className="userSearchBox">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  className="bi bi-search"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                </svg>
-                <input
-                  type="search"
-                  name=""
-                  className="searchInput"
-                  placeholder="Search by Team Name"
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                />
-              </div> */}
-               <InputSearch
-                currentScreen={"SelectMembers"}
-                setQuerySearch={setSearchQuery}
-              />
+    <>
+      <div className="UserManagement">
+        <div className="UsersScreen1">
+          <span className="tableTitle">Users</span>
+          <InputSearch
+            currentScreen={"SelectMembers"}
+            setQuerySearch={setSearchQuery}
+          />
+        </div>
+        <div className="userDisplayTable">
+          <table className="table">
+            <thead className="tableRow">
+              <th className="headingTitle">Name</th>
+              <th className="headingTitle">Email Address</th>
+              <th className="headingTitle">Team Name</th>
+              <th className="headingTitle">Registered on</th>
+              <th className="headingTitle">Actions</th>
+            </thead>
 
-            
-        
-          </div>
-          <div className="userDisplayTable">
-            <table className="table">
-              <thead className="tableRow">
-                <th className="headingTitle">Name</th>
-                <th className="headingTitle">Email Address</th>
-                <th className="headingTitle">Team Name</th>
-                <th className="headingTitle">Registered on</th>
-                <th className="headingTitle">Actions</th>
-              </thead>
-
-              {displayOnUser.map((user, index) => (
-                <tr
-                  className="tableRowDataUser"
-                  key={index}
+            {displayOnUser.map((user, index) => (
+              <tr
+                className="tableRowDataUser"
+                key={index}
                 onClick={() => handleUserDetailsData(user)}
                 >
                 

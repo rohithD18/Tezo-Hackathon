@@ -25,7 +25,7 @@ const TeamCard: React.FC<Props> = (props: Props) => {
               <div className="cardgroup">
                 <span
                   className={`cardRank ${
-                    data.rank === 1
+                    data?.rank === 1
                       ? "rank1"
                       : data.rank === 2
                       ? "rank2"
@@ -34,7 +34,7 @@ const TeamCard: React.FC<Props> = (props: Props) => {
                       : ""
                   }`}
                 >
-                  {data.rank}
+                  {data?.rank}
                 </span>
                 <FaHashtag className="hashIcon" />
               </div>

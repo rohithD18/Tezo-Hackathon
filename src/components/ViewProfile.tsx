@@ -1,29 +1,19 @@
 import React, { useEffect, useState } from "react";
 import ic_round_close from "../assets/ic_round_close.png";
 import Group7334 from "../assets/Group7334.png";
-import Icon from "../assets/Icon.png";
+
 import userIcon from "../assets/userIcon.png";
 import "../styles/ViewProfile.css";
-import { LogInLogOutComp, pca } from "./Login";
-import { MsalProvider } from "@azure/msal-react";
-import { userName } from "../services/Profile";
-import { userEmail } from "../services/Profile";
+import { LogInLogOutComp } from "./Login";
 
 type Props = {
   setShowProfile: (message: boolean) => void;
-  setUserName: (message: string) => void;
 };
 
-const ViewProfile: React.FC<Props> = ({
-  setShowProfile,
-  setUserName,
-}: Props) => {
+const ViewProfile: React.FC<Props> = ({ setShowProfile }: Props) => {
   const [isDashboard, setIsDashboard] = useState(false);
   const handleCancel = () => {
     setShowProfile(false);
-  };
-  const userNameFromLogInLogOutComp = (data: string) => {
-    setUserName(""); // or set the data to a state
   };
   useEffect(() => {
     window.location.pathname === "/dashboard" && setIsDashboard(true);
@@ -69,11 +59,7 @@ const ViewProfile: React.FC<Props> = ({
               </div>
             </button>
           </a>
-          {/* <MsalProvider instance={pca}> */}
-          <LogInLogOutComp
-            userNameFromLogInLogOutComp={userNameFromLogInLogOutComp}
-          />
-          {/* </MsalProvider> */}
+          <LogInLogOutComp />
         </div>
       </div>
     </div>

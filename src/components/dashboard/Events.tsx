@@ -179,7 +179,7 @@ const Events = () => {
   };
   return (
     <>
-      <DashboardNav />
+      {/* <DashboardNav /> */}
       <div className="EventManagement">
         <div className="EventsScreen1">
           <span className="eventTitle">Event Management</span>

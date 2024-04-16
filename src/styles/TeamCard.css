@@ -21,10 +21,7 @@
 
 @media screen and (max-width: 576px) {
   .allCardBody {
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(200px, 1fr)
-    ); 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 
@@ -202,4 +199,22 @@ img.captainImage {
   text-align: left;
 
   color: #ffffff;
+}
+
+
+//CSS for ShimmerCrad
+.team-card-loading {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
 }

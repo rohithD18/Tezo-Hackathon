@@ -10,19 +10,29 @@ type Props = {
   isRejectedFeed: boolean;
   setIsRejectedFeed: (message: boolean) => void;
   setIsRating: (message: boolean) => void;
-  selectedRatingValue?:(data:number)=>void
+  selectedRatingValue?: (data: number) => void;
 };
 const ViewBlur: React.FC<Props> = (props: Props) => {
- 
-  const { isRating, isRejectedFeed, setIsRejectedFeed, setIsRating,selectedRatingValue } = props;
-  const handleChildData = (data:number) => {
-    selectedRatingValue && selectedRatingValue(data)
+  const {
+    isRating,
+    isRejectedFeed,
+    setIsRejectedFeed,
+    setIsRating,
+    selectedRatingValue,
+  } = props;
+  const handleChildData = (data: number) => {
+    selectedRatingValue && selectedRatingValue(data);
     // Do something with the data received from the child
   };
   return (
     <div className="blur-container">
       <div className="blur-background">
-        {isRating && <Rating setIsRating={setIsRating} selectedRatingValue={handleChildData} />}
+        {isRating && (
+          <Rating
+            setIsRating={setIsRating}
+            selectedRatingValue={handleChildData}
+          />
+        )}
         {isRejectedFeed && (
           <RejectedFeedback setIsRejectedFeed={setIsRejectedFeed} />
         )}
