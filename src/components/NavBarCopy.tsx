@@ -13,9 +13,7 @@ function NavBarCopy() {
     return window.location.pathname === path;
   };
   const [showProfile, setShowProfile] = useState(false);
-  const [userName, setUserName] = useState(
-    localStorage.getItem("username")?.toString()
-  );
+  const [profileImage] = useState<any>(localStorage.getItem("profileImage"));
   const handleProfileClick = () => {
     setShowProfile(!showProfile);
   };
@@ -173,12 +171,7 @@ function NavBarCopy() {
                 </div>
               </div>
             </div>
-            {showProfile && (
-              <ViewProfile
-                setShowProfile={setShowProfile}
-                setUserName={setUserName}
-              />
-            )}
+            {showProfile && <ViewProfile setShowProfile={setShowProfile} />}
           </div>
         </div>
       </div>

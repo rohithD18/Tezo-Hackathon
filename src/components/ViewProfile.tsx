@@ -8,19 +8,12 @@ import { LogInLogOutComp } from "./Login";
 
 type Props = {
   setShowProfile: (message: boolean) => void;
-  setUserName: (message: string) => void;
 };
 
-const ViewProfile: React.FC<Props> = ({
-  setShowProfile,
-  setUserName,
-}: Props) => {
+const ViewProfile: React.FC<Props> = ({ setShowProfile }: Props) => {
   const [isDashboard, setIsDashboard] = useState(false);
   const handleCancel = () => {
     setShowProfile(false);
-  };
-  const userNameFromLogInLogOutComp = (data: string) => {
-    setUserName(""); // or set the data to a state
   };
   useEffect(() => {
     window.location.pathname === "/dashboard" && setIsDashboard(true);
@@ -66,11 +59,7 @@ const ViewProfile: React.FC<Props> = ({
               </div>
             </button>
           </a>
-          {/* <MsalProvider instance={pca}> */}
-          <LogInLogOutComp
-            userNameFromLogInLogOutComp={userNameFromLogInLogOutComp}
-          />
-          {/* </MsalProvider> */}
+          <LogInLogOutComp />
         </div>
       </div>
     </div>
