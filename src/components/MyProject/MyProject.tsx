@@ -14,14 +14,13 @@ interface MyProjectProps {
   onSubmit: (data: IProjectInfo) => void;
 }
 const MyProject: React.FC = () => {
-  
+  const submitPopUp="";  
   const [currentProjectForm, setCurrentProjectForm] =useState<string>("ProjectDetailForm");
   const [sucessSubmit,setSucessSubmit]=useState<boolean>(false);
   const [formData, setFormData] = useState<IProjectInfo[]>(projectInfoArray);
   const [duplicateData,setDuplicateData]=useState<IProjectInfo[]|null>();
   const handleSubmit = (data: IProjectInfo[]|null) => {
     if(currentProjectForm==="ProjectSubmissionForm"){
-      console.log("vbnm");
       setSucessSubmit(true);
       setCurrentProjectForm("ProjectSubmissionForm")
 
@@ -117,7 +116,7 @@ const MyProject: React.FC = () => {
               </div>
             </div>
           </div>
-         { sucessSubmit ? <SubmissionFailed /> :
+         { sucessSubmit ? <SubmissionFailed submitPopUp={"Success"}  /> :
           <div
             className={
               currentProjectForm === "ProjectDescripitionForm"

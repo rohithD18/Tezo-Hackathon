@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-// import InputSearch from "./InputSearch";
 import "../styles/UpcomingEvents.css";
 import { IEvents } from "../Interfaces";
 import InputSearch from "./InputSearch";
+
 interface IProps {
-  upcomingEvents: Array<IEvents>;
+  upcomingEvents: IEvents[];
   validUpcomingEvents: boolean;
 }
+
 export const TeamEvents: React.FC<IProps> = ({
   upcomingEvents,
   validUpcomingEvents,
 }: IProps) => {
   const [querySearch, setQuerySearch] = useState<string>();
+
   return (
     <div className="eventsSection">
       {validUpcomingEvents ? (
@@ -38,9 +40,19 @@ export const TeamEvents: React.FC<IProps> = ({
           <div>
             <div>{item.TeamName.toUpperCase()}</div>
             <div>
-              <div>8 october </div>
+            <div>
+                {typeof item.SubmissionDate === 'string'
+                  ? item.SubmissionDate.split(',')[0]
+                  : item.SubmissionDate instanceof Date // Check if it's a Date object
+                    ? item.SubmissionDate.toLocaleDateString() // Format the Date object as a string
+                    : "--"} 
+              </div>
               <div id="dot"></div>
-              <div>11.45PM</div>
+              <div>{typeof item.SubmissionDate === 'string' // Check if it's a string
+                  ? item.SubmissionDate.split(' ')[1] // Extract time part
+                  : item.SubmissionDate instanceof Date // Check if it's a Date object
+                    ? item.SubmissionDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) // Format the Date object as time
+                    : "--"} </div>
             </div>
           </div>
         </div>

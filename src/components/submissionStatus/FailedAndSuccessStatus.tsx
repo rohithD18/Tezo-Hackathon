@@ -3,10 +3,13 @@ import FailedIcon from "../../assets/FailedWarningIcon.png";
 import SuccessIcon from "../../assets/SuccessIcon.png";
 import "../../styles/submissionStatus/FailedAndSuccessStatus.css";
 import { useNavigate } from "react-router-dom";
-
-const SubmissionFailed: React.FC = () => {
+interface SubmissionFailedProps {
+  submitPopUp:string;  
+  
+}
+const SubmissionFailed:React.FC<SubmissionFailedProps > = ({ submitPopUp }) => { 
   const navigate = useNavigate();
-  const [submissionStatus, setSubmissionStatus] = useState<string>("Failed");
+  const [submissionStatus, setSubmissionStatus] = useState<string>(submitPopUp);
   const [isProjectSubmitted, setIsProjectSubmitted] = useState<boolean>(false);
   const handleClick = (status: string) => {
     // status === "Success" ? navigate("/") : navigate("/Registration-Form");
