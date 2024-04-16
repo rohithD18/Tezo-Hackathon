@@ -10,11 +10,12 @@
     align-items: center;
     z-index: 1000;
   }
+  
    .teamNamesDropDown {
-    width:100%;
+    /* width:100%;
 padding: 12px;
-gap: 8px;
-border-radius: 4px;
+gap: 8px;*/
+border-radius: 4px; 
 border: 1px solid #3D5A80;
 color: #2B3647;
 background: #2B3647;
@@ -34,17 +35,17 @@ outline: none;
 
    }
    .NameAndDate {
-    width:48.7%;
-padding: 12px;
-gap: 8px;
-border-radius: 4px;
+    /* width:100%;
+padding: 12px; */
+/* gap: 8px; */
+/* border-radius: 4px;
 margin: 3px;
 border: 1px solid #3D5A80;
 color: #2B3647;
 background: #2B3647;
 z-index: 9999;
 color:#EEEEEE;
-outline: none;
+outline: none; */
 
    }
    
@@ -60,17 +61,29 @@ color:white
 
 }
 .userEditPopup > div{
-    display:flex
+    display:flex;
+    gap:24px
 }
 .userEditPopup img{
     float:right;
     cursor: pointer;
 }
+.labelUserEditPopUp{
+        /* padding-left: 9px; */
+        position: absolute;
+        margin-left: 9px;
+        color: #878787;
+        margin-top: -14px;
+        font-weight: 400;
+  font-size: 1rem;
+      z-index: 1000;
+      background-color:#273144;
+}
 .userEditPopup {
     background: #273144;
     border-radius: 8px;
     width:30%;
-    height:40%;
+    height:43%;
     padding: 24px 24px 12px 24px;
     display: flex;
     gap:10px;

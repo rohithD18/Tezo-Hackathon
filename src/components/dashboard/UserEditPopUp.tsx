@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../../styles/dashboard/UserEditPopUp.css';
 import xclose from "../../assets/xclose.png";
-import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, TextField, Box } from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, TextField, Box, Input } from "@mui/material";
 import { teamNames } from "../../services/TeamNames";
 import { IUsers } from '../../Interfaces';
 interface PopupProps {
@@ -10,9 +10,9 @@ interface PopupProps {
     userData?:IUsers;
     updateEvents?:(userData:string) => void;
   }
-const UserEditPopUp=({onClose,userData,updateEvents}:PopupProps)=>{
-  
-    const [selectedOption, setSelectedOption] = useState('');
+export const UserEditPopUp: React.FC<PopupProps>=({onClose,userData,updateEvents}:PopupProps)=>{
+  // console.log(userData)
+    const [selectedOption, setSelectedOption] = useState<string|undefined>(userData?.TeamName);
      
     const handleSelectChange = (event:  SelectChangeEvent<string>) => {
         const option = event.target.value;
@@ -26,6 +26,9 @@ const UserEditPopUp=({onClose,userData,updateEvents}:PopupProps)=>{
         updateEvents?.(selectedOption)
         onClose();
       }
+      // useEffect(()=>{
+      //   userData && setSelectedOption(userData?.TeamName)
+      // })
   return (
      <div>
       <div className="userPopUp">
@@ -36,8 +39,19 @@ const UserEditPopUp=({onClose,userData,updateEvents}:PopupProps)=>{
             <img src={xclose} alt="closeIcon" onClick={()=>{onClose();
             }} width={24} height={24}></img>
             </div>
-            <label>Please provide the details for the Event scheduled</label>
+            <p>Please select the desired Team Name</p>
             <div className="user">
+            <div>
+       
+      
+            <label className='labelUserEditPopUp'>Name</label>
+            <input  className='Email' type="text" value={userData?.Name} readOnly />
+            </div>
+            <div>
+            <label className='labelUserEditPopUp'>Email</label>
+            <input className="Email" type="text" value={userData?.EmailAddress} readOnly />
+            </div>
+          
                 <Box>
                     <FormControl className="teamNamesDropDown" fullWidth>
       <InputLabel id="teamNamesDropDown-label">Select Team</InputLabel>
@@ -55,13 +69,7 @@ const UserEditPopUp=({onClose,userData,updateEvents}:PopupProps)=>{
       </Select>
     </FormControl>
     </Box>
-            <div>
-            <input className="Email" type="text" value={userData?.EmailAddress} readOnly />
-            </div>
-            <div>
-            <input  className='NameAndDate' type="text" value={userData?.Name} readOnly />
-            <input  className='NameAndDate'type="text" value={(userData?.RegisteredOn)?.toLocaleString()} readOnly />
-            </div>
+
             <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
             <button className="addNew" onClick={handleSubmit}>Update</button>
             </div>
@@ -75,4 +83,4 @@ const UserEditPopUp=({onClose,userData,updateEvents}:PopupProps)=>{
   )
 }
 
-export default UserEditPopUp
+// export default UserEditPopUp

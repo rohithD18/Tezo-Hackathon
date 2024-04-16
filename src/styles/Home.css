@@ -150,7 +150,7 @@ position: absolute;
   background-color:  rgba(73, 95, 128, 100);
   border: 2px solid white;
   border-radius: 10px;
-  width: 75%;
+  /* width: 75%; */
   display: flex;
   justify-content: space-between;
   background-image: url('../assets/bgimage4.png');
