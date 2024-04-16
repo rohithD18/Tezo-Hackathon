@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DisplayCount } from "./DisplayCount";
 import filterIcon from "../../assets/FilterIcon.png";
 import InputSearch from "../InputSearch";
@@ -14,15 +14,11 @@ import Feedback from "../../assets/Feedback.png";
 import Feedback1 from "../../assets/Feedback1.png";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material";
-// type Props = {
-//     setIsRating:any;
-//     setIsApplicationDetailsOpen: any;
-//     setIsRejectedFeed:any
-//     isRejectedFeed:boolean;
-//     isRating:boolean
-//   };
+import HackathonContext from "../../services/Context/HackathonContext";
 
 const ProjectManagement: React.FC = () => {
+  const hackathonContext = useContext(HackathonContext);
+
   const [curSortData, setSortData] = useState<IProject[]>(Projects);
   const [sortClick, setSortClick] = useState<boolean>(true);
 
@@ -39,11 +35,13 @@ const ProjectManagement: React.FC = () => {
     const sortedData = [...curSortData].sort((a, b) => {
       if (sortClick) {
         return (
-          new Date(a.SubmissionDate).getTime() - new Date(b.SubmissionDate).getTime()
+          new Date(a.SubmissionDate).getTime() -
+          new Date(b.SubmissionDate).getTime()
         );
       } else {
         return (
-          -new Date(a.SubmissionDate).getTime() + new Date(b.SubmissionDate).getTime()
+          -new Date(a.SubmissionDate).getTime() +
+          new Date(b.SubmissionDate).getTime()
         );
       }
     });
@@ -63,12 +61,22 @@ const ProjectManagement: React.FC = () => {
 
     if (value === "All") {
       setSortData([...Projects]);
+      hackathonContext.setActivePage(0);
+      hackathonContext.setItemOffset(0);
     } else if (value === "Pending") {
-      const sortedData = Projects.filter((item) => item.projectSubmissionScore === 0);
+      const sortedData = Projects.filter(
+        (item) => item.projectSubmissionScore === 0
+      );
       setSortData([...sortedData]);
+      hackathonContext.setActivePage(0);
+      hackathonContext.setItemOffset(0);
     } else if (value === "Submit") {
-      const sortedData = Projects.filter((item) => item.projectSubmissionScore !== 0);
+      const sortedData = Projects.filter(
+        (item) => item.projectSubmissionScore !== 0
+      );
       setSortData([...sortedData]);
+      hackathonContext.setActivePage(0);
+      hackathonContext.setItemOffset(0);
     }
   }
 
@@ -83,8 +91,7 @@ const ProjectManagement: React.FC = () => {
       );
   }, [querySearch]);
   return (
-    < >
-
+    <>
       <div className="projectManagement">
         <DisplayCount />
         <div className="projectManagementData">
@@ -145,13 +152,13 @@ const ProjectManagement: React.FC = () => {
                     onClick={() => handleAppliDetailsData(record)}
                   >
                     <td>
-                      <img className="capatainImg" src={image} />
+                      <img className="capatainImg" src={image} alt="img"/>
                       {record.TeamName}
                     </td>
                     <td className="recordDescription">{record.descripition}</td>
                     <td>{record.SubmissionDate}</td>
                     <td>
-                      {record.projectSubmissionScore != 0 ? (
+                      {record.projectSubmissionScore !== 0 ? (
                         <img
                           src={Feedback}
                           alt="feedback"
@@ -199,4 +206,4 @@ const ProjectManagement: React.FC = () => {
   );
 };
 
-export default ProjectManagement
+export default ProjectManagement;

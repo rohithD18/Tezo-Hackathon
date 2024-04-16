@@ -48,11 +48,10 @@ const HomePage: React.FC<HomePageProps> = (props) => {
         ></img>
         <label id="scrollText">Scroll up to know more</label>
       </div>
-      {/*date*/}
 
       <div className="dateContainer">
         <div className="dateContent">
-          {/* <p> */}
+
           <h1 className="heading">Keep Up to Date</h1>
           <p className="description1">
             As a front-end developer, I find myself in a perpetual race against

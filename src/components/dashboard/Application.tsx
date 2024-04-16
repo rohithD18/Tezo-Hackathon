@@ -82,10 +82,12 @@ const Application: React.FC = () => {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
+
   useEffect(() => {
     handleFilterClick(activeFilter);
   }, [sortOrder, activeFilter]);
 
+  //filtering data
   const handleFilterClick = (status: string) => {
     setActiveFilter(status);
     if (status === "All") {
@@ -133,57 +135,31 @@ const Application: React.FC = () => {
   const [userRole] = useState<string>("admin");
 
   const renderFilterButtons = () => {
+    const filterButtons = [{ title: "All", status: "All" }];
+
     if (userRole === "admin") {
-      return (
-        <>
-          <button
-            className={`btnAll ${activeFilter === "All" ? "hovered" : ""}`}
-            onClick={() => handleFilterClick("All")}
-          >
-            All
-          </button>
-          <button
-            className={`btnPending ${
-              activeFilter === "Pending" ? "hovered" : ""
-            }`}
-            onClick={() => handleFilterClick("Pending")}
-          >
-            Pending
-          </button>
-          <button
-            className={`btnAccepted ${
-              activeFilter === "Accepted" ? "hovered" : ""
-            }`}
-            onClick={() => handleFilterClick("Accepted")}
-          >
-            Accepted
-          </button>
-          <button
-            className={`btnRejected ${
-              activeFilter === "Rejected" ? "hovered" : ""
-            }`}
-            onClick={() => handleFilterClick("Rejected")}
-          >
-            Rejected
-          </button>
-        </>
-      );
-    } else {
-      return (
-        <button
-          className={`btnAll ${activeFilter === "All" ? "hovered" : ""}`}
-          onClick={() => handleFilterClick("All")}
-        >
-          All
-        </button>
+      filterButtons.push(
+        { title: "Pending", status: "Pending" },
+        { title: "Accepted", status: "Accepted" },
+        { title: "Rejected", status: "Rejected" }
       );
     }
+
+    return filterButtons.map((button) => (
+      <button
+        key={button.status}
+        className={`btn${button.title} ${
+          activeFilter === button.status ? "hovered" : ""
+        }`}
+        onClick={() => handleFilterClick(button.status)}
+      >
+        {button.title}
+      </button>
+    ));
   };
 
   return (
     <>
-      {/* // <div className="applicationView"> */}
-      {/* <DashboardNav /> */}
       <div className="ApplicationScreen">
         <DisplayCard cardData={cardData} />
         <div className="tableContainerr">
