@@ -2,19 +2,18 @@ import {
   IAllProject,
   IAllTeams,
   IAllUsers,
-  IGetPointTable,
+  IPointsTable,
   ITeamMember,
 } from "./Interface/HackathonInterface";
 
-
-const AllUsers: IAllUsers[] = [
+export const AllUsers: IAllUsers[] = [
   {
     Id: 1,
     Name: "John Doe",
     Email: "john.doe@example.com",
     EmployeeId: "EMP001",
-    Department: 101,
-    Profile: "Software Engineer",
+    Department: 1,
+    ProfilePic: "Software Engineer",
     Role: "Developer",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -24,8 +23,8 @@ const AllUsers: IAllUsers[] = [
     Name: "Jane Smith",
     Email: "jane.smith@example.com",
     EmployeeId: "EMP002",
-    Department: 102,
-    Profile: "Data Analyst",
+    Department: 2,
+    ProfilePic: "Data Analyst",
     Role: "Analyst",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -35,8 +34,8 @@ const AllUsers: IAllUsers[] = [
     Name: "Alice Johnson",
     Email: "alice.johnson@example.com",
     EmployeeId: "EMP003",
-    Department: 103,
-    Profile: "UI/UX Designer",
+    Department: 1,
+    ProfilePic: "UI/UX Designer",
     Role: "Designer",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -46,8 +45,8 @@ const AllUsers: IAllUsers[] = [
     Name: "Bob Williams",
     Email: "bob.williams@example.com",
     EmployeeId: "EMP004",
-    Department: 104,
-    Profile: "Project Manager",
+    Department: 2,
+    ProfilePic: "Project Manager",
     Role: "Manager",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -57,8 +56,8 @@ const AllUsers: IAllUsers[] = [
     Name: "Emily Brown",
     Email: "emily.brown@example.com",
     EmployeeId: "EMP005",
-    Department: 105,
-    Profile: "Marketing Specialist",
+    Department: 2,
+    ProfilePic: "Marketing Specialist",
     Role: "Specialist",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -68,8 +67,8 @@ const AllUsers: IAllUsers[] = [
     Name: "Michael Davis",
     Email: "michael.davis@example.com",
     EmployeeId: "EMP006",
-    Department: 106,
-    Profile: "Financial Analyst",
+    Department: 2,
+    ProfilePic: "Financial Analyst",
     Role: "Analyst",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -79,8 +78,8 @@ const AllUsers: IAllUsers[] = [
     Name: "Sarah Wilson",
     Email: "sarah.wilson@example.com",
     EmployeeId: "EMP007",
-    Department: 107,
-    Profile: "HR Manager",
+    Department: 1,
+    ProfilePic: "HR Manager",
     Role: "Manager",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -90,8 +89,8 @@ const AllUsers: IAllUsers[] = [
     Name: "David Martinez",
     Email: "david.martinez@example.com",
     EmployeeId: "EMP008",
-    Department: 108,
-    Profile: "Software Developer",
+    Department: 2,
+    ProfilePic: "Software Developer",
     Role: "Developer",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -101,8 +100,8 @@ const AllUsers: IAllUsers[] = [
     Name: "Olivia Taylor",
     Email: "olivia.taylor@example.com",
     EmployeeId: "EMP009",
-    Department: 109,
-    Profile: "System Administrator",
+    Department: 1,
+    ProfilePic: "System Administrator",
     Role: "Administrator",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -112,8 +111,8 @@ const AllUsers: IAllUsers[] = [
     Name: "James Moore",
     Email: "james.moore@example.com",
     EmployeeId: "EMP010",
-    Department: 110,
-    Profile: "Data Scientist",
+    Department: 2,
+    ProfilePic: "Data Scientist",
     Role: "Scientist",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -123,8 +122,8 @@ const AllUsers: IAllUsers[] = [
     Name: "Sophia Clark",
     Email: "sophia.clark@example.com",
     EmployeeId: "EMP011",
-    Department: 111,
-    Profile: "Quality Assurance Analyst",
+    Department: 2,
+    ProfilePic: "Quality Assurance Analyst",
     Role: "Analyst",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -134,8 +133,8 @@ const AllUsers: IAllUsers[] = [
     Name: "Daniel Lee",
     Email: "daniel.lee@example.com",
     EmployeeId: "EMP012",
-    Department: 112,
-    Profile: "Network Engineer",
+    Department: 2,
+    ProfilePic: "Network Engineer",
     Role: "Engineer",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -145,8 +144,8 @@ const AllUsers: IAllUsers[] = [
     Name: "Ava Rodriguez",
     Email: "ava.rodriguez@example.com",
     EmployeeId: "EMP013",
-    Department: 113,
-    Profile: "Content Writer",
+    Department: 2,
+    ProfilePic: "Content Writer",
     Role: "Writer",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -156,8 +155,8 @@ const AllUsers: IAllUsers[] = [
     Name: "Ethan Hall",
     Email: "ethan.hall@example.com",
     EmployeeId: "EMP014",
-    Department: 114,
-    Profile: "Business Analyst",
+    Department: 2,
+    ProfilePic: "Business Analyst",
     Role: "Analyst",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -167,20 +166,20 @@ const AllUsers: IAllUsers[] = [
     Name: "Mia Garcia",
     Email: "mia.garcia@example.com",
     EmployeeId: "EMP015",
-    Department: 115,
-    Profile: "Graphic Designer",
+    Department: 2,
+    ProfilePic: "Graphic Designer",
     Role: "Designer",
     IsRegistered: true,
     RegisteredDate: new Date(),
   },
   {
     Id: 16,
-    Name: "Noah Martinez",
-    Email: "noah.martinez@example.com",
+    Name: "Likitha Kattamudi",
+    Email: "likitha.k@example.com",
     EmployeeId: "EMP016",
-    Department: 116,
-    Profile: "Technical Support Specialist",
-    Role: "Specialist",
+    Department: 2,
+    ProfilePic: "Technical Support Specialist",
+    Role: "Admin",
     IsRegistered: true,
     RegisteredDate: new Date(),
   },
@@ -189,8 +188,8 @@ const AllUsers: IAllUsers[] = [
     Name: "Isabella Hernandez",
     Email: "isabella.hernandez@example.com",
     EmployeeId: "EMP017",
-    Department: 117,
-    Profile: "Product Manager",
+    Department: 2,
+    ProfilePic: "Product Manager",
     Role: "Manager",
     IsRegistered: true,
     RegisteredDate: new Date(),
@@ -200,20 +199,20 @@ const AllUsers: IAllUsers[] = [
     Name: "William Young",
     Email: "william.young@example.com",
     EmployeeId: "EMP018",
-    Department: 118,
-    Profile: "Sales Representative",
+    Department: 2,
+    ProfilePic: "Sales Representative",
     Role: "Representative",
     IsRegistered: true,
     RegisteredDate: new Date(),
   },
   {
     Id: 19,
-    Name: "Amelia King",
-    Email: "amelia.king@example.com",
+    Name: "Rohith Dudam",
+    Email: "rohith.d@example.com",
     EmployeeId: "EMP019",
-    Department: 119,
-    Profile: "Customer Service Representative",
-    Role: "Representative",
+    Department: 2,
+    ProfilePic: "Customer Service Representative",
+    Role: "Admin",
     IsRegistered: true,
     RegisteredDate: new Date(),
   },
@@ -222,16 +221,16 @@ const AllUsers: IAllUsers[] = [
     Name: "Liam Rivera",
     Email: "liam.rivera@example.com",
     EmployeeId: "EMP020",
-    Department: 120,
-    Profile: "Legal Advisor",
-    Role: "Advisor",
+    Department: 2,
+    ProfilePic: "Legal Advisor",
+    Role: "Admin",
     IsRegistered: true,
     RegisteredDate: new Date(),
   },
 ];
 console.log(AllUsers);
 
-const AllProject: IAllProject[] = [
+export const AllProject: IAllProject[] = [
   {
     Id: 1,
     ProjectName: "Project 1",
@@ -356,7 +355,7 @@ const AllProject: IAllProject[] = [
 
 console.log(AllProject);
 
-const AllTeams: IAllTeams[] = [
+export const AllTeams: IAllTeams[] = [
   { Id: 1, TeamName: "Team 1", TeamLogo: "logo_url_for_team_1" },
   { Id: 2, TeamName: "Team 2", TeamLogo: "logo_url_for_team_2" },
   { Id: 3, TeamName: "Team 3", TeamLogo: "logo_url_for_team_3" },
@@ -380,7 +379,7 @@ const AllTeams: IAllTeams[] = [
 ];
 
 console.log(AllTeams);
-const TeamMember: ITeamMember[] = [
+export const TeamMember: ITeamMember[] = [
   { Id: 1, TeamId: 1, PersonId: 1, Role: 1, IsAdmin: true },
   { Id: 2, TeamId: 1, PersonId: 2, Role: 2, IsAdmin: false },
   { Id: 3, TeamId: 2, PersonId: 3, Role: 1, IsAdmin: true },
@@ -404,8 +403,7 @@ const TeamMember: ITeamMember[] = [
 ];
 console.log(TeamMember);
 
-// in dashboard  right side 
-const GetPointTable: IGetPointTable[] = [
+export const PointsTable: IPointsTable[] = [
   {
     Id: 1,
     TeamId: 1,
@@ -588,4 +586,4 @@ const GetPointTable: IGetPointTable[] = [
   },
 ];
 
-console.log(GetPointTable);
+console.log(PointsTable);
