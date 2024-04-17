@@ -191,9 +191,9 @@ const Application: React.FC = () => {
             <div className="filterButtonContainer">{renderFilterButtons()}</div>
             <ApplicationTable
               displayOnApplication={displayOnApplication}
-              handleAppliDetailsData={handleAppliDetailsData}
+              handleApplicationDetailsData={handleAppliDetailsData}
               userRole={userRole}
-              setSortOrder={setSortOrder}
+              setSortOrderState={setSortOrder}
             />
           </div>
         </div>

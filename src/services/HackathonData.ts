@@ -6,6 +6,7 @@ import {
   ITeamMember,
 } from "./Interface/HackathonInterface";
 
+
 const AllUsers: IAllUsers[] = [
   {
     Id: 1,
@@ -403,6 +404,7 @@ const TeamMember: ITeamMember[] = [
 ];
 console.log(TeamMember);
 
+// in dashboard  right side 
 const GetPointTable: IGetPointTable[] = [
   {
     Id: 1,
