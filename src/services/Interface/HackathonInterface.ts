@@ -34,7 +34,7 @@ export interface ITeamMember {
   IsAdmin: boolean;
 }
 
-export interface IGetPointTable {
+export interface IPointsTable {
   Id: number;
   TeamId: number;
   // Team: Team;

@@ -2,7 +2,7 @@ import {
   IAllProject,
   IAllTeams,
   IAllUsers,
-  IGetPointTable,
+  IPointsTable,
   ITeamMember,
 } from "./Interface/HackathonInterface";
 
@@ -403,7 +403,7 @@ export const TeamMember: ITeamMember[] = [
 ];
 console.log(TeamMember);
 
-export const PointsTable: IGetPointTable[] = [
+export const PointsTable: IPointsTable[] = [
   {
     Id: 1,
     TeamId: 1,
