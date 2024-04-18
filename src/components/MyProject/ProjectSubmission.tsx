@@ -5,12 +5,12 @@ import pdf from "../../assets/Pdf.png";
 import deleteIcon from "../../assets/deleteIcon.png";
 import AddIcon from "../../assets/AddIcon.png";
 import TimeICon from "../../assets/TimeIcon.png";
-import { IProjectInfo } from "../../Interfaces";
+import { IProjectSubmissionForm} from "../../Interfaces";
 // import PdfViewer from "./PDFViewer";
 // import PDFViewer from "./PDFViewer";
 interface ProjectSubmissionProps {
   
-  setDuplicateData:(data: IProjectInfo[]) => void;
+  setDuplicateData:(data:IProjectSubmissionForm[]) => void;
 }
 
 export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ setDuplicateData }) => {

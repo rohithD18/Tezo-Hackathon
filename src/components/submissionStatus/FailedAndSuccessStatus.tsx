@@ -2,25 +2,41 @@ import React, { useState } from "react";
 import FailedIcon from "../../assets/FailedWarningIcon.png";
 import SuccessIcon from "../../assets/SuccessIcon.png";
 import "../../styles/submissionStatus/FailedAndSuccessStatus.css";
+import {PresenationDemo} from "../MyProject/PresentationDemo"
 import { useNavigate } from "react-router-dom";
 interface SubmissionFailedProps {
-  submitPopUp:string;  
+  submitPopUp:string; 
+  setEditForm: (value: boolean) => void;
+  setCurrentProjectForm:(value: string) => void;
+  setSucessSubmit:(value: boolean) => void;
+
   
 }
-const SubmissionFailed:React.FC<SubmissionFailedProps > = ({ submitPopUp }) => { 
+const SubmissionFailed:React.FC<SubmissionFailedProps > = ({ submitPopUp,setEditForm,setCurrentProjectForm,setSucessSubmit}) => { 
   const navigate = useNavigate();
   const [submissionStatus, setSubmissionStatus] = useState<string>(submitPopUp);
   const [isProjectSubmitted, setIsProjectSubmitted] = useState<boolean>(false);
-  const handleClick = (status: string) => {
-    // status === "Success" ? navigate("/") : navigate("/Registration-Form");
-    setSubmissionStatus(
-      status === "Success"
-        ? "Failed"
-        : status === "Failed"
-        ? "responded"
-        : "Success"
-    );
-    // setIsProjectSubmitted(!isProjectSubmitted);
+  // const handleClick = (status: string) => {
+  //   // status === "Success" ? navigate("/") : navigate("/Registration-Form");
+  //   setSubmissionStatus(
+  //     status === "Success"
+  //       ? "Failed"
+  //       : status === "Failed"
+  //       ? "responded"
+  //       : "Success"
+  //   );
+  //   // setIsProjectSubmitted(!isProjectSubmitted);
+  // };
+ 
+  const handleClick = () => {
+    // setSucessSubmit(false);
+    setSucessSubmit(false) ;
+    setEditForm(true); 
+    setCurrentProjectForm("ProjectDetailForm");
+    
+
+
+    
   };
   return (
     <div className="submissionFailedSec">
@@ -57,7 +73,7 @@ const SubmissionFailed:React.FC<SubmissionFailedProps > = ({ submitPopUp }) => {
           : "Topic review can take up to 2 days."}
       </p>
       <button
-        // onClick={() => handleClick(submissionStatus)}
+         onClick={() => handleClick()}
         id={submissionStatus === "Failed" ? "tryAgainBtn" : "viewTopic"}
       >
         {submissionStatus === "Failed" ? "Try Again" : "View Topic"}

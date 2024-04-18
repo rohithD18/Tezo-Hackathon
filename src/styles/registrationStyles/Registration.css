@@ -150,7 +150,9 @@ line-height: 20px;
 text-align: left;
 
 }
-
+.inputSec{
+  width:75%
+}
 .searchIcon{
   /* padding: 5px 0 0 20px; */
   display: flex;
@@ -263,6 +265,7 @@ text-align: left;
     font-size: small;
     
 }
+
 #cancelBtn{
   margin-right: 10px;
   background-color: transparent;
@@ -280,8 +283,8 @@ opacity: 0px;
 
 }
 #nextBtn{
-  background-color: rgb(238, 108, 77);
-  width: 160px;
+background-color: rgb(238, 108, 77);
+width: 160px;
 height: 47px;
 padding: 14px 28px 14px 28px;
 gap: 8px;
@@ -466,7 +469,7 @@ text-align: left;
 }
 .topicSec input, .descriptionSec textarea{
   font-size: 14px;
-  width: 70%;
+  width: 100%;
   border: 1px solid  rgb(61, 90, 128);
   background-color: transparent;
   padding: 8px 10px ;

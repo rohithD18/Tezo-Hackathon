@@ -6,6 +6,12 @@
     margin-top: 25px;
     color: gray;
   }
+  .disabledButton{
+    cursor: no-drop !important;
+  }
+  .enabledButton{
+    cursor: pointer !important;
+  }
   .topicSec1 textarea::placeholder {
     white-space: pre-wrap; /* Enable word wrapping */
 }

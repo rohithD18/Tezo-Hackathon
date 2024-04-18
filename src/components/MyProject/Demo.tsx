@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import {PresenationDemo} from './PresentationDemo'
 import '../../styles/MyProject/Demo.css';
 import BackIcon from '../../assets/BackIcon.png';
-import { IProjectInfo } from "../../Interfaces";
+import { IProjectSubmissionForm } from "../../Interfaces";
 interface ProjectDemoProps {
-    setDuplicateData:(data: IProjectInfo[]) => void;
+    setDuplicateData:(data: IProjectSubmissionForm[]) => void;
   }
 export const ProjectDemo: React.FC<ProjectDemoProps> = ({setDuplicateData })=>{
     const [currentPresentation,setPresentation]=useState<boolean>(false)
