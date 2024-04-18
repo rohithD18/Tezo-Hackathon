@@ -7,7 +7,7 @@ import { IProject, ITeams, IUsers } from "../Interfaces";
 import { EventsData } from "./EventData";
 import { Projects } from "./ProjectManagementEvents";
 import { projectInfoArray } from "./ProjectInfoDetails";
-import { IProjectInfo } from "../Interfaces";
+// import { IProjectInfo } from "../Interfaces";
 import { IAllUsers } from "./Interface/HackathonInterface";
 
 const BASE_URL = 'https://tezohackathonwebapi.azurewebsites.net/api';
@@ -162,20 +162,20 @@ export const getAllUsers = async (): Promise<IAllUsers[]> => {
     throw new Error(`Error fetching team members: ${error}`);
   }
 };
-export const updateDuplicateData = (key: string, value: string) => {
+// export const updateDuplicateData = (key: string, value: string) => {
     // Create a new project info object with the updated key and value
-    const newData: IProjectInfo[] = [{
-        Id: 1,
-        ProjectName: "",
-        Description: key === "Description" ? value : "",
-        ProjectStatus: 0,
-        DetailedDescription: key === "DetailedDescription" ? value :"",
-        ProjectRegisteredDate: new Date(),
-        SubmittedDate: new Date(),
-        PresentationDate: new Date(),
-        Comments: "",
-        TeamId: 6
-    }];
-    return
+    // const newData: IProjectInfo[] = [{
+    //     Id: 1,
+    //     ProjectName: "",
+    //     Description: key === "Description" ? value : "",
+    //     ProjectStatus: 0,
+    //     DetailedDescription: key === "DetailedDescription" ? value :"",
+    //     ProjectRegisteredDate: new Date(),
+    //     SubmittedDate: new Date(),
+    //     PresentationDate: new Date(),
+    //     Comments: "",
+    //     TeamId: 6
+    // }];
+    // return
     // Call setDuplicateData with the new data
-};
+// };
