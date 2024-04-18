@@ -87,7 +87,7 @@ export const ProjectDetail : React.FC<ProjectDetailProps> = ({ setDuplicateData,
                 
             </div>
             <p className="projectDetailTopic">Share your project's vision and impact</p>
-            <div className="topicSec">
+            <div className="topicSection">
                 <p>Mention Topic</p>
                 <div className="inputSec">
                 <input type="text" placeholder="Enter the topic" value={topic} onChange={handleTopicChange} />
@@ -95,7 +95,7 @@ export const ProjectDetail : React.FC<ProjectDetailProps> = ({ setDuplicateData,
                 </div>
             </div> 
             <div className="count">{topicCharacterCount}/100</div>
-            <div className="descriptionSec">
+            <div className="descriptionSection">
                 <p>Topic Description</p>
                 <div className="inputSec">
                 <textarea placeholder="Enter the topic description" value={description} onChange={handleDescriptionChange}></textarea>

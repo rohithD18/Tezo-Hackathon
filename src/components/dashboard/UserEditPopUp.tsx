@@ -5,15 +5,16 @@ import xclose from "../../assets/xclose.png";
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, TextField, Box, Input } from "@mui/material";
 import { teamNames } from "../../services/TeamNames";
 import { IUsers } from '../../Interfaces';
+import { IAllUsers } from '../../services/Interface/HackathonInterface';
 interface PopupProps {
     onClose: () => void;
-    userData?:IUsers;
+    userData?:IAllUsers;
     updateEvents?:(userData:string) => void;
     popUpValue:string
   }
 export const UserEditPopUp: React.FC<PopupProps>=({onClose,userData,updateEvents,popUpValue}:PopupProps)=>{
   // console.log(userData)
-    const [selectedOption, setSelectedOption] = useState<string|undefined>(userData?.TeamName);
+    const [selectedOption, setSelectedOption] = useState<string|undefined>("Mumbai Indians");
      
     const handleSelectChange = (event:  SelectChangeEvent<string>) => {
         const option = event.target.value;
@@ -49,11 +50,11 @@ export const UserEditPopUp: React.FC<PopupProps>=({onClose,userData,updateEvents
        
       
             <label className='labelUserEditPopUp'>Name</label>
-            <input  className='Email' type="text" value={userData?.Name} readOnly />
+            <input  className='Email' type="text" value={userData?.name} readOnly />
             </div>
             <div>
             <label className='labelUserEditPopUp'>Email</label>
-            <input className="Email" type="text" value={userData?.EmailAddress} readOnly />
+            <input className="Email" type="text" value={userData?.email} readOnly />
             </div>
           
                 <Box>
