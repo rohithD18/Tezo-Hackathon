@@ -84,15 +84,18 @@ export interface IUser {
   RegisteredOn: Date | string;
   isRegistered:boolean
 }
- export interface IProjectInfo {
+ export interface IProjectSubmissionForm {
   Id: number;
   ProjectName: string;
-  Description: string;
-  ProjectStatus: number;
-  DetailedDescription: string;
-  ProjectRegisteredDate: Date;
-  SubmittedDate: Date;
-  PresentationDate: Date;
-  Comments: string;
+  topic:string,
+  description:string,
+  briefDescription:string,
+  uploadFile:string
   TeamId: number;
+}
+export interface IProjectSubmissionFormError{
+  topicError:string,
+    descriptionError:string,
+    briefDescriptionError:string,
+    uploadFileError:string
 }
