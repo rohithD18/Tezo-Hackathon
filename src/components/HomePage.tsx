@@ -37,7 +37,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
   return (
     <div className="homePageDiv">
       <Home isRegister={props.isRegister} />
-      <div className="scrollContainer">
+      {/* <div className="scrollContainer">
         <img
           src={scroll}
           width={14}
@@ -47,7 +47,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
           alt="scrollIcon"
         ></img>
         <label id="scrollText">Scroll up to know more</label>
-      </div>
+      </div> */}
 
       <div className="dateContainer">
         <div className="dateContent">

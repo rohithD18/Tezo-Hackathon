@@ -8,16 +8,17 @@ import PaginationSection from "../pagination/PaginationSection";
 import DashboardNav from "./DashboardNav";
 import InputSearch from "../InputSearch";
 import {UserEditPopUp} from "./UserEditPopUp";
-
+import { getAllUsers } from "../../services/Services";
+import { IAllUsers } from "../../services/Interface/HackathonInterface";
 const Users = () => {
-  const [currUserData, setCurrUserData] = useState<IUsers[]>(UsersData);
-  const [displayOnUser, setDisplayOnUser] = useState<IUsers[]>([]);
+  const [currUserData, setCurrUserData] = useState<IAllUsers[]>([]);
+  const [displayOnUser, setDisplayOnUser] = useState<IAllUsers[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredData, setFilteredData] = useState<IUsers[]>([]);
+  const [filteredData, setFilteredData] = useState<IAllUsers[]>([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popUpValue, setPopUpValue] = useState<string>("");
   // const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
-  const [userData, setUserDetailsData] = useState<IUsers>();
+  const [userData, setUserDetailsData] = useState<IAllUsers>();
   const handleOpenPopup = (button:string) => {
     setIsPopupOpen(true);
     setPopUpValue(button)
@@ -25,17 +26,31 @@ const Users = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
-  const handleUserDetailsData = (data: IUsers) => {
+  const handleUserDetailsData = (data: IAllUsers) => {
     setUserDetailsData(data);
   };
   useEffect(() => {
-    setCurrUserData(UsersData);
-  }, []);
+    const fetchTeamMembers = async () => {
+      try {
+        const result = await getAllUsers();
+        console.log(result)
+        // const first50Items = result.slice(0, 50);
+         setCurrUserData(result);
+         // Assuming the response is an array of team members
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
+    fetchTeamMembers();
+  }, []);
   useEffect(() => {
-    const filtered = currUserData.filter((user: IUsers) =>
-      user.Name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filtered = searchQuery 
+    ? currUserData.filter((user: IAllUsers) =>
+        user.name && user.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : currUserData;
+    console.log("filtere",currUserData)
     setFilteredData(filtered);
   }, [currUserData, searchQuery]);
   const formatDate = (date: Date | string): string => {
@@ -51,7 +66,7 @@ const Users = () => {
     if(teamName==="delete")
        {
         const updateItems = currUserData.map((item:any) => {
-          if (item.Name === userData?.Name) {
+          if (item.Name === userData?.name) {
             return {
               ...item,
             RegisteredOn: "",
@@ -68,7 +83,7 @@ const Users = () => {
     else{
     // if (UsersData != undefined) {
      const updateItems = currUserData.map((item:any) => {
-        if (item.Name === userData?.Name) {
+        if (item.Name === userData?.name) {
           return {
             ...item,
           TeamName: teamName,
@@ -124,14 +139,16 @@ const Users = () => {
                           border: "none",
                         }}
                       />
-                      {user.Name}
+                      {user.name}
                     </span>
                   </td>
-                  <td className="rowTitle">{user.EmailAddress}</td>
-                  <td className="rowTitle">{user?.TeamName!=""? user?.TeamName:"--"}</td>
+                  <td className="rowTitle">{user.email}</td>
+                  <td className="rowTitle">
+                    {/* {user?.TeamName!=""? user?.TeamName:"--"} */}--
+                  </td>
                
                   <td className="rowTitle">
-                    {user?.IsRegistered? (user.RegisteredOn && formatDate(user.RegisteredOn)):"--"}
+                    {/* {user?.IsRegistered? (user.RegisteredOn && formatDate(user.RegisteredOn)):"--"} */}--
                   </td>
                   <td className="rowTitle">
                    
