@@ -17,7 +17,6 @@ function NavBarCopy() {
     }
   };
   const [showProfile, setShowProfile] = useState(false);
-  const [profileImage] = useState<any>(localStorage.getItem("profileImage"));
   const handleProfileClick = () => {
     setShowProfile(!showProfile);
   };

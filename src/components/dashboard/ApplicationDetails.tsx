@@ -64,25 +64,10 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
       filteredProject != null && setFilteredEvent(filteredProject);
     }
   }, [appliDetailsData, isEventManagement, isProjectManagement]);
-  // let formattedDate: string = "";
-  // let formattedTime: string = "";
+
 
   const [filteredEvent, setFilteredEvent] = useState<IProject[] | null>(null);
-  // if (appliDetailsData?.SubmissionDate) {
-  // const dateObject = new Date(appliDetailsData?.SubmissionDate);
-  // formattedDate = `${dateObject.getDate()} ${dateObject.toLocaleString(
-  //   "default",
-  //   { month: "short" }
-  // )} ${dateObject.getFullYear()}`;
 
-  // let hours = dateObject.getHours();
-  // const minutes = dateObject.getMinutes();
-  // const ampm = hours >= 12 ? "PM" : "AM";
-  // hours = hours % 12 || 12;
-
-  // Formatting the time
-  // formattedTime = `${hours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
-  // }
 
   const formattedDate = useMemo(() => {
     if (appliDetailsData?.SubmissionDate) {

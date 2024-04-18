@@ -12,7 +12,7 @@ import SubmissionAccepeted from "./components/submissionStatus/SubmissionAccepet
 import RejectedRework from "./components/submissionStatus/RejectedRework";
 import HomePage from "./components/HomePage";
 import MyProject from "./components/MyProject/MyProject";
-// import Dashboard from "./components/dashboard/Dashboard";
+
 import AllTeams from "./components/AllTeams";
 import RegistrationForm from "./components/registration/RegistrationForm";
 import TeamDetails from "./components/TeamDetails";
@@ -25,6 +25,7 @@ import {
   UnauthenticatedTemplate,
 } from "@azure/msal-react";
 import { HackathonContextProvider } from "./services/Context/HackathonContext";
+import ShimmerCardUI from "./components/ShimmerCardUI";
 
 export const pca = new PublicClientApplication(msalConfig);
 
@@ -58,7 +59,7 @@ const App: React.FC = () => {
               <Route
                 path="/dashboard/*"
                 element={
-                  <Suspense>
+                  <Suspense fallback={<ShimmerCardUI/>}>
                     <Dashboard />
                   </Suspense>
                 }

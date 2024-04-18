@@ -4,7 +4,7 @@ export interface IAllUsers {
   Email: string;
   EmployeeId: string;
   Department: number;
-  Profile: string;
+  ProfilePic: string;
   Role: string;
   IsRegistered: boolean;
   RegisteredDate: Date;
@@ -34,7 +34,7 @@ export interface ITeamMember {
   IsAdmin: boolean;
 }
 
-export interface IGetPointTable {
+export interface IPointsTable {
   Id: number;
   TeamId: number;
   // Team: Team;

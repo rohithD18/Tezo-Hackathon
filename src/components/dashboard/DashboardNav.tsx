@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-// import "../../styles/dashboard/AdminNavBar.css";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "../../styles/dashboard/DashboardNavBar.css";
 import { userEmail } from "../../services/Profile";
 import category22 from "../../assets/category22.png";
@@ -11,12 +11,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AllUsers } from "../../services/HackathonData";
 const DashboardNav: React.FC = () => {
   const navigate = useNavigate();
-  console.log(userEmail)
+  const location = useLocation();
   const [activeButton, setActiveButton] = useState<string>("");
+
+  useEffect(() => {
+    const path = location.pathname.split("/")[2]; // Get the route path after "/dashboard/"
+    setActiveButton(path || "Dashboard"); // Set activeButton to path if it exists, otherwise default to "Dashboard"
+  }, [location.pathname]);
 
   const handleButtonClick = (buttonName: string) => {
     setActiveButton(buttonName);
-    navigate(`/dashboard/${buttonName}`);
   };
 
   const [isAdmin,setIsAdmin] = useState<boolean>(false);
