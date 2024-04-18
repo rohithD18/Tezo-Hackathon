@@ -12,10 +12,7 @@ type Props = {
 const TeamCard: React.FC<Props> = (props: Props) => {
   const { data } = props;
   const navigate = useNavigate();
-  // const handleCardClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-  //   e.preventDefault();
-  //   window.location.href = `/teams/${data.teamName.replace(/\s+/g, '_')}`;
-  // };
+
   return (
     <>
       <div style={{cursor:"pointer"}}onClick={()=>navigate(`/teams/${data.teamName.replace(/\s+/g, '_')}`)}>

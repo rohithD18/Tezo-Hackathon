@@ -8,11 +8,11 @@
 }
 .container {
   width: 100%;
-  min-width: 77%;
+  min-width: 86%;
 }
-.containerDashboard {
+/* .containerDashboard {
   width: 100%;
-}
+} */
 /* Media query for 1440px screen size */
 @media screen and (min-width: 1440px) {
   .container {
@@ -44,7 +44,7 @@
   padding-right: 20px !important;
   padding-left: 20px !important;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 16px;
   letter-spacing: 0em;

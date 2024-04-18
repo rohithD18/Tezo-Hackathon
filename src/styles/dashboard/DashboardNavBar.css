@@ -1,65 +1,42 @@
 .navContainer {
-    width: 16%;
-    padding: 18.48px;
-    gap: 63.35px;
-    background-color: #273144;  
-  }
-  .adminHomeDiv {
-    display: flex;
-     height: 100vh; 
-  }
-  
-  .btnLabel {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    height: 56px;
-    padding: 12px;
-    gap: 10px;
-    background-color: inherit;
-    border: none;
-    color: #b4b4b4;
-    /* font-family: Inter; */
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 22px;
-    text-align: left;
-    cursor: pointer;
-  }
-  /* .userManagement {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    height: 56px;
-    padding: 12px;
-    gap: 10px;
-    background-color: inherit;
-    border: none;
-    color: #b4b4b4;
-    font-family: Inter;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 22px;
-    text-align: left;
-    cursor: pointer;
-  } */
-  
-  .activeNav {
-    background: #3B4A61; 
-    color: #ffffff; 
-  }
-  
-  
-  .imgDashboard {
-    width: 24px;
-    height: 24px;
-  }
-.activeSVG{
+  width: 15%;
+  padding: 18.48px;
+  gap: 63.35px;
+  background-color: #273144;
+}
+.adminHomeDiv {
+  display: flex;
+  height: 100vh;
+}
+
+.btnLabel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 56px;
+  padding: 12px;
+  gap: 10px;
+  background-color: inherit;
+  border: none;
+  color: #b4b4b4;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.activeNav {
+  background: #3b4a61;
+  color: #ffffff;
+}
+
+.imgDashboard {
+  width: 24px;
+  height: 24px;
+}
+.activeSVG {
   fill: #ffffff;
 }
-  
-  /* .svg-icon {
-
-  } */

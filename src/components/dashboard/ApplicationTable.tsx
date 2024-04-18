@@ -7,37 +7,34 @@ import { IApplications } from "../../services/Data";
 
 type Props = {
   displayOnApplication: IApplications[];
-  handleAppliDetailsData: (data: any) => void;
+  handleApplicationDetailsData: (data: any) => void;
   userRole: string;
-  setSortOrder: React.Dispatch<React.SetStateAction<"asc" | "desc">>;
+  setSortOrderState: React.Dispatch<React.SetStateAction<"asc" | "desc">>;
 };
 
 const ApplicationTable = (props: Props) => {
   const {
     displayOnApplication,
-    handleAppliDetailsData,
+    handleApplicationDetailsData,
     userRole,
-    setSortOrder,
+    setSortOrderState,
   } = props;
 
-  const formatDate = (date: Date | string): string => {
-    if (typeof date === "string") {
-      return date;
-    } else {
-      const options: any = {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      };
-      return new Intl.DateTimeFormat("en-US", options).format(date);
-    }
+  const formatDate = (date: Date | string | undefined | null): string => {
+    if (!date) return "";
+    const options: any = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    };
+    return new Intl.DateTimeFormat("en-US", options).format(new Date(date));
   };
 
   const toggleSortOrder = () => {
-    setSortOrder((prevSortOrder: any) =>
+    setSortOrderState((prevSortOrder: any) =>
       prevSortOrder === "asc" ? "desc" : "asc"
     );
   };
@@ -46,12 +43,13 @@ const ApplicationTable = (props: Props) => {
     <>
       <table className="table">
         <thead className="tableRow">
+          {/* <tr> */}
           <th className="teamTitle">Team Name</th>
           <th className="captTitle">Captain</th>
           <th className="projectTitle">Project Name</th>
           <th className="projectSubmit">Submitted</th>
           <th className="dateTitle">
-            Date& Time
+            Date & Time
             <svg
               width="30"
               height="30"
@@ -80,58 +78,49 @@ const ApplicationTable = (props: Props) => {
             </svg>
           </th>
           {userRole === "admin" && <th className="statusTitle">Status</th>}
+          {/* </tr> */}
         </thead>
 
-        {displayOnApplication.map((application: any, index: number) => (
-          <tr
-            className="tableRowData"
-            key={index}
-            onClick={
-              userRole === "admin"
-                ? () => handleAppliDetailsData(application)
-                : undefined
-            }
-          >
-            <td className="teamTitle">{application.TeamName}</td>
-            <td className="captTitleData">
-              <span
-                style={{ background: "none" }}
-                className="captTitleDataSpan"
-              >
+        {displayOnApplication.map(
+          (application: IApplications, index: number) => (
+            <tr
+              className="tableRowData"
+              key={index}
+              onClick={
+                userRole === "admin"
+                  ? () => handleApplicationDetailsData(application)
+                  : undefined
+              }
+            >
+              <td className="teamTitle">{application.TeamName}</td>
+              <td className="captTitleData">
+                <span className="captTitleDataSpan">
+                  <img
+                    src={profilepic}
+                    alt="Profile"
+                    className="profilePic"
+                    style={{
+                      width: "24px",
+                      height: "24px",
+                      background: "none",
+                      border: "none",
+                    }}
+                  />
+                  {application.TeamCaptian}
+                </span>
+              </td>
+              <td className="projectTitle">{application.ProjectName}</td>
+              <td className="projectSubmit">
                 <img
-                  src={profilepic}
-                  alt="img"
-                  style={{
-                    width: "24px",
-                    height: "24px",
-                    background: "none",
-                    border: "none",
-                  }}
-                />
-                {application.TeamCaptian}
-              </span>
-            </td>
-            <td className="projectTitle">{application.ProjectName}</td>
-            <td className="projectSubmit">
-              {application.ProjectedSubmitted ? (
-                <img
-                  src={Feedback}
-                  alt="feedback"
-                  className="ProjectedSubmittedImg"
-                />
-              ) : (
-                <img
-                  src={Feedback1}
+                  src={application.ProjectedSubmitted ? Feedback : Feedback1}
                   alt="Feedback"
                   className="ProjectedSubmittedImg"
                 />
-              )}
-            </td>
-            <td className="dateTitle">
-              {formatDate(application.SubmissionDate)}
-            </td>
-            {
-              userRole === "admin" ? (
+              </td>
+              <td className="dateTitle">
+                {formatDate(application.SubmissionDate)}
+              </td>
+              {userRole === "admin" && (
                 <td className="statusTitle">
                   <div
                     className={`statusTitleData ${application.Status.toLowerCase()}`}
@@ -139,10 +128,10 @@ const ApplicationTable = (props: Props) => {
                     {application.Status}
                   </div>
                 </td>
-              ) : undefined
-            }
-          </tr>
-        ))}
+              )}
+            </tr>
+          )
+        )}
       </table>
     </>
   );

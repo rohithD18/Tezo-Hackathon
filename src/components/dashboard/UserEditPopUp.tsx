@@ -1,29 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../../styles/dashboard/UserEditPopUp.css';
 import xclose from "../../assets/xclose.png";
-import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, TextField, Box } from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, TextField, Box, Input } from "@mui/material";
 import { teamNames } from "../../services/TeamNames";
 import { IUsers } from '../../Interfaces';
 interface PopupProps {
     onClose: () => void;
     userData?:IUsers;
     updateEvents?:(userData:string) => void;
+    popUpValue:string
   }
-const UserEditPopUp=({onClose,userData,updateEvents}:PopupProps)=>{
-  
-    const [selectedOption, setSelectedOption] = useState('');
+export const UserEditPopUp: React.FC<PopupProps>=({onClose,userData,updateEvents,popUpValue}:PopupProps)=>{
+  // console.log(userData)
+    const [selectedOption, setSelectedOption] = useState<string|undefined>(userData?.TeamName);
      
     const handleSelectChange = (event:  SelectChangeEvent<string>) => {
         const option = event.target.value;
         setSelectedOption(option);
       };
       const handleSubmit = (e:any) => {
+        if(popUpValue==="edit"){
         if (!selectedOption) {
             alert('Please select team name');
             return;
           }
-        updateEvents?.(selectedOption)
+        updateEvents?.(selectedOption)}
+        else{
+          updateEvents?.("delete")
+        }
+        
         onClose();
       }
   return (
@@ -36,8 +42,20 @@ const UserEditPopUp=({onClose,userData,updateEvents}:PopupProps)=>{
             <img src={xclose} alt="closeIcon" onClick={()=>{onClose();
             }} width={24} height={24}></img>
             </div>
-            <label>Please provide the details for the Event scheduled</label>
-            <div className="user">
+            <p style={popUpValue==="delete"?{textAlign: "center",
+  paddingBottom: 10}:{textAlign:"left"}}> {popUpValue==="edit"?"Please select the desired Team Name":"Are you sure you wantto delete this item?"}</p>
+            {popUpValue==="edit"?<div className="user">
+            <div>
+       
+      
+            <label className='labelUserEditPopUp'>Name</label>
+            <input  className='Email' type="text" value={userData?.Name} readOnly />
+            </div>
+            <div>
+            <label className='labelUserEditPopUp'>Email</label>
+            <input className="Email" type="text" value={userData?.EmailAddress} readOnly />
+            </div>
+          
                 <Box>
                     <FormControl className="teamNamesDropDown" fullWidth>
       <InputLabel id="teamNamesDropDown-label">Select Team</InputLabel>
@@ -55,18 +73,15 @@ const UserEditPopUp=({onClose,userData,updateEvents}:PopupProps)=>{
       </Select>
     </FormControl>
     </Box>
-            <div>
-            <input className="Email" type="text" value={userData?.EmailAddress} readOnly />
-            </div>
-            <div>
-            <input  className='NameAndDate' type="text" value={userData?.Name} readOnly />
-            <input  className='NameAndDate'type="text" value={(userData?.RegisteredOn)?.toLocaleString()} readOnly />
-            </div>
+
             <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
             <button className="addNew" onClick={handleSubmit}>Update</button>
             </div>
+            </div>:  <div className="ConfirmCancelButtons">
+            <button className="addNew" onClick={handleSubmit}>Confirm</button>
+            <button className="cancelButton" onClick={()=>onClose()}>Cancel</button>
             </div>
-           
+}           
            
         </div>
     
@@ -75,4 +90,4 @@ const UserEditPopUp=({onClose,userData,updateEvents}:PopupProps)=>{
   )
 }
 
-export default UserEditPopUp
+// export default UserEditPopUp

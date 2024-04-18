@@ -10,10 +10,13 @@ function NavBarCopy() {
   // const [notificationAvailable] = useState<string>("hello");
   const navigate = useNavigate();
   const isActive = (path: string): boolean => {
-    return window.location.pathname === path;
+    if (path === '/') {
+      return window.location.pathname === '/';
+    } else {
+      return window.location.pathname.startsWith(path);
+    }
   };
   const [showProfile, setShowProfile] = useState(false);
-  const [profileImage] = useState<any>(localStorage.getItem("profileImage"));
   const handleProfileClick = () => {
     setShowProfile(!showProfile);
   };
@@ -40,9 +43,7 @@ function NavBarCopy() {
     <>
       <div className="container-fluid custom-navbar">
         <div
-          className={`${
-            isActive("/dashboard") ? "containerDashboard" : "container"
-          }`}
+          className="container"
         >
           <div className="row align-items-center">
             <div className="col-1">

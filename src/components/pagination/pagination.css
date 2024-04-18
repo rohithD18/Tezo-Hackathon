@@ -48,7 +48,7 @@
 .pagination .totalRecords {
   width: auto;
   height: 24px;
-  font-family: Inter;
+
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -63,7 +63,9 @@
   align-items: center;
   height: 46px;
   padding: 0px 12px;
-  border: 1px solid rgba(61, 90, 128, 1);
+  /* border: 1px solid rgba(61, 90, 128, 1); */
+  border-left: 1px solid rgba(61, 90, 128, 1);
+  border-right: 1px solid rgba(61, 90, 128, 1);
 }
 
 .pagination .totalRender {

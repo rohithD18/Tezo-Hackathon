@@ -1,28 +1,3 @@
-// import React, { useState } from "react";
-// import Application from "./Application";
-// import DashboardView from "./DashboardView";
-// import Users from "./Users";
-// import { useParams } from "react-router-dom";
-// import { ProjectManagement } from "./ProjectManagement";
-// import Events from "./Events";
-
-// const Dashboard: React.FC = () => {
-//   const { id } = useParams();
-
-//   return (
-//     <div className="adminHomeDiv">
-//       {!id && <DashboardView />}
-//       {id === "Applications" && <Application />}
-//       {id === "UserManagement" ? <Users /> : <></>}
-
-//       {id === "ProjectManagement" ? <ProjectManagement /> : <></>}
-//       {id === "EventsManagement" && <Events />}
-//     </div>
-//   );
-// };
-
-// export default Dashboard;
-
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import DashboardNav from "./DashboardNav";
@@ -38,10 +13,10 @@ const Dashboard: React.FC = () => {
       <DashboardNav />
       <Routes>
         <Route path="/" element={<DashboardView />} />
-        <Route path="Applications" element={<Application />} />
-        <Route path="UserManagement" element={<Users />} />
-        <Route path="ProjectManagement" element={<ProjectManagement />} />
-        <Route path="EventsManagement" element={<Events />} />
+        <Route path="applications" element={<Application />} />
+        <Route path="userManagement" element={<Users />} />
+        <Route path="projectManagement" element={<ProjectManagement />} />
+        <Route path="eventsManagement" element={<Events />} />
       </Routes>
     </div>
   );
