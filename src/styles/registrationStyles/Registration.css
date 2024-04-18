@@ -455,6 +455,30 @@ text-align: left;
   background-color: transparent;
   color: transparent;
 } */
+.topicSection{
+  display: flex;
+  height: fit-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  color: gray;
+}
+.topicSection input,.descriptionSection textarea{
+  font-size: 14px;
+  width: 100%;
+  border: 1px solid  rgb(61, 90, 128);
+  background-color: transparent;
+  padding: 8px 10px ;
+  border-radius: 3px;
+  color: white;
+}
+.descriptionSection{
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  margin-top: 25px;
+  color: gray;
+}
 .topicSec{
   display: flex;
   height: fit-content;
@@ -469,7 +493,7 @@ text-align: left;
 }
 .topicSec input, .descriptionSec textarea{
   font-size: 14px;
-  width: 100%;
+  width: 70%;
   border: 1px solid  rgb(61, 90, 128);
   background-color: transparent;
   padding: 8px 10px ;
@@ -483,7 +507,7 @@ text-align: left;
   margin-top: 25px;
   color: gray;
 }
-.descriptionSec textarea{
+.descriptionSec textarea,.descriptionSection textarea{
   /* height: 150px; */
   min-height: 100px;
   /* height: max-content; */

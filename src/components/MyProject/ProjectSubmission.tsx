@@ -5,18 +5,25 @@ import pdf from "../../assets/Pdf.png";
 import deleteIcon from "../../assets/deleteIcon.png";
 import AddIcon from "../../assets/AddIcon.png";
 import TimeICon from "../../assets/TimeIcon.png";
-import { IProjectSubmissionForm} from "../../Interfaces";
+import {IProjectSubmissionForm,IProjectSubmissionFormError } from "../../Interfaces";
+
 // import PdfViewer from "./PDFViewer";
 // import PDFViewer from "./PDFViewer";
 interface ProjectSubmissionProps {
   
   setDuplicateData:(data:IProjectSubmissionForm[]) => void;
+  setFormError: (formError: IProjectSubmissionFormError) => void;
+    formError: IProjectSubmissionFormError;
+    setButtonDisabled:(data:boolean) => void;
+    previousData:IProjectSubmissionForm[]|null;
 }
 
-export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ setDuplicateData }) => {
+export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ setDuplicateData,setFormError,formError,setButtonDisabled,previousData  }) => {
+  let isValid=true
   const [files, setFiles] = useState<File[]>([]);
   const [pdfOpen, setPdfOpen] = useState(false);
   const [pdfUrl, setPdfUrl] = useState<string>("");
+  const [breifDescription, setBriefDescription] = useState<string>('');
   const handleFileSelection = (selectedFiles: File[]) => {
     const updatedFiles1 = [...files, ...selectedFiles];
     setFiles(updatedFiles1);
@@ -55,6 +62,7 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ setDuplica
       fileInput.click(); // Trigger file input click
     }
   };
+  
   const handleFileInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -73,6 +81,22 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ setDuplica
   //   setPdfOpen(false);
   //   // setPdfUrl(null);
   // };
+  const handleBriefDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const breifDescript = event.target.value;
+    setBriefDescription(breifDescript);
+    if (breifDescript === "") {
+      setFormError({ ...formError, briefDescriptionError: 'This field is required' });
+      isValid=false
+  }
+   else {
+      setFormError({ ...formError, briefDescriptionError: '' });
+  }
+  if(breifDescription!=="" && files.length!== 0 && isValid){
+      setButtonDisabled(true);
+
+  }
+
+  };
   return (
     <>
       <div>
@@ -83,32 +107,28 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ setDuplica
             <p>14 more days to submit</p>
           </div>
         </div>
-        <p className="dd">
+        <p className="projectDetailTopic">
           After submitting,you can still edit your project until the submission
           deadline.
         </p>
         <div className="topicSec1">
           <p>Enter the Description</p>
-          <textarea
+          <div className="inputSec">
+          <textarea onChange={handleBriefDescription}
             placeholder="Enter the breif description of the project, including the problem it
           solves, the target audience, and the proposed solution"
           ></textarea>
+            <div>{formError.descriptionError}</div>
+          </div>
         </div>
-
+      {/* <div  className="inputSec"> */}
         <div
           className="dropFile"
           onDrop={handleDrop}
           onDragOver={handleDragOver}
         >
           <p>Submit your presentation</p>
-          <input
-            type="file"
-            id="fileInput"
-            style={{ display: "none" }}
-            multiple
-            onChange={handleFileInputChange}
-            accept=".pdf"
-          />
+          <div className="fileSection">
           {files?.length > 0 ? (
             <>
               <ul>
@@ -132,15 +152,17 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ setDuplica
                   </li>
                 ))}
                 <li>
-                  <div id="AddIcon" onClick={handleBrowseClick}>
-                    <img src={AddIcon} alt="add icon" />
-                    <p>Add Files</p>
-                  </div>
+                <div id="AddIcon" onClick={handleBrowseClick}>
+  <input type="file" style={{ display: "none" }} id="fileInput" multiple onChange={handleFileInputChange} accept=".pdf" />
+  <img src={AddIcon} alt="add icon" />
+  <p>Add Files</p>
+</div>
                 </li>
               </ul>
             </>
           ) : (
-            <label htmlFor="fileInput">
+            <>
+            <label htmlFor="fileInput1">
               <img className="pdfIcon" src={pdfIcon} alt="Pdf Icon" />
               <br />
               Drag & Drop file here
@@ -149,12 +171,26 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ setDuplica
               <br />
               File size limit: 25MB
               <br />
-              <button onClick={handleBrowseClick}>Browse</button>
+              <input
+             type="file"
+            id="fileInput"
+            aria-label="Browse"
+            style={{ display: "none" }}
+            multiple
+            onChange={handleFileInputChange}
+            accept=".pdf"
+          />
+            <button onClick={handleBrowseClick}>Browse</button>
+              
             </label>
+            </>
           )}
+          </div>
         </div>
       </div>
+      {/* </div> */}
       {/* {pdfOpen && <PdfViewer pdfUrl={pdfUrl} ></PdfViewer>} */}
     </>
+    
   );
 };

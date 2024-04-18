@@ -33,7 +33,6 @@ const MyProject: React.FC = () => {
     if(isButtonDisabled){
       if(currentProjectForm==="ProjectDetailForm"){
           previousData && previousData.length !== 0 ? setButtonDisabled(true):setButtonDisabled(false)
-          setButtonDisabled(true);
           setCurrentProjectForm("ProjectSubmissionForm")
         
       }
@@ -156,7 +155,7 @@ const MyProject: React.FC = () => {
             {currentProjectForm === "ProjectDetailForm" ? (
               <ProjectDetail setDuplicateData={handleDataFromChild} setFormError={setFormError} formError={formError} setButtonDisabled={setButtonDisabled} previousData={previousData}/>
             ) : currentProjectForm === "ProjectSubmissionForm" ? (
-               <ProjectSubmission setDuplicateData={(data: IProjectSubmissionForm[]) => { setDuplicateData(data) }}  />
+               <ProjectSubmission setDuplicateData={(data: IProjectSubmissionForm[]) => { setDuplicateData(data) }} setFormError={setFormError} formError={formError} setButtonDisabled={setButtonDisabled} previousData={previousData} />
 
             ) : (
               <ProjectDemo  setDuplicateData={(data:IProjectSubmissionForm[])=>{setDuplicateData(data)}}/>
