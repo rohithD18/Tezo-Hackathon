@@ -1,65 +1,41 @@
-import { IProjectInfo } from "../Interfaces";
+import {IProjectSubmissionForm  } from "../Interfaces";
 
-export const projectInfoArray: IProjectInfo[] = [
-    {
-      Id: 1,
-      ProjectName: "Project 1",
-      Description: "Description for Project 1",
-      ProjectStatus: 1,
-      DetailedDescription: "Detailed description for Project 1",
-      ProjectRegisteredDate: new Date(),
-      SubmittedDate: new Date(),
-      PresentationDate: new Date(),
-      Comments: "Comments for Project 1",
-      TeamId: 1
-    },
-    {
-      Id: 2,
-      ProjectName: "Project 2",
-      Description: "Description for Project 2",
-      ProjectStatus: 2,
-      DetailedDescription: "Detailed description for Project 2",
-      ProjectRegisteredDate: new Date(),
-      SubmittedDate: new Date(),
-      PresentationDate: new Date(),
-      Comments: "Comments for Project 2",
-      TeamId: 2
-    },
-    {
-      Id: 3,
-      ProjectName: "Project 3",
-      Description: "Description for Project 3",
-      ProjectStatus: 1,
-      DetailedDescription: "Detailed description for Project 3",
-      ProjectRegisteredDate: new Date(),
-      SubmittedDate: new Date(),
-      PresentationDate: new Date(),
-      Comments: "Comments for Project 3",
-      TeamId: 3
-    },
-    {
-      Id: 4,
-      ProjectName: "Project 4",
-      Description: "Description for Project 4",
-      ProjectStatus: 3,
-      DetailedDescription: "Detailed description for Project 4",
-      ProjectRegisteredDate: new Date(),
-      SubmittedDate: new Date(),
-      PresentationDate: new Date(),
-      Comments: "Comments for Project 4",
-      TeamId: 4
-    },
-    {
-      Id: 5,
-      ProjectName: "Project 5",
-      Description: "Description for Project 5",
-      ProjectStatus: 2,
-      DetailedDescription: "Detailed description for Project 5",
-      ProjectRegisteredDate: new Date(),
-      SubmittedDate: new Date(),
-      PresentationDate: new Date(),
-      Comments: "Comments for Project 5",
-      TeamId: 5
-    }
-  ];
-  
+export const projectInfoArray: IProjectSubmissionForm[] = [
+  {
+    Id: 1,
+    ProjectName: "Project A",
+    topic: "Topic A",
+    description: "Description of Project A",
+    briefDescription: "Brief Description of Project A",
+    uploadFile: "projectA.pdf",
+    TeamId: 1
+  },
+  {
+    Id: 2,
+    ProjectName: "Project B",
+    topic: "Topic B",
+    description: "Description of Project B",
+    briefDescription: "Brief Description of Project B",
+    uploadFile: "projectB.pdf",
+    TeamId: 2
+  },
+  {
+    Id: 3,
+    ProjectName: "Project C",
+    topic: "Topic C",
+    description: "Description of Project C",
+    briefDescription: "Brief Description of Project C",
+    uploadFile: "projectC.pdf",
+    TeamId: 3
+  },
+  {
+    Id: 4,
+    ProjectName: "Project D",
+    topic: "Topic D",
+    description: "Description of Project D",
+    briefDescription: "Brief Description of Project D",
+    uploadFile: "projectD.pdf",
+    TeamId: 4
+  },
+  // Add more sample projects here
+];
