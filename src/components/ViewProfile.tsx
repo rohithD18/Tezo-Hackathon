@@ -11,18 +11,14 @@ type Props = {
 };
 
 const ViewProfile: React.FC<Props> = ({ setShowProfile }: Props) => {
-  const [isDashboard, setIsDashboard] = useState(false);
+ 
   const handleCancel = () => {
     setShowProfile(false);
   };
-  useEffect(() => {
-    window.location.pathname === "/dashboard" && setIsDashboard(true);
-  }, []);
-
+ 
   return (
     <div
-      className="profileContainer"
-      style={isDashboard ? { left: "80.4%" } : { left: "68.6%" }}
+      className="profileContainer" 
     >
       <div className="profileDiv">
         <span className="cancelContainer">

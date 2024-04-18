@@ -9,8 +9,9 @@ interface PopupProps {
     onClose: () => void;
     userData?:IUsers;
     updateEvents?:(userData:string) => void;
+    popUpValue:string
   }
-export const UserEditPopUp: React.FC<PopupProps>=({onClose,userData,updateEvents}:PopupProps)=>{
+export const UserEditPopUp: React.FC<PopupProps>=({onClose,userData,updateEvents,popUpValue}:PopupProps)=>{
   // console.log(userData)
     const [selectedOption, setSelectedOption] = useState<string|undefined>(userData?.TeamName);
      
@@ -19,16 +20,18 @@ export const UserEditPopUp: React.FC<PopupProps>=({onClose,userData,updateEvents
         setSelectedOption(option);
       };
       const handleSubmit = (e:any) => {
+        if(popUpValue==="edit"){
         if (!selectedOption) {
             alert('Please select team name');
             return;
           }
-        updateEvents?.(selectedOption)
+        updateEvents?.(selectedOption)}
+        else{
+          updateEvents?.("delete")
+        }
+        
         onClose();
       }
-      // useEffect(()=>{
-      //   userData && setSelectedOption(userData?.TeamName)
-      // })
   return (
      <div>
       <div className="userPopUp">
@@ -39,8 +42,9 @@ export const UserEditPopUp: React.FC<PopupProps>=({onClose,userData,updateEvents
             <img src={xclose} alt="closeIcon" onClick={()=>{onClose();
             }} width={24} height={24}></img>
             </div>
-            <p>Please select the desired Team Name</p>
-            <div className="user">
+            <p style={popUpValue==="delete"?{textAlign: "center",
+  paddingBottom: 10}:{textAlign:"left"}}> {popUpValue==="edit"?"Please select the desired Team Name":"Are you sure you wantto delete this item?"}</p>
+            {popUpValue==="edit"?<div className="user">
             <div>
        
       
@@ -73,8 +77,11 @@ export const UserEditPopUp: React.FC<PopupProps>=({onClose,userData,updateEvents
             <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
             <button className="addNew" onClick={handleSubmit}>Update</button>
             </div>
+            </div>:  <div className="ConfirmCancelButtons">
+            <button className="addNew" onClick={handleSubmit}>Confirm</button>
+            <button className="cancelButton" onClick={()=>onClose()}>Cancel</button>
             </div>
-           
+}           
            
         </div>
     

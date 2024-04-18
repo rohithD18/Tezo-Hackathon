@@ -6,15 +6,15 @@ import {
   ITeamMember,
 } from "./Interface/HackathonInterface";
 
-const AllUsers: IAllUsers[] = [
+export const AllUsers: IAllUsers[] = [
   {
     Id: 1,
     Name: "John Doe",
-    Email: "john.doe@example.com",
+    Email: "likitha.k@Technovert.com",
     EmployeeId: "EMP001",
     Department: 101,
     Profile: "Software Engineer",
-    Role: "Developer",
+    Role: "Admin",
     IsRegistered: true,
     RegisteredDate: new Date(),
   },

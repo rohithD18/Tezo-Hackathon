@@ -34,20 +34,6 @@ color:#EEEEEE;
 outline: none;
 
    }
-   .NameAndDate {
-    /* width:100%;
-padding: 12px; */
-/* gap: 8px; */
-/* border-radius: 4px;
-margin: 3px;
-border: 1px solid #3D5A80;
-color: #2B3647;
-background: #2B3647;
-z-index: 9999;
-color:#EEEEEE;
-outline: none; */
-
-   }
    
 #teamNamesDropDown-label{
     color: #878787;
@@ -83,12 +69,26 @@ color:white
     background: #273144;
     border-radius: 8px;
     width:30%;
-    height:43%;
+    /* height:43%; */
     padding: 24px 24px 12px 24px;
     display: flex;
     gap:10px;
     flex-direction: column;
  
+}
+.cancelButton{
+    width:151px;
+    height: 36px;
+    border-radius: 8px;
+    color:white;
+font-size: 14px;
+font-weight: 600;
+line-height: 17px;
+text-align: center;
+border:none;
+background-color:#273144; 
+border: 1px solid #3D5A80
+
 }
 .user{
     display: flex;
@@ -96,3 +96,8 @@ color:white
     gap: 24px;
     
 }
+.ConfirmCancelButtons{
+    display: flex; 
+    justify-content: flex-end;
+    gap:10px
+  }
