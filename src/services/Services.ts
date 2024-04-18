@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios,{AxiosResponse} from "axios";
 import { Teams } from "../services/Data";
 import { membersArray } from "../components/registration/MembersA";
 import { UsersData } from "./Data";
@@ -8,6 +8,9 @@ import { EventsData } from "./EventData";
 import { Projects } from "./ProjectManagementEvents";
 import { projectInfoArray } from "./ProjectInfoDetails";
 import { IProjectInfo } from "../Interfaces";
+import { IAllUsers } from "./Interface/HackathonInterface";
+
+const BASE_URL = 'https://tezohackathonwebapi.azurewebsites.net/api';
 export const getAMember = (value: string) => {
   const member = UsersData.filter((entry) =>
     entry.Name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
@@ -135,6 +138,30 @@ export const addNewEvent = (newEvent: any) => {
   };
 };
 
+export const getTeams = async (): Promise<AxiosResponse<any>> => {
+  try {
+    const response = await axios.get(`${BASE_URL}/team`);
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error fetching data : ${error}`);
+  }
+};
+export const getAllTeamMembers = async (): Promise<AxiosResponse<any>> => {
+  try {
+    const response = await axios.get(`${BASE_URL}/TeamMembers`);
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error fetching team members: ${error}`);
+  }
+};
+export const getAllUsers = async (): Promise<IAllUsers[]> => {
+  try {
+    const response = await axios.get(`${BASE_URL}/Person`);
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error fetching team members: ${error}`);
+  }
+};
 export const updateDuplicateData = (key: string, value: string) => {
     // Create a new project info object with the updated key and value
     const newData: IProjectInfo[] = [{

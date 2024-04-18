@@ -1,7 +1,7 @@
 export interface IAllUsers {
   Id: number;
-  Name: string;
-  Email: string;
+  name: string;
+  email: string;
   EmployeeId: string;
   Department: number;
   ProfilePic: string;

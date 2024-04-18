@@ -275,7 +275,7 @@ const DashboardNav: React.FC = () => {
   </svg>, showAdmin: isAdmin }
   ];
 useEffect(()=>{
-const count=AllUsers.filter(obj => obj.Role === "Admin" && obj.Email===userEmail);
+const count=AllUsers.filter(obj => obj.Role === "Admin" && obj.email===userEmail);
 count.length && setIsAdmin(true)
   
 })
