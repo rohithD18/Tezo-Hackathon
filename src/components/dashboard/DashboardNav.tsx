@@ -21,11 +21,13 @@ const DashboardNav: React.FC = () => {
 
   const handleButtonClick = (buttonName: string) => {
     setActiveButton(buttonName);
-  };
+   
+   buttonName==="Dashboard"? navigate("/dashboard") :navigate(buttonName)
+   };
 
   const [isAdmin,setIsAdmin] = useState<boolean>(false);
   const dashboardArray = [
-    { Name: "", SVG: <svg
+    { Name: "Dashboard", SVG: <svg
     width="20"
     height="20"
     viewBox="0 0 20 20"
@@ -287,7 +289,7 @@ count.length && setIsAdmin(true)
         onClick={() => handleButtonClick(object.Name)}
       >
         {object.SVG}
-        {object.Name==""?"Dashboard":object.Name}
+        {object.Name}
       </button>
     ))}
     </div>

@@ -13,7 +13,7 @@ export const AllUsers: IAllUsers[] = [
     Email: "likitha.k@Technovert.com",
     EmployeeId: "EMP001",
     Department: 101,
-    Profile: "Software Engineer",
+    ProfilePic: "Software Engineer",
     Role: "Admin",
     IsRegistered: true,
     RegisteredDate: new Date(),
