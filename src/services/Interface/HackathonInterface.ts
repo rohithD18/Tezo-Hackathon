@@ -21,6 +21,12 @@ export interface IAllProject {
   Comments: string;
   TeamId: number;
 }
+export interface IAllProjectFiles {
+  Id: number;
+  ProjectId: number;
+  ProjectFile: string; 
+}
+
 export interface IAllTeams {
   Id: number;
   TeamName: string;
