@@ -208,7 +208,7 @@ export const AllUsers: IAllUsers[] = [
   {
     Id: 19,
     name: "Rohith Dudam",
-    email: "rohith.d@example.com",
+    email: "rohith.d@Technovert.com",
     EmployeeId: "EMP019",
     Department: 2,
     ProfilePic: "Customer Service Representative",
