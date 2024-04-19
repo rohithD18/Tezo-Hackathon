@@ -4,75 +4,43 @@ import {IProjectSubmissionForm,IProjectSubmissionFormError } from "../../Interfa
 import { constant } from "lodash";
 // /import {updateDuplicateData1} from "../../services/Services"
 interface ProjectDetailProps {
-    setDuplicateData:(data:IProjectSubmissionForm[]) => void;
+    setFormData:(data:IProjectSubmissionForm)=>void;
     setFormError: (formError: IProjectSubmissionFormError) => void;
     formError: IProjectSubmissionFormError;
-    setButtonDisabled:(data:boolean) => void;
-    previousData:IProjectSubmissionForm[]|null;
   }
 
-export const ProjectDetail : React.FC<ProjectDetailProps> = ({ setDuplicateData,setFormError,formError,setButtonDisabled,previousData }) => {
-   
-    let isValid=true
+export const ProjectDetail : React.FC<ProjectDetailProps> = ({setFormData,formError,setFormError}) => {
     const [topic, setTopic] = useState<string>('');
-    const [description, setDescription] = useState<string>('');
-    useEffect(() => {
-        if (previousData && previousData.length !== 0) {
-            setTopic(previousData[0].topic);
-            setDescription(previousData[0].description);
-        }
-    }, [previousData]); 
-    
+    const [description, setDescription] = useState<string>('');    
     const handleTopicChange = (event:React.ChangeEvent<HTMLInputElement>) => {
-        setButtonDisabled(false);
         const text = event.target.value;
-        setTopic(text);
-        updateDuplicateData(topic, description); 
+        setTopic(text); 
         if (text === "") {
             setFormError({ ...formError, topicError: 'This field is required' });
-            isValid=false
+            
         } else if (text.length > 100) {
             setFormError({ ...formError, topicError: 'Topic should be within 100 characters' });
-            isValid=false
+            
         } else {
             setFormError({ ...formError, topicError: '' });
         }
-        if(topic!=="" && description!=="" && isValid){
-            setButtonDisabled(true);
-
-        }
-
+        
     };
 
     const handleDescriptionChange = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
-        let isValid=true
-        setButtonDisabled(false);
         const text = event.target.value;
         setDescription(text);
-        updateDuplicateData(topic, description);
         if (text === "") {
             setFormError({ ...formError, descriptionError: 'This field is required' });
-            isValid=false
+            
         } else if (text.length > 500) {
             setFormError({ ...formError, descriptionError: 'Description should be within 500 characters' });
-            isValid=false
+
         } else {
             setFormError({ ...formError, descriptionError: '' });
         }
-        if(topic!=="" && description!=="" && isValid){
-            setButtonDisabled(true);
-
-            
-        }
-
-
-        
+      
     };
-    const updateDuplicateData = (newTopic: string, newDescription: string) => {
-        const newData: IProjectSubmissionForm[] = [{ Id: 1, ProjectName: "",topic:newTopic,description: newDescription, briefDescription:"",uploadFile:"", TeamId: 6 }];
-        // Call setDuplicateData with the new data
-        setDuplicateData(newData)
-      };
     const topicCharacterCount = topic.length;
     const descriptionCharacterCount = description.length;
 

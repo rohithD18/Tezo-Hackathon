@@ -11,14 +11,14 @@ import {IProjectSubmissionForm,IProjectSubmissionFormError } from "../../Interfa
 // import PDFViewer from "./PDFViewer";
 interface ProjectSubmissionProps {
   
-  setDuplicateData:(data:IProjectSubmissionForm[]) => void;
-  setFormError: (formError: IProjectSubmissionFormError) => void;
-    formError: IProjectSubmissionFormError;
-    setButtonDisabled:(data:boolean) => void;
-    previousData:IProjectSubmissionForm[]|null;
+  // setDuplicateData:(data:IProjectSubmissionForm[]) => void;
+  // setFormError: (formError: IProjectSubmissionFormError) => void;
+  //   formError: IProjectSubmissionFormError;
+  //   setButtonDisabled:(data:boolean) => void;
+  //   previousData:IProjectSubmissionForm[]|null;
 }
 
-export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ setDuplicateData,setFormError,formError,setButtonDisabled,previousData  }) => {
+export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({  }) => {
   let isValid=true
   const [files, setFiles] = useState<File[]>([]);
   const [pdfOpen, setPdfOpen] = useState(false);
@@ -85,14 +85,14 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ setDuplica
     const breifDescript = event.target.value;
     setBriefDescription(breifDescript);
     if (breifDescript === "") {
-      setFormError({ ...formError, briefDescriptionError: 'This field is required' });
+      // setFormError({ ...formError, briefDescriptionError: 'This field is required' });
       isValid=false
   }
    else {
-      setFormError({ ...formError, briefDescriptionError: '' });
+      // setFormError({ ...formError, briefDescriptionError: '' });
   }
   if(breifDescription!=="" && files.length!== 0 && isValid){
-      setButtonDisabled(true);
+      // setButtonDisabled(true);
 
   }
 
@@ -118,7 +118,7 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({ setDuplica
             placeholder="Enter the breif description of the project, including the problem it
           solves, the target audience, and the proposed solution"
           ></textarea>
-            <div>{formError.descriptionError}</div>
+            {/* <div>{formError.descriptionError}</div> */}
           </div>
         </div>
       {/* <div  className="inputSec"> */}
