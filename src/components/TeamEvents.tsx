@@ -35,24 +35,33 @@ export const TeamEvents: React.FC<IProps> = ({
           }
         >
           <div>
-            <img src={item.image} alt="Team Event" id="teamLogo" />
+            <img
+              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+              alt="Team Event"
+              id="teamLogo"
+            />
           </div>
           <div>
             <div>{item.TeamName.toUpperCase()}</div>
             <div>
-            <div>
-                {typeof item.SubmissionDate === 'string'
-                  ? item.SubmissionDate.split(',')[0]
+              <div>
+                {typeof item.SubmissionDate === "string"
+                  ? item.SubmissionDate.split(",")[0]
                   : item.SubmissionDate instanceof Date // Check if it's a Date object
-                    ? item.SubmissionDate.toLocaleDateString() // Format the Date object as a string
-                    : "--"} 
+                  ? item.SubmissionDate.toLocaleDateString() // Format the Date object as a string
+                  : "--"}
               </div>
               <div id="dot"></div>
-              <div>{typeof item.SubmissionDate === 'string' // Check if it's a string
-                  ? item.SubmissionDate.split(' ')[1] // Extract time part
+              <div>
+                {typeof item.SubmissionDate === "string" // Check if it's a string
+                  ? item.SubmissionDate.split(" ")[1] // Extract time part
                   : item.SubmissionDate instanceof Date // Check if it's a Date object
-                    ? item.SubmissionDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) // Format the Date object as time
-                    : "--"} </div>
+                  ? item.SubmissionDate.toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    }) // Format the Date object as time
+                  : "--"}{" "}
+              </div>
             </div>
           </div>
         </div>

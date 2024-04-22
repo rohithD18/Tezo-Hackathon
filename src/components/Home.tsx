@@ -13,27 +13,30 @@ const Home: React.FC<HomeProps> = (props) => {
   const navigate = useNavigate();
   const [members, setMembers] = useState<ITeamMembers[]>(teamMembersArray);
   const visibleImages = members.slice(0, 3);
-  const [title,setTitle] =useState<string>("");
-  const [description,setDescription] =useState<string>("");
-  const [buttonValue,setButtonValue]=useState<string>("");
-  const [flag,setFlag]=useState<boolean>();
-  const [date,setDate]=useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [buttonValue, setButtonValue] = useState<string>("");
+  const [flag, setFlag] = useState<boolean>();
+  const [date, setDate] = useState<string>("");
   useEffect(() => {
-    if(props.isRegister){
+    if (props.isRegister) {
       setTitle("Welcome to Tezo Hackathon!");
       setDescription("You’re registered for this hackathon");
-      setButtonValue("Enter a submission")
+      setButtonValue("Enter a submission");
       setDate("Dec 10, 2023");
       setFlag(false);
-    }
-    else{
+    } else {
       setTitle("Secure Your Spot at the Forefront! 🚀");
-      setDescription("Be among the first five teams to REGISTER and SUBMIT your project topics for an exclusive REVIEW by our esteemed judges. Stand out, get noticed, and pave your way to a VIP ONE-ON-ONE session");
+      setDescription(
+        "Be among the first five teams to REGISTER and SUBMIT your project topics for an exclusive REVIEW by our esteemed judges. Stand out, get noticed, and pave your way to a VIP ONE-ON-ONE session"
+      );
       setButtonValue("Register Now");
       setFlag(true);
     }
-  
-  },[props.isRegister]);
+  }, [props.isRegister]);
+  const handleClick = () => {
+    props.isRegister ? navigate("/myProject") : navigate("/registration-form");
+  };
   return (
     <div className="bottomShape">
       <div className="mainDiv">
@@ -57,10 +60,7 @@ const Home: React.FC<HomeProps> = (props) => {
           </div>
           <h1 className="header">{title}</h1>
           <p className="description">{description}</p>
-          <button
-            onClick={() => navigate("/registration-form")}
-            id="registerBtn"
-          >
+          <button onClick={handleClick} id="registerBtn">
             {buttonValue}
           </button>
         </div>

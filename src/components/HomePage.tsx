@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "add-to-calendar-button";
 import Home from "./Home";
 import "../styles/HomePageMain.css";
@@ -9,16 +9,32 @@ import ribbon from "../assets/ribbon.png";
 import { events } from "../services/ScheduleData";
 import RemainingTime from "./RemainingTime";
 import { eventDate } from "../services/Profile";
-interface HomePageProps {
-  isRegister: boolean;
-}
-const HomePage: React.FC<HomePageProps> = (props) => {
+import { useMembersData } from "../services/FormServices";
+
+const HomePage: React.FC = () => {
   const formattedDate = new Date(eventDate);
   const formattedStartDate = `${formattedDate.getFullYear()}-${
     formattedDate.getMonth() + 1 < 10 ? "0" : ""
   }${formattedDate.getMonth() + 1}-${
     formattedDate.getDate() < 10 ? "0" : ""
   }${formattedDate.getDate()}`;
+  const { usersData } = useMembersData();
+  const [isRegister, setIsRegister] = useState<boolean>(
+    usersData.filter(
+      (item) =>
+        item.email ===
+        localStorage.getItem("username")?.toString().toLocaleLowerCase()
+    )[0]?.isRegistered
+  );
+  useEffect(() => {
+    setIsRegister(
+      usersData.filter(
+        (item) =>
+          item.email ===
+          localStorage.getItem("username")?.toString().toLocaleLowerCase()
+      )[0]?.isRegistered
+    );
+  }, [usersData]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -36,7 +52,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
   }
   return (
     <div className="homePageDiv">
-      <Home isRegister={props.isRegister} />
+      <Home isRegister={isRegister} />
       {/* <div className="scrollContainer">
         <img
           src={scroll}
@@ -51,7 +67,6 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 
       <div className="dateContainer">
         <div className="dateContent">
-
           <h1 className="heading">Keep Up to Date</h1>
           <p className="description1">
             As a front-end developer, I find myself in a perpetual race against

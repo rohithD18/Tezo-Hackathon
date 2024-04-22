@@ -1,13 +1,13 @@
 export interface IAllUsers {
-  Id: number;
+  id: number;
   name: string;
   email: string;
-  EmployeeId: string;
-  Department: number;
-  ProfilePic: string;
-  Role: string;
-  IsRegistered: boolean;
-  RegisteredDate: Date;
+  employeeId: string;
+  department: number;
+  profilePicture: string;
+  role: string;
+  isRegistered: boolean;
+  registeredDate: Date;
 }
 export interface IAllProject {
   Id: number;
@@ -24,7 +24,7 @@ export interface IAllProject {
 export interface IAllProjectFiles {
   Id: number;
   ProjectId: number;
-  ProjectFile: string; 
+  ProjectFile: string;
 }
 
 export interface IAllTeams {
@@ -49,4 +49,16 @@ export interface IPointsTable {
   ProjectSubmissionScore: number;
   ProjectDemoScore: number;
   OverAllScore: number;
+}
+
+export interface IRegister {
+  teamName: string;
+  teamLogo: string;
+  captainId: number;
+  registeredDate: Date;
+  adminId: number;
+  projectName: string;
+  description: string;
+  userIds: number[];
+  technologies: string[];
 }

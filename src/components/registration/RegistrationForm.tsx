@@ -2,20 +2,13 @@ import React, { useState } from "react";
 import SelectMember from "./SelectMember";
 import TeamDetailsForm from "./TeamDetailsForm";
 import TopicDetailsForm from "./TopicDetailsForm";
-import { membersArray } from "./MembersA";
+import { membersArray, registerTeam } from "../../services/FormServices";
+import SubmissionFailed from "../submissionStatus/FailedAndSuccessStatus";
 
 const RegistrationForm: React.FC = () => {
   const [currentForm, setCurrentForm] = useState<string>("SelectMembersForm");
+  const [sucessSubmit, setSucessSubmit] = useState<boolean>(false);
   console.log(membersArray);
-
-  const 
-  handleNextAndSubmit = (btn: string) => {
-    setCurrentForm(
-      currentForm === "SelectMembersForm"
-        ? "TeamDetailsForm"
-        : "TopicDescriptionForm"
-    );
-  };
 
   return (
     <div className="registerHome">
@@ -59,7 +52,8 @@ const RegistrationForm: React.FC = () => {
               {" "}
               <p
                 id={
-                  currentForm === "TopicDescriptionForm"
+                  currentForm !== "TeamDetailsForm" &&
+                  currentForm !== "SelectMembersForm"
                     ? "currentStep"
                     : "notReached"
                 }
@@ -76,42 +70,40 @@ const RegistrationForm: React.FC = () => {
               Enter Team Details <br /> <span>Step Description</span>
             </p>
             <p>
-              Topic Details <br /> <span>Step Description</span>
+              Project Details <br /> <span>Step Description</span>
             </p>
           </div>
         </div>
       </div>
-      <div
-        className={
-          currentForm === "TopicDescriptionForm" ? "topicForm" : "formSection"
-        }
-      >
-        {currentForm === "SelectMembersForm" ? (
-          <SelectMember />
-        ) : currentForm === "TeamDetailsForm" ? (
-          <TeamDetailsForm />
-        ) : (
-          <TopicDetailsForm />
-        )}
-        <div className="nextCancelDiv">
-          <button
-            onClick={() => setCurrentForm("SelectMembersForm")}
-            id="cancelBtn"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={() =>
-              handleNextAndSubmit(
-                currentForm === "TopicDescriptionForm" ? "Submit" : "Next"
-              )
-            }
-            id="nextBtn"
-          >
-            {currentForm === "TopicDescriptionForm" ? "Submit" : "Next"}
-          </button>
+      {currentForm === "RegisterFailed" ? (
+        <SubmissionFailed
+          submitPopUp={"Failed"}
+          setCurrentProjectForm={setCurrentForm}
+          setSucessSubmit={setSucessSubmit}
+          isProject={false}
+        />
+      ) : currentForm === "RegisterSuccess" ? (
+        <SubmissionFailed
+          submitPopUp={"Success"}
+          setCurrentProjectForm={setCurrentForm}
+          setSucessSubmit={setSucessSubmit}
+          isProject={false}
+        />
+      ) : (
+        <div
+          className={
+            currentForm === "TopicDescriptionForm" ? "topicForm" : "formSection"
+          }
+        >
+          {currentForm === "SelectMembersForm" ? (
+            <SelectMember setCurrentForm={setCurrentForm} />
+          ) : currentForm === "TeamDetailsForm" ? (
+            <TeamDetailsForm setCurrentForm={setCurrentForm} />
+          ) : (
+            <TopicDetailsForm setCurrentForm={setCurrentForm} />
+          )}
         </div>
-      </div>
+      )}
     </div>
   );
 };

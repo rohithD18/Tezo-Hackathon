@@ -43,10 +43,7 @@ const App: React.FC = () => {
           <NavBarCopy />
           <HackathonContextProvider>
             <Routes>
-              <Route
-                path="/"
-                Component={() => <HomePage isRegister={false} />}
-              />
+              <Route path="/" Component={() => <HomePage />} />
               <Route path="/registration-form" Component={RegistrationForm} />
               <Route path="/schedule" Component={Schedule} />
               <Route path="/teams" Component={MyTeam} />
@@ -59,7 +56,7 @@ const App: React.FC = () => {
               <Route
                 path="/dashboard/*"
                 element={
-                  <Suspense fallback={<ShimmerCardUI/>}>
+                  <Suspense fallback={<ShimmerCardUI />}>
                     <Dashboard />
                   </Suspense>
                 }

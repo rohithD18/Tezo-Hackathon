@@ -2,41 +2,29 @@ import React, { useState } from "react";
 import FailedIcon from "../../assets/FailedWarningIcon.png";
 import SuccessIcon from "../../assets/SuccessIcon.png";
 import "../../styles/submissionStatus/FailedAndSuccessStatus.css";
-import {PresenationDemo} from "../MyProject/PresentationDemo"
+import { PresenationDemo } from "../MyProject/PresentationDemo";
 import { useNavigate } from "react-router-dom";
 interface SubmissionFailedProps {
-  submitPopUp:string; 
-  setEditForm: (value: boolean) => void;
-  setCurrentProjectForm:(value: string) => void;
-  setSucessSubmit:(value: boolean) => void;
-
-  
+  submitPopUp: string;
+  setCurrentProjectForm: (value: string) => void;
+  setSucessSubmit: (value: boolean) => void;
+  isProject: boolean;
 }
-const SubmissionFailed:React.FC<SubmissionFailedProps > = ({ submitPopUp,setEditForm,setCurrentProjectForm,setSucessSubmit}) => { 
+const SubmissionFailed: React.FC<SubmissionFailedProps> = ({
+  submitPopUp,
+  setCurrentProjectForm,
+  setSucessSubmit,
+  isProject,
+}) => {
   const navigate = useNavigate();
   const [submissionStatus, setSubmissionStatus] = useState<string>(submitPopUp);
-  const [isProjectSubmitted, setIsProjectSubmitted] = useState<boolean>(false);
-  // const handleClick = (status: string) => {
-  //   // status === "Success" ? navigate("/") : navigate("/Registration-Form");
-  //   setSubmissionStatus(
-  //     status === "Success"
-  //       ? "Failed"
-  //       : status === "Failed"
-  //       ? "responded"
-  //       : "Success"
-  //   );
-  //   // setIsProjectSubmitted(!isProjectSubmitted);
-  // };
- 
+  // const [isProject, setIsProject] = useState<boolean>(isProject);
   const handleClick = () => {
     // setSucessSubmit(false);
-    setSucessSubmit(false) ;
-    setEditForm(true); 
-    setCurrentProjectForm("ProjectDetailForm");
-    
-
-
-    
+    setSucessSubmit(false);
+    setCurrentProjectForm(
+      isProject ? "ProjectDetailForm" : "SelectMembersForm"
+    );
   };
   return (
     <div className="submissionFailedSec">
@@ -46,12 +34,10 @@ const SubmissionFailed:React.FC<SubmissionFailedProps > = ({ submitPopUp,setEdit
       />
       <p id="header">
         {submissionStatus === "Success"
-          ? `${isProjectSubmitted ? "Project" : "Topic"} submission successful!`
+          ? `${isProject ? "Project" : "Topic"} submission successful!`
           : submissionStatus === "Failed"
-          ? `${isProjectSubmitted ? "Project" : "Topic"} submission failed!`
-          : `You've already ${
-              isProjectSubmitted ? "submitted!" : "responded!"
-            }`}
+          ? `${isProject ? "Project" : "Topic"} submission failed!`
+          : `You've already ${isProject ? "submitted!" : "responded!"}`}
       </p>
       {submissionStatus === "Failed" ? (
         <p id="failedInfo">
@@ -73,7 +59,7 @@ const SubmissionFailed:React.FC<SubmissionFailedProps > = ({ submitPopUp,setEdit
           : "Topic review can take up to 2 days."}
       </p>
       <button
-         onClick={() => handleClick()}
+        onClick={() => handleClick()}
         id={submissionStatus === "Failed" ? "tryAgainBtn" : "viewTopic"}
       >
         {submissionStatus === "Failed" ? "Try Again" : "View Topic"}

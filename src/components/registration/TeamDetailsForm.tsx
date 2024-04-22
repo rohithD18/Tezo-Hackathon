@@ -1,43 +1,63 @@
 import React, { useEffect, useState } from "react";
 import profileImg from "../../assets/profilepic.jpg";
 import CheckBoxIcon from "../CheckBoxIcon";
-import { membersArray } from "./MembersA";
 import { ITeams } from "../../Interfaces";
-
-const TeamDetailsForm: React.FC = () => {
+import { IAllUsers } from "../../services/Interface/HackathonInterface";
+import { RegistrationForm, membersArray } from "../../services/FormServices";
+interface IProps {
+  setCurrentForm: (message: string) => void;
+}
+export interface ITeamss {
+  TeamName: string;
+  TeamMembers: IAllUsers[];
+  TeamLogo: string;
+  captainId: number;
+}
+const TeamDetailsForm: React.FC<IProps> = (props: IProps) => {
   const [teamName, setTeamName] = useState<string>("");
-  const [captain, setCaptain] = useState<string>();
+  const [captainId, setCaptainId] = useState<number>(0);
   const [selectedId, setSelectedId] = useState<number>(0);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [teamDetails, setTeamDetails] = useState<ITeams>({
-    Id: 1,
-    TeamName: "",
-    TeamMembers: [],
-    Rank: 0,
-    Score: 0,
-  });
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  // const [teamDetails, setTeamDetails] = useState<ITeamss>({
+  //   TeamName: "",
+  //   TeamMembers: [],
+  //   TeamLogo: "",
+  //   captainId: 0,
+  // });
   const [fileInput, setFileInput] = useState<HTMLInputElement | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files && event.target.files[0];
+    const file = event.target.files?.[0];
     if (file) {
       setSelectedFile(file);
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImageUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
+    // console.log(JSON.stringify(file));
   };
-  const handleClick = (index: number) => {
-    setSelectedId(index);
+
+  const handleClick = (id: number) => {
+    // console.log(id);
+
+    setSelectedId(id);
+    setCaptainId(id);
   };
-  useEffect(() => {
-    setCaptain(membersArray[selectedId]?.Name);
-    membersArray.forEach(
-      (item, index) => (item.IsCaptain = index === selectedId ? true : false)
-    );
-    setTeamDetails((prevObject) => ({
-      ...prevObject,
-      TeamName: teamName,
-      TeamMembers: membersArray,
-    }));
-  }, [selectedId, captain, teamName]);
+
   // console.log(teamDetails);
+  const handleTeamDetails = () => {
+    RegistrationForm.teamLogo = "file";
+    RegistrationForm.userIds = membersArray.map((item) => {
+      return item.id;
+    });
+    RegistrationForm.teamName = teamName;
+    RegistrationForm.captainId = captainId;
+    props.setCurrentForm("TopicDescriptionForm");
+  };
+  // const { registerForm } = useFormDetails(teamDetails);
 
   return (
     <div>
@@ -75,7 +95,7 @@ const TeamDetailsForm: React.FC = () => {
         ) : (
           <img
             onClick={() => fileInput?.click()}
-            src={selectedFile ? URL.createObjectURL(selectedFile) : profileImg}
+            src={imageUrl ? imageUrl : profileImg}
             alt="Profile"
           />
         )}
@@ -96,23 +116,38 @@ const TeamDetailsForm: React.FC = () => {
               <div
                 key={index}
                 className="mapMemberDiv"
-                onClick={() => handleClick(index)}
+                onClick={() => handleClick(item.id)}
               >
                 <CheckBoxIcon
                   // isClicked={dataFromCheckBoxIcon}
                   setSelectedId={setSelectedId}
-                  index={index}
+                  index={item.id}
                   selectedId={selectedId}
                 />
                 <img src={profileImg} alt="profile" />
                 <p>
-                  {item?.Name} <br />
-                  <span>{item?.EmailAddress}</span>
+                  {item?.name} <br />
+                  <span>{item?.email}</span>
                 </p>
               </div>
             );
           })}
         </div>
+      </div>
+      <div className="nextCancelDiv">
+        <button
+          onClick={() => props.setCurrentForm("SelectMembersForm")}
+          id="cancelBtn"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={handleTeamDetails}
+          id="nextBtn"
+          // disabled={teamName.length < 5 || !selectedId}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
