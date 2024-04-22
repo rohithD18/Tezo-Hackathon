@@ -275,10 +275,11 @@ const DashboardNav: React.FC = () => {
   </svg>, showAdmin: isAdmin }
   ];
 useEffect(()=>{
-const count=AllUsers.filter(obj => obj.Role === "Admin" && obj.email===userEmail);
-count.length && setIsAdmin(true)
+const count=AllUsers.filter(obj => obj.role === "Admin" && obj.email===userEmail);
+
+count.length===1 && setIsAdmin(true)
   
-})
+},[])
   return (
     <div className="navContainer">
 {dashboardArray.map((object, index) => (

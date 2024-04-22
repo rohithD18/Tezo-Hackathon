@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/InputSearch.css";
 import { IProject, ITeams, IUsers } from "../Interfaces";
 import {
+  getAllUsers,
   getFilteredMembers,
   getFilteredProjects,
   getFilteredTeams,
 } from "../services/Services";
+import { IAllUsers } from "../services/Interface/HackathonInterface";
 interface SearchComponentProps {
   setQuerySearch: (query: string) => void;
   currentScreen: string;
@@ -17,16 +19,16 @@ const InputSearch: React.FC<SearchComponentProps> = ({
 }: SearchComponentProps) => {
   console.log(currentScreen);
 
-  const [filteredTeams, setFilteredTeams] = useState<ITeams[] | IProject[]>([]);
-  const [filteredMembers, setFilteredMembers] = useState<IUsers[]>([]);
-
+  const [filteredTeams, setFilteredTeams] = useState<ITeams[] | IProject[] >([]);
+  const [filteredMembers, setFilteredMembers] = useState<IAllUsers[]>([]);
+  // const [userData, setUserData] = useState<IAllUsers[]>([]);
   const [inputValue, setInputValue] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     if (e.target.value.trim() === "") {
       setFilteredTeams([]);
     } else if (currentScreen === "SelectMembers") {
-      setFilteredMembers(getFilteredMembers(e.target.value));
+    getFilteredMembers(e.target.value).then((res) => setFilteredMembers(res));
     } else if (currentScreen === "ProjectManagment") {
       setFilteredTeams(getFilteredProjects(e.target.value));
     } else {
@@ -98,10 +100,10 @@ const InputSearch: React.FC<SearchComponentProps> = ({
                 className="dropDownItem"
                 onClick={() => {
                   // handleSelectItem(team);
-                  handleClickItem(team.Name);
+                  handleClickItem(team.name);
                 }}
               >
-                {team.Name}
+                {team.name}
               </li>
             ))}
           </ul>

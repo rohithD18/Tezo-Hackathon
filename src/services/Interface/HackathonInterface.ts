@@ -1,13 +1,13 @@
 export interface IAllUsers {
-  Id: number;
+  id: number;
   name: string;
   email: string;
-  EmployeeId: string;
-  Department: number;
-  ProfilePic: string;
-  Role: string;
-  IsRegistered: boolean;
-  RegisteredDate: Date;
+  employeeId: string;
+  department: number;
+  profilePicture: string;
+  role: string;
+  isRegistered: boolean;
+  registeredDate: Date;
 }
 export interface IAllProject {
   Id: number;
@@ -49,4 +49,9 @@ export interface IPointsTable {
   ProjectSubmissionScore: number;
   ProjectDemoScore: number;
   OverAllScore: number;
+}
+export interface ITechnology {
+  id:number;
+  technologyName:string;
+  projectId:string
 }
