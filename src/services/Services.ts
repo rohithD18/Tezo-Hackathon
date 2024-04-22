@@ -7,7 +7,7 @@ import { EventsData } from "./EventData";
 import { Projects } from "./ProjectManagementEvents";
 // import { IProjectInfo } from "../Interfaces";
 import {
-  IAllEvents, IAllProject, IAllTeams,
+  IAllEvents, IAllProject,
   IAllProjectFiles,
   IAllTeams,
   IAllUsers,
