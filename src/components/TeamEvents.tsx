@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { IAllEvents, IAllTeams } from "../services/Interface/HackathonInterface";
 import "../styles/UpcomingEvents.css";
-import { IEvents } from "../Interfaces";
+import { getTeams } from "../services/Services";
 import InputSearch from "./InputSearch";
 
 interface IProps {
-  upcomingEvents: IEvents[];
+  upcomingEvents: IAllEvents[];
   validUpcomingEvents: boolean;
 }
 
@@ -13,6 +14,20 @@ export const TeamEvents: React.FC<IProps> = ({
   validUpcomingEvents,
 }: IProps) => {
   const [querySearch, setQuerySearch] = useState<string>();
+  const [teams, setTeams] = useState<IAllTeams[]|any>([]);
+
+  useEffect(() => {
+    const fetchTeams = async () => {
+      try {
+        const fetchedTeams = await getTeams();
+        setTeams(fetchedTeams);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchTeams();
+  }, []);
 
   return (
     <div className="eventsSection">
@@ -27,36 +42,44 @@ export const TeamEvents: React.FC<IProps> = ({
           />
         </div>
       )}
-      {upcomingEvents.map((item) => (
-        <div
-          key={item.id}
-          className={
-            validUpcomingEvents ? "upcomingEventList" : "allEventsList"
-          }
-        >
-          <div>
-            <img src={item.image} alt="Team Event" id="teamLogo" />
-          </div>
-          <div>
-            <div>{item.TeamName.toUpperCase()}</div>
+      {upcomingEvents.map((item) => {
+        const teamDetail = teams.filter((team: { Id: number; }) => team.Id === item.id);
+        return (
+          <div
+            key={item.id}
+            className={
+              validUpcomingEvents ? "upcomingEventList" : "allEventsList"
+            }
+          >
             <div>
+              <img src={teamDetail?.logo} alt="Team Logo" id="teamLogo" />
+            </div>
             <div>
-                {typeof item.SubmissionDate === 'string'
-                  ? item.SubmissionDate.split(',')[0]
-                  : item.SubmissionDate instanceof Date // Check if it's a Date object
-                    ? item.SubmissionDate.toLocaleDateString() // Format the Date object as a string
-                    : "--"} 
-              </div>
-              <div id="dot"></div>
-              <div>{typeof item.SubmissionDate === 'string' // Check if it's a string
-                  ? item.SubmissionDate.split(' ')[1] // Extract time part
-                  : item.SubmissionDate instanceof Date // Check if it's a Date object
-                    ? item.SubmissionDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) // Format the Date object as time
-                    : "--"} </div>
+              <div>{teamDetail?.teamName.toUpperCase()}</div>
+              {/* <div>
+                {typeof item.SubmissionDate === "string" ? (
+                  item.SubmissionDate.split(",")[0]
+                ) : item.SubmissionDate instanceof Date ? (
+                  item.SubmissionDate.toLocaleDateString()
+                ) : (
+                  "--"
+                )}
+                <div id="dot"></div>
+                {typeof item.SubmissionDate === "string" ? (
+                  item.SubmissionDate.split(" ")[1]
+                ) : item.SubmissionDate instanceof Date ? (
+                  item.SubmissionDate.toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })
+                ) : (
+                  "--"
+                )}
+              </div> */}
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

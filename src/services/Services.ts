@@ -8,7 +8,7 @@ import { EventsData } from "./EventData";
 import { Projects } from "./ProjectManagementEvents";
 import { projectInfoArray } from "./ProjectInfoDetails";
 // import { IProjectInfo } from "../Interfaces";
-import { IAllProject, IAllUsers, ITeamMember } from "./Interface/HackathonInterface";
+import { IAllEvents, IAllProject, IAllTeams, IAllUsers, ITeamMember } from "./Interface/HackathonInterface";
 
 const BASE_URL = 'https://tezohackathonwebapi.azurewebsites.net/api';
 export const getAMember = (value: string) => {
@@ -138,7 +138,7 @@ export const addNewEvent = (newEvent: any) => {
   };
 };
 
-export const getTeams = async (): Promise<AxiosResponse<any>> => {
+export const getTeams = async (): Promise<AxiosResponse<IAllTeams[]>> => {
   return axios.get(`${BASE_URL}/team`)
   .then(response => {
     return response.data;
@@ -361,6 +361,27 @@ export const DeleteProjectFile= async (
       throw new Error(`Error : ${error}`);
     });
 };
+export const getEvents=async ():Promise<IAllEvents[]> => {
+  return axios.get(`${BASE_URL}/Events`)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+}
+export const register=async (loggedInId:number):Promise<any> => {
+  return axios.get(`${BASE_URL}/Registration/register/loggedInId/${loggedInId}`)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+}
+
 // export const updateDuplicateData = (key: string, value: string) => {
     // Create a new project info object with the updated key and value
     // const newData: IProjectInfo[] = [{

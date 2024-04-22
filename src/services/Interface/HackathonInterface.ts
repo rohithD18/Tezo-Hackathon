@@ -50,3 +50,12 @@ export interface IPointsTable {
   ProjectDemoScore: number;
   OverAllScore: number;
 }
+ 
+export interface IAllEvents { 
+  id: number;
+  teamId: number;
+  TeamMemberId:number;
+  topic:string;
+  time:Date
+ 
+}
