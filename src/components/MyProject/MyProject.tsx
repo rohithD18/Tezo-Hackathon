@@ -124,7 +124,7 @@ const MyProject: React.FC = () => {
               </div>
             </div>
           </div>
-         { sucessSubmit ? <SubmissionFailed submitPopUp={"Success"} setEditForm={setEditForm} setCurrentProjectForm={setCurrentProjectForm} setSucessSubmit={setSucessSubmit}  /> :
+         { sucessSubmit ? <SubmissionFailed submitPopUp={"Success"} setCurrentProjectForm={setCurrentProjectForm} setSucessSubmit={setSucessSubmit} isProject={true} /> :
           <div
             className={
               currentProjectForm === "ProjectDescripitionForm"
