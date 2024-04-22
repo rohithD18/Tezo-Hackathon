@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/InputSearch.css";
 import { IProject, ITeams, IUsers } from "../Interfaces";
 import {
+  getAllUsers,
   getFilteredMembers,
   getFilteredProjects,
   getFilteredTeams,
+  getUserByEmail,
+  getUserByName,
+  updateUser,
 } from "../services/Services";
+import { IAllUsers } from "../services/Interface/HackathonInterface";
 interface SearchComponentProps {
   setQuerySearch: (query: string) => void;
   currentScreen: string;
@@ -15,10 +20,10 @@ const InputSearch: React.FC<SearchComponentProps> = ({
   setQuerySearch,
   currentScreen,
 }: SearchComponentProps) => {
-  console.log(currentScreen);
+  // console.log(currentScreen);
 
   const [filteredTeams, setFilteredTeams] = useState<ITeams[] | IProject[]>([]);
-  const [filteredMembers, setFilteredMembers] = useState<IUsers[]>([]);
+  const [filteredMembers, setFilteredMembers] = useState<IAllUsers[]>([]);
 
   const [inputValue, setInputValue] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +31,7 @@ const InputSearch: React.FC<SearchComponentProps> = ({
     if (e.target.value.trim() === "") {
       setFilteredTeams([]);
     } else if (currentScreen === "SelectMembers") {
-      setFilteredMembers(getFilteredMembers(e.target.value));
+      getFilteredMembers(e.target.value).then((res) => setFilteredMembers(res));
     } else if (currentScreen === "ProjectManagment") {
       setFilteredTeams(getFilteredProjects(e.target.value));
     } else {
@@ -42,10 +47,15 @@ const InputSearch: React.FC<SearchComponentProps> = ({
       setFilteredTeams([]);
       setFilteredMembers([]);
     }
+
+    console.log(item);
+
+    getUserByName(item).then((res) => updateUser(res, "register"));
   };
   const handlekeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setQuerySearch(inputValue);
+      getUserByName(inputValue).then((res) => updateUser(res, "register"));
       setInputValue("");
       setFilteredMembers([]);
       setFilteredTeams([]);
@@ -98,10 +108,10 @@ const InputSearch: React.FC<SearchComponentProps> = ({
                 className="dropDownItem"
                 onClick={() => {
                   // handleSelectItem(team);
-                  handleClickItem(team.Name);
+                  handleClickItem(team.name);
                 }}
               >
-                {team.Name}
+                {team.name}
               </li>
             ))}
           </ul>

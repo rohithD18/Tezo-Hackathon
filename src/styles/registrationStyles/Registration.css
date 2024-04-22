@@ -1,7 +1,8 @@
 .registerHome{
   /* width: 80%; */
   display: flex;
-  justify-content: center;
+  margin-left:15%;
+  /* justify-content: center; */
   min-height: 100vh;
   margin-top: 20px;
   /* padding: 20px 120px; */
@@ -295,6 +296,9 @@ line-height: 18.75px;
 text-align: center;
 
   
+}
+#nextBtn:disabled {
+  cursor: not-allowed;
 }
 .projectDetail{
   display:flex;

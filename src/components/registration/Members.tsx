@@ -2,20 +2,29 @@ import React, { useEffect, useState } from "react";
 import "../../styles/registrationStyles/Registration.css";
 import profilePic from "../../assets/profilepic.jpg";
 import { IUsers } from "../../Interfaces";
+import { IAllUsers } from "../../services/Interface/HackathonInterface";
+import {
+  getUserByEmail,
+  getUserByName,
+  updateUser,
+} from "../../services/Services";
 interface IProps {
-  teamMembers: IUsers[];
+  teamMembers: IAllUsers[];
 }
 const Members: React.FC<IProps> = (props: IProps) => {
   const { teamMembers } = props;
-  const [memebers, setMembers] = useState<IUsers[]>(teamMembers);
+  const [memebers, setMembers] = useState<IAllUsers[]>(teamMembers);
   const [isDelete, setisDelete] = useState<boolean>(false);
 
-  const handleDelete = (department: string, index: number) => {
+  const handleDelete = (name: string, index: number) => {
     teamMembers.splice(index, 1);
     setisDelete(!isDelete);
+
+    getUserByName(name).then((res) => updateUser(res, "delete"));
   };
   useEffect(() => {
     setMembers(teamMembers);
+    // console.log(memebers, teamMembers);
   }, [isDelete]);
   return (
     <div className="membersSection">
@@ -26,13 +35,10 @@ const Members: React.FC<IProps> = (props: IProps) => {
             <p id="nameEmail">
               <img src={profilePic} alt="profile" />
               <span>
-                <b>{item?.Name}</b> <b id="email">{item?.EmailAddress} </b>
+                <b>{item?.name}</b> <b id="email">{item?.email} </b>
               </span>
             </p>
-            <p
-              id="trashIcon"
-              onClick={() => handleDelete(item?.Department, index)}
-            >
+            <p id="trashIcon" onClick={() => handleDelete(item?.name, index)}>
               {" "}
               <svg
                 width="24"

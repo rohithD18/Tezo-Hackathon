@@ -2,11 +2,26 @@ import React, { useState } from "react";
 import InputSearch from "../InputSearch";
 import Dropdown from "../Dropdown";
 import Members from "./Members";
-import { useFetch } from "../../services/Services";
+import {
+  getUserByEmail,
+  myData,
+  updateUser,
+  useFetch,
+} from "../../services/Services";
+import { useNavigate } from "react-router-dom";
+// import { useFormDetails } from "../../services/FormServices";
 
-const SelectMember: React.FC = () => {
+interface IProps {
+  setCurrentForm: (message: string) => void;
+}
+const SelectMember: React.FC<IProps> = (props: IProps) => {
   const [querySearch, setQuerySearch] = useState<string>("");
   const { isQA, membersArray } = useFetch(querySearch, setQuerySearch);
+  // const { registerForm } = useFormDetails(membersArray);
+  const navigate = useNavigate();
+  const handleNext = () => {
+    props.setCurrentForm("TeamDetailsForm");
+  };
 
   const greenChecksvg = (
     <svg
@@ -71,6 +86,18 @@ const SelectMember: React.FC = () => {
         </div>
         {/* <div> */}
         <Members teamMembers={membersArray} />
+      </div>
+      <div className="nextCancelDiv">
+        <button onClick={() => navigate("/")} id="cancelBtn">
+          Cancel
+        </button>
+        <button
+          onClick={handleNext}
+          id="nextBtn"
+          // disabled={!isQA || membersArray.length < 5}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

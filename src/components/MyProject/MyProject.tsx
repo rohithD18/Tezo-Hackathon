@@ -7,9 +7,12 @@ import { ProjectDemo } from "./Demo";
 import { ProjectSubmission } from "./ProjectSubmission";
 import { IProjectDetail } from "../../Interfaces";
 import ViewPdfModal from "./ViewPdfModal";
-import { IProjectSubmissionForm,IProjectSubmissionFormError } from "../../Interfaces";
-import {projectInfoArray} from '../../services/ProjectInfoDetails';
-import SubmissionFailed from '../../components/submissionStatus/FailedAndSuccessStatus'
+import {
+  IProjectSubmissionForm,
+  IProjectSubmissionFormError,
+} from "../../Interfaces";
+import { projectInfoArray } from "../../services/ProjectInfoDetails";
+import SubmissionFailed from "../../components/submissionStatus/FailedAndSuccessStatus";
 interface MyProjectProps {
   onSubmit: (data: IProjectSubmissionForm) => void;
 }
@@ -26,11 +29,11 @@ const MyProject: React.FC = () => {
     topicError: "",
     descriptionError: "",
     briefDescriptionError: "",
-    uploadFileError: ""
+    uploadFileError: "",
   });
 
-  const handleSubmit = (data: IProjectSubmissionForm) => {
-    
+  const handleSubmit = (data: IProjectSubmissionForm[]|null) => {
+   
   }
   const handleCancel =()=>{
     if(currentProjectForm==="ProjectSubmissionForm"){
@@ -50,11 +53,11 @@ const MyProject: React.FC = () => {
   }
  }
   const [isPdfView, setIsPdfView] = useState<boolean>(false);
-  
+
   return (
     <>
       {isPdfView ? (
-        <ViewPdfModal  setIsPdfView={setIsPdfView}/>
+        <ViewPdfModal setIsPdfView={setIsPdfView} />
       ) : (
         <div className="registerHome1">
           {/* <div className="navThroughFormD1"> */}
@@ -70,8 +73,8 @@ const MyProject: React.FC = () => {
                   <hr
                     id={
                       // currentProjectForm === "ProjectDetailsForm"
-                         "currentHr"
-                        // : "notReachedHr"
+                      "currentHr"
+                      // : "notReachedHr"
                     }
                   />
                 </div>
