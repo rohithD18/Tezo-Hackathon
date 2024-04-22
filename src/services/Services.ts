@@ -8,9 +8,13 @@ import { Projects } from "./ProjectManagementEvents";
 // import { IProjectInfo } from "../Interfaces";
 import {
   IAllProject,
-  IAllProjectFiles, IAllTeams, IAllUsers,
+  IAllProjectFiles,
+  IAllTeams,
+  IAllUsers,
   IRegister,
-  IPointsTable, ITeamMember, ITechnology,
+  IPointsTable,
+  ITeamMember,
+  ITechnology,
 } from "./Interface/HackathonInterface";
 import { membersArray } from "./FormServices";
 const userEmail: string | null = localStorage.getItem("username");
@@ -163,97 +167,99 @@ export const addNewEvent = (newEvent: any) => {
 };
 
 export const getTeams = async (): Promise<IAllTeams[]> => {
-  return axios.get(`${BASE_URL}/team`)
-  .then(response => {
-    return response.data;
-  })
-  .catch(error => {
-console.log(error)
-  });
+  return axios
+    .get(`${BASE_URL}/team`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
-export const getPointOfATeam = async (teamId:number): Promise<IPointsTable> => {
-  return axios.get(`${BASE_URL}/PointsTable/getPointsOfATeam/${teamId}`)
-  .then(response => {
-    return response.data;
-  })
-  .catch(error => {
-    console.log(error);
-  });
+export const getPointOfATeam = async (
+  teamId: number
+): Promise<IPointsTable> => {
+  return axios
+    .get(`${BASE_URL}/PointsTable/getPointsOfATeam/${teamId}`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
-export const addPointsTableRow = async (data:IPointsTable) => {
-   axios.post(`${BASE_URL}/PointsTable/addPoints/loggedInId/{loggedInId}`,data)
-  .then(response => {
-    console.log(response);
-  })
-  .catch(error => {
-    console.log(`Error fetching data: ${error}`);
-  });
+export const addPointsTableRow = async (data: IPointsTable) => {
+  axios
+    .post(`${BASE_URL}/PointsTable/addPoints/loggedInId/{loggedInId}`, data)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(`Error fetching data: ${error}`);
+    });
 };
-export const getAllTeamMembers = async (): Promise<AxiosResponse<ITeamMember[]>> => {
-  return axios.get(`${BASE_URL}/TeamMembers`)
-  .then(response => {
-    return response.data;
-  })
-  .catch(error => {
-    console.log(error)
-  });
+export const getAllTeamMembers = async (): Promise<
+  AxiosResponse<ITeamMember[]>
+> => {
+  return axios
+    .get(`${BASE_URL}/TeamMembers`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
-export const getTeamById = async (teamId:number): Promise<IAllTeams> => {
-  return axios.get(`${BASE_URL}/Team/getTeamById/${teamId}`)
-  .then(response => {
-    return response.data;
-  })
-  .catch(error => {
-   console.log(error)
-  });
+export const getTeamById = async (teamId: number): Promise<IAllTeams> => {
+  return axios
+    .get(`${BASE_URL}/Team/getTeamById/${teamId}`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
-export const addTeam = async (team:IAllTeams) => {
-   axios.post(`${BASE_URL}/Team/addTeam/loggedInId/{loggedInId}`,team)
-  .then(response => {
-    console.log(response)
-  })
-  .catch(error => {
-    console.log(error)
-  });
+export const addTeam = async (team: IAllTeams) => {
+  axios
+    .post(`${BASE_URL}/Team/addTeam/loggedInId/{loggedInId}`, team)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
-export const removeTeam = async (teamId:number) => {
-   axios.delete(`${BASE_URL}/Team/removeTeam/loggedInId/{loggedInId}`)
-  .then(response => {
-    console.log(response)
-  })
-  .catch(error => {
-    console.log(error)
-  });
+export const removeTeam = async (teamId: number) => {
+  axios
+    .delete(`${BASE_URL}/Team/removeTeam/loggedInId/{loggedInId}`)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
-export const getTeamMembersByTeam= async (
-  teamId:number): Promise<ITeamMember[]> => {
-  return axios.get(`${BASE_URL}/TeamMembers/getTeamMemebersByTeam/${teamId}`)
-    .then(response => {
+export const getTeamMembersByTeam = async (
+  teamId: number
+): Promise<ITeamMember[]> => {
+  return axios
+    .get(`${BASE_URL}/TeamMembers/getTeamMemebersByTeam/${teamId}`)
+    .then((response) => {
       return response.data;
     })
     .catch((error) => {
       throw new Error(`Error : ${error}`);
     });
 };
-export const AddTeamMembers= async (teamMembers:ITeamMember[]) => {
-    axios.post(`${BASE_URL}/TeamMembers/addTeamMembers/loggedInId/{loggedInId}`,teamMembers)
-    .then(response => {
-      console.log(response);
-export const AddTeamMembers = async (teamId: number): Promise<any> => {
-  const TeamMembers = {
-    Id: 0,
-    TeamId: 0,
-    PersonId: 0,
-    Role: "",
-    IsAdmin: false,
-  };
-  return axios
-    .get(`${BASE_URL}TeamMembers/addTeamMembers/loggedInId/${teamId}`)
+export const AddTeamMembers = async (teamMembers: ITeamMember[]) => {
+  axios
+    .post(
+      `${BASE_URL}/TeamMembers/addTeamMembers/loggedInId/{loggedInId}`,
+      teamMembers
+    )
     .then((response) => {
-      return response.data;
-    })
-    .catch(error => {
-      console.log(`Error : ${error}`);
+      console.log(response);
     });
 };
 
@@ -263,62 +269,63 @@ export const getUserById = async (id: number): Promise<IAllUsers> => {
     .then((response) => {
       return response.data;
     })
-    .catch(error => {
-      console.log(`Error fetching team members: ${error}`);
-    });
-};
-export const getUserById = async (id:number): Promise<IAllUsers> => {
-  return axios.get(`${BASE_URL}/Person/getUserById/${id}`)
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => {
+    .catch((error) => {
       throw new Error(`Error : ${error}`);
     });
 };
-export const removeUser = async (userId:number) => {
-   axios.delete(`${BASE_URL}/Person/RemoveUser/${userId}/loggedInId/{loggedInId}`)
-    .then(response => {
+export const removeUser = async (userId: number) => {
+  axios
+    .delete(`${BASE_URL}/Person/RemoveUser/${userId}/loggedInId/{loggedInId}`)
+    .then((response) => {
       console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
-export const deleteTeamMember = async (teamMemberId:number) => {
-  axios.delete(`${BASE_URL}/TeamMembers/RemoveTeamMember/${teamMemberId}/loggedInId/{loggedInId}`)
-   .then(response => {
-     console.log(response);
-   })
-   .catch(error => {
-     console.log(error);
-   });
-};
-export const updateUser = async (user:IAllUsers): Promise<any> => {
-   axios.put(`${BASE_URL}/Person/updateUser/loggedInId/${user.id}`,user)
-    .then(response => {
-      console.log(response)
+export const deleteTeamMember = async (teamMemberId: number) => {
+  axios
+    .delete(
+      `${BASE_URL}/TeamMembers/RemoveTeamMember/${teamMemberId}/loggedInId/{loggedInId}`
+    )
+    .then((response) => {
+      console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
-export const updatePoints = async (points:IPointsTable) => {
-  axios.put(`${BASE_URL}/PointsTable/updatePoints/loggedInId/{loggedInId}`,points)
-    .then(response => {
-      console.log(response)
+
+export const updatePoints = async (points: IPointsTable) => {
+  axios
+    .put(`${BASE_URL}/PointsTable/updatePoints/loggedInId/{loggedInId}`, points)
+    .then((response) => {
+      console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(`Error : ${error}`);
     });
 };
-export const deletePointsTable = async (points:IPointsTable) => {
-   axios.delete(`${BASE_URL}/PointsTable/deletePointsOfATeam/${points.TeamId}/loggedInId/{loggedInId}`)
-    .then(response => {
-      console.log(response)
+export const deletePointsTable = async (points: IPointsTable) => {
+  axios
+    .delete(
+      `${BASE_URL}/PointsTable/deletePointsOfATeam/${points.TeamId}/loggedInId/{loggedInId}`
+    )
+    .then((response) => {
+      console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(`Error : ${error}`);
+    });
+};
+export const getUserByName = async (userName: string): Promise<IAllUsers> => {
+  return axios
+    .get(`${BASE_URL}/Person/getUserByName/${userName}`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
     });
 };
 export const getUserByEmail = async (email: string): Promise<IAllUsers> => {
@@ -331,7 +338,7 @@ export const getUserByEmail = async (email: string): Promise<IAllUsers> => {
 
       return response.data;
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
@@ -364,28 +371,23 @@ export const myData = (): IAllUsers => {
   return userData;
 };
 
-export const updateUser = async (user: IAllUsers[], action: string) => {
-  // const userw = getUserById().then((res) => {
-  //   return res;
-  // });
-  // console.log(user[0].id, "myDattaa", user);
-
+export const updateUser = async (user: IAllUsers, action: string) => {
   await axios
-    .put(`${BASE_URL}/Person/updateUser/loggedInId/${user[0].id}`, {
-      id: user[0].id,
-      name: user[0].name,
-      email: user[0].email,
-      employeeId: user[0].employeeId,
-      department: user[0].department,
-      profilePicture: user[0].profilePicture,
-      role: user[0].role,
+    .put(`${BASE_URL}/Person/updateUser/loggedInId/${user.id}`, {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      employeeId: user.employeeId,
+      department: user.department,
+      profilePicture: user.profilePicture,
+      role: user.role,
       isRegistered: action === "delete" ? false : true,
-      registeredDate: user[0].registeredDate,
+      registeredDate: user.registeredDate,
     })
     .then((response) => {
       console.log("update User response", response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
@@ -395,7 +397,7 @@ export const getProjects = async (): Promise<IAllProject[]> => {
     .then((response) => {
       return response.data;
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
@@ -407,7 +409,7 @@ export const getProjectById = async (
     .then((response) => {
       return response.data;
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
@@ -419,119 +421,144 @@ export const getProjectByTeamId = async (
     .then((response) => {
       return response.data;
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
-export const addProject= async (data:IAllProject) => {
-   axios.post(`${BASE_URL}/Project/addProject/loggedInId/{loggedInId}`,data)
-    .then(response => {
+export const addProject = async (data: IAllProject) => {
+  axios
+    .post(`${BASE_URL}/Project/addProject/loggedInId/{loggedInId}`, data)
+    .then((response) => {
       console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
-export const updateProject= async (data:IAllProject) => {
-   axios.put(`${BASE_URL}/Project/updateProject/loggedInId/{loggedInId}`,data)
-    .then(response => {
+export const updateProject = async (data: IAllProject) => {
+  axios
+    .put(`${BASE_URL}/Project/updateProject/loggedInId/{loggedInId}`, data)
+    .then((response) => {
       console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
-
     });
 };
-export const deleteProject= async (projectId:number) => {
-   axios.delete(`${BASE_URL}/Project/removeProject/${projectId}/loggedInId/{loggedInId}`)
-    .then(response => {
+export const deleteProject = async (projectId: number) => {
+  axios
+    .delete(
+      `${BASE_URL}/Project/removeProject/${projectId}/loggedInId/{loggedInId}`
+    )
+    .then((response) => {
       console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
-export const getProjectFiles= async (): Promise<IAllProjectFiles[]> => {
-  return axios.get(`${BASE_URL}/ProjectFiles`)
-    .then(response => {
+export const getProjectFiles = async (): Promise<IAllProjectFiles[]> => {
+  return axios
+    .get(`${BASE_URL}/ProjectFiles`)
+    .then((response) => {
       return response.data;
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
-export const getProjectFilesByProjectId= async (projectId:number): Promise<IAllProjectFiles> => {
-  return axios.get(`${BASE_URL}/ProjectFiles/getProjectFilesByProjectId/${projectId}`)
-    .then(response => {
+export const getProjectFilesByProjectId = async (
+  projectId: number
+): Promise<IAllProjectFiles> => {
+  return axios
+    .get(`${BASE_URL}/ProjectFiles/getProjectFilesByProjectId/${projectId}`)
+    .then((response) => {
       return response.data;
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
-export const addProjectFile= async (data:IAllProjectFiles ) => {
-   axios.post(`${BASE_URL}/ProjectFiles/addProjectFile/loggedInId/{loggedInId}`,data)
-    .then(response => {
+export const addProjectFile = async (data: IAllProjectFiles) => {
+  axios
+    .post(
+      `${BASE_URL}/ProjectFiles/addProjectFile/loggedInId/{loggedInId}`,
+      data
+    )
+    .then((response) => {
       console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
-export const addProjectFiles= async (data:IAllProjectFiles[]) => {
-   axios.post(`${BASE_URL}/ProjectFiles/addProjectFile/loggedInId/{loggedInId}`,data)
-    .then(response => {
+export const addProjectFiles = async (data: IAllProjectFiles[]) => {
+  axios
+    .post(
+      `${BASE_URL}/ProjectFiles/addProjectFile/loggedInId/{loggedInId}`,
+      data
+    )
+    .then((response) => {
       console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
-export const deleteProjectFile= async (
-  ProjectFileId:number) => {
-   axios.delete(`${BASE_URL}/ProjectFiles/deleteProjectFile/${ProjectFileId}/loggedInId/{loggedInId}`)
-    .then(response => {
+export const deleteProjectFile = async (ProjectFileId: number) => {
+  axios
+    .delete(
+      `${BASE_URL}/ProjectFiles/deleteProjectFile/${ProjectFileId}/loggedInId/{loggedInId}`
+    )
+    .then((response) => {
       console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 };
-export const getTechnologies= async (): Promise<ITechnology[]> => {
-  return axios.get(`${BASE_URL}/Technology`)
-    .then(response => {
+export const getTechnologies = async (): Promise<ITechnology[]> => {
+  return axios
+    .get(`${BASE_URL}/Technology`)
+    .then((response) => {
       return response.data;
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(`Error : ${error}`);
     });
 };
-export const addTechnologies= async (data:ITechnology) => {
-   axios.post(`${BASE_URL}/Technology/addTechnologies/loggedInId/{loggedInId}`,data)
-    .then(response => {
+export const addTechnologies = async (data: ITechnology) => {
+  axios
+    .post(
+      `${BASE_URL}/Technology/addTechnologies/loggedInId/{loggedInId}`,
+      data
+    )
+    .then((response) => {
       console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(`Error : ${error}`);
     });
 };
-export const addEvents= async (data:any) => {
-   axios.post(`${BASE_URL}/Events/addEvent/loggedInId/{loggedInId}`,data)
-    .then(response => {
+export const addEvents = async (data: any) => {
+  axios
+    .post(`${BASE_URL}/Events/addEvent/loggedInId/{loggedInId}`, data)
+    .then((response) => {
       console.log(response);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(`Error : ${error}`);
     });
 };
-export const UpdateTeamMembers = async (user:ITeamMember[]): Promise<any> => {
-  axios.put(`${BASE_URL}/updateTeamMembers/loggedInId/{loggedInId}`,user)
-   .then(response => {
-     console.log(response)
-   })
-   .catch(error => {
-     console.log(error);
-   });
+export const UpdateTeamMembers = async (user: ITeamMember[]): Promise<any> => {
+  axios
+    .put(`${BASE_URL}/updateTeamMembers/loggedInId/{loggedInId}`, user)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 // export const updateDuplicateData = (key: string, value: string) => {
 // Create a new project info object with the updated key and value

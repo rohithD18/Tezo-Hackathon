@@ -9,7 +9,6 @@ import {
 export const AllUsers: IAllUsers[] = [
   {
     id: 1,
-    id: 1,
     name: "John Doe",
     email: "likitha.k@example.com",
     employeeId: "EMP001",
