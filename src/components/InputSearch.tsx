@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/InputSearch.css";
 import { IProject, ITeams, IUsers } from "../Interfaces";
 import {
+  getAllUsers,
   getFilteredMembers,
   getFilteredProjects,
   getFilteredTeams,

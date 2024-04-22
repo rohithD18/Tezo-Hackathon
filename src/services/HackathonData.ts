@@ -9,8 +9,9 @@ import {
 export const AllUsers: IAllUsers[] = [
   {
     id: 1,
+    id: 1,
     name: "John Doe",
-    email: "likitha.k@Technovert.com",
+    email: "likitha.k@example.com",
     employeeId: "EMP001",
     department: 101,
     profilePicture: "Software Engineer",
@@ -175,7 +176,7 @@ export const AllUsers: IAllUsers[] = [
   {
     id: 16,
     name: "Likitha Kattamudi",
-    email: "likitha.k@example.com",
+    email: "likitha.k@Technovert.com",
     employeeId: "EMP016",
     department: 2,
     profilePicture: "Technical Support Specialist",

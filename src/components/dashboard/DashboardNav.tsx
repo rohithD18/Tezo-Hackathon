@@ -308,8 +308,9 @@ const DashboardNav: React.FC = () => {
     const count = AllUsers.filter(
       (obj) => obj.role === "Admin" && obj.email === userEmail
     );
-    count.length && setIsAdmin(true);
-  });
+
+    count.length === 1 && setIsAdmin(true);
+  }, []);
   return (
     <div className="navContainer">
       {dashboardArray.map(

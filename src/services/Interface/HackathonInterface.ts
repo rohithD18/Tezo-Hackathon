@@ -62,3 +62,8 @@ export interface IRegister {
   userIds: number[];
   technologies: string[];
 }
+export interface ITechnology {
+  id: number;
+  technologyName: string;
+  projectId: string;
+}
