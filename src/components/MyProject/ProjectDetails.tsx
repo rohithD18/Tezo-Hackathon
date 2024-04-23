@@ -2,16 +2,21 @@ import React, { useEffect, useState } from "react";
 import TimeICon from '../../assets/TimeIcon.png'
 import {IProjectSubmissionForm,IProjectSubmissionFormError } from "../../Interfaces";
 import { constant } from "lodash";
+import { IAllProject } from "../../services/Interface/HackathonInterface";
 // /import {updateDuplicateData1} from "../../services/Services"
 interface ProjectDetailProps {
     setFormData:(data:IProjectSubmissionForm)=>void;
     setFormError: (formError: IProjectSubmissionFormError) => void;
     formError: IProjectSubmissionFormError;
+    setProjectData:(data:IAllProject)=>void;
   }
-
-export const ProjectDetail : React.FC<ProjectDetailProps> = ({setFormData,formError,setFormError}) => {
+export const ProjectDetail : React.FC<ProjectDetailProps> = ({setFormData,formError,setFormError,setProjectData}) => {
     const [topic, setTopic] = useState<string>('');
-    const [description, setDescription] = useState<string>('');    
+    const [description, setDescription] = useState<string>('');  
+    useEffect(() => {
+        updateData(topic, description);
+    }, [topic, description])
+
     const handleTopicChange = (event:React.ChangeEvent<HTMLInputElement>) => {
         const text = event.target.value;
         setTopic(text); 
@@ -41,13 +46,29 @@ export const ProjectDetail : React.FC<ProjectDetailProps> = ({setFormData,formEr
         }
       
     };
+    const updateData = (name: string, detail: string) => {
+        const newData: IAllProject = {
+            Id: 0,
+            ProjectName: name,
+            Description: detail,
+            ProjectStatus: 0,
+            DetailedDescription: "",
+            ProjectRegisteredDate: new Date(),
+            SubmittedDate: new Date(),
+            PresentationDate: new Date(),
+            Comments: "",
+            TeamId: 0,
+        };
+        setProjectData(newData);
+        console.log(newData);
+    };
     const topicCharacterCount = topic.length;
     const descriptionCharacterCount = description.length;
 
     return (
         <div>
             <div className="projectDetail">
-                <h5>Topic Details</h5>
+                <h5>Project Details</h5>
                 <div className="timeRemainder">
                 <img className="imgIcon" src={TimeICon} alt="Time Icon"/>
                 <p>14 more days to submit</p>
@@ -56,21 +77,20 @@ export const ProjectDetail : React.FC<ProjectDetailProps> = ({setFormData,formEr
             </div>
             <p className="projectDetailTopic">Share your project's vision and impact</p>
             <div className="topicSection">
-                <p>Mention Topic</p>
+                <p>Project Name</p>
                 <div className="inputSec">
-                <input type="text" placeholder="Enter the topic" value={topic} onChange={handleTopicChange} />
+                <input type="text" placeholder="Enter the project name" value={topic} onChange={handleTopicChange} />
                 <div>{formError.topicError}</div> 
                 </div>
             </div> 
             <div className="count">{topicCharacterCount}/100</div>
             <div className="descriptionSection">
-                <p>Topic Description</p>
+                <p>Project Description</p>
                 <div className="inputSec">
-                <textarea placeholder="Enter the topic description" value={description} onChange={handleDescriptionChange}></textarea>
+                <textarea placeholder="Enter the project description" value={description} onChange={handleDescriptionChange}></textarea>
                 <div>{formError.descriptionError}</div> 
                 </div>
                 
-                {/* <textarea placeholder="Enter the topic description" value={description} onChange={handleDescriptionChange}></textarea> */}
             </div>
             <div className="count">{descriptionCharacterCount}/500</div>
             <div id="projectDetailNote">

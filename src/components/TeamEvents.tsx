@@ -14,7 +14,7 @@ export const TeamEvents: React.FC<IProps> = ({
   validUpcomingEvents,
 }: IProps) => {
   const [querySearch, setQuerySearch] = useState<string>();
-  const [teams, setTeams] = useState<IAllTeams[]|any>([]);
+  const [teams, setTeams] = useState<IAllTeams[]>([]);
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -43,7 +43,7 @@ export const TeamEvents: React.FC<IProps> = ({
         </div>
       )}
       {upcomingEvents.map((item) => {
-        const teamDetail = teams.filter((team: { Id: number; }) => team.Id === item.id);
+        const teamDetail = teams.filter((team) => team.id === item.teamId)[0];
         return (
           <div
             key={item.id}
@@ -52,30 +52,28 @@ export const TeamEvents: React.FC<IProps> = ({
             }
           >
             <div>
-              <img src={teamDetail?.logo} alt="Team Logo" id="teamLogo" />
+              <img src={teamDetail?.teamLogo?"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png":teamDetail?.teamLogo} alt="Team Logo" id="teamLogo" />
             </div>
             <div>
-              <div>{teamDetail?.teamName.toUpperCase()}</div>
-              {/* <div>
-                {typeof item.SubmissionDate === "string" ? (
-                  item.SubmissionDate.split(",")[0]
-                ) : item.SubmissionDate instanceof Date ? (
-                  item.SubmissionDate.toLocaleDateString()
-                ) : (
-                  "--"
-                )}
-                <div id="dot"></div>
-                {typeof item.SubmissionDate === "string" ? (
-                  item.SubmissionDate.split(" ")[1]
-                ) : item.SubmissionDate instanceof Date ? (
-                  item.SubmissionDate.toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })
-                ) : (
-                  "--"
-                )}
-              </div> */}
+              <div>{teamDetail?.teamName?.toUpperCase()}</div>
+              <div>
+  {typeof item.time === "string" ? (
+    <>
+      {new Date(item.time).getDate()} {/* Day */}
+      {' '}
+      {new Date(item.time).toLocaleString('en-US', { month: 'long' })} {/* Month */}
+      <div id="dot"></div>
+      {new Date(item.time).toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })} {/* Time */}
+    </>
+  ) : (
+    "--"
+  )}
+</div>
+
+
             </div>
           </div>
         );

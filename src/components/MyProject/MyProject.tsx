@@ -13,12 +13,18 @@ import {
 } from "../../Interfaces";
 import { projectInfoArray } from "../../services/ProjectInfoDetails";
 import SubmissionFailed from "../../components/submissionStatus/FailedAndSuccessStatus";
+import { userEmail } from "../../services/Profile";
+import { MyProjectForm, getLoggedInId, getMyTeamId, useMembersData, useTeamData } from "../../services/FormServices";
+import { IAllProject } from "../../services/Interface/HackathonInterface";
+import { updateProject } from "../../services/Services";
 interface MyProjectProps {
   onSubmit: (data: IProjectSubmissionForm) => void;
 }
 const MyProject: React.FC = () => {
-  const submitPopUp="";  
-  // const [previousData, setPreviousData] = useState<IProjectSubmissionForm>();
+  const submitPopUp=""; 
+ const [projectData,setProjectData]=useState<IAllProject>(MyProjectForm)
+ const [loginId, setLoginId] = useState<number>(0);
+ const [teamId, setTeamId] = useState<number>(0);
   const [currentProjectForm, setCurrentProjectForm] =useState<string>("ProjectDetailForm");
   const [editForm,setEditForm]=useState<boolean>(false);
   const [sucessSubmit,setSucessSubmit]=useState<boolean>(false);
@@ -32,8 +38,13 @@ const MyProject: React.FC = () => {
     uploadFileError: "",
   });
 
-  const handleSubmit = (data: IProjectSubmissionForm[]|null) => {
-   
+
+console.log(userEmail);
+
+  const handleSubmit = async (data:IAllProject) => {
+    updateProject(projectData, loginId);
+    
+       
   }
   const handleCancel =()=>{
     if(currentProjectForm==="ProjectSubmissionForm"){
@@ -43,6 +54,21 @@ const MyProject: React.FC = () => {
     }
 
   }
+  useEffect(()=>{
+    getLoggedInId().then((res)=>setLoginId(res?res:0));
+    getMyTeamId(loginId).then((res)=>setTeamId(res?res:0))
+    console.log("loginId",loginId,teamId)
+
+
+  },[loginId,teamId]
+  )
+  useEffect(()=>{
+    console.log("asdfg")
+    console.log(projectData)
+
+
+  },[projectData]
+  )
   
  const handleDataFromChild =(data:IProjectSubmissionForm)=>{
   if (data !== null) {
@@ -133,7 +159,7 @@ const MyProject: React.FC = () => {
             }
           >
             {currentProjectForm === "ProjectDetailForm" ? (
-              <ProjectDetail setFormData={setFormData} setFormError={setFormError} formError={formError}/>
+              <ProjectDetail setFormData={setFormData} setFormError={setFormError} formError={formError} setProjectData={setProjectData}/>
             ) : currentProjectForm === "ProjectSubmissionForm" ? (
                <ProjectSubmission  />
 
@@ -159,11 +185,11 @@ const MyProject: React.FC = () => {
   //               formData.topic!==""&& formData.topic.length > 100
 
   //              }  "disabledButton" : "enabledButton"}
-  // onClick={() => { 
-  //   // handleSubmit(duplicateData? duplicateData : null);
+   onClick={() => { 
+     handleSubmit(projectData);
      
-  //   }
-  // }
+   }
+  }
   id="nextBtn"
 >
   {currentProjectForm === "ProjectDetailForm" ? "Next" : "Submit"}

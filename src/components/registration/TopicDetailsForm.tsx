@@ -24,6 +24,8 @@ const TopicDetailsForm: React.FC<IProps> = (props: IProps) => {
         localStorage.getItem("username")?.toString().toLocaleLowerCase()
     )[0].id;
     RegistrationForm.registeredDate = new Date();
+    console.log(RegistrationForm.registeredDate.toString());
+    
     registerTeam(RegistrationForm)
       .then((res) => {
         props.setCurrentForm("RegisterSuccess");

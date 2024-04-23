@@ -9,7 +9,9 @@ import { DisplayCount } from "./DisplayCount";
 import '../../styles/dashboard/DashboardView.css'
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import DashboardNav from "./DashboardNav";
+import { useCount } from "../../services/FormServices";
 const DashboardView: React.FC = () => {
+  const {countParticipant,countRegisteredTeams,countSubmittedProjects}=useCount()
   return (
     <>
       
@@ -51,17 +53,17 @@ const DashboardView: React.FC = () => {
               <div className="progressData">
                 <div>
                   <p>Total registrations</p>
-                  <p>6,452</p>
+                  <p>{countRegisteredTeams}</p>
                 </div>
                 <div>
                   <p>Total submissions</p>
-                  <p>2,985</p>
+                  <p>{countSubmittedProjects}</p>
                 </div>
               </div>
               <div className="progressBar">
                 <CircularProgressbar
-                  value={75}
-                  text="75%"
+                value={Math.round((countSubmittedProjects / countRegisteredTeams) * 100)}
+                text={`${((countSubmittedProjects / countRegisteredTeams) * 100).toFixed(2)}%`}
                   styles={buildStyles({
                     rotation: 0.5,
                     strokeLinecap: "butt",

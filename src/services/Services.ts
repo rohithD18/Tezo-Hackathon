@@ -198,9 +198,7 @@ export const addPointsTableRow = async (data: IPointsTable) => {
       console.log(`Error fetching data: ${error}`);
     });
 };
-export const getAllTeamMembers = async (): Promise<
-  AxiosResponse<ITeamMember[]>
-> => {
+export const getAllTeamMembers = async (): Promise<ITeamMember[]>=> {
   return axios
     .get(`${BASE_URL}/TeamMembers`)
     .then((response) => {
@@ -435,9 +433,20 @@ export const addProject = async (data: IAllProject) => {
       console.log(error);
     });
 };
-export const updateProject = async (data: IAllProject) => {
+export const updateProject = async (data: IAllProject,loggedInId:number) => {
+  console.log(data, loggedInId);
+  
   axios
-    .put(`${BASE_URL}/Project/updateProject/loggedInId/{loggedInId}`, data)
+    .put(`${BASE_URL}/Project/updateProject/loggedInId/${loggedInId}`, {
+      projectName: data.ProjectName,
+      description: data.Description,
+      projectStatus:data.ProjectStatus,
+      detailedDescription:data.DetailedDescription,
+      submittedDate:new Date(),
+      comments:data.Comments,
+      teamId:data.TeamId},{headers: {
+        "Content-Type": "application/json",
+      }})
     .then((response) => {
       console.log(response);
     })
