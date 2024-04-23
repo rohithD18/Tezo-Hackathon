@@ -10,7 +10,7 @@ import {
   getUserByName,
   updateUser,
 } from "../services/Services";
-import { IAllUsers } from "../services/Interface/HackathonInterface";
+import { IAllTeams, IAllUsers } from "../services/Interface/HackathonInterface";
 interface SearchComponentProps {
   setQuerySearch: (query: string) => void;
   currentScreen: string;
@@ -22,7 +22,7 @@ const InputSearch: React.FC<SearchComponentProps> = ({
 }: SearchComponentProps) => {
   // console.log(currentScreen);
 
-  const [filteredTeams, setFilteredTeams] = useState<ITeams[] | IProject[]>([]);
+  const [filteredTeams, setFilteredTeams] = useState<IAllTeams[]>([]);
   const [filteredMembers, setFilteredMembers] = useState<IAllUsers[]>([]);
 
   const [inputValue, setInputValue] = useState("");
@@ -33,9 +33,9 @@ const InputSearch: React.FC<SearchComponentProps> = ({
     } else if (currentScreen === "SelectMembers") {
       getFilteredMembers(e.target.value).then((res) => setFilteredMembers(res));
     } else if (currentScreen === "ProjectManagment") {
-      setFilteredTeams(getFilteredProjects(e.target.value));
+      // setFilteredTeams(getFilteredProjects(e.target.value));
     } else {
-      setFilteredTeams(getFilteredTeams(e.target.value));
+      getFilteredTeams(e.target.value).then((res) => setFilteredTeams(res));
     }
   };
   const handleClickItem = (item: string) => {
@@ -92,10 +92,10 @@ const InputSearch: React.FC<SearchComponentProps> = ({
               className="dropDownItem"
               onClick={() => {
                 // handleSelectItem(team);
-                handleClickItem(team.TeamName);
+                handleClickItem(team.teamName);
               }}
             >
-              {team.TeamName}
+              {team.teamName}
             </li>
           ))}
         </ul>

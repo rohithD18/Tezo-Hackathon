@@ -31,6 +31,7 @@ export interface IAllTeams {
   id: number;
   teamName: string;
   teamLogo: string;
+  registeredDate:Date
 }
 export interface ITeamMember {
   id: number;
@@ -38,6 +39,7 @@ export interface ITeamMember {
   personId: number;
   role: number;
   isAdmin: boolean;
+  userData?:IAllUsers
 }
 
 export interface IPointsTable {

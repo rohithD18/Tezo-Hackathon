@@ -84,12 +84,13 @@ export const useFetch = (
   return { queary, isQA, membersArray, usersData };
 };
 
-export const getFilteredTeams = (name: string): ITeams[] => {
-  const filtered = Teams.filter((item) =>
-    item.TeamName.toLowerCase().includes(name.toLowerCase())
-  );
-  console.log(filtered);
-  return filtered.slice(0, 6);
+export const getFilteredTeams = (name: string): Promise<IAllTeams[]> => {
+  const filtered = getTeams().then((res) => {
+    return res
+      .filter((item) => item.teamName.toLowerCase().includes(name.toLowerCase()))
+      .slice(0, 6);
+  });
+  return filtered;
 };
 export const getFilteredMembers = (name: string): Promise<IAllUsers[]> => {
   const filtered = getAllUsers().then((res) => {

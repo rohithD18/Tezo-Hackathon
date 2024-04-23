@@ -378,30 +378,30 @@ export const AllTeams: IAllTeams[] = [
   { id: 20, teamName: "Team 20", teamLogo: "logo_url_for_team_20" },
 ];
 
-console.log(AllTeams);
-export const TeamMember: ITeamMember[] = [
-  { id: 1, teamId: 1, personId: 1, role: 1, isAdmin: true },
-  { id: 2, teamId: 1, personId: 2, role: 2, isAdmin: false },
-  { id: 3, teamId: 2, personId: 3, role: 1, isAdmin: true },
-  { id: 4, teamId: 2, personId: 4, role: 2, isAdmin: false },
-  { id: 5, teamId: 3, personId: 5, role: 1, isAdmin: true },
-  { id: 6, teamId: 3, personId: 6, role: 2, isAdmin: false },
-  { id: 7, teamId: 4, personId: 7, role: 1, isAdmin: true },
-  { id: 8, teamId: 4, personId: 8, role: 2, isAdmin: false },
-  { id: 9, teamId: 5, personId: 9, role: 1, isAdmin: true },
-  { id: 10, teamId: 5, personId: 10, role: 2, isAdmin: false },
-  { id: 11, teamId: 6, personId: 11, role: 1, isAdmin: true },
-  { id: 12, teamId: 6, personId: 12, role: 2, isAdmin: false },
-  { id: 13, teamId: 7, personId: 13, role: 1, isAdmin: true },
-  { id: 14, teamId: 7, personId: 14, role: 2, isAdmin: false },
-  { id: 15, teamId: 8, personId: 15, role: 1, isAdmin: true },
-  { id: 16, teamId: 8, personId: 16, role: 2, isAdmin: false },
-  { id: 17, teamId: 9, personId: 17, role: 1, isAdmin: true },
-  { id: 18, teamId: 9, personId: 18, role: 2, isAdmin: false },
-  { id: 19, teamId: 10, personId: 19, role: 1, isAdmin: true },
-  { id: 20, teamId: 10, personId: 20, role: 2, isAdmin: false },
-];
-console.log(TeamMember);
+// console.log(AllTeams);
+// export const TeamMember: ITeamMember[] = [
+//   { Id: 1, TeamId: 1, PersonId: 1, Role: 1, IsAdmin: true },
+//   { Id: 2, TeamId: 1, PersonId: 2, Role: 2, IsAdmin: false },
+//   { Id: 3, TeamId: 2, PersonId: 3, Role: 1, IsAdmin: true },
+//   { Id: 4, TeamId: 2, PersonId: 4, Role: 2, IsAdmin: false },
+//   { Id: 5, TeamId: 3, PersonId: 5, Role: 1, IsAdmin: true },
+//   { Id: 6, TeamId: 3, PersonId: 6, Role: 2, IsAdmin: false },
+//   { Id: 7, TeamId: 4, PersonId: 7, Role: 1, IsAdmin: true },
+//   { Id: 8, TeamId: 4, PersonId: 8, Role: 2, IsAdmin: false },
+//   { Id: 9, TeamId: 5, PersonId: 9, Role: 1, IsAdmin: true },
+//   { Id: 10, TeamId: 5, PersonId: 10, Role: 2, IsAdmin: false },
+//   { Id: 11, TeamId: 6, PersonId: 11, Role: 1, IsAdmin: true },
+//   { Id: 12, TeamId: 6, PersonId: 12, Role: 2, IsAdmin: false },
+//   { Id: 13, TeamId: 7, PersonId: 13, Role: 1, IsAdmin: true },
+//   { Id: 14, TeamId: 7, PersonId: 14, Role: 2, IsAdmin: false },
+//   { Id: 15, TeamId: 8, PersonId: 15, Role: 1, IsAdmin: true },
+//   { Id: 16, TeamId: 8, PersonId: 16, Role: 2, IsAdmin: false },
+//   { Id: 17, TeamId: 9, PersonId: 17, Role: 1, IsAdmin: true },
+//   { Id: 18, TeamId: 9, PersonId: 18, Role: 2, IsAdmin: false },
+//   { Id: 19, TeamId: 10, PersonId: 19, Role: 1, IsAdmin: true },
+//   { Id: 20, TeamId: 10, PersonId: 20, Role: 2, IsAdmin: false },
+// ];
+// console.log(TeamMember);
 
 export const PointsTable: IPointsTable[] = [
   {
