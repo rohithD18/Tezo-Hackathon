@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  RegistrationForm,
-  registerTeam,
-  useMembersData,
-} from "../../services/FormServices";
+import { RegistrationForm, registerTeam } from "../../services/FormServices";
+import { useFecthApis } from "../../services/CustomHooks";
 interface IProps {
   setCurrentForm: (message: string) => void;
 }
@@ -12,7 +9,7 @@ const TopicDetailsForm: React.FC<IProps> = (props: IProps) => {
   const [technology, setTechnology] = useState<string>("");
   const [projectDesc, setProjectDesc] = useState<string>("");
 
-  const { usersData } = useMembersData();
+  const { usersData } = useFecthApis();
 
   const handleSubmit = () => {
     RegistrationForm.description = projectDesc;
@@ -24,16 +21,13 @@ const TopicDetailsForm: React.FC<IProps> = (props: IProps) => {
         localStorage.getItem("username")?.toString().toLocaleLowerCase()
     )[0].id;
     RegistrationForm.registeredDate = new Date();
-    console.log(RegistrationForm.registeredDate.toString());
-    
+
     registerTeam(RegistrationForm)
       .then((res) => {
         props.setCurrentForm("RegisterSuccess");
-        console.log(res, "ressss");
       })
       .catch((err) => {
         err && props.setCurrentForm("RegisterFailed");
-        console.error(err, "err");
       });
   };
   return (

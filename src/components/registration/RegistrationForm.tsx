@@ -8,8 +8,6 @@ import SubmissionFailed from "../submissionStatus/FailedAndSuccessStatus";
 const RegistrationForm: React.FC = () => {
   const [currentForm, setCurrentForm] = useState<string>("SelectMembersForm");
   const [sucessSubmit, setSucessSubmit] = useState<boolean>(false);
-  console.log(membersArray);
-
   return (
     <div className="registerHome">
       <div className="sideSteps">

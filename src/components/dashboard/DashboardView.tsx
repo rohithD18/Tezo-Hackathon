@@ -1,23 +1,23 @@
 import React from "react";
-import Participant from '../../assets/participant.png';
-import RegistrationIcon from '../../assets/registrationIcon.png';
-import Submittedicon from '../../assets/submittedIcon.png';
-import image from '../../assets/image.png';
-import 'react-circular-progressbar/dist/styles.css';
-import {Teams} from '../../services/Data';
+import Participant from "../../assets/participant.png";
+import RegistrationIcon from "../../assets/registrationIcon.png";
+import Submittedicon from "../../assets/submittedIcon.png";
+import image from "../../assets/image.png";
+import "react-circular-progressbar/dist/styles.css";
+import { Teams } from "../../services/Data";
 import { DisplayCount } from "./DisplayCount";
-import '../../styles/dashboard/DashboardView.css'
+import "../../styles/dashboard/DashboardView.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import DashboardNav from "./DashboardNav";
-import { useCount } from "../../services/FormServices";
+import { useCount } from "../../services/CustomHooks";
 const DashboardView: React.FC = () => {
-  const {countParticipant,countRegisteredTeams,countSubmittedProjects}=useCount()
+  const { countParticipant, countRegisteredTeams, countSubmittedProjects } =
+    useCount();
   return (
     <>
-      
       <div className="DashboardView">
         <div className="countDiv">
-        <DisplayCount/>
+          <DisplayCount />
           <div className="itenary">
             <h5>Itenary</h5>
             <div>
@@ -62,8 +62,13 @@ const DashboardView: React.FC = () => {
               </div>
               <div className="progressBar">
                 <CircularProgressbar
-                value={Math.round((countSubmittedProjects / countRegisteredTeams) * 100)}
-                text={`${((countSubmittedProjects / countRegisteredTeams) * 100).toFixed(2)}%`}
+                  value={Math.round(
+                    (countSubmittedProjects / countRegisteredTeams) * 100
+                  )}
+                  text={`${(
+                    (countSubmittedProjects / countRegisteredTeams) *
+                    100
+                  ).toFixed(2)}%`}
                   styles={buildStyles({
                     rotation: 0.5,
                     strokeLinecap: "butt",
