@@ -14,11 +14,7 @@ import {
 import { projectInfoArray } from "../../services/ProjectInfoDetails";
 import SubmissionFailed from "../../components/submissionStatus/FailedAndSuccessStatus";
 import { userEmail } from "../../services/Profile";
-import {
-  MyProjectForm,
-  getLoggedInId,
-  getMyTeamId,
-} from "../../services/FormServices";
+import { MyProjectForm, getLoggedInId, getMyTeamId} from "../../services/FormServices";
 import { IAllProject } from "../../services/Interface/HackathonInterface";
 import { getProjectByTeamId, updateProject } from "../../services/Services";
 interface MyProjectProps {
@@ -58,6 +54,7 @@ const MyProject: React.FC = () => {
       const prevData = await getProjectByTeamId(teamId);
      // Assuming getProjectByTeamId returns IAllProject or undefined
       setViewData(prevData)
+
     }
 
   }
@@ -143,47 +140,35 @@ const MyProject: React.FC = () => {
               </div>
             </div>
           </div>
-          {sucessSubmit ? (
-            <SubmissionFailed
-              submitPopUp={"Success"}
-              setCurrentProjectForm={setCurrentProjectForm}
-              setSucessSubmit={setSucessSubmit}
-              isProject={true}
-            />
-          ) : (
-            <div
-              className={
-                currentProjectForm === "ProjectDescripitionForm"
-                  ? "topicForm"
-                  : "formSection1"
+         { sucessSubmit ? <SubmissionFailed submitPopUp={"Success"} setCurrentProjectForm={setCurrentProjectForm} setSucessSubmit={setSucessSubmit} isProject={true} /> :
+          <div
+            className={
+              currentProjectForm === "ProjectDescripitionForm"
+                ? "topicForm"
+                : "formSection1"
+            }
+          >
+            {currentProjectForm === "ProjectDetailForm" ? (
+              <ProjectDetail setFormData={setFormData} setFormError={setFormError} formError={formError} setProjectData={setProjectData} viewData={viewData}/>
+            ) : currentProjectForm === "ProjectSubmissionForm" ? (
+               <ProjectSubmission setFormData={setFormData} setFormError={setFormError} formError={formError} setProjectData={setProjectData} viewData={viewData} />
+
+            ) : (
+              <ProjectDemo  />
+            )}
+            <div className="nextCancelDiv">
+            {currentProjectForm !== "ProjectDetailForm" ? 
+              <button
+              onClick={() => { 
+                handleCancel();
+                 
+                }
               }
-            >
-              {currentProjectForm === "ProjectDetailForm" ? (
-                <ProjectDetail
-                  setFormData={setFormData}
-                  setFormError={setFormError}
-                  formError={formError}
-                  setProjectData={setProjectData}
-                />
-              ) : currentProjectForm === "ProjectSubmissionForm" ? (
-                <ProjectSubmission />
-              ) : (
-                <ProjectDemo />
-              )}
-              <div className="nextCancelDiv">
-                {currentProjectForm !== "ProjectDetailForm" ? (
-                  <button
-                    onClick={() => {
-                      handleCancel();
-                    }}
-                    // onClick={() => setCurrentProjectForm("ProjectDetailForm")}
-                    id="cancelBtn"
-                  >
-                    Cancel
-                  </button>
-                ) : (
-                  ""
-                )}
+                // onClick={() => setCurrentProjectForm("ProjectDetailForm")}
+                id="cancelBtn"
+              >
+                Cancel
+              </button>:""}
 
               <button
                className={currentProjectForm === "ProjectDetailForm" && projectData?.projectName?.length > 0 && projectData?.projectName?.length < 100 && projectData?.description?.length > 0 && projectData?.description?.length < 500 ? "enabledButton" : "disabledButton"}
