@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { IAllUsers, IRegister } from "./Interface/HackathonInterface";
 import { getAllUsers, useFetch } from "./Services";
 import axios from "axios";
+import { userEmail } from "./Profile";
 
 export const membersArray: IAllUsers[] = [];
 
@@ -38,4 +39,15 @@ export const registerTeam = async (Form: IRegister) => {
   });
   // .then((res) => console.log("res"))
   // .catch((error) => console.error("err", error));
+};
+
+export const getLoggedInId = () => {
+  const loggedInId = getAllUsers()
+    .then((res) => {
+      return res.filter(
+        (item) => item.email === userEmail?.toLocaleLowerCase()
+      )[0].id;
+    })
+    .catch((err) => console.log(err));
+  return loggedInId;
 };
