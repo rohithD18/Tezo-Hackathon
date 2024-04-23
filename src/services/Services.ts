@@ -7,7 +7,8 @@ import { EventsData } from "./EventData";
 import { Projects } from "./ProjectManagementEvents";
 // import { IProjectInfo } from "../Interfaces";
 import {
-  IAllEvents, IAllProject,
+  IAllEvents,
+  IAllProject,
   IAllProjectFiles,
   IAllTeams,
   IAllUsers,
@@ -32,62 +33,12 @@ export const getAllUsers = async (): Promise<IAllUsers[]> => {
     });
 };
 
-export const useFetch = (
-  queary: string,
-  setQueary: (message: string) => void
-) => {
-  const [isQA, setIsQA] = useState<boolean>(false);
-  const [usersData, setUsersData] = useState<IAllUsers[]>([]);
-  useEffect(() => {
-    getAllUsers().then((res) => {
-      setUsersData(res);
-    });
-  });
-  const getAMember = (value: string) => {
-    const member = usersData.filter((entry) =>
-      entry.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
-    );
-    return member;
-  };
-  useEffect(() => {
-    if (membersArray.filter((item) => item?.department === 1).length > 0) {
-      setIsQA(true);
-    }
-    if (membersArray.length > 7) {
-      alert("Your team limit has achieved!");
-      membersArray.splice(7, 1);
-    } else {
-      if (queary.length > 3) {
-        if (
-          membersArray.filter(
-            (item) => item?.name === getAMember(queary)[0]?.name
-          ).length > 0 ||
-          getAMember(queary).length === 0
-        ) {
-          getAMember(queary).length === 0
-            ? alert("no user with " + queary)
-            : alert("Alredy present");
-          // setQueary("");
-        } else {
-          membersArray.filter((item) => item?.department === 4).length === 1 &&
-          getAMember(queary)[0]?.department === 4
-            ? alert("You already have a QA")
-            : getAMember(queary)[0]?.isRegistered
-            ? alert(queary + " is registered in an other team")
-            : membersArray.push(getAMember(queary)[0]);
-          setQueary("");
-        }
-      }
-    }
-  }, [queary, setQueary]);
-
-  return { queary, isQA, membersArray, usersData };
-};
-
 export const getFilteredTeams = (name: string): Promise<IAllTeams[]> => {
   const filtered = getTeams().then((res) => {
     return res
-      .filter((item) => item.teamName.toLowerCase().includes(name.toLowerCase()))
+      .filter((item) =>
+        item.teamName.toLowerCase().includes(name.toLowerCase())
+      )
       .slice(0, 6);
   });
   return filtered;
@@ -177,6 +128,16 @@ export const getTeams = async (): Promise<IAllTeams[]> => {
       console.log(error);
     });
 };
+export const getPointsTable = (): Promise<IPointsTable[]> => {
+  return axios
+    .get(`${BASE_URL}/PointsTable`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 export const getPointOfATeam = async (
   teamId: number
 ): Promise<IPointsTable> => {
@@ -199,7 +160,7 @@ export const addPointsTableRow = async (data: IPointsTable) => {
       console.log(`Error fetching data: ${error}`);
     });
 };
-export const getAllTeamMembers = async (): Promise<ITeamMember[]>=> {
+export const getAllTeamMembers = async (): Promise<ITeamMember[]> => {
   return axios
     .get(`${BASE_URL}/TeamMembers`)
     .then((response) => {
@@ -321,7 +282,7 @@ export const getUserByName = async (userName: string): Promise<IAllUsers> => {
   return axios
     .get(`${BASE_URL}/Person/getUserByName/${userName}`)
     .then((response) => {
-      return response.data;
+      return response.data[0];
     })
     .catch((error) => {
       console.log(error);
@@ -371,6 +332,8 @@ export const myData = (): IAllUsers => {
 };
 
 export const updateUser = async (user: IAllUsers, action: string) => {
+  console.log(user);
+
   await axios
     .put(`${BASE_URL}/Person/updateUser/loggedInId/${user.id}`, {
       id: user.id,
@@ -569,26 +532,26 @@ export const UpdateTeamMembers = async (user: ITeamMember[]): Promise<any> => {
       console.log(error);
     });
 };
-export const getEvents=async ():Promise<IAllEvents[]> => {
-  return axios.get(`${BASE_URL}/Events`)
-    .then(response => {
+export const getEvents = async (): Promise<IAllEvents[]> => {
+  return axios
+    .get(`${BASE_URL}/Events`)
+    .then((response) => {
       return response.data;
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
     });
-
-}
-export const register=async (loggedInId:number):Promise<any> => {
-  return axios.get(`${BASE_URL}/Registration/register/loggedInId/${loggedInId}`)
-    .then(response => {
+};
+export const register = async (loggedInId: number): Promise<any> => {
+  return axios
+    .get(`${BASE_URL}/Registration/register/loggedInId/${loggedInId}`)
+    .then((response) => {
       return response.data;
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
     });
-
-}
+};
 
 // export const updateDuplicateData = (key: string, value: string) => {
 // Create a new project info object with the updated key and value
