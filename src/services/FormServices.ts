@@ -103,3 +103,14 @@ export const registerTeam = async (Form: IRegister) => {
   // .then((res) => console.log("res"))
   // .catch((error) => console.error("err", error));
 };
+
+export const getLoggedInId = () => {
+  const loggedInId = getAllUsers()
+    .then((res) => {
+      return res.filter(
+        (item) => item.email === userEmail?.toLocaleLowerCase()
+      )[0].id;
+    })
+    .catch((err) => console.log(err));
+  return loggedInId;
+};
