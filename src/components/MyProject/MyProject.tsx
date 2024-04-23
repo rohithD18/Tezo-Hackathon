@@ -14,21 +14,29 @@ import {
 import { projectInfoArray } from "../../services/ProjectInfoDetails";
 import SubmissionFailed from "../../components/submissionStatus/FailedAndSuccessStatus";
 import { userEmail } from "../../services/Profile";
-import { MyProjectForm, getLoggedInId, getMyTeamId, useMembersData, useTeamData } from "../../services/FormServices";
+import {
+  MyProjectForm,
+  getLoggedInId,
+  getMyTeamId,
+  useMembersData,
+  useTeamData,
+} from "../../services/FormServices";
 import { IAllProject } from "../../services/Interface/HackathonInterface";
 import { updateProject } from "../../services/Services";
 interface MyProjectProps {
   onSubmit: (data: IProjectSubmissionForm) => void;
 }
 const MyProject: React.FC = () => {
-  const submitPopUp=""; 
- const [projectData,setProjectData]=useState<IAllProject>(MyProjectForm)
- const [loginId, setLoginId] = useState<number>(0);
- const [teamId, setTeamId] = useState<number>(0);
-  const [currentProjectForm, setCurrentProjectForm] =useState<string>("ProjectDetailForm");
-  const [editForm,setEditForm]=useState<boolean>(false);
-  const [sucessSubmit,setSucessSubmit]=useState<boolean>(false);
-  const [formData, setFormData] = useState<IProjectSubmissionForm>(projectInfoArray);
+  const submitPopUp = "";
+  const [projectData, setProjectData] = useState<IAllProject>(MyProjectForm);
+  const [loginId, setLoginId] = useState<number>(0);
+  const [teamId, setTeamId] = useState<number>(0);
+  const [currentProjectForm, setCurrentProjectForm] =
+    useState<string>("ProjectDetailForm");
+  const [editForm, setEditForm] = useState<boolean>(false);
+  const [sucessSubmit, setSucessSubmit] = useState<boolean>(false);
+  const [formData, setFormData] =
+    useState<IProjectSubmissionForm>(projectInfoArray);
   //const [duplicateData,setDuplicateData]=useState<IProjectSubmissionForm>(projectInfoArray[0]);
   //const [isButtonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [formError, setFormError] = useState<IProjectSubmissionFormError>({
@@ -38,46 +46,36 @@ const MyProject: React.FC = () => {
     uploadFileError: "",
   });
 
+  console.log(userEmail);
 
-console.log(userEmail);
-
-  const handleSubmit = async (data:IAllProject) => {
+  const handleSubmit = async (data: IAllProject) => {
     updateProject(projectData, loginId);
-    
-       
-  }
-  const handleCancel =()=>{
-    if(currentProjectForm==="ProjectSubmissionForm"){
+  };
+  const handleCancel = () => {
+    if (currentProjectForm === "ProjectSubmissionForm") {
       setCurrentProjectForm("ProjectDetailForm");
       // setPreviousData(formData.filter(data => data.TeamId === 6));
       // setDuplicateData(previousData);
     }
+  };
+  useEffect(() => {
+    getLoggedInId().then((res) => setLoginId(res ? res : 0));
+    getMyTeamId(loginId).then((res) => setTeamId(res ? res : 0));
+    console.log("loginId", loginId, teamId);
+  }, [loginId, teamId]);
+  useEffect(() => {
+    console.log("asdfg");
+    console.log(projectData);
+  }, [projectData]);
 
-  }
-  useEffect(()=>{
-    getLoggedInId().then((res)=>setLoginId(res?res:0));
-    getMyTeamId(loginId).then((res)=>setTeamId(res?res:0))
-    console.log("loginId",loginId,teamId)
-
-
-  },[loginId,teamId]
-  )
-  useEffect(()=>{
-    console.log("asdfg")
-    console.log(projectData)
-
-
-  },[projectData]
-  )
-  
- const handleDataFromChild =(data:IProjectSubmissionForm)=>{
-  if (data !== null) {
-    // setDuplicateData(data);
-    console.log("Form Data:", formData);
-  } else {
-    console.log("No data to submit");
-  }
- }
+  const handleDataFromChild = (data: IProjectSubmissionForm) => {
+    if (data !== null) {
+      // setDuplicateData(data);
+      console.log("Form Data:", formData);
+    } else {
+      console.log("No data to submit");
+    }
+  };
   const [isPdfView, setIsPdfView] = useState<boolean>(false);
 
   return (
@@ -150,58 +148,70 @@ console.log(userEmail);
               </div>
             </div>
           </div>
-         { sucessSubmit ? <SubmissionFailed submitPopUp={"Success"} setCurrentProjectForm={setCurrentProjectForm} setSucessSubmit={setSucessSubmit} isProject={true} /> :
-          <div
-            className={
-              currentProjectForm === "ProjectDescripitionForm"
-                ? "topicForm"
-                : "formSection1"
-            }
-          >
-            {currentProjectForm === "ProjectDetailForm" ? (
-              <ProjectDetail setFormData={setFormData} setFormError={setFormError} formError={formError} setProjectData={setProjectData}/>
-            ) : currentProjectForm === "ProjectSubmissionForm" ? (
-               <ProjectSubmission  />
-
-            ) : (
-              <ProjectDemo  />
-            )}
-            <div className="nextCancelDiv">
-            {currentProjectForm !== "ProjectDetailForm" ? 
-              <button
-              onClick={() => { 
-                handleCancel();
-                 
-                }
+          {sucessSubmit ? (
+            <SubmissionFailed
+              submitPopUp={"Success"}
+              setCurrentProjectForm={setCurrentProjectForm}
+              setSucessSubmit={setSucessSubmit}
+              isProject={true}
+            />
+          ) : (
+            <div
+              className={
+                currentProjectForm === "ProjectDescripitionForm"
+                  ? "topicForm"
+                  : "formSection1"
               }
-                // onClick={() => setCurrentProjectForm("ProjectDetailForm")}
-                id="cancelBtn"
-              >
-                Cancel
-              </button>:""}
+            >
+              {currentProjectForm === "ProjectDetailForm" ? (
+                <ProjectDetail
+                  setFormData={setFormData}
+                  setFormError={setFormError}
+                  formError={formError}
+                  setProjectData={setProjectData}
+                />
+              ) : currentProjectForm === "ProjectSubmissionForm" ? (
+                <ProjectSubmission />
+              ) : (
+                <ProjectDemo />
+              )}
+              <div className="nextCancelDiv">
+                {currentProjectForm !== "ProjectDetailForm" ? (
+                  <button
+                    onClick={() => {
+                      handleCancel();
+                    }}
+                    // onClick={() => setCurrentProjectForm("ProjectDetailForm")}
+                    id="cancelBtn"
+                  >
+                    Cancel
+                  </button>
+                ) : (
+                  ""
+                )}
 
-              <button
-  //              className={ if(currentProjectForm==="ProjectDetailForm"){
-  //               formData.topic!==""&& formData.topic.length > 100
+                <button
+                  //              className={ if(currentProjectForm==="ProjectDetailForm"){
+                  //               formData.topic!==""&& formData.topic.length > 100
 
-  //              }  "disabledButton" : "enabledButton"}
-   onClick={() => { 
-     handleSubmit(projectData);
-     
-   }
-  }
-  id="nextBtn"
->
-  {currentProjectForm === "ProjectDetailForm" ? "Next" : "Submit"}
-</button>
-
+                  //              }  "disabledButton" : "enabledButton"}
+                  onClick={() => {
+                    handleSubmit(projectData);
+                  }}
+                  id="nextBtn"
+                >
+                  {currentProjectForm === "ProjectDetailForm"
+                    ? "Next"
+                    : "Submit"}
+                </button>
+              </div>
+            </div>
+          )}
         </div>
-      </div>
-}
-    </div>
-  )};
-  </>
-  )
+      )}
+      ;
+    </>
+  );
 };
 
 export default MyProject;

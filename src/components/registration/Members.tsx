@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/registrationStyles/Registration.css";
 import profilePic from "../../assets/profilepic.jpg";
-import { IUsers } from "../../Interfaces";
 import { IAllUsers } from "../../services/Interface/HackathonInterface";
-import {
-  getUserByEmail,
-  getUserByName,
-  updateUser,
-} from "../../services/Services";
+import { getUserByName, updateUser } from "../../services/Services";
 interface IProps {
   teamMembers: IAllUsers[];
 }
@@ -24,7 +19,6 @@ const Members: React.FC<IProps> = (props: IProps) => {
   };
   useEffect(() => {
     setMembers(teamMembers);
-    // console.log(memebers, teamMembers);
   }, [isDelete]);
   return (
     <div className="membersSection">

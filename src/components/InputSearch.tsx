@@ -20,8 +20,6 @@ const InputSearch: React.FC<SearchComponentProps> = ({
   setQuerySearch,
   currentScreen,
 }: SearchComponentProps) => {
-  // console.log(currentScreen);
-
   const [filteredTeams, setFilteredTeams] = useState<IAllTeams[]>([]);
   const [filteredMembers, setFilteredMembers] = useState<IAllUsers[]>([]);
 
@@ -48,14 +46,14 @@ const InputSearch: React.FC<SearchComponentProps> = ({
       setFilteredMembers([]);
     }
 
-    console.log(item);
-
-    getUserByName(item).then((res) => updateUser(res, "register"));
+    // getUserByName(item).then((res: IAllUsers) => {
+    //   updateUser(res, "register");
+    // });
   };
   const handlekeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setQuerySearch(inputValue);
-      getUserByName(inputValue).then((res) => updateUser(res, "register"));
+      // getUserByName(inputValue).then((res) => updateUser(res, "register"));
       setInputValue("");
       setFilteredMembers([]);
       setFilteredTeams([]);

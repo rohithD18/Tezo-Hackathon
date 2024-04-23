@@ -24,16 +24,13 @@ const TopicDetailsForm: React.FC<IProps> = (props: IProps) => {
         localStorage.getItem("username")?.toString().toLocaleLowerCase()
     )[0].id;
     RegistrationForm.registeredDate = new Date();
-    console.log(RegistrationForm.registeredDate.toString());
-    
+
     registerTeam(RegistrationForm)
       .then((res) => {
         props.setCurrentForm("RegisterSuccess");
-        console.log(res, "ressss");
       })
       .catch((err) => {
         err && props.setCurrentForm("RegisterFailed");
-        console.error(err, "err");
       });
   };
   return (
