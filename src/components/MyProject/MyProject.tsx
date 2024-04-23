@@ -18,8 +18,6 @@ import {
   MyProjectForm,
   getLoggedInId,
   getMyTeamId,
-  useMembersData,
-  useTeamData,
 } from "../../services/FormServices";
 import { IAllProject } from "../../services/Interface/HackathonInterface";
 import { updateProject } from "../../services/Services";

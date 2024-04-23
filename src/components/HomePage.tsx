@@ -9,7 +9,8 @@ import ribbon from "../assets/ribbon.png";
 import { events } from "../services/ScheduleData";
 import RemainingTime from "./RemainingTime";
 import { eventDate } from "../services/Profile";
-import { getLoggedInId, useMembersData } from "../services/FormServices";
+import { getLoggedInId } from "../services/FormServices";
+import { useFecthApis } from "../services/CustomHooks";
 
 const HomePage: React.FC = () => {
   const formattedDate = new Date(eventDate);
@@ -18,7 +19,7 @@ const HomePage: React.FC = () => {
   }${formattedDate.getMonth() + 1}-${
     formattedDate.getDate() < 10 ? "0" : ""
   }${formattedDate.getDate()}`;
-  const { usersData } = useMembersData();
+  const { usersData } = useFecthApis();
   const isRegister: boolean = usersData.filter(
     (item) =>
       item.email ===

@@ -33,58 +33,6 @@ export const getAllUsers = async (): Promise<IAllUsers[]> => {
     });
 };
 
-export const useFetch = (
-  queary: string,
-  setQueary: (message: string) => void
-) => {
-  const [isQA, setIsQA] = useState<boolean>(false);
-  const [usersData, setUsersData] = useState<IAllUsers[]>([]);
-  useEffect(() => {
-    getAllUsers().then((res) => {
-      setUsersData(res);
-    });
-  });
-  const getAMember = (value: string) => {
-    const member = usersData.filter((entry) =>
-      entry.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
-    );
-    return member;
-  };
-  useEffect(() => {
-    if (membersArray.filter((item) => item?.department === 1).length > 0) {
-      setIsQA(true);
-    }
-    if (membersArray.length > 7) {
-      alert("Your team limit has achieved!");
-      membersArray.splice(7, 1);
-    } else {
-      if (queary.length > 3) {
-        if (
-          membersArray.filter(
-            (item) => item?.name === getAMember(queary)[0]?.name
-          ).length > 0 ||
-          getAMember(queary).length === 0
-        ) {
-          getAMember(queary).length === 0
-            ? alert("no user with " + queary)
-            : alert("Alredy present");
-          // setQueary("");
-        } else {
-          membersArray.filter((item) => item?.department === 4).length === 1 &&
-          getAMember(queary)[0]?.department === 4
-            ? alert("You already have a QA")
-            : getAMember(queary)[0]?.isRegistered
-            ? alert(queary + " is registered in an other team")
-            : membersArray.push(getAMember(queary)[0]);
-          setQueary("");
-        }
-      }
-    }
-  }, [queary, setQueary]);
-
-  return { queary, isQA, membersArray, usersData };
-};
-
 export const getFilteredTeams = (name: string): Promise<IAllTeams[]> => {
   const filtered = getTeams().then((res) => {
     return res
