@@ -355,28 +355,28 @@ export const AllProject: IAllProject[] = [
 
 console.log(AllProject);
 
-export const AllTeams: IAllTeams[] = [
-  { id: 1, teamName: "Team 1", teamLogo: "logo_url_for_team_1" },
-  { id: 2, teamName: "Team 2", teamLogo: "logo_url_for_team_2" },
-  { id: 3, teamName: "Team 3", teamLogo: "logo_url_for_team_3" },
-  { id: 4, teamName: "Team 4", teamLogo: "logo_url_for_team_4" },
-  { id: 5, teamName: "Team 5", teamLogo: "logo_url_for_team_5" },
-  { id: 6, teamName: "Team 6", teamLogo: "logo_url_for_team_6" },
-  { id: 7, teamName: "Team 7", teamLogo: "logo_url_for_team_7" },
-  { id: 8, teamName: "Team 8", teamLogo: "logo_url_for_team_8" },
-  { id: 9, teamName: "Team 9", teamLogo: "logo_url_for_team_9" },
-  { id: 10, teamName: "Team 10", teamLogo: "logo_url_for_team_10" },
-  { id: 11, teamName: "Team 11", teamLogo: "logo_url_for_team_11" },
-  { id: 12, teamName: "Team 12", teamLogo: "logo_url_for_team_12" },
-  { id: 13, teamName: "Team 13", teamLogo: "logo_url_for_team_13" },
-  { id: 14, teamName: "Team 14", teamLogo: "logo_url_for_team_14" },
-  { id: 15, teamName: "Team 15", teamLogo: "logo_url_for_team_15" },
-  { id: 16, teamName: "Team 16", teamLogo: "logo_url_for_team_16" },
-  { id: 17, teamName: "Team 17", teamLogo: "logo_url_for_team_17" },
-  { id: 18, teamName: "Team 18", teamLogo: "logo_url_for_team_18" },
-  { id: 19, teamName: "Team 19", teamLogo: "logo_url_for_team_19" },
-  { id: 20, teamName: "Team 20", teamLogo: "logo_url_for_team_20" },
-];
+// export const AllTeams: IAllTeams[] = [
+//   { id: 1, teamName: "Team 1", teamLogo: "logo_url_for_team_1" },
+//   { id: 2, teamName: "Team 2", teamLogo: "logo_url_for_team_2" },
+//   { id: 3, teamName: "Team 3", teamLogo: "logo_url_for_team_3" },
+//   { id: 4, teamName: "Team 4", teamLogo: "logo_url_for_team_4" },
+//   { id: 5, teamName: "Team 5", teamLogo: "logo_url_for_team_5" },
+//   { id: 6, teamName: "Team 6", teamLogo: "logo_url_for_team_6" },
+//   { id: 7, teamName: "Team 7", teamLogo: "logo_url_for_team_7" },
+//   { id: 8, teamName: "Team 8", teamLogo: "logo_url_for_team_8" },
+//   { id: 9, teamName: "Team 9", teamLogo: "logo_url_for_team_9" },
+//   { id: 10, teamName: "Team 10", teamLogo: "logo_url_for_team_10" },
+//   { id: 11, teamName: "Team 11", teamLogo: "logo_url_for_team_11" },
+//   { id: 12, teamName: "Team 12", teamLogo: "logo_url_for_team_12" },
+//   { id: 13, teamName: "Team 13", teamLogo: "logo_url_for_team_13" },
+//   { id: 14, teamName: "Team 14", teamLogo: "logo_url_for_team_14" },
+//   { id: 15, teamName: "Team 15", teamLogo: "logo_url_for_team_15" },
+//   { id: 16, teamName: "Team 16", teamLogo: "logo_url_for_team_16" },
+//   { id: 17, teamName: "Team 17", teamLogo: "logo_url_for_team_17" },
+//   { id: 18, teamName: "Team 18", teamLogo: "logo_url_for_team_18" },
+//   { id: 19, teamName: "Team 19", teamLogo: "logo_url_for_team_19" },
+//   { id: 20, teamName: "Team 20", teamLogo: "logo_url_for_team_20" },
+// ];
 
 // console.log(AllTeams);
 // export const TeamMember: ITeamMember[] = [
