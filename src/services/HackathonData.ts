@@ -355,53 +355,53 @@ export const AllProject: IAllProject[] = [
 
 console.log(AllProject);
 
-export const AllTeams: IAllTeams[] = [
-  { Id: 1, TeamName: "Team 1", TeamLogo: "logo_url_for_team_1" },
-  { Id: 2, TeamName: "Team 2", TeamLogo: "logo_url_for_team_2" },
-  { Id: 3, TeamName: "Team 3", TeamLogo: "logo_url_for_team_3" },
-  { Id: 4, TeamName: "Team 4", TeamLogo: "logo_url_for_team_4" },
-  { Id: 5, TeamName: "Team 5", TeamLogo: "logo_url_for_team_5" },
-  { Id: 6, TeamName: "Team 6", TeamLogo: "logo_url_for_team_6" },
-  { Id: 7, TeamName: "Team 7", TeamLogo: "logo_url_for_team_7" },
-  { Id: 8, TeamName: "Team 8", TeamLogo: "logo_url_for_team_8" },
-  { Id: 9, TeamName: "Team 9", TeamLogo: "logo_url_for_team_9" },
-  { Id: 10, TeamName: "Team 10", TeamLogo: "logo_url_for_team_10" },
-  { Id: 11, TeamName: "Team 11", TeamLogo: "logo_url_for_team_11" },
-  { Id: 12, TeamName: "Team 12", TeamLogo: "logo_url_for_team_12" },
-  { Id: 13, TeamName: "Team 13", TeamLogo: "logo_url_for_team_13" },
-  { Id: 14, TeamName: "Team 14", TeamLogo: "logo_url_for_team_14" },
-  { Id: 15, TeamName: "Team 15", TeamLogo: "logo_url_for_team_15" },
-  { Id: 16, TeamName: "Team 16", TeamLogo: "logo_url_for_team_16" },
-  { Id: 17, TeamName: "Team 17", TeamLogo: "logo_url_for_team_17" },
-  { Id: 18, TeamName: "Team 18", TeamLogo: "logo_url_for_team_18" },
-  { Id: 19, TeamName: "Team 19", TeamLogo: "logo_url_for_team_19" },
-  { Id: 20, TeamName: "Team 20", TeamLogo: "logo_url_for_team_20" },
-];
+// export const AllTeams: IAllTeams[] = [
+//   { Id: 1, TeamName: "Team 1", TeamLogo: "logo_url_for_team_1" },
+//   { Id: 2, TeamName: "Team 2", TeamLogo: "logo_url_for_team_2" },
+//   { Id: 3, TeamName: "Team 3", TeamLogo: "logo_url_for_team_3" },
+//   { Id: 4, TeamName: "Team 4", TeamLogo: "logo_url_for_team_4" },
+//   { Id: 5, TeamName: "Team 5", TeamLogo: "logo_url_for_team_5" },
+//   { Id: 6, TeamName: "Team 6", TeamLogo: "logo_url_for_team_6" },
+//   { Id: 7, TeamName: "Team 7", TeamLogo: "logo_url_for_team_7" },
+//   { Id: 8, TeamName: "Team 8", TeamLogo: "logo_url_for_team_8" },
+//   { Id: 9, TeamName: "Team 9", TeamLogo: "logo_url_for_team_9" },
+//   { Id: 10, TeamName: "Team 10", TeamLogo: "logo_url_for_team_10" },
+//   { Id: 11, TeamName: "Team 11", TeamLogo: "logo_url_for_team_11" },
+//   { Id: 12, TeamName: "Team 12", TeamLogo: "logo_url_for_team_12" },
+//   { Id: 13, TeamName: "Team 13", TeamLogo: "logo_url_for_team_13" },
+//   { Id: 14, TeamName: "Team 14", TeamLogo: "logo_url_for_team_14" },
+//   { Id: 15, TeamName: "Team 15", TeamLogo: "logo_url_for_team_15" },
+//   { Id: 16, TeamName: "Team 16", TeamLogo: "logo_url_for_team_16" },
+//   { Id: 17, TeamName: "Team 17", TeamLogo: "logo_url_for_team_17" },
+//   { Id: 18, TeamName: "Team 18", TeamLogo: "logo_url_for_team_18" },
+//   { Id: 19, TeamName: "Team 19", TeamLogo: "logo_url_for_team_19" },
+//   { Id: 20, TeamName: "Team 20", TeamLogo: "logo_url_for_team_20" },
+// ];
 
-console.log(AllTeams);
-export const TeamMember: ITeamMember[] = [
-  { Id: 1, TeamId: 1, PersonId: 1, Role: 1, IsAdmin: true },
-  { Id: 2, TeamId: 1, PersonId: 2, Role: 2, IsAdmin: false },
-  { Id: 3, TeamId: 2, PersonId: 3, Role: 1, IsAdmin: true },
-  { Id: 4, TeamId: 2, PersonId: 4, Role: 2, IsAdmin: false },
-  { Id: 5, TeamId: 3, PersonId: 5, Role: 1, IsAdmin: true },
-  { Id: 6, TeamId: 3, PersonId: 6, Role: 2, IsAdmin: false },
-  { Id: 7, TeamId: 4, PersonId: 7, Role: 1, IsAdmin: true },
-  { Id: 8, TeamId: 4, PersonId: 8, Role: 2, IsAdmin: false },
-  { Id: 9, TeamId: 5, PersonId: 9, Role: 1, IsAdmin: true },
-  { Id: 10, TeamId: 5, PersonId: 10, Role: 2, IsAdmin: false },
-  { Id: 11, TeamId: 6, PersonId: 11, Role: 1, IsAdmin: true },
-  { Id: 12, TeamId: 6, PersonId: 12, Role: 2, IsAdmin: false },
-  { Id: 13, TeamId: 7, PersonId: 13, Role: 1, IsAdmin: true },
-  { Id: 14, TeamId: 7, PersonId: 14, Role: 2, IsAdmin: false },
-  { Id: 15, TeamId: 8, PersonId: 15, Role: 1, IsAdmin: true },
-  { Id: 16, TeamId: 8, PersonId: 16, Role: 2, IsAdmin: false },
-  { Id: 17, TeamId: 9, PersonId: 17, Role: 1, IsAdmin: true },
-  { Id: 18, TeamId: 9, PersonId: 18, Role: 2, IsAdmin: false },
-  { Id: 19, TeamId: 10, PersonId: 19, Role: 1, IsAdmin: true },
-  { Id: 20, TeamId: 10, PersonId: 20, Role: 2, IsAdmin: false },
-];
-console.log(TeamMember);
+// console.log(AllTeams);
+// export const TeamMember: ITeamMember[] = [
+//   { Id: 1, TeamId: 1, PersonId: 1, Role: 1, IsAdmin: true },
+//   { Id: 2, TeamId: 1, PersonId: 2, Role: 2, IsAdmin: false },
+//   { Id: 3, TeamId: 2, PersonId: 3, Role: 1, IsAdmin: true },
+//   { Id: 4, TeamId: 2, PersonId: 4, Role: 2, IsAdmin: false },
+//   { Id: 5, TeamId: 3, PersonId: 5, Role: 1, IsAdmin: true },
+//   { Id: 6, TeamId: 3, PersonId: 6, Role: 2, IsAdmin: false },
+//   { Id: 7, TeamId: 4, PersonId: 7, Role: 1, IsAdmin: true },
+//   { Id: 8, TeamId: 4, PersonId: 8, Role: 2, IsAdmin: false },
+//   { Id: 9, TeamId: 5, PersonId: 9, Role: 1, IsAdmin: true },
+//   { Id: 10, TeamId: 5, PersonId: 10, Role: 2, IsAdmin: false },
+//   { Id: 11, TeamId: 6, PersonId: 11, Role: 1, IsAdmin: true },
+//   { Id: 12, TeamId: 6, PersonId: 12, Role: 2, IsAdmin: false },
+//   { Id: 13, TeamId: 7, PersonId: 13, Role: 1, IsAdmin: true },
+//   { Id: 14, TeamId: 7, PersonId: 14, Role: 2, IsAdmin: false },
+//   { Id: 15, TeamId: 8, PersonId: 15, Role: 1, IsAdmin: true },
+//   { Id: 16, TeamId: 8, PersonId: 16, Role: 2, IsAdmin: false },
+//   { Id: 17, TeamId: 9, PersonId: 17, Role: 1, IsAdmin: true },
+//   { Id: 18, TeamId: 9, PersonId: 18, Role: 2, IsAdmin: false },
+//   { Id: 19, TeamId: 10, PersonId: 19, Role: 1, IsAdmin: true },
+//   { Id: 20, TeamId: 10, PersonId: 20, Role: 2, IsAdmin: false },
+// ];
+// console.log(TeamMember);
 
 export const PointsTable: IPointsTable[] = [
   {

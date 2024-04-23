@@ -28,16 +28,18 @@ export interface IAllProjectFiles {
 }
 
 export interface IAllTeams {
-  Id: number;
-  TeamName: string;
-  TeamLogo: string;
+  id: number;
+  teamName: string;
+  teamLogo: string;
+  registeredDate:Date
 }
 export interface ITeamMember {
-  Id: number;
-  TeamId: number;
-  PersonId: number;
-  Role: number;
-  IsAdmin: boolean;
+  id: number;
+  teamId: number;
+  personId: number;
+  role: number;
+  isAdmin: boolean;
+  userData?:IAllUsers
 }
 
 export interface IPointsTable {
