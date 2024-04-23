@@ -8,17 +8,22 @@ import PaginationSection from "../pagination/PaginationSection";
 import DashboardNav from "./DashboardNav";
 import InputSearch from "../InputSearch";
 import {UserEditPopUp} from "./UserEditPopUp";
-import { getAllUsers } from "../../services/Services";
-import { IAllUsers } from "../../services/Interface/HackathonInterface";
+import { getAllTeamMembers, getAllUsers, getTeamById } from "../../services/Services";
+import { IAllTeams, IAllUsers, ITeamMember } from "../../services/Interface/HackathonInterface";
+interface teamUser extends IAllUsers{
+  email: string;
+  isAdmin: boolean;
+}
 const Users = () => {
-  const [currUserData, setCurrUserData] = useState<IAllUsers[]>([]);
-  const [displayOnUser, setDisplayOnUser] = useState<IAllUsers[]>([]);
+  const [currUserData, setCurrUserData] = useState<{ user: IAllUsers; team?: IAllTeams }[]>([]);
+  const [displayOnUser, setDisplayOnUser] = useState<{ user: IAllUsers; team?: IAllTeams }[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredData, setFilteredData] = useState<IAllUsers[]>([]);
+  const [filteredData, setFilteredData] = useState<{ user: IAllUsers; team?: IAllTeams }[]>([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popUpValue, setPopUpValue] = useState<string>("");
   // const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
   const [userData, setUserDetailsData] = useState<IAllUsers>();
+  
   const handleOpenPopup = (button:string) => {
     setIsPopupOpen(true);
     setPopUpValue(button)
@@ -29,25 +34,37 @@ const Users = () => {
   const handleUserDetailsData = (data: IAllUsers) => {
     setUserDetailsData(data);
   };
+ 
   useEffect(() => {
-    const fetchTeamMembers = async () => {
-      try {
-        const result = await getAllUsers();
-        console.log(result)
-        // const first50Items = result.slice(0, 50);
-         setCurrUserData(result);
-         // Assuming the response is an array of team members
-      } catch (error) {
-        console.error(error);
-      }
-    };
 
-    fetchTeamMembers();
+    Promise.all([getAllUsers(), getAllTeamMembers()]).then(([userData, teamData]) => {
+      Promise.all(
+        userData
+          .filter((user) => user.isRegistered)
+          .map((user) => {
+            const team = teamData.find((team) => team.personId === user.id);
+            if (team) {
+              return getTeamById(team.teamId).then((currentTeam) => ({
+                user,
+                team: currentTeam // Add the team data to the team object
+              }));
+            } else {
+              return Promise.resolve({ user, team: undefined });// Resolve with null if team is not found
+            }
+          })
+      ).then((combinedData) => {
+        // Filter out null values (teams not found)
+        setCurrUserData(combinedData);
+        
+      });
+    });
+    
+    
   }, []);
   useEffect(() => {
     const filtered = searchQuery 
-    ? currUserData.filter((user: IAllUsers) =>
-        user.name && user.name.toLowerCase().includes(searchQuery.toLowerCase())
+    ? currUserData.filter((user) =>
+        user.user.name && user.user.name.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : currUserData;
     console.log("filtere",currUserData)
@@ -121,7 +138,7 @@ const Users = () => {
               <tr
                 className="tableRowDataUser"
                 key={index}
-                onClick={() => handleUserDetailsData(user)}
+                onClick={() => handleUserDetailsData(user.user)}
                 >
                 
                   <td className="rowTitle">
@@ -139,16 +156,16 @@ const Users = () => {
                           border: "none",
                         }}
                       />
-                      {user.name}
+                      {user.user.name}
                     </span>
                   </td>
-                  <td className="rowTitle">{user.email}</td>
+                  <td className="rowTitle">{user.user.email}</td>
                   <td className="rowTitle">
-                    {/* {user?.TeamName!=""? user?.TeamName:"--"} */}--
+                    {user.team?.teamName!=""? user.team?.teamName:"--"}
                   </td>
                
                   <td className="rowTitle">
-                    {/* {user?.IsRegistered? (user.RegisteredOn && formatDate(user.RegisteredOn)):"--"} */}--
+                    {user.user.isRegistered? (user.team?.registeredDate && formatDate(user.team?.registeredDate)):"--"}
                   </td>
                   <td className="rowTitle">
                    

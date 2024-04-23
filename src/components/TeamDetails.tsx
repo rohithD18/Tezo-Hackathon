@@ -8,6 +8,7 @@ import { getFilteredTeams, getTeamMembersByTeam, getTeams, getUserById } from ".
 import { ITeamMembers, ITeamMems, IUsers } from "../Interfaces";
 import { IAllUsers, ITeamMember } from "../services/Interface/HackathonInterface";
 import { TeamMemberRole } from "../services/enums";
+import { useFetchTeamDetails } from "../services/SubServices";
 const TeamDetails = () => {
   const { teamNameParam } = useParams();
   const location = useLocation(); // Get the current location object
@@ -22,15 +23,16 @@ const TeamDetails = () => {
   useEffect(() => {
     // console.log(state && id,"id")
     let teamId:number
-    const fetchTeam = async () => {
+    console.log(teamNameParam,querySearch)
+
+    const fetchTeam = async (value:string) => {
       try {
         const result = await getTeams();
         result.forEach((item) => {
-          if (querySearch === item.teamName) {
-            console.log("gug",item.teamName)
+          if (value.replace(/\s+/g, '_') === item.teamName.replace(/\s+/g, '_')) {
+            
             setTeamName(item.teamName);
             teamId=item.id
-            console.log(item.id,"bb")
             fetchTeamDetails();
           }
         });
@@ -42,7 +44,6 @@ const TeamDetails = () => {
     const fetchTeamDetails = async () => {
       try {
         if(teamId!=undefined){
-          console.log("insideeee")
         const result = await getTeamMembersByTeam(teamId);
         if (result.length !== 0) {
           const updatedTeamMembers: Promise<ITeamMember>[] = result.map((member) => {
@@ -52,9 +53,7 @@ const TeamDetails = () => {
           });
           
           Promise.all(updatedTeamMembers).then((updatedMembers) => {
-            // Once all promises are resolved, update the state with the updated team members
             setTeamMembers(updatedMembers);
-            console.log(updatedMembers,"chbshi")
           });
       
        
@@ -66,80 +65,11 @@ const TeamDetails = () => {
         console.error(error);
       }
     };
-    fetchTeam()
-    
-    // console.log("sss", teamNameParam, querySearch);
-    console.log(teamNameParam,"teanameparam")
 
+    fetchTeam(querySearch?querySearch:teamNameParam ? teamNameParam: "")
     querySearch && window.history.pushState({}, "", `/teams/${querySearch.replace(/\s+/g, '_')}`);
-  }, [querySearch]);
-  useEffect(() => {
-    let teamId:number
-    // console.log(state && id,"id")
-    const fetchTeam = async () => {
-      try {
-        const result = await getTeams();
-        result.forEach((item) => {
-          if (teamNameParam===item.teamName.replace(/\s+/g, '_')) {
-            console.log("gug",item.teamName)
-            setTeamName(item.teamName);
-            teamId=item.id
-            fetchTeamDetails();
-          }
-        });
-        
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    const fetchTeamDetails = async () => {
-      try {
-        if(teamId!=undefined){
-        const result = await getTeamMembersByTeam(teamId);
-        if (result.length !== 0) {
-          const updatedTeamMembers: Promise<ITeamMember>[] = result.map((member) => {
-            return getUserById(member.personId).then((userData: IAllUsers) => {
-              return { ...member, userData };
-            });
-          });
-          
-          Promise.all(updatedTeamMembers).then((updatedMembers) => {
-            // Once all promises are resolved, update the state with the updated team members
-            setTeamMembers(updatedMembers);
-            console.log(updatedMembers,"chbshi")
-          });
-      
-        }
-      };
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchTeam()
+  }, [querySearch,teamNameParam]);
     
-    // console.log("sss", teamNameParam, querySearch);
-    console.log(teamNameParam,"teanameparam")
-
-    
-  }, [teamNameParam]);
-  //
-  // useEffect(() => {
-  //   Teams.forEach((item) => {
-  //     if (teamNameParam === item.TeamName.replace(/\s+/g, '_')) {
-  //       setTeamMembers(item.TeamMembers);
-  //       setTeamName(item.TeamName);
-  //     }
-  //   });
-  // }, [teamNameParam]);
-
-  // useEffect(() => {
-  //   Teams.forEach(item => {
-  //       if( teamNameParam === item.TeamName){
-  //        setTeamMembers(item.TeamMembers);
-  //        setTeamName(item.TeamName)
-  //       };
-  //     });
-  // }, [teamNameFromService]);
   return (
     <div className="root">
       <div className="search">
@@ -162,7 +92,7 @@ const TeamDetails = () => {
       <label className="title"> Team Members</label>
       <div className="row">
         {teamMembers &&
-          teamMembers.map((item: ITeamMember, index: any) => (
+          teamMembers.map((item: ITeamMember, index: number) => (
             <div className="cardStyling  col-sm-3 mb-3" key={index}>
               <img
                 src={image}
