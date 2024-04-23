@@ -416,7 +416,7 @@ export const getProjectByTeamId = async (
   teamId: number
 ): Promise<IAllProject> => {
   return axios
-    .get(`${BASE_URL}/Person/getProjectByTeamId/${teamId}`)
+    .get(`${BASE_URL}/Project/getProjectByTeamId/${teamId}`)
     .then((response) => {
       return response.data;
     })
@@ -434,18 +434,17 @@ export const addProject = async (data: IAllProject) => {
       console.log(error);
     });
 };
-export const updateProject = async (data: IAllProject,loggedInId:number) => {
+export const updateProject = async (data: IAllProject,loggedInId:number,teamId:number) => {
   console.log(data, loggedInId);
-  
   axios
     .put(`${BASE_URL}/Project/updateProject/loggedInId/${loggedInId}`, {
-      projectName: data.ProjectName,
-      description: data.Description,
-      projectStatus:data.ProjectStatus,
-      detailedDescription:data.DetailedDescription,
+      projectName: data.projectName,
+      description: data.description,
+      projectStatus:3,
+      detailedDescription:data.detailedDescription,
       submittedDate:new Date(),
-      comments:data.Comments,
-      teamId:data.TeamId},{headers: {
+      comments:data.comments,
+      teamId:teamId},{headers: {
         "Content-Type": "application/json",
       }})
     .then((response) => {

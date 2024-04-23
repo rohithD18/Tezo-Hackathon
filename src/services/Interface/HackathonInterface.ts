@@ -10,16 +10,16 @@ export interface IAllUsers {
   registeredDate: Date;
 }
 export interface IAllProject {
-  Id: number;
-  ProjectName: string;
-  Description: string;
-  ProjectStatus: number;
-  DetailedDescription: string;
-  ProjectRegisteredDate: Date;
-  SubmittedDate: Date;
-  PresentationDate: Date;
-  Comments: string;
-  TeamId: number;
+  id: number;
+  projectName: string;
+  description: string;
+  projectStatus: number;
+  detailedDescription: string;
+  projectRegisteredDate: Date;
+  submittedDate: Date;
+  presentationDate: Date;
+  comments: string;
+  teamId: number;
 }
 export interface IAllProjectFiles {
   Id: number;

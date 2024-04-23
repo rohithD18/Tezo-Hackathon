@@ -9,12 +9,24 @@ interface ProjectDetailProps {
     setFormError: (formError: IProjectSubmissionFormError) => void;
     formError: IProjectSubmissionFormError;
     setProjectData:(data:IAllProject)=>void;
+    viewData:IAllProject
   }
-export const ProjectDetail : React.FC<ProjectDetailProps> = ({setFormData,formError,setFormError,setProjectData}) => {
+export const ProjectDetail : React.FC<ProjectDetailProps> = ({setFormData,formError,setFormError,setProjectData,viewData}) => {
     const [topic, setTopic] = useState<string>('');
-    const [description, setDescription] = useState<string>('');  
+    const [description, setDescription] = useState<string>('');
+    useEffect(() => {
+        console.log(viewData, " viewData");
+        
+        setTopic(viewData?.projectName);
+    setDescription(viewData?.description);
+        
+    }, [viewData])
+    
+
     useEffect(() => {
         updateData(topic, description);
+        console.log(topic, description);
+        
     }, [topic, description])
 
     const handleTopicChange = (event:React.ChangeEvent<HTMLInputElement>) => {
@@ -48,22 +60,22 @@ export const ProjectDetail : React.FC<ProjectDetailProps> = ({setFormData,formEr
     };
     const updateData = (name: string, detail: string) => {
         const newData: IAllProject = {
-            Id: 0,
-            ProjectName: name,
-            Description: detail,
-            ProjectStatus: 0,
-            DetailedDescription: "",
-            ProjectRegisteredDate: new Date(),
-            SubmittedDate: new Date(),
-            PresentationDate: new Date(),
-            Comments: "",
-            TeamId: 0,
+        id: 0,
+            projectName: name,
+            description: detail,
+            projectStatus: 0,
+            detailedDescription: "",
+            projectRegisteredDate: new Date(),
+            submittedDate: new Date(),
+            presentationDate: new Date(),
+            comments: "",
+            teamId: 0,
         };
         setProjectData(newData);
-        console.log(newData);
+        // console.log(newData);
     };
-    const topicCharacterCount = topic.length;
-    const descriptionCharacterCount = description.length;
+    const topicCharacterCount = topic?.length;
+    const descriptionCharacterCount = description?.length;
 
     return (
         <div>

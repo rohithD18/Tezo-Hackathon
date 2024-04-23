@@ -40,16 +40,16 @@ export const RegistrationForm: IRegister = {
   technologies: [],
 };
 export const MyProjectForm: IAllProject = {
-  Id: 0,
-  ProjectName: "",
-  Description: "",
-  ProjectStatus: 0,
-  DetailedDescription:"",
-  ProjectRegisteredDate:new Date(),
-  SubmittedDate:new Date(),
-  PresentationDate: new Date(),
-  Comments: "",
-  TeamId:0,
+  id: 0,
+  projectName: "",
+  description: "",
+  projectStatus: 0,
+  detailedDescription:"",
+  projectRegisteredDate:new Date(),
+  submittedDate:new Date(),
+  presentationDate: new Date(),
+  comments: "",
+  teamId:0,
 };
 export const getLoggedInId = () => {
   const loggedInId = getAllUsers()
@@ -64,7 +64,7 @@ export const getLoggedInId = () => {
 export const getMyTeamId = (id:number) => {
   const myTeamId = getAllTeamMembers()
     .then((res) => {
-      return res.filter(item=>item.personId===id)[0].teamId
+      return res.filter(item=>item.personId===id)[0]?.teamId
     })
     .catch((err) => console.log(err));
   return myTeamId;
