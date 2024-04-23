@@ -9,7 +9,7 @@ import ribbon from "../assets/ribbon.png";
 import { events } from "../services/ScheduleData";
 import RemainingTime from "./RemainingTime";
 import { eventDate } from "../services/Profile";
-import { useMembersData } from "../services/FormServices";
+import { getLoggedInId, useMembersData } from "../services/FormServices";
 
 const HomePage: React.FC = () => {
   const formattedDate = new Date(eventDate);
@@ -19,21 +19,23 @@ const HomePage: React.FC = () => {
     formattedDate.getDate() < 10 ? "0" : ""
   }${formattedDate.getDate()}`;
   const { usersData } = useMembersData();
-  const [isRegister, setIsRegister] = useState<boolean>(
-    usersData.filter(
-      (item) =>
-        item.email ===
-        localStorage.getItem("username")?.toString().toLocaleLowerCase()
-    )[0]?.isRegistered
-  );
+  const isRegister: boolean = usersData.filter(
+    (item) =>
+      item.email ===
+      localStorage.getItem("username")?.toString().toLocaleLowerCase()
+  )[0]?.isRegistered;
+
   useEffect(() => {
-    setIsRegister(
-      usersData.filter(
-        (item) =>
-          item.email ===
-          localStorage.getItem("username")?.toString().toLocaleLowerCase()
-      )[0]?.isRegistered
-    );
+    // setIsRegister(
+    //   usersData.filter(
+    //     (item) =>
+    //       item.email ===
+    //       localStorage.getItem("username")?.toString().toLocaleLowerCase()
+    //   )[0]?.isRegistered
+    // );
+    getLoggedInId().then((res) => console.log(res));
+
+    getLoggedInId();
   }, [usersData]);
 
   const scrollToTop = () => {
@@ -53,6 +55,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="homePageDiv">
       <Home isRegister={isRegister} />
+      {/* <Home isRegister={isRegister} /> */}
       {/* <div className="scrollContainer">
         <img
           src={scroll}
