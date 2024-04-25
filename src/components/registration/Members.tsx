@@ -17,6 +17,7 @@ const Members: React.FC<IProps> = (props: IProps) => {
 
     getUserByName(name).then((res) => updateUser(res, "delete"));
   };
+
   useEffect(() => {
     setMembers(teamMembers);
   }, [isDelete]);

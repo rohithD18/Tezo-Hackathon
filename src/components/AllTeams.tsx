@@ -5,7 +5,7 @@ import TeamCard from "./TeamCard";
 // import { TeamsData } from "../services/Const";
 import { ITeamData } from "../services/Interface/TeamData";
 import ShimmerCardUI from "./ShimmerCardUI";
-import { getTeams,getAllTeamMembers } from "../services/Services";
+import { getTeams, getAllTeamMembers } from "../services/Services";
 import { IAllTeams } from "../services/Interface/HackathonInterface";
 const AllTeams: React.FC = () => {
   const [currentItem, setCurrentItem] = useState<IAllTeams[]>([]);
@@ -17,28 +17,26 @@ const AllTeams: React.FC = () => {
     points: "",
     captainName: "",
   }));
-  useEffect(()=>{
+  useEffect(() => {
     const fetchDataAsync = async () => {
       try {
         const result = await getTeams();
-        console.log(result,"result")
-        
-        setTeamsData(result)
+        console.log(result, "result");
+
+        setTeamsData(result);
       } catch (error) {
         console.error(error);
       }
     };
-    
+
     fetchDataAsync();
-  },[])
+  }, []);
   return (
     <>
       <div className="allCardBody">
         {currentItem.length === 0
           ? teamData.map((item) => <ShimmerCardUI key={item.id} />)
-          : currentItem.map((item) => 
-          
-          <TeamCard key={item.id} data={item} />)}
+          : currentItem.map((item) => <TeamCard key={item.id} data={item} />)}
       </div>
       <div className="Bodyofpagination">
         <PaginationSection

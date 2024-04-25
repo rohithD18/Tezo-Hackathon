@@ -20,12 +20,17 @@ const HomePage: React.FC = () => {
     formattedDate.getDate() < 10 ? "0" : ""
   }${formattedDate.getDate()}`;
   const { usersData } = useFecthApis();
-  const isRegister: boolean = usersData.filter(
+  // const [isRegister, setIsRegister] = useState<boolean>(false);
+  const isRegister: boolean = usersData?.filter(
     (item) =>
       item.email ===
       localStorage.getItem("username")?.toString().toLocaleLowerCase()
   )[0]?.isRegistered;
-
+  const sasKey =
+    "KtI82XByT1PJOFddpdLZAcbQrp625yiPOs76KE8ooFA2kVpAh1xqmSLjBFJdvT9S36E9pFP2rxcJ+AStiZOPUw==";
+  const connectString =
+    "DefaultEndpointsProtocol=https;AccountName=tezohackathonblob;AccountKey=KtI82XByT1PJOFddpdLZAcbQrp625yiPOs76KE8ooFA2kVpAh1xqmSLjBFJdvT9S36E9pFP2rxcJ+AStiZOPUw==;EndpointSuffix=core.windows.net";
+  console.log(sasKey, connectString);
   useEffect(() => {
     // setIsRegister(
     //   usersData.filter(
@@ -34,9 +39,8 @@ const HomePage: React.FC = () => {
     //       localStorage.getItem("username")?.toString().toLocaleLowerCase()
     //   )[0]?.isRegistered
     // );
-    getLoggedInId().then((res) => console.log(res));
-
-    getLoggedInId();
+    // getLoggedInId().then((res) => console.log(res));
+    // getLoggedInId();
   }, [usersData]);
 
   const scrollToTop = () => {

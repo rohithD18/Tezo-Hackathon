@@ -55,7 +55,8 @@ const TeamDetailsForm: React.FC<IProps> = (props: IProps) => {
     });
     RegistrationForm.teamName = teamName;
     RegistrationForm.captainId = captainId;
-    props.setCurrentForm("TopicDescriptionForm");
+    // props.setCurrentForm("TopicDescriptionForm");
+    // uploadFileToBlob(selectedFile);
   };
   // const { registerForm } = useFormDetails(teamDetails);
 

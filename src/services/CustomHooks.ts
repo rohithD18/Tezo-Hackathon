@@ -34,7 +34,7 @@ export const useFecthApis = () => {
     getAllUsers().then((res) => {
       setUsersData(res);
     });
-  });
+  }, []);
 
   return {
     allTeams,
