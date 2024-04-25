@@ -25,22 +25,6 @@ const HomePage: React.FC = () => {
       item.email ===
       localStorage.getItem("username")?.toString().toLocaleLowerCase()
   )[0]?.isRegistered;
-  const sasKey =
-    "KtI82XByT1PJOFddpdLZAcbQrp625yiPOs76KE8ooFA2kVpAh1xqmSLjBFJdvT9S36E9pFP2rxcJ+AStiZOPUw==";
-  const connectString =
-    "DefaultEndpointsProtocol=https;AccountName=tezohackathonblob;AccountKey=KtI82XByT1PJOFddpdLZAcbQrp625yiPOs76KE8ooFA2kVpAh1xqmSLjBFJdvT9S36E9pFP2rxcJ+AStiZOPUw==;EndpointSuffix=core.windows.net";
-  console.log(sasKey, connectString);
-  useEffect(() => {
-    // setIsRegister(
-    //   usersData.filter(
-    //     (item) =>
-    //       item.email ===
-    //       localStorage.getItem("username")?.toString().toLocaleLowerCase()
-    //   )[0]?.isRegistered
-    // );
-    // getLoggedInId().then((res) => console.log(res));
-    // getLoggedInId();
-  }, [usersData]);
 
   const scrollToTop = () => {
     window.scrollTo({
