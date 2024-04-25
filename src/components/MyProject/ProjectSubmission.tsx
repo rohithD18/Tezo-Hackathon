@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/MyProject/ProjectSubmission.css";
 import pdfIcon from "../../assets/PdfIcon.png";
 import pdf from "../../assets/Pdf.png";
@@ -7,6 +7,7 @@ import AddIcon from "../../assets/AddIcon.png";
 import TimeICon from "../../assets/TimeIcon.png";
 import {IProjectSubmissionForm,IProjectSubmissionFormError } from "../../Interfaces";
 import { IAllProject } from "../../services/Interface/HackathonInterface";
+import { log } from "console";
 
 // import PdfViewer from "./PDFViewer";
 // import PDFViewer from "./PDFViewer";
@@ -15,10 +16,11 @@ interface ProjectSubmissionProps {
     setFormError: (formError: IProjectSubmissionFormError) => void;
     formError: IProjectSubmissionFormError;
     setProjectData:(data:IAllProject)=>void;
-    viewData:IAllProject 
+    viewData:IAllProject;
+    projectData:IAllProject; 
 }
 
-export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({setFormData,formError,setProjectData,viewData,setFormError  }) => {
+export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({setFormData,formError,setProjectData,viewData,setFormError,projectData  }) => {
   const [files, setFiles] = useState<File[]>([]);
   const [pdfOpen, setPdfOpen] = useState(false);
   const [pdfUrl, setPdfUrl] = useState<string>("");
@@ -27,6 +29,13 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({setFormData
   const uniqueFiles = selectedFiles.filter(file => !files.some(f => f.name === file.name));
     setFiles(prevFiles => [...prevFiles, ...uniqueFiles]);
   };
+  useEffect(() => {
+    console.log(viewData, " viewData");
+    
+    setBriefDescription(viewData?.detailedDescription);
+
+    
+}, [viewData])
   const formatFileSize = (bytes: number) => {
     if (bytes < 1024) {
       return bytes + " bytes";
@@ -68,7 +77,7 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({setFormData
     const selectedFiles = event.target.files && Array.from(event.target.files);
     handleFileSelection(selectedFiles || []);
   };
-
+  console.log(files)
   const openPDF = (file: File) => {
     const pdfUrl = URL.createObjectURL(file);
     setPdfUrl(pdfUrl);
@@ -83,12 +92,18 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({setFormData
   const handleBriefDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text=event.target.value;
     setBriefDescription(text);
+    updateData(text)
     if (text=== "") {
         setFormError({ ...formError, descriptionError: 'This field is required' });
         console.log(formError.descriptionError)
     } else {
         setFormError({ ...formError, descriptionError: '' });
     }
+};
+const updateData = ( detail: string) => {
+  setProjectData({ ...projectData, detailedDescription:breifDescription })
+  
+  // console.log(newData);
 };
   return (
     <>

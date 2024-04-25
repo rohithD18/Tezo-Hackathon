@@ -7,13 +7,15 @@ import InputSearch from "./InputSearch";
 interface IProps {
   upcomingEvents: IAllEvents[];
   validUpcomingEvents: boolean;
+  setQuerySearch:(query: string) => void
 }
 
 export const TeamEvents: React.FC<IProps> = ({
   upcomingEvents,
   validUpcomingEvents,
+  setQuerySearch
 }: IProps) => {
-  const [querySearch, setQuerySearch] = useState<string>();
+ 
   const [teams, setTeams] = useState<IAllTeams[]>([]);
 
   useEffect(() => {
@@ -27,19 +29,21 @@ export const TeamEvents: React.FC<IProps> = ({
     };
 
     fetchTeams();
-  }, []);
+    
+  }, [teams, upcomingEvents]);
 
   return (
     <div className="eventsSection">
+      
       {validUpcomingEvents ? (
         <div className="upcomingEventStyle">Upcoming Events</div>
       ) : (
         <div className="allEvents">
           <div>All Events</div>
           <InputSearch
-            setQuerySearch={setQuerySearch}
-            currentScreen={"TeamEvents"}
-          />
+          setQuerySearch={setQuerySearch}
+          currentScreen={"TeamEvents"}
+        />
         </div>
       )}
       {upcomingEvents.map((item) => {

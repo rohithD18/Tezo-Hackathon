@@ -269,7 +269,7 @@ export const updatePoints =  (points: IPointsTable) => {
 export const deletePointsTable =  (points: IPointsTable) => {
   axios
     .delete(
-      `${BASE_URL}/PointsTable/deletePointsOfATeam/${points.TeamId}/loggedInId/{loggedInId}`
+      `${BASE_URL}/PointsTable/deletePointsOfATeam/${points.teamId}/loggedInId/{loggedInId}`
     )
     .then((response) => {
       console.log(response);
@@ -395,10 +395,11 @@ export const addProject =  (data: IAllProject) => {
       console.log(error);
     });
 };
-export const updateProject = async (data: IAllProject,loggedInId:number,teamId:number) => {
-  console.log(data, loggedInId);
+export const updateProject = async (data: IAllProject,loggedInId:number,teamId:number,id:number) => {
+  // console.log(data, loggedInId);
   axios
     .put(`${BASE_URL}/Project/updateProject/loggedInId/${loggedInId}`, {
+      id:id,
       projectName: data.projectName,
       description: data.description,
       projectStatus:3,

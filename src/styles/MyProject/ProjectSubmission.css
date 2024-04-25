@@ -12,6 +12,9 @@
   .enabledButton{
     cursor: pointer !important;
   }
+  .enabledButton:disabled{
+    cursor: no-drop !important;
+  }
   .topicSec1 textarea::placeholder {
     white-space: pre-wrap; /* Enable word wrapping */
 }

@@ -43,14 +43,14 @@ export interface ITeamMember {
 }
 
 export interface IPointsTable {
-  Id: number;
-  TeamId: number;
+  id: number;
+  teamId: number;
   // Team: Team;
-  Team: string;
-  RegistrationScore: number;
-  ProjectSubmissionScore: number;
-  ProjectDemoScore: number;
-  OverAllScore: number;
+  team: string;
+  registrationScore: number;
+  projectSubmissionScore: number;
+  projectDemoScore: number;
+  overAllScore: number;
 } 
 
 export interface IAllEvents { 

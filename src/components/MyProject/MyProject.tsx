@@ -27,7 +27,7 @@ const MyProject: React.FC = () => {
  const [loginId, setLoginId] = useState<number>(0);
  const [teamId, setTeamId] = useState<number>(0);
   const [currentProjectForm, setCurrentProjectForm] =useState<string>("ProjectDetailForm");
-  const [editForm,setEditForm]=useState<boolean>(false);
+  const [isBtnDisabled,setisBtnDisabled]=useState<boolean>(false);
   const [sucessSubmit,setSucessSubmit]=useState<boolean>(false);
   const [formData, setFormData] = useState<IProjectSubmissionForm>(projectInfoArray);
   const [formError, setFormError] = useState<IProjectSubmissionFormError>({
@@ -38,14 +38,32 @@ const MyProject: React.FC = () => {
   });
 
 
-
+  useEffect(() => {
+    if(    currentProjectForm === "ProjectDetailForm" && projectData?.projectName?.length > 0 && projectData?.projectName?.length < 100 && projectData?.description?.length > 0 && projectData?.description?.length < 500){
+      setisBtnDisabled(false)
+    }
+    else if(currentProjectForm === "ProjectSubmissionForm" && projectData?.detailedDescription?.length > 0 ) {
+      setisBtnDisabled(false)
+    }
+    else{
+      setisBtnDisabled(true)
+    }
+  },[projectData,currentProjectForm]);
   const handleSubmit = async (data:IAllProject) => {
+    console.log(viewData);
     if(projectData?.projectName?.length>0 && projectData?.description?.length>0 && currentProjectForm==="ProjectDetailForm")
-      {
-        updateProject(projectData, loginId,teamId);
+      {      
+        updateProject(projectData, loginId,teamId,viewData.id);
         setCurrentProjectForm("ProjectSubmissionForm");
-
+        
       }
+    else if(projectData?.detailedDescription?.length>0  && currentProjectForm==="ProjectSubmissionForm")
+        {      
+          updateProject(projectData, loginId,teamId,viewData.id);
+          setCurrentProjectForm("ProjectSubmissionForm");
+          setSucessSubmit(true);
+          setisBtnDisabled(true);
+        }
    
   }
   const handleCancel =async ()=>{
@@ -63,7 +81,7 @@ const MyProject: React.FC = () => {
     getMyTeamId(loginId).then((res)=>setTeamId(res?res:0))
     console.log("loginId",loginId,teamId)
     teamId && getProjectByTeamId(teamId).then((res) => setViewData(res));
-
+    // getClassNames();
   },[loginId,teamId]
   )
   
@@ -149,9 +167,9 @@ const MyProject: React.FC = () => {
             }
           >
             {currentProjectForm === "ProjectDetailForm" ? (
-              <ProjectDetail setFormData={setFormData} setFormError={setFormError} formError={formError} setProjectData={setProjectData} viewData={viewData}/>
+              <ProjectDetail setFormData={setFormData} setFormError={setFormError} formError={formError} setProjectData={setProjectData} viewData={viewData} projectData={projectData}/>
             ) : currentProjectForm === "ProjectSubmissionForm" ? (
-               <ProjectSubmission setFormData={setFormData} setFormError={setFormError} formError={formError} setProjectData={setProjectData} viewData={viewData} />
+               <ProjectSubmission setFormData={setFormData} setFormError={setFormError} formError={formError} setProjectData={setProjectData} viewData={viewData} projectData={projectData}/>
 
             ) : (
               <ProjectDemo  />
@@ -171,8 +189,8 @@ const MyProject: React.FC = () => {
               </button>:""}
 
               <button
-               className={currentProjectForm === "ProjectDetailForm" && projectData?.projectName?.length > 0 && projectData?.projectName?.length < 100 && projectData?.description?.length > 0 && projectData?.description?.length < 500 ? "enabledButton" : "disabledButton"}
-
+               className= "enabledButton"
+               disabled={isBtnDisabled}
    onClick={() => { 
      handleSubmit(projectData);
      

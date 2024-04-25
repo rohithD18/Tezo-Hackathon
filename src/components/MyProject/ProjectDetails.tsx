@@ -9,9 +9,10 @@ interface ProjectDetailProps {
     setFormError: (formError: IProjectSubmissionFormError) => void;
     formError: IProjectSubmissionFormError;
     setProjectData:(data:IAllProject)=>void;
-    viewData:IAllProject
+    viewData:IAllProject;
+    projectData:IAllProject;
   }
-export const ProjectDetail : React.FC<ProjectDetailProps> = ({setFormData,formError,setFormError,setProjectData,viewData}) => {
+export const ProjectDetail : React.FC<ProjectDetailProps> = ({setFormData,formError,setFormError,setProjectData,viewData,projectData}) => {
     const [topic, setTopic] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     useEffect(() => {
@@ -58,20 +59,10 @@ export const ProjectDetail : React.FC<ProjectDetailProps> = ({setFormData,formEr
         }
       
     };
+
     const updateData = (name: string, detail: string) => {
-        const newData: IAllProject = {
-        id: 0,
-            projectName: name,
-            description: detail,
-            projectStatus: 0,
-            detailedDescription: "",
-            projectRegisteredDate: new Date(),
-            submittedDate: new Date(),
-            presentationDate: new Date(),
-            comments: "",
-            teamId: 0,
-        };
-        setProjectData(newData);
+        setProjectData({ ...projectData, projectName:name,description:detail })
+        
         // console.log(newData);
     };
     const topicCharacterCount = topic?.length;
