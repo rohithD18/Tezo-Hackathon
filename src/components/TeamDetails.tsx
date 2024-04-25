@@ -4,9 +4,17 @@ import { useLocation, useParams } from "react-router-dom";
 import InputSearch from "./InputSearch";
 import image from "../assets/image.png";
 import { Teams } from "../services/Data";
-import { getFilteredTeams, getTeamMembersByTeam, getTeams, getUserById } from "../services/Services";
+import {
+  getFilteredTeams,
+  getTeamMembersByTeam,
+  getTeams,
+  getUserById,
+} from "../services/Services";
 import { ITeamMembers, ITeamMems, IUsers } from "../Interfaces";
-import { IAllUsers, ITeamMember } from "../services/Interface/HackathonInterface";
+import {
+  IAllUsers,
+  ITeamMember,
+} from "../services/Interface/HackathonInterface";
 import { TeamMemberRole } from "../services/enums";
 // import { useFetchTeamDetails } from "../services/SubServices";
 const TeamDetails = () => {
@@ -22,54 +30,59 @@ const TeamDetails = () => {
   const [querySearch, setQuerySearch] = useState<string>("");
   useEffect(() => {
     // console.log(state && id,"id")
-    let teamId:number
-    console.log(teamNameParam,querySearch)
+    let teamId: number;
+    console.log(teamNameParam, querySearch);
 
-    const fetchTeam = async (value:string) => {
+    const fetchTeam = async (value: string) => {
       try {
         const result = await getTeams();
         result.forEach((item) => {
-          if (value.replace(/\s+/g, '_') === item.teamName.replace(/\s+/g, '_')) {
-            
+          if (
+            value.replace(/\s+/g, "_") === item.teamName.replace(/\s+/g, "_")
+          ) {
             setTeamName(item.teamName);
-            teamId=item.id
+            teamId = item.id;
             fetchTeamDetails();
           }
         });
-        
       } catch (error) {
         console.error(error);
       }
     };
     const fetchTeamDetails = async () => {
       try {
-        if(teamId!=undefined){
-        const result = await getTeamMembersByTeam(teamId);
-        if (result.length !== 0) {
-          const updatedTeamMembers: Promise<ITeamMember>[] = result.map((member) => {
-            return getUserById(member.personId).then((userData: IAllUsers) => {
-              return { ...member, userData };
+        if (teamId != undefined) {
+          const result = await getTeamMembersByTeam(teamId);
+          if (result.length !== 0) {
+            const updatedTeamMembers: Promise<ITeamMember>[] = result.map(
+              (member) => {
+                return getUserById(member.personId).then(
+                  (userData: IAllUsers) => {
+                    return { ...member, userData };
+                  }
+                );
+              }
+            );
+
+            Promise.all(updatedTeamMembers).then((updatedMembers) => {
+              setTeamMembers(updatedMembers);
             });
-          });
-          
-          Promise.all(updatedTeamMembers).then((updatedMembers) => {
-            setTeamMembers(updatedMembers);
-          });
-      
-       
-      };
-    }
-      } 
-      
-      catch (error) {
+          }
+        }
+      } catch (error) {
         console.error(error);
       }
     };
 
-    fetchTeam(querySearch?querySearch:teamNameParam ? teamNameParam: "")
-    querySearch && window.history.pushState({}, "", `/teams/${querySearch.replace(/\s+/g, '_')}`);
-  }, [querySearch,teamNameParam]);
-    
+    fetchTeam(querySearch ? querySearch : teamNameParam ? teamNameParam : "");
+    querySearch &&
+      window.history.pushState(
+        {},
+        "",
+        `/teams/${querySearch.replace(/\s+/g, "_")}`
+      );
+  }, [querySearch, teamNameParam]);
+
   return (
     <div className="root">
       <div className="search">
@@ -104,9 +117,13 @@ const TeamDetails = () => {
               <div className="memberDetails">
                 <label className="name">{item.userData?.name}</label>
                 <label className="emailStyling">{item.userData?.email}</label>
-                <label className="empIdStyling">Emp. ID {item.userData?.employeeId}</label>
+                <label className="empIdStyling">
+                  Emp. ID {item.userData?.employeeId}
+                </label>
               </div>
-              {item.role===TeamMemberRole.Captain && <label className="captain">captain</label>}
+              {item.role === TeamMemberRole.Captain && (
+                <label className="captain">captain</label>
+              )}
             </div>
           ))}
       </div>

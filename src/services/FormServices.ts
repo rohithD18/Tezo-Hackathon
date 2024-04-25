@@ -4,17 +4,27 @@ import {
   IAllTeams,
   IAllUsers,
   IRegister,
+  ITeamMember,
 } from "./Interface/HackathonInterface";
 import {
   getAllTeamMembers,
   getAllUsers,
   getProjects,
+  getTeamById,
+  getTeamMembersByTeam,
   getTeams,
+  getUserById,
 } from "./Services";
 import axios from "axios";
 import { userEmail } from "./Profile";
 import { IProject } from "../Interfaces";
 import { toDate } from "date-fns";
+import {
+  AnonymousCredential,
+  BlobServiceClient,
+  ContainerClient,
+  StorageSharedKeyCredential,
+} from "@azure/storage-blob";
 
 export const membersArray: IAllUsers[] = [];
 
@@ -37,12 +47,12 @@ export const MyProjectForm: IAllProject = {
   projectName: "",
   description: "",
   projectStatus: 0,
-  detailedDescription:"",
-  projectRegisteredDate:new Date(),
-  submittedDate:new Date(),
+  detailedDescription: "",
+  projectRegisteredDate: new Date(),
+  submittedDate: new Date(),
   presentationDate: new Date(),
   comments: "",
-  teamId:0,
+  teamId: 0,
 };
 export const getLoggedInId = () => {
   const loggedInId = getAllUsers()
@@ -55,12 +65,13 @@ export const getLoggedInId = () => {
   return loggedInId;
 };
 export const getMyTeamId = (id: number) => {
+  console.log(id,"jh")
   const myTeamId = getAllTeamMembers()
     .then((res) => {
-      return res.filter(item=>item.personId===id)[0]?.teamId
+      return res.filter((item) => item.personId === id)[0]?.teamId;
     })
     .catch((err) => console.log(err));
-  return myTeamId;
+    return myTeamId
 };
 
 export const registerTeam = async (Form: IRegister) => {
@@ -71,4 +82,37 @@ export const registerTeam = async (Form: IRegister) => {
   });
   // .then((res) => console.log("res"))
   // .catch((error) => console.error("err", error));
+};
+
+export const useFetchTeamDetails = (
+  
+) => {
+  const [teamNameFetch, setTeamName] = useState<string>();
+  const [teamMembersFetch, setTeamMembers] = useState<ITeamMember[] >();
+  useEffect(() =>{
+    getLoggedInId().then((res) => { if(res){
+      getMyTeamId(res).then((res) => {
+        if(res){
+        getTeamMembersByTeam(res).then((teamData) => {
+          const getUserPromises = teamData.map((item: ITeamMember) =>
+            getUserById(item.personId).then((userData: IAllUsers) => ({
+              ...item,
+              userData: userData 
+            }))
+          ); 
+          Promise.all(getUserPromises).then((updatedTeamMembers) => {
+           setTeamMembers(updatedTeamMembers)
+          });
+        });
+        getTeamById(res).then((teamData) => {
+          setTeamName(teamData.teamName);  
+        });
+      }
+    });
+    }
+    });
+  },[])
+
+
+  return {teamNameFetch,teamMembersFetch}
 };
