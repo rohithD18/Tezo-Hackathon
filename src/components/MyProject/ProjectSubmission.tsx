@@ -6,27 +6,26 @@ import deleteIcon from "../../assets/deleteIcon.png";
 import AddIcon from "../../assets/AddIcon.png";
 import TimeICon from "../../assets/TimeIcon.png";
 import {IProjectSubmissionForm,IProjectSubmissionFormError } from "../../Interfaces";
+import { IAllProject } from "../../services/Interface/HackathonInterface";
 
 // import PdfViewer from "./PDFViewer";
 // import PDFViewer from "./PDFViewer";
 interface ProjectSubmissionProps {
-  
-  // setDuplicateData:(data:IProjectSubmissionForm[]) => void;
-  // setFormError: (formError: IProjectSubmissionFormError) => void;
-  //   formError: IProjectSubmissionFormError;
-  //   setButtonDisabled:(data:boolean) => void;
-  //   previousData:IProjectSubmissionForm[]|null;
+  setFormData:(data:IProjectSubmissionForm)=>void;
+    setFormError: (formError: IProjectSubmissionFormError) => void;
+    formError: IProjectSubmissionFormError;
+    setProjectData:(data:IAllProject)=>void;
+    viewData:IAllProject 
 }
 
-export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({  }) => {
-  let isValid=true
+export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({setFormData,formError,setProjectData,viewData,setFormError  }) => {
   const [files, setFiles] = useState<File[]>([]);
   const [pdfOpen, setPdfOpen] = useState(false);
   const [pdfUrl, setPdfUrl] = useState<string>("");
   const [breifDescription, setBriefDescription] = useState<string>('');
   const handleFileSelection = (selectedFiles: File[]) => {
-    const updatedFiles1 = [...files, ...selectedFiles];
-    setFiles(updatedFiles1);
+  const uniqueFiles = selectedFiles.filter(file => !files.some(f => f.name === file.name));
+    setFiles(prevFiles => [...prevFiles, ...uniqueFiles]);
   };
   const formatFileSize = (bytes: number) => {
     if (bytes < 1024) {
@@ -82,21 +81,15 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({  }) => {
   //   // setPdfUrl(null);
   // };
   const handleBriefDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const breifDescript = event.target.value;
-    setBriefDescription(breifDescript);
-    if (breifDescript === "") {
-      // setFormError({ ...formError, briefDescriptionError: 'This field is required' });
-      isValid=false
-  }
-   else {
-      // setFormError({ ...formError, briefDescriptionError: '' });
-  }
-  if(breifDescription!=="" && files.length!== 0 && isValid){
-      // setButtonDisabled(true);
-
-  }
-
-  };
+    const text=event.target.value;
+    setBriefDescription(text);
+    if (text=== "") {
+        setFormError({ ...formError, descriptionError: 'This field is required' });
+        console.log(formError.descriptionError)
+    } else {
+        setFormError({ ...formError, descriptionError: '' });
+    }
+};
   return (
     <>
       <div>
@@ -114,14 +107,15 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({  }) => {
         <div className="topicSec1">
           <p>Enter the Description</p>
           <div className="inputSec">
-          <textarea onChange={handleBriefDescription}
-            placeholder="Enter the breif description of the project, including the problem it
-          solves, the target audience, and the proposed solution"
-          ></textarea>
-            {/* <div>{formError.descriptionError}</div> */}
+          <textarea 
+    value={breifDescription} 
+    onChange={handleBriefDescription}
+    placeholder="Enter the brief description of the project, including the problem it solves, the target audience, and the proposed solution"
+/>
+            <div>{formError.descriptionError}</div> 
           </div>
         </div>
-      {/* <div  className="inputSec"> */}
+      <div  className="topicSec1"> 
         <div
           className="dropFile"
           onDrop={handleDrop}
@@ -188,7 +182,7 @@ export const ProjectSubmission: React.FC<ProjectSubmissionProps> = ({  }) => {
           </div>
         </div>
       </div>
-      {/* </div> */}
+       </div> 
       {/* {pdfOpen && <PdfViewer pdfUrl={pdfUrl} ></PdfViewer>} */}
     </>
     
