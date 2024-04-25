@@ -20,7 +20,6 @@ const HomePage: React.FC = () => {
     formattedDate.getDate() < 10 ? "0" : ""
   }${formattedDate.getDate()}`;
   const { usersData } = useFecthApis();
-  // const [isRegister, setIsRegister] = useState<boolean>(false);
   const isRegister: boolean = usersData?.filter(
     (item) =>
       item.email ===

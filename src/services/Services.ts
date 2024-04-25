@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { IProject, ITeams, IUsers } from "../Interfaces";
 import { EventsData } from "./EventData";
 import { Projects } from "./ProjectManagementEvents";
+import { getLoggedInId } from "./FormServices";
 // import { IProjectInfo } from "../Interfaces";
 import {
   IAllEvents,
@@ -243,10 +244,13 @@ export const removeUser = (userId: number) => {
       console.log(error);
     });
 };
-export const deleteTeamMember = (teamMemberId: number) => {
-  axios
+export const deleteTeamMember = async (
+  teamMemberId: number,
+  loggedInId: number
+) => {
+  await axios
     .delete(
-      `${BASE_URL}/TeamMembers/RemoveTeamMember/${teamMemberId}/loggedInId/{loggedInId}`
+      `${BASE_URL}/TeamMembers/RemoveTeamMember/${teamMemberId}/loggedInId/${loggedInId}`
     )
     .then((response) => {
       console.log(response);
@@ -312,7 +316,7 @@ export const myData = (): IAllUsers => {
     name: "",
     profilePicture: "",
     registeredDate: new Date(),
-    role: "",
+    role: 0,
   };
   // console.log(userEmail);
 
@@ -531,9 +535,15 @@ export const addEvents = (data: any) => {
       console.log(`Error : ${error}`);
     });
 };
-export const UpdateTeamMembers = (user: ITeamMember[]) => {
-  axios
-    .put(`${BASE_URL}/updateTeamMembers/loggedInId/{loggedInId}`, user)
+export const UpdateTeamMembers = async (
+  user: ITeamMember[],
+  loggedInId: number
+) => {
+  await axios
+    .put(
+      `${BASE_URL}/TeamMembers/updateTeamMembers/loggedInId/${loggedInId}`,
+      user
+    )
     .then((response) => {
       console.log(response);
     })

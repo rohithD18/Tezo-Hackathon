@@ -1,31 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../../styles/dashboard/DashboardNavBar.css";
-import { userEmail } from "../../services/Profile";
+import { userEmail, userName } from "../../services/Profile";
 import category22 from "../../assets/category22.png";
 import Users from "../../assets/Users.png";
 import square3 from "../../assets/square3.png";
 import document_code_2 from "../../assets/document_code_2.png";
 import calendar from "../../assets/calendar.png";
 import { useNavigate, useParams } from "react-router-dom";
-import { AllUsers } from "../../services/HackathonData";
+import { useFecthApis } from "../../services/CustomHooks";
+import { Role } from "../../services/enums";
 const DashboardNav: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeButton, setActiveButton] = useState<string>("");
+ const { usersData} = useFecthApis();
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   useEffect(() => {
     const path = location.pathname.split("/")[2]; // Get the route path after "/dashboard/"
     setActiveButton(path || "Dashboard"); // Set activeButton to path if it exists, otherwise default to "Dashboard"
-  }, [location.pathname]);
+    const count = usersData?.filter((obj) => obj.role === Role.Admin && userName && obj.name===userName).length;
+    count >0 ? setIsAdmin(true):setIsAdmin(false);
+    console.log(isAdmin,count,location.pathname,usersData);
+    
+  }, [usersData]);
 
   const handleButtonClick = (buttonName: string) => {
     setActiveButton(buttonName);
 
     buttonName === "Dashboard" ? navigate("/dashboard") : navigate(buttonName);
   };
-
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+ 
   const dashboardArray = [
     {
       Name: "Dashboard",
@@ -305,11 +311,7 @@ const DashboardNav: React.FC = () => {
     },
   ];
   useEffect(() => {
-    const count = AllUsers.filter(
-      (obj) => obj.role === "Admin" && obj.email === userEmail
-    );
-
-    count.length === 1 && setIsAdmin(true);
+    
   }, []);
   return (
     <div className="navContainer">

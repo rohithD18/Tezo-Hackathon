@@ -31,10 +31,11 @@ export const useFecthApis = () => {
     getAllTeamMembers().then((res) => setAllTeamMembers(res));
     getPointsTable().then((res) => setPointsTable(res));
     getEvents().then((res) => setAllEvents(res));
-    getAllUsers().then((res) => {
-      setUsersData(res);
-    });
+    getAllUsers()
+      .then((res) => setUsersData(res))
+      .catch((err) => console.error(err));
   }, []);
+  console.log(usersData);
 
   return {
     allTeams,

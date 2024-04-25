@@ -13,10 +13,15 @@ import { EventsData as Data } from "../../services/EventData";
 import ApplicationDetails from "./ApplicationDetails";
 import ViewBlur from "./ViewBlur";
 import HackathonContext from "../../services/Context/HackathonContext";
+import { IAllEvents, IAllTeams, ITeamMember } from "../../services/Interface/HackathonInterface";
+import { getAllUsers, getEvents, getTeamById, getTeamMembersByTeam, getUserById } from "../../services/Services";
+import { TeamMemberRole } from "../../services/enums";
+import { getTodayDate } from "@mui/x-date-pickers/internals";
+import dayjs from "dayjs";
 
 const Events = () => {
   const hackathonContext = useContext(HackathonContext);
-  const [currEventData, setCurrEventData] = useState<IEvents[]>(Data);
+  const [currEventData, setCurrEventData] = useState<EventManagement[]>([]);
   const [statusCounts, setStatusCounts] = useState<{
     Completed: number;
     Upcoming: number;
@@ -26,9 +31,15 @@ const Events = () => {
     Upcoming: 0,
     Pending: 0,
   });
-  const [displayOnEvent, setDisplayOnEvent] = useState<IEvents[]>([]);
+  interface EventManagement {
+    data: IAllEvents;
+    captain:string ;
+    teamName:string;
+    status:string
+  }
+  const [displayOnEvent, setDisplayOnEvent] = useState<EventManagement[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredData, setFilteredData] = useState<IEvents[]>([]);
+  const [filteredData, setFilteredData] = useState<EventManagement[]>([]);
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [total, setTotal] = useState(0);
   // const [isProjectManagement, setIsProjectManagement] =
@@ -38,31 +49,79 @@ const Events = () => {
   const [isRating, setIsRating] = useState<boolean>(false);
   const [isRejectedFeed, setIsRejectedFeed] = useState<boolean>(false);
 
-  const [appliDetailsData, setAppliDetailsData] = useState<IEvents>();
+  const [appliDetailsData, setAppliDetailsData] = useState<EventManagement>();
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [scheduleEvent, setScheduleEvent] = useState<boolean>(false);
-  const [EventsData, setEventsData] = useState<IEvents[]>(Data);
+  const [EventsData, setEventsData] = useState<EventManagement[]>([]);
+  const [ex,setEx]=useState<EventManagement[]>([]);
   const [addItem, setAddItem] = useState<boolean>(false);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   // const [selectedRating, setSelectedRating]=useState<number>(0);
+  useEffect(()=>{
+    getEvents().then((res:IAllEvents[])=>{
+      let array:EventManagement[]=[];
+      console.log(res.length,"bh")
+      res.forEach((item:IAllEvents,index:number)=>{ 
+        getTeamMembersByTeam(item.teamId).then((res)=>{    
+           
+           const captain = res.find((teamMember) => teamMember.role === TeamMemberRole.Captain);
+          if (captain) {
+            getUserById(captain.personId)
+            .then((captainInfo) => {
+              
+              getTeamById(item.teamId).then((teamDetails:IAllTeams) => {
+              
+                const eventManagement: EventManagement = {
+                  data: item,
+                  captain: captainInfo.name, 
+                  teamName: teamDetails.teamName,
+                  status:new Date(item.time)< new Date()?"Completed":"Upcoming"
+                };
+                console.log(eventManagement,"event");
+                array.push(eventManagement)
+                setEventsData(array);
+                console.log(array)
+                
+              }
+             
+            );
+            })
+          }
+         
+        }
+      
+      );
+      }
+    
+    );
+  
+    
+
+  }
+);
+  
+    },[])
+ 
   useEffect(() => {
     setCurrEventData(EventsData);
-
     // getArrayItems(EventsData);
+    console.log(EventsData);
+    
   }, [EventsData]);
-  const updateEvents = (newitem: IEvents, appliDetailsData: any) => {
+
+  const updateEvents = (newitem: EventManagement, appliDetailsData: any) => {
     if (appliDetailsData == undefined) {
       const updatedItems = EventsData;
       setEventsData([...updatedItems, newitem]);
     }
     if (appliDetailsData != undefined) {
       const updateItems = EventsData.map((item) => {
-        if (item.Status === "Pending" && item.TeamName === newitem.TeamName) {
+        if (item.status === "Pending" && item.teamName === newitem.teamName) {
           return {
             ...item,
-            Status: newitem.Status,
-            SubmissionDate: newitem.SubmissionDate,
+            Status: newitem.status,
+            SubmissionDate: newitem.data.time,
           };
         }
 
@@ -72,7 +131,7 @@ const Events = () => {
     }
   };
 
-  const handleAppliDetailsData = (data: IEvents) => {
+  const handleAppliDetailsData = (data: EventManagement) => {
     setAppliDetailsData(data);
     setIsEventManagement(true);
   };
@@ -82,10 +141,10 @@ const Events = () => {
     );
   };
   useEffect(() => {
-    const filtered = currEventData.filter((event: IEvents) => {
+    const filtered = currEventData.filter((event: EventManagement) => {
       // handleClosePopup();
-      if (event.TeamName) {
-        return event.TeamName.toLowerCase().includes(searchQuery.toLowerCase());
+      if (event.teamName) {
+        return event.teamName.toLowerCase().includes(searchQuery.toLowerCase());
       } else {
         return event;
       }
@@ -103,14 +162,14 @@ const Events = () => {
     };
 
     EventsData.forEach((event) => {
-      counts[event.Status as keyof typeof counts]++;
+      counts[event.status as keyof typeof counts]++;
     });
 
     setStatusCounts(counts);
     setTotal(EventsData.length);
     const filtered = [...EventsData].sort((a, b) => {
-      const aValue = a.SubmissionDate instanceof Date ? a.SubmissionDate.getTime() :Infinity;
-      const bValue = b.SubmissionDate instanceof Date ? b.SubmissionDate.getTime() : Infinity;
+      const aValue = a.data.time instanceof Date ? a.data.time.getTime() :Infinity;
+      const bValue = b.data.time instanceof Date ? b.data.time.getTime() : Infinity;
       return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
     });
     console.log(filtered)
@@ -121,8 +180,8 @@ const Events = () => {
     setActiveFilter(status);
     if (status === "All") {
       const filtered = [...EventsData].sort((a, b) => {
-        const aValue = a.SubmissionDate instanceof Date ? a.SubmissionDate.getTime() :Infinity;
-        const bValue = b.SubmissionDate instanceof Date ? b.SubmissionDate.getTime() : Infinity;
+        const aValue = a.data.time  instanceof Date ? a.data.time .getTime() :Infinity;
+        const bValue = b.data.time  instanceof Date ? b.data.time .getTime() : Infinity;
         return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
       });
       setCurrEventData(filtered);
@@ -130,10 +189,10 @@ const Events = () => {
       hackathonContext.setItemOffset(0);
     } else {
       const filtered = [...EventsData].filter(
-        (event) => event.Status === status
+        (event) => event.status === status
       ).sort((a, b) => {
-        const aValue = a.SubmissionDate instanceof Date ? a.SubmissionDate.getTime() :Infinity;
-        const bValue = b.SubmissionDate instanceof Date ? b.SubmissionDate.getTime() : Infinity;
+        const aValue = a.data.time  instanceof Date ? a.data.time .getTime() :Infinity;
+        const bValue = b.data.time  instanceof Date ? b.data.time .getTime() : Infinity;
         return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
       });
       setCurrEventData(filtered);
@@ -162,9 +221,9 @@ const Events = () => {
     console.log(data);
     const updateItems = EventsData.map((item) => {
       if (
-        item.Status === "Completed" &&
-        item.review === false &&
-        item.TeamName === appliDetailsData?.TeamName
+        item.status === "Completed" &&
+        // item.review === false &&
+        item.teamName === appliDetailsData?.teamName
       ) {
         // console.log("hi")
         return { ...item, ProjectSubmissionScore: data, review: true };
@@ -312,7 +371,7 @@ const Events = () => {
                         border: "none",
                       }}
                     />
-                    {event.TeamName}
+                    {event.teamName}
                   </span>
                 </td>
                 <td className="tableRowTitle">
@@ -333,19 +392,19 @@ const Events = () => {
                     {event.captain}
                   </span>
                 </td>
-                <td className="tableRowTitle">{event.topic}</td>
+                <td className="tableRowTitle">{event.data.topic}</td>
                 <td className="tableRowTitle">
-                  {event.SubmissionDate
-                    ? event.SubmissionDate.toLocaleString()
+                  {event.data.time 
+                    ? event.data.time .toLocaleString()
                     : "--"}
                 </td>
 
                 <td className="statusTitle">
-                  <div className={`statusTitleData ${event.Status}`}>
-                    {event.Status}
+                  <div className={`statusTitleData ${event.status}`}>
+                    {event.status}
                   </div>
                 </td>
-                <td className="tableRowTitle">
+                {/* <td className="tableRowTitle">
                   {event.review ? (
                     <img
                       src={Feedback}
@@ -359,7 +418,7 @@ const Events = () => {
                       className="ProjectedSubmittedImg"
                     />
                   )}
-                </td>
+                </td> */}
               </tr>
             ))}
           </table>
@@ -375,7 +434,7 @@ const Events = () => {
             <ApplicationDetails
               isProjectManagement={false}
               isEventManagement={isEventManagement}
-              appliDetailsData={appliDetailsData}
+              // appliDetailsData={appliDetailsData}
               setIsApplicationDetails={setIsEventManagement}
               setIsRating={setIsRating}
               setIsRejectedFeed={setIsRejectedFeed}
@@ -394,7 +453,7 @@ const Events = () => {
           />
         )}
       </div>
-      {isPopupOpen && addItem && (
+      {/* {isPopupOpen && addItem && (
         <EventSchedulePopUp
           onClose={handleClosePopup}
           updateEvents={updateEvents}
@@ -409,7 +468,7 @@ const Events = () => {
           appliDetailsData={appliDetailsData}
           setIsApplicationDetails={setIsEventManagement}
         />
-      )}
+      )} */}
     </>
   );
 };
