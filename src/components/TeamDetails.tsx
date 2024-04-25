@@ -8,7 +8,6 @@ import { getFilteredTeams, getTeamMembersByTeam, getTeams, getUserById } from ".
 import { ITeamMembers, ITeamMems, IUsers } from "../Interfaces";
 import { IAllUsers, ITeamMember } from "../services/Interface/HackathonInterface";
 import { TeamMemberRole } from "../services/enums";
-import { useFetchTeamDetails } from "../services/SubServices";
 const TeamDetails = () => {
   const { teamNameParam } = useParams();
   const location = useLocation(); // Get the current location object

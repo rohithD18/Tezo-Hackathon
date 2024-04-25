@@ -8,8 +8,9 @@ import PaginationSection from "../pagination/PaginationSection";
 import DashboardNav from "./DashboardNav";
 import InputSearch from "../InputSearch";
 import {UserEditPopUp} from "./UserEditPopUp";
-import { getAllTeamMembers, getAllUsers, getTeamById } from "../../services/Services";
+import { UpdateTeamMembers, deleteTeamMember, getAllTeamMembers, getAllUsers, getTeamById, getTeams, getUserByName, updateUser } from "../../services/Services";
 import { IAllTeams, IAllUsers, ITeamMember } from "../../services/Interface/HackathonInterface";
+import { getLoggedInId } from "../../services/FormServices";
 interface teamUser extends IAllUsers{
   email: string;
   isAdmin: boolean;
@@ -21,9 +22,10 @@ const Users = () => {
   const [filteredData, setFilteredData] = useState<{ user: IAllUsers; team?: IAllTeams }[]>([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popUpValue, setPopUpValue] = useState<string>("");
+  const [refreshData, setRefreshData] = useState(false);
   // const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
   const [userData, setUserDetailsData] = useState<IAllUsers>();
-  
+  const [teamName,setTeamName]=useState<string>();
   const handleOpenPopup = (button:string) => {
     setIsPopupOpen(true);
     setPopUpValue(button)
@@ -34,7 +36,94 @@ const Users = () => {
   const handleUserDetailsData = (data: IAllUsers) => {
     setUserDetailsData(data);
   };
- 
+  const handleTeamName = (teamName?:string) => {
+    setTeamName(teamName);
+  };
+  const updateEvents = (teamName:string,name?:string) => {
+    if(teamName==="delete")
+       {
+        name &&
+        getUserByName(name).then((res) => {
+          updateUser(res, "delete").then(() => {
+            Promise.all([
+              getAllTeamMembers(),
+              getLoggedInId()
+            ]).then(([teamMembers, loggedInId]) => {
+             
+              const teamMember = teamMembers.find((item: ITeamMember) => item.personId === res.id);
+              
+              teamMember  && loggedInId && deleteTeamMember(teamMember.id, loggedInId).then(()=>setRefreshData(!refreshData));
+            });
+          });
+        });
+
+       
+        // setCurrUserData()
+        // const updateItems = currUserData.map((item:{ user: IAllUsers; team?: IAllTeams}) => {
+        //   if (item.user.name === name) {
+        //     return {
+        //       ...item,
+        //       user: {
+        //         ...item.user,
+        //         isRegistered: false,
+        //       },
+        //     };
+        //   }
+        //   return item;
+        // });
+        // console.log(updateItems)
+        // setCurrUserData(updateItems);
+
+    } 
+    else{
+    // if (UsersData != undefined) {
+   
+    // Assume you have a function to retrieve the logged-in user's ID called getLoggedInUserId()
+
+    name && getUserByName(name)
+    .then((res) => {
+      return getAllTeamMembers()
+        .then((items) => {
+          const filteredItems = items.filter((item) => item.personId === res.id);
+          if (filteredItems.length > 0) {
+            return getTeams()
+              .then((teams) => {
+                const team = teams.filter((teamItem) => teamItem.teamName === teamName);
+                if (team.length > 0) {
+                  filteredItems[0].teamId = team[0].id;
+                }
+                return filteredItems;
+              });
+          }
+          return [];
+        });
+    })
+    .then((filteredItems) => {
+      return getLoggedInId()
+        .then((loggedInUserId) => {
+          return { filteredItems, loggedInUserId };
+        });
+    })
+    .then(({ filteredItems, loggedInUserId }) => {
+      return loggedInUserId && UpdateTeamMembers(filteredItems, loggedInUserId).then(()=>{setRefreshData(!refreshData)});
+    })
+
+
+     
+      // const updateItems = currUserData.map((item:any) => {
+      //   if (item.Name === userData?.name) {
+      //     return {
+      //       ...item,
+      //     TeamName: teamName,
+      //     };
+      //   }
+      //   return item;
+      // });
+      // console.log(updateItems)
+      // setCurrUserData(updateItems);
+    }
+    
+  };
   useEffect(() => {
 
     Promise.all([getAllUsers(), getAllTeamMembers()]).then(([userData, teamData]) => {
@@ -53,14 +142,15 @@ const Users = () => {
             }
           })
       ).then((combinedData) => {
+        console.log(combinedData)
         // Filter out null values (teams not found)
         setCurrUserData(combinedData);
         
       });
     });
     
-    
-  }, []);
+    console.log("inside")
+  }, [refreshData]);
   useEffect(() => {
     const filtered = searchQuery 
     ? currUserData.filter((user) =>
@@ -79,40 +169,7 @@ const Users = () => {
       return `${day}, ${month}`;
     }
   };
-  const updateEvents = (teamName:string) => {
-    if(teamName==="delete")
-       {
-        const updateItems = currUserData.map((item:any) => {
-          if (item.Name === userData?.name) {
-            return {
-              ...item,
-            RegisteredOn: "",
-            TeamName:"--",
-        IsRegistered:false,
-            };
-          }
-          return item;
-        });
-        console.log(updateItems)
-        setCurrUserData(updateItems);
-
-    } 
-    else{
-    // if (UsersData != undefined) {
-     const updateItems = currUserData.map((item:any) => {
-        if (item.Name === userData?.name) {
-          return {
-            ...item,
-          TeamName: teamName,
-          };
-        }
-        return item;
-      });
-      console.log(updateItems)
-      setCurrUserData(updateItems);
-    }
-    
-  };
+  
 
   return (
     <>
@@ -135,10 +192,13 @@ const Users = () => {
             </thead>
 
             {displayOnUser.map((user, index) => (
+              user.user.isRegistered!==false &&
               <tr
                 className="tableRowDataUser"
                 key={index}
-                onClick={() => handleUserDetailsData(user.user)}
+                onClick={() => {handleUserDetailsData(user.user);
+                  handleTeamName(user.team?.teamName)
+                } }
                 >
                 
                   <td className="rowTitle">
@@ -165,7 +225,7 @@ const Users = () => {
                   </td>
                
                   <td className="rowTitle">
-                    {user.user.isRegistered? (user.team?.registeredDate && formatDate(user.team?.registeredDate)):"--"}
+                    {(user.team?.registeredDate && formatDate(user.team?.registeredDate))}
                   </td>
                   <td className="rowTitle">
                    
@@ -189,7 +249,7 @@ const Users = () => {
       
         </div>
       </div>
-      {isPopupOpen && <UserEditPopUp    onClose={handleClosePopup} userData={userData} updateEvents={updateEvents} popUpValue={popUpValue}/>}
+      {isPopupOpen && <UserEditPopUp    onClose={handleClosePopup} userData={userData} updateEvents={updateEvents} popUpValue={popUpValue} teamName={teamName}/>}
       {/* {isDeletePopupOpen && <UserEditPopUp    onClose={handleClosePopup}  updateEvents={updateEvents}/>} */}
       </div>
     </>

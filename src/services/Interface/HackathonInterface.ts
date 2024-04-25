@@ -5,7 +5,7 @@ export interface IAllUsers {
   employeeId: string;
   department: number;
   profilePicture: string;
-  role: string;
+  role: number;
   isRegistered: boolean;
   registeredDate: Date;
 }

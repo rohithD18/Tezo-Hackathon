@@ -20,7 +20,7 @@ const HomePage: React.FC = () => {
     formattedDate.getDate() < 10 ? "0" : ""
   }${formattedDate.getDate()}`;
   const { usersData } = useFecthApis();
-  const isRegister: boolean = usersData.filter(
+  const isRegister: boolean = usersData?.filter(
     (item) =>
       item.email ===
       localStorage.getItem("username")?.toString().toLocaleLowerCase()

@@ -5,17 +5,22 @@ import xclose from "../../assets/xclose.png";
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, TextField, Box, Input } from "@mui/material";
 import { teamNames } from "../../services/TeamNames";
 import { IUsers } from '../../Interfaces';
-import { IAllUsers } from '../../services/Interface/HackathonInterface';
+import { IAllTeams, IAllUsers } from '../../services/Interface/HackathonInterface';
+import { useFecthApis } from "../../services/CustomHooks";
+
 interface PopupProps {
     onClose: () => void;
     userData?:IAllUsers;
-    updateEvents?:(userData:string) => void;
-    popUpValue:string
+    updateEvents?:(userData:string,name?:string) => void;
+    popUpValue:string;
+    teamName?:string
   }
-export const UserEditPopUp: React.FC<PopupProps>=({onClose,userData,updateEvents,popUpValue}:PopupProps)=>{
+export const UserEditPopUp: React.FC<PopupProps>=({onClose,userData,updateEvents,popUpValue,teamName}:PopupProps)=>{
   // console.log(userData)
-    const [selectedOption, setSelectedOption] = useState<string|undefined>("Mumbai Indians");
-     
+    const [selectedOption, setSelectedOption] = useState<string|undefined>(teamName);
+    
+    // const [allTeams[]]=useFecthApis("allTeams")
+    const { allTeams } = useFecthApis();
     const handleSelectChange = (event:  SelectChangeEvent<string>) => {
         const option = event.target.value;
         setSelectedOption(option);
@@ -26,13 +31,14 @@ export const UserEditPopUp: React.FC<PopupProps>=({onClose,userData,updateEvents
             alert('Please select team name');
             return;
           }
-        updateEvents?.(selectedOption)}
+        updateEvents?.(selectedOption,userData?.name)}
         else{
-          updateEvents?.("delete")
+          updateEvents?.("delete",userData?.name)
         }
         
         onClose();
       }
+
   return (
      <div>
       <div className="userPopUp">
@@ -66,9 +72,9 @@ export const UserEditPopUp: React.FC<PopupProps>=({onClose,userData,updateEvents
         value={selectedOption} 
         onChange={handleSelectChange} 
       >
-      {(teamNames.map((team:string,id:number) => (
-            <MenuItem key={id} value={team} >
-              {team}
+      {(allTeams.map((team:IAllTeams,id:number) => (
+            <MenuItem key={id} value={team.teamName} >
+              {team.teamName}
             </MenuItem>
           )))}
       </Select>
