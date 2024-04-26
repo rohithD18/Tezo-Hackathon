@@ -8,6 +8,7 @@ import { IApplications } from "../../services/Data";
 import { IEvents, IProject } from "../../Interfaces";
 import { Projects } from "../../services/ProjectManagementEvents";
 import { log } from "console";
+import { EventManagement } from "../../services/Interface/HackathonInterface";
 type Props = {
   setIsApplicationDetails: (message: boolean) => void;
   appliDetailsData?: IApplications | IProject | IEvents;
@@ -18,6 +19,7 @@ type Props = {
   setScheduleEvent?: (message: boolean) => void;
   // selectedRatingValue?:number
 };
+
 
 const ApplicationDetails: React.FC<Props> = (props: Props) => {
   const {
@@ -31,7 +33,14 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     // selectedRatingValue
   } = props;
 
-  
+  function isIsEventManagement(data: any): data is EventManagement {
+    return (
+      typeof data === 'object' &&
+      'captain' in data &&
+      'teamName' in data &&
+      'status' in data
+    );
+  }
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       const modal1 = document.querySelector(".ApplicationScreen");
@@ -56,7 +65,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
   useEffect(() => {
     if (isProjectManagement || isEventManagement) {
       const filteredProject = Projects.filter((event: IProject) => {
-        if (event.TeamName === appliDetailsData?.TeamName) {
+        if (event.TeamName === (appliDetailsData as IEvents )?.TeamName) {
           console.log("inside");
           return event;
         }
@@ -69,15 +78,16 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
   const [filteredEvent, setFilteredEvent] = useState<IProject[] | null>(null);
 
 
-  const formattedDate = useMemo(() => {
-    if (appliDetailsData?.SubmissionDate) {
-      const dateObject = new Date(appliDetailsData?.SubmissionDate);
-      return `${dateObject?.getDate()} ${dateObject?.toLocaleString("default", {
-        month: "short",
-      })} ${dateObject?.getFullYear()}`;
-    }
-    return "";
-  }, [appliDetailsData?.SubmissionDate]);
+  // const formattedDate = useMemo(() => {
+  //   let g= isIsEventManagement(appliDetailsData)  ? appliDetailsData?.review:((appliDetailsData as IProject?appliDetailsData?.review:undefined))
+  //   if ((appliDetailsData as EventManagement) ? (appliDetailsData as EventManagement)?.da:((appliDetailsData as IProject?appliDetailsData?.review:undefined))) {
+  //     const dateObject = new Date(appliDetailsData?.SubmissionDate);
+  //     return `${dateObject?.getDate()} ${dateObject?.toLocaleString("default", {
+  //       month: "short",
+  //     })} ${dateObject?.getFullYear()}`;
+  //   }
+  //   return "";
+  // }, [appliDetailsData?.SubmissionDate]);
 
 
 
@@ -130,9 +140,9 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
         />
       </div>
       <div className="detailsContainer">
-        {isEventManagement && (
+        {/* {(isEventManagement && appliDetailsData as EventManagement) && (
           <>
-            {appliDetailsData?.Status === "Pending" && (
+            {appliDetailsData?.status === "Pending" && (
               <div className="tableHeaderContainer">
                 <h5>Overview</h5>
                 <div onClick={handleScheduleEvent}>
@@ -161,7 +171,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
               </tbody>
             </table>
           </>
-        )}
+        )} */}
         <table className="tablefirst">
           <p className="tableHeader">Team Details</p>
           <tbody className="tablefirstBody">
@@ -203,7 +213,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
               <>
                 <tr>
                   <td style={{ color: "#B4B4B4" }}>Date</td>
-                  <td>{formattedDate}</td>
+                  {/* <td>{formattedDate}</td> */}
                 </tr>
                 <tr>
                   <td style={{ color: "#B4B4B4" }}>Time</td>
@@ -276,7 +286,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
             </button>
           </div>
         ) : (
-          isEventManagement &&
+          isEventManagement && 
           appliDetailsData?.review === true &&
           appliDetailsData?.Status === "Completed" && (
             <p className="descriptionHeading">

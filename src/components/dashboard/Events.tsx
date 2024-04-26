@@ -13,15 +13,18 @@ import { EventsData as Data } from "../../services/EventData";
 import ApplicationDetails from "./ApplicationDetails";
 import ViewBlur from "./ViewBlur";
 import HackathonContext from "../../services/Context/HackathonContext";
-import { IAllEvents, IAllTeams, ITeamMember } from "../../services/Interface/HackathonInterface";
-import { getAllUsers, getEvents, getTeamById, getTeamMembersByTeam, getUserById } from "../../services/Services";
+import { EventManagement, IAllEvents, IAllTeams, ITeamMember } from "../../services/Interface/HackathonInterface";
+import { addEvents, getAllUsers, getEvents, getPointOfATeam, getTeamById, getTeamMembersByTeam, getUserById } from "../../services/Services";
 import { TeamMemberRole } from "../../services/enums";
 import { getTodayDate } from "@mui/x-date-pickers/internals";
 import dayjs from "dayjs";
+import { getLoggedInId } from "../../services/FormServices";
+
 
 const Events = () => {
   const hackathonContext = useContext(HackathonContext);
   const [currEventData, setCurrEventData] = useState<EventManagement[]>([]);
+  const [refreshData, setRefreshData] = useState(false);
   const [statusCounts, setStatusCounts] = useState<{
     Completed: number;
     Upcoming: number;
@@ -31,12 +34,7 @@ const Events = () => {
     Upcoming: 0,
     Pending: 0,
   });
-  interface EventManagement {
-    data: IAllEvents;
-    captain:string ;
-    teamName:string;
-    status:string
-  }
+  
   const [displayOnEvent, setDisplayOnEvent] = useState<EventManagement[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState<EventManagement[]>([]);
@@ -59,49 +57,41 @@ const Events = () => {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   // const [selectedRating, setSelectedRating]=useState<number>(0);
   useEffect(()=>{
-    getEvents().then((res:IAllEvents[])=>{
-      let array:EventManagement[]=[];
-      console.log(res.length,"bh")
-      res.forEach((item:IAllEvents,index:number)=>{ 
-        getTeamMembersByTeam(item.teamId).then((res)=>{    
-           
-           const captain = res.find((teamMember) => teamMember.role === TeamMemberRole.Captain);
+    getEvents().then((res: IAllEvents[]) => {
+      let array: EventManagement[] = [];
+      let promises = res.map((item: IAllEvents, index: number) => {
+        return getTeamMembersByTeam(item.teamId).then((teamMembers) => {
+          const captain = teamMembers.find((teamMember) => teamMember.role === TeamMemberRole.Captain);
           if (captain) {
-            getUserById(captain.personId)
-            .then((captainInfo) => {
-              
-              getTeamById(item.teamId).then((teamDetails:IAllTeams) => {
-              
+            return getUserById(captain.personId).then((captainInfo) => {
+              return getTeamById(item.teamId).then((teamDetails: IAllTeams) => {
+                return getPointOfATeam(item.teamId).then((res) => {
                 const eventManagement: EventManagement = {
                   data: item,
-                  captain: captainInfo.name, 
+                  captain: captainInfo.name,
                   teamName: teamDetails.teamName,
-                  status:new Date(item.time)< new Date()?"Completed":"Upcoming"
+                  status: new Date(item.time) < new Date() ? "Completed" : "Upcoming",
+                  review:res.projectDemoScore?true:false
                 };
-                console.log(eventManagement,"event");
-                array.push(eventManagement)
-                setEventsData(array);
-                console.log(array)
-                
-              }
-             
-            );
-            })
+                console.log(eventManagement, "event");
+                array.push(eventManagement);
+              });
+            });
+            });
           }
-         
-        }
-      
-      );
-      }
+        });
+      },[]);
     
-    );
-  
+      // Wait for all promises to resolve
+      Promise.all(promises).then(() => {
+        // After all promises are resolved, update the state with the array
+        setEventsData(array);
+        console.log(array);
+      });
+    });
     
-
-  }
-);
   
-    },[])
+    },[refreshData])
  
   useEffect(() => {
     setCurrEventData(EventsData);
@@ -110,25 +100,39 @@ const Events = () => {
     
   }, [EventsData]);
 
-  const updateEvents = (newitem: EventManagement, appliDetailsData: any) => {
-    if (appliDetailsData == undefined) {
-      const updatedItems = EventsData;
-      setEventsData([...updatedItems, newitem]);
+  const updateEvents = (date:Date,selectedOption:string) => {
+    const data={
+      "teamId": parseInt(selectedOption),
+      "topic": "sample",
+      "time":  date
     }
-    if (appliDetailsData != undefined) {
-      const updateItems = EventsData.map((item) => {
-        if (item.status === "Pending" && item.teamName === newitem.teamName) {
-          return {
-            ...item,
-            Status: newitem.status,
-            SubmissionDate: newitem.data.time,
-          };
-        }
+    console.log("njhb")
+    // if (appliDetailsData == undefined) {
 
-        return item;
-      });
-      setEventsData(updateItems);
-    }
+    getLoggedInId()
+    .then((loggedInUserId) => {
+      loggedInUserId && addEvents(data,loggedInUserId).then(()=>{
+        setRefreshData(!refreshData)
+        
+      })
+    })
+      // const updatedItems = EventsData;
+      // setEventsData([...updatedItems, newitem]);
+    // }
+    // if (appliDetailsData != undefined) {
+    //   const updateItems = EventsData.map((item) => {
+    //     if (item.status === "Pending" && item.teamName === newitem.teamName) {
+    //       return {
+    //         ...item,
+    //         Status: newitem.status,
+    //         SubmissionDate: newitem.data.time,
+    //       };
+    //     }
+
+    //     return item;
+    //   });
+    //   setEventsData(updateItems);
+    // }
   };
 
   const handleAppliDetailsData = (data: EventManagement) => {
@@ -222,7 +226,7 @@ const Events = () => {
     const updateItems = EventsData.map((item) => {
       if (
         item.status === "Completed" &&
-        // item.review === false &&
+        item.review === false &&
         item.teamName === appliDetailsData?.teamName
       ) {
         // console.log("hi")
@@ -404,7 +408,7 @@ const Events = () => {
                     {event.status}
                   </div>
                 </td>
-                {/* <td className="tableRowTitle">
+                <td className="tableRowTitle">
                   {event.review ? (
                     <img
                       src={Feedback}
@@ -418,7 +422,7 @@ const Events = () => {
                       className="ProjectedSubmittedImg"
                     />
                   )}
-                </td> */}
+                </td>
               </tr>
             ))}
           </table>
@@ -453,11 +457,11 @@ const Events = () => {
           />
         )}
       </div>
-      {/* {isPopupOpen && addItem && (
+      {isPopupOpen && addItem && (
         <EventSchedulePopUp
           onClose={handleClosePopup}
           updateEvents={updateEvents}
-          DataOfEvents={EventsData}
+          DataOfEvents={EventsData && EventsData}
         />
       )}
       {isPopupOpen && scheduleEvent && (
@@ -468,7 +472,7 @@ const Events = () => {
           appliDetailsData={appliDetailsData}
           setIsApplicationDetails={setIsEventManagement}
         />
-      )} */}
+      )}
     </>
   );
 };

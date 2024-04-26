@@ -11,15 +11,17 @@ import { DesktopDatePicker, DesktopTimePicker, TimePicker } from "@mui/x-date-pi
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, TextField, Box } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 import { IEvents, ITeams } from "../../Interfaces";
-import { addNewEvent, combineDateAndTime } from "../../services/Services";
+import {  combineDateAndTime } from "../../services/Services";
 import { teamNames } from "../../services/TeamNames";
+import { EventManagement, IAllEvents, IAllTeams } from "../../services/Interface/HackathonInterface";
+import { useFecthApis } from "../../services/CustomHooks";
 
- 
+
 interface PopupProps {
     onClose: () => void;
-    DataOfEvents?:IEvents[];
-  updateEvents?:(item: IEvents,appliDetailsData:any) => void;
-  appliDetailsData?:IEvents;
+    DataOfEvents?:EventManagement[];
+  updateEvents?:(date:any,selectedOption:string) => void;
+  appliDetailsData?:EventManagement;
   setIsApplicationDetails?:(message:boolean)=>void;
 
   
@@ -27,12 +29,12 @@ interface PopupProps {
   }
 const EventSchedulePopUp =({onClose,updateEvents,DataOfEvents,appliDetailsData,setIsApplicationDetails }:PopupProps)=>{
     const [selectedDate, setSelectedDate] = useState<Date|null>();
-    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedOption, setSelectedOption] = useState<string>("");
     const [filteredTeams,setFilteredTeams]=useState<string[]>([]);
-    
+    const {allTeams} =useFecthApis()
     const handleSelectChange = (event:  SelectChangeEvent<string>) => {
       const option = event.target.value;
-      setSelectedOption(option);
+      option && setSelectedOption(option);
     };
     const [selectedTime, setSelectedTime] = useState<Dayjs | null | undefined> (null);
 
@@ -73,9 +75,9 @@ const EventSchedulePopUp =({onClose,updateEvents,DataOfEvents,appliDetailsData,s
       setSelectedTime(dayjsTime);
      }
     
-     
-       const item=addNewEvent({formattedDate,formattedTime,selectedOption});
-       updateEvents?.(item,appliDetailsData)
+      
+       
+        updateEvents?.(combineDateAndTime(new Date(formattedDate),formattedTime),selectedOption)
        
       onClose();
       setIsApplicationDetails && setIsApplicationDetails(false)
@@ -88,8 +90,8 @@ const EventSchedulePopUp =({onClose,updateEvents,DataOfEvents,appliDetailsData,s
 
 
 const eventTeamNames = DataOfEvents && DataOfEvents
-  .filter(event => event.Status !== 'Pending') // Filter events with status 'Pending'
-  .map(event => event.TeamName); // Extract TeamName values
+  .filter(event => event.status !== 'Pending') // Filter events with status 'Pending'
+  .map(event => event.teamName); // Extract TeamName values
   
   setFilteredTeams(teamNames.filter(name => 
     eventTeamNames && !eventTeamNames.includes(name)
@@ -100,7 +102,7 @@ const eventTeamNames = DataOfEvents && DataOfEvents
 else{
   
   const eventTeamNames = DataOfEvents && DataOfEvents// Filter events with status 'pending'
-  .map(event => event.TeamName); // Extract team names
+  .map(event => event.teamName); // Extract team names
 
 setFilteredTeams(teamNames.filter(name => 
   eventTeamNames && !eventTeamNames.includes(name)
@@ -112,9 +114,9 @@ setFilteredTeams(teamNames.filter(name =>
 }
 
     }, [DataOfEvents,appliDetailsData]);
-    useEffect(()=>{
-       appliDetailsData && setSelectedOption(appliDetailsData.TeamName)
-    },[])
+    // useEffect(()=>{
+    //    appliDetailsData && setSelectedOption(appliDetailsData.teamName)
+    // },[])
     
     return(
         <div className="popup">
@@ -137,9 +139,9 @@ setFilteredTeams(teamNames.filter(name =>
         onChange={handleSelectChange} 
         disabled={appliDetailsData&&( appliDetailsData ? true : false)}
       >
-      {(filteredTeams.map((team:string,id:number) => (
-            <MenuItem key={id} value={team} >
-              {team}
+      {(allTeams.map((team:IAllTeams,id:number) => (
+            <MenuItem key={id} value={team.id} >
+              {team.teamName}
             </MenuItem>
           )))}
       </Select>
