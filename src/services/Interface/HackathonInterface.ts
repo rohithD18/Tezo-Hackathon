@@ -41,7 +41,21 @@ export interface ITeamMember {
   isAdmin: boolean;
   userData?:IAllUsers
 }
-
+export interface EventManagement {
+  data: IAllEvents;
+  captain:string ;
+  teamName:string;
+  status:string;
+  review:boolean
+}
+export interface IProjectManagement {
+  data: IAllProject;
+  review:boolean,
+  teamName:string,
+  captain?:string,
+  isSubmitted?:boolean,
+  status?:number
+}
 export interface IPointsTable {
   id: number;
   teamId: number;

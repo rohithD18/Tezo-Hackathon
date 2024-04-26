@@ -5,7 +5,7 @@ import profile from "../../assets/profile.png";
 import clipboard_tick from "../../assets/clipboard_tick.png";
 import category from "../../assets/category2.png";
 
-import { ApplicationData, IApplications } from "../../services/Data";
+// import { ApplicationData, IApplications } from "../../services/Data";
 
 import PaginationSection from "../pagination/PaginationSection";
 import ApplicationDetails from "./ApplicationDetails";
@@ -14,6 +14,9 @@ import ViewBlur from "./ViewBlur";
 import ApplicationTable from "./ApplicationTable";
 import DisplayCard from "./DisplayCard";
 import HackathonContext from "../../services/Context/HackathonContext";
+import { getPointOfATeam, getProjects, getTeamById, getTeamMembersByTeam, getUserById } from "../../services/Services";
+import { IAllProject, IAllTeams, IPointsTable, IProjectManagement } from "../../services/Interface/HackathonInterface";
+import { ProjectStatus, TeamMemberRole } from "../../services/enums";
 
 const Application: React.FC = () => {
   const hackathonContext = useContext(HackathonContext);
@@ -21,8 +24,7 @@ const Application: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [isApplicationDetails, setIsApplicationDetails] =
     useState<boolean>(false);
-  const [appliDetailsData, setAppliDetailsData] = useState<IApplications>(
-    ApplicationData[0]
+  const [appliDetailsData, setAppliDetailsData] = useState<IProjectManagement>(
   );
   const [total, setTotal] = useState(0);
   const [isRating, setIsRating] = useState<boolean>(false);
@@ -40,15 +42,55 @@ const Application: React.FC = () => {
     Pending: 0,
   });
   const [currApplicationData, setCurrApplicationData] = useState<
-    IApplications[]
+    IProjectManagement[]
   >([]);
   const [displayOnApplication, setDisplayOnApplication] = useState<
-    IApplications[]
+    IProjectManagement[]
   >([]);
+  const [applicationData, setApplicationData] = useState<
+  IProjectManagement[]
+>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [filteredData, setFilteredData] = useState<IApplications[]>([]);
+  const [filteredData, setFilteredData] = useState<IProjectManagement[]>([]);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-
+  useEffect(()=>{
+    getProjects().then((res: IAllProject[]) => {
+      let array: IProjectManagement[] = [];
+      let promises = res.map((item: IAllProject, index: number) => {
+        return getTeamMembersByTeam(item.teamId).then((teamMembers) => {
+          const captain = teamMembers.find((teamMember) => teamMember.role === TeamMemberRole.Captain);
+          if (captain) {
+            return getUserById(captain.personId).then((captainInfo) => {
+              return getTeamById(item.teamId).then((teamDetails: IAllTeams) => {
+                return getPointOfATeam(item.teamId).then((res:IPointsTable) => {
+                const projectManagement: IProjectManagement = {
+                  data: item,
+                  captain: captainInfo.name,
+                  teamName: teamDetails.teamName,
+                  status:item.projectStatus, 
+                  isSubmitted:item.submittedDate?true:false,
+                  review:res.registrationScore<1?false:true
+                };
+                console.log(projectManagement, "event");
+                array.push(projectManagement);
+              });
+            });
+            });
+          }
+        });
+      },[]);
+    
+      // Wait for all promises to resolve
+      Promise.all(promises).then(() => {
+        // After all promises are resolved, update the state with the array
+        setApplicationData(array);
+        console.log(array);
+      });
+    });
+  },[])
+ useEffect(()=>{
+setFilteredData(applicationData);
+ },[applicationData])
   useEffect(() => {
     const counts = {
       Accepted: 0,
@@ -57,24 +99,24 @@ const Application: React.FC = () => {
       Pending: 0,
     };
 
-    ApplicationData.forEach((application) => {
-      counts[application.Status as keyof typeof counts]++;
-    });
+    // applicationData.forEach((application) => {
+    //   counts[application.status as keyof typeof counts]++;
+    // });
 
     setStatusCounts(counts);
-    setTotal(ApplicationData.length);
+    setTotal(applicationData.length);
     setCurrApplicationData(
-      ApplicationData.sort((a, b) => {
-        const dateA = new Date(a.SubmissionDate).getTime();
-        const dateB = new Date(b.SubmissionDate).getTime();
+      applicationData.sort((a, b) => {
+        const dateA = new Date(a.data.projectRegisteredDate).getTime();
+        const dateB = new Date(b.data.projectRegisteredDate).getTime();
         return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
       })
     );
   }, [sortOrder]);
 
   useEffect(() => {
-    const filtered = currApplicationData.filter((application: IApplications) =>
-      application.TeamName.toLowerCase().includes(searchQuery.toLowerCase())
+    const filtered = currApplicationData.filter((application: IProjectManagement) =>
+      application.teamName.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredData(filtered);
   }, [currApplicationData, searchQuery]);
@@ -89,13 +131,14 @@ const Application: React.FC = () => {
 
   //filtering data
   const handleFilterClick = (status: string) => {
+
     setActiveFilter(status);
     if (status === "All") {
-      const filtered = ApplicationData.filter((application) =>
-        application.TeamName.toLowerCase().includes(searchQuery.toLowerCase())
+      const filtered = applicationData.filter((application) =>
+        application.teamName.toLowerCase().includes(searchQuery.toLowerCase())
       ).sort((a, b) => {
-        const dateA = new Date(a.SubmissionDate).getTime();
-        const dateB = new Date(b.SubmissionDate).getTime();
+        const dateA = new Date(a.data.projectRegisteredDate).getTime();
+        const dateB = new Date(b.data.projectRegisteredDate).getTime();
         return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
       });
       setCurrApplicationData(filtered);
@@ -103,11 +146,11 @@ const Application: React.FC = () => {
       hackathonContext.setItemOffset(0);
       // console.log(hackathonContext.activePage);
     } else {
-      const filtered = ApplicationData.filter(
-        (application) => application.Status === status
+      const filtered = applicationData.filter(
+        (application) => application.status ===3
       ).sort((a, b) => {
-        const dateA = new Date(a.SubmissionDate).getTime();
-        const dateB = new Date(b.SubmissionDate).getTime();
+        const dateA = new Date(a.data.projectRegisteredDate).getTime();
+        const dateB = new Date(b.data.projectRegisteredDate).getTime();
         return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
       });
       setCurrApplicationData(filtered);
@@ -127,7 +170,7 @@ const Application: React.FC = () => {
       count: statusCounts.Rework,
     },
   ];
-  const handleAppliDetailsData = (data: IApplications) => {
+  const handleAppliDetailsData = (data: IProjectManagement) => {
     setIsApplicationDetails(true);
     setAppliDetailsData(data);
   };
@@ -197,7 +240,7 @@ const Application: React.FC = () => {
             />
           </div>
         </div>
-        {isApplicationDetails && (
+        {/* {isApplicationDetails && (
           <ApplicationDetails
             isProjectManagement={false}
             setIsApplicationDetails={setIsApplicationDetails}
@@ -205,7 +248,7 @@ const Application: React.FC = () => {
             setIsRating={setIsRating}
             setIsRejectedFeed={setIsRejectedFeed}
           />
-        )}
+        )} */}
         <div className="PaginationContainer">
           <PaginationSection
             setCurrentItem={setDisplayOnApplication}

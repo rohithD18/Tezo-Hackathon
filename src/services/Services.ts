@@ -46,8 +46,8 @@ export const getFilteredTeams = (name: string): Promise<IAllTeams[]> => {
 };
 export const getFilteredMembers = (name: string): Promise<IAllUsers[]> => {
   const filtered = getAllUsers().then((res) => {
-    return res
-      .filter((item) => item.name.toLowerCase().includes(name.toLowerCase()))
+    return res.filter((item)=>item.isRegistered)
+      .filter((item) => item.name.toLowerCase().includes(name.toLowerCase() ))
       .slice(0, 6);
   });
   // console.log(filtered, membersArray);
@@ -75,13 +75,11 @@ export const combineDateAndTime = (date: Date, time: string): Date => {
   combinedDate.setHours(hours, minutes);
   return combinedDate;
 };
-export const addNewEvent = (newEvent: any) => {
+// export const addNewEvent = (form) => {
   // let status = "";
   // let captain = "";
 
-  const team = EventsData.find(
-    (team) => team.TeamName === newEvent.selectedOption
-  );
+  
   // const today = new Date();
   // const dateObj = new Date(newEvent.formattedDate);
   // dateObj.setHours(0, 0, 0, 0);
@@ -102,22 +100,18 @@ export const addNewEvent = (newEvent: any) => {
   //   status: status,
   //   review: false
   // },);
-  console.log(
-    combineDateAndTime(newEvent.formattedDate, newEvent.formattedTime)
-  );
-  return {
-    id: EventsData.length + 1,
-    TeamName: newEvent.selectedOption,
-    captain: team?.captain ? team.captain : "Captain H",
-    topic: "Topic X - Exploring the depths of Artificial Intelligence",
-    SubmissionDate: combineDateAndTime(
-      newEvent.formattedDate,
-      newEvent.formattedTime
-    ),
-    Status: "Upcoming",
-    review: false,
-  };
-};
+//   console.log(
+//     combineDateAndTime(newEvent.formattedDate, newEvent.formattedTime)
+//   );
+//   return {
+  
+//     SubmissionDate: combineDateAndTime(
+//       newEvent.formattedDate,
+//       newEvent.formattedTime
+//     )
+    
+//   };
+// };
 
 export const getTeams = async (): Promise<IAllTeams[]> => {
   return await axios
@@ -515,9 +509,9 @@ export const addTechnologies = (data: ITechnology) => {
       console.log(`Error : ${error}`);
     });
 };
-export const addEvents = (data: any) => {
-  axios
-    .post(`${BASE_URL}/Events/addEvent/loggedInId/{loggedInId}`, data)
+export const addEvents =  async (data: any,loggedInId:number) => {
+ await  axios
+    .post(`${BASE_URL}/Events/addEvent/loggedInId/${loggedInId}`, data)
     .then((response) => {
       console.log(response);
     })

@@ -65,13 +65,13 @@ export const getLoggedInId = () => {
   return loggedInId;
 };
 export const getMyTeamId = (id: number) => {
-  console.log(id,"jh")
+  console.log(id, "jh");
   const myTeamId = getAllTeamMembers()
     .then((res) => {
       return res.filter((item) => item.personId === id)[0]?.teamId;
     })
     .catch((err) => console.log(err));
-    return myTeamId
+  return myTeamId;
 };
 
 export const registerTeam = async (Form: IRegister) => {
@@ -84,35 +84,74 @@ export const registerTeam = async (Form: IRegister) => {
   // .catch((error) => console.error("err", error));
 };
 
-export const useFetchTeamDetails = (
-  
-) => {
+export const useFetchTeamDetails = () => {
   const [teamNameFetch, setTeamName] = useState<string>();
-  const [teamMembersFetch, setTeamMembers] = useState<ITeamMember[] >();
-  useEffect(() =>{
-    getLoggedInId().then((res) => { if(res){
-      getMyTeamId(res).then((res) => {
-        if(res){
-        getTeamMembersByTeam(res).then((teamData) => {
-          const getUserPromises = teamData.map((item: ITeamMember) =>
-            getUserById(item.personId).then((userData: IAllUsers) => ({
-              ...item,
-              userData: userData 
-            }))
-          ); 
-          Promise.all(getUserPromises).then((updatedTeamMembers) => {
-           setTeamMembers(updatedTeamMembers)
-          });
-        });
-        getTeamById(res).then((teamData) => {
-          setTeamName(teamData.teamName);  
+  const [teamMembersFetch, setTeamMembers] = useState<ITeamMember[]>();
+  useEffect(() => {
+    getLoggedInId().then((res) => {
+      if (res) {
+        getMyTeamId(res).then((res) => {
+          if (res) {
+            getTeamMembersByTeam(res).then((teamData) => {
+              const getUserPromises = teamData.map((item: ITeamMember) =>
+                getUserById(item.personId).then((userData: IAllUsers) => ({
+                  ...item,
+                  userData: userData,
+                }))
+              );
+              Promise.all(getUserPromises).then((updatedTeamMembers) => {
+                setTeamMembers(updatedTeamMembers);
+              });
+            });
+            getTeamById(res).then((teamData) => {
+              setTeamName(teamData.teamName);
+            });
+          }
         });
       }
     });
-    }
-    });
-  },[])
+  }, []);
 
+  return { teamNameFetch, teamMembersFetch };
+};
 
-  return {teamNameFetch,teamMembersFetch}
+const blobSasUrl =
+  "https://tezohackathonblob.blob.core.windows.net/?sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2024-06-01T02:37:44Z&st=2024-04-25T18:37:44Z&spr=https&sig=t3OOJvN5hkeUncwcLUclzDydJTBVQHZcVaDKCm3fXEA%3D";
+
+const blobServiceClient = new BlobServiceClient(blobSasUrl);
+
+const containerName = "hackathoncontainer";
+const blobAccountName = "tezohackathonblob";
+
+const containerClient = blobServiceClient.getContainerClient(containerName);
+export const uploadFileToBlob = async (file: File) => {
+  const promises = [];
+  const options = { blobHTTPHeaders: { blobContentType: file?.type } };
+  const blockBlobClient = containerClient.getBlockBlobClient(file?.name);
+  promises.push(blockBlobClient.uploadData(file, options));
+  await Promise.all(promises);
+  // console.log(promises);
+  return blockBlobClient.url;
+};
+
+export const uploadFileSToBlob = async (files: File[]) => {
+  const promises = [];
+  let documentUrls: string[] = [];
+  for (const file of files) {
+    const options = { blobHTTPHeaders: { blobContentType: file.type } };
+    const blockBlobClient = containerClient.getBlockBlobClient(file.name);
+    promises.push(blockBlobClient.uploadData(file, options));
+    documentUrls.push(blockBlobClient.url);
+  }
+  await Promise.all(promises);
+  // console.log(documentUrls);
+
+  return documentUrls;
+};
+export const deleteFileFromBlob = async (file: File) => {
+  try {
+    await containerClient.deleteBlob(file.name);
+  } catch (err) {
+    console.error(err);
+  }
 };

@@ -4,9 +4,10 @@ import Feedback from "../../assets/Feedback.png";
 import Feedback1 from "../../assets/Feedback1.png";
 import profilepic from "../../assets/profilepic.jpg";
 import { IApplications } from "../../services/Data";
+import { IProjectManagement } from "../../services/Interface/HackathonInterface";
 
 type Props = {
-  displayOnApplication: IApplications[];
+  displayOnApplication: IProjectManagement[];
   handleApplicationDetailsData: (data: any) => void;
   userRole: string;
   setSortOrderState: React.Dispatch<React.SetStateAction<"asc" | "desc">>;
@@ -82,7 +83,7 @@ const ApplicationTable = (props: Props) => {
         </thead>
 
         {displayOnApplication.map(
-          (application: IApplications, index: number) => (
+          (application: IProjectManagement, index: number) => (
             <tr
               className="tableRowData"
               key={index}
@@ -92,7 +93,7 @@ const ApplicationTable = (props: Props) => {
                   : undefined
               }
             >
-              <td className="teamTitle">{application.TeamName}</td>
+              <td className="teamTitle">{application.teamName}</td>
               <td className="captTitleData">
                 <span className="captTitleDataSpan">
                   <img
@@ -106,26 +107,26 @@ const ApplicationTable = (props: Props) => {
                       border: "none",
                     }}
                   />
-                  {application.TeamCaptian}
+                  {application?.captain}
                 </span>
               </td>
-              <td className="projectTitle">{application.ProjectName}</td>
+              <td className="projectTitle">{application.data.projectName}</td>
               <td className="projectSubmit">
                 <img
-                  src={application.ProjectedSubmitted ? Feedback : Feedback1}
+                  src={application.isSubmitted ? Feedback : Feedback1}
                   alt="Feedback"
                   className="ProjectedSubmittedImg"
                 />
               </td>
               <td className="dateTitle">
-                {formatDate(application.SubmissionDate)}
+                {formatDate(application.data.submittedDate)}
               </td>
               {userRole === "admin" && (
                 <td className="statusTitle">
                   <div
-                    className={`statusTitleData ${application.Status.toLowerCase()}`}
+                    className={`statusTitleData ${application?.status &&application.status}`}
                   >
-                    {application.Status}
+                    {application.status}
                   </div>
                 </td>
               )}

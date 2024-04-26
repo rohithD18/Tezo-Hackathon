@@ -586,4 +586,4 @@ import {
 //   },
 // ];
 
-
+// console.log(PointsTable);
