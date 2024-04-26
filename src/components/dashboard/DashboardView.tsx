@@ -12,7 +12,7 @@ import DashboardNav from "./DashboardNav";
 import { useCount, useFecthApis } from "../../services/CustomHooks";
 import { IPointsTable } from "../../services/Interface/HackathonInterface";
 import Skeleton from "@mui/material/Skeleton";
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
 const DashboardView: React.FC = () => {
   const {
@@ -38,7 +38,7 @@ const DashboardView: React.FC = () => {
 
   return (
     <>
-      (
+      
       <div className="DashboardView">
         <div className="countDiv">
           <DisplayCount />
@@ -79,12 +79,18 @@ const DashboardView: React.FC = () => {
                   <p>Total registrations</p>
                   <p>{countRegisteredTeams}</p>
                 </div>
-                <div>
+                <div className="projectSubmissionData">
                   <p>Total submissions</p>
                   <p>{countSubmittedProjects}</p>
                 </div>
               </div>
-              <div className="progressBar">
+              
+                <div className="progressBar">
+                 {
+                  loading ?<Box  className="loadspinner" sx={{ display: 'flex' }}>
+                  <CircularProgress />
+                </Box>:
+                 
                 <CircularProgressbar
                   value={Math.round(
                     (countSubmittedProjects / countRegisteredTeams) * 100
@@ -94,6 +100,7 @@ const DashboardView: React.FC = () => {
                     100
                   ).toFixed(2)}%`}
                   styles={buildStyles({
+              
                     rotation: 0.5,
                     strokeLinecap: "butt",
                     pathTransitionDuration: 0.5,
@@ -101,18 +108,21 @@ const DashboardView: React.FC = () => {
                     textColor: "#EEEEEE",
                     trailColor: "#d6d6d6",
                   })}
-                />
+                />}
               </div>
+              
+              
             </div>
           </div>
                
           <div className="topPerformingComponent">
             <p>Top-performing Teams</p><>
-            {true ? (
+            {loading ? (
               <Box  className="skeltonPoint" >
                 <Skeleton />
-                <Skeleton animation="wave" />
-                <Skeleton animation={false} />
+                <Skeleton />
+                <Skeleton />
+                <Skeleton />
               </Box>
             ) : ( 
               pointsTable
@@ -122,7 +132,7 @@ const DashboardView: React.FC = () => {
                     (team1) => team1.id === item.teamId
                   )[0];
                   return (
-                    <div key={index}>
+                    <div key={index} className="topScoredisplay">
                       <div>
                         <p className="rank">{index + 1}</p>
                         <img src={image} alt="teamlogo" />
@@ -139,7 +149,6 @@ const DashboardView: React.FC = () => {
                     
         </div>
       </div>
-      )
     </>
   );
 };

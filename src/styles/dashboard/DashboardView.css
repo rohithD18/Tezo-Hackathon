@@ -4,8 +4,13 @@
     padding: 0 20px;
 }
 .skeltonPoint{
-    height:10px;
-    width:200px
+    height:50px;
+
+    width:100%
+}
+.skeltonPoint span{
+    display: flex;
+    flex-direction: column;
 }
 .countDiv {
     width:60%;
@@ -28,6 +33,11 @@
     
     
 }
+.progressBar{
+    display: flex;
+    justify-content: center;
+}
+
 .displayComponent div{
     width:32%;
     height:188px;
@@ -132,7 +142,7 @@
     margin-top:20px;
 
 }
-.SubmissionRateDiv div  div div:last-child{
+.projectSubmissionData{
     border-left: 4px solid #FFD54F;
     margin-top:20px;
 
@@ -158,12 +168,12 @@
     background-color:#273144;
     padding:24px;
 }
-.topPerformingComponent  div{
+.topScoredisplay{
     display:flex;
     justify-content: space-between;
 
 }
-.topPerformingComponent  div div{
+.topScoredisplay div{
     display:flex;
 }
 .rank{
