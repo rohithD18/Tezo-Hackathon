@@ -268,7 +268,6 @@ export const deletePointsTable = (points: IPointsTable) => {
   axios
     .delete(
       `${BASE_URL}/PointsTable/deletePointsOfATeam/${points.teamId}/loggedInId/{loggedInId}`
-      `${BASE_URL}/PointsTable/deletePointsOfATeam/${points.teamId}/loggedInId/{loggedInId}`
     )
     .then((response) => {
       console.log(response);
