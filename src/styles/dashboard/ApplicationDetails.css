@@ -1,7 +1,7 @@
 .applicationDetails {
-  position: absolute;
+  position: fixed;
   width: 734.88px;
-  height: 891px;
+  min-height: 100vh;
   top: 0;
   right: 0;
   background-color: #273144;
@@ -22,8 +22,7 @@
 .title {
   width: auto;
   height: 23px;
-  font: Raleway;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
   line-height: 23px;
   text-align: left;
@@ -42,20 +41,36 @@
 .detailsContainer {
   width: 671.71px;
   height: 788px;
-  top: 100.51px;
+ padding-top: 10px;
+
   position: absolute;
   left: 31.83px;
   justify-content: space-between;
 }
-.table1 {
+.tablefirst {
   width: 671.71px;
-  height: 213px;
+  /* min-height: 150px; */
   padding: 0 0 26.49px 0;
+  margin:10px 0px;
   gap: 26.49px;
-  border: 0 0 1px 0;
+
   border-bottom: 1px solid #3d5a80;
 }
+.tablefirstBody tr{
+  height: 40px;
 
+}
+.tablefirstBody tr td{
+  width:100px;
+  min-width: 50px;
+  max-width: 150px;
+  
+}
+.nextButton img{
+  width:30px;
+  height:30px;
+  margin-left:20px;
+}
 .tableHeader {
   width: auto;
   height: 27px;
@@ -87,14 +102,44 @@
   text-align: left;
   color: #b4b4b4;
 }
+.table1 tr{
+  border-bottom: 20px solid transparent;
+}
 
 .teamTable td:hover img {
   filter: invert(40%) sepia(90%) saturate(6401%) hue-rotate(300deg)
     brightness(105%) contrast(95%);
   cursor: pointer;
 }
+.clockImage{
+  width: 22px;
+  height: 22px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+.tableHeaderContainer{
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 20px;
+  /* flex: 70% 30%; */
+  gap:68%;
+}
+.scheduleNow{
+font-size: 14px;
+font-weight: 600;
+line-height: 20px;
+text-align: center;
+font-family: "Roboto";
+color: #EE6C4D;
+cursor: pointer;
+
+}
+.descriptionHeading{
+  color: #B4B4B4;
+  vertical-align:top 
+}
 .btnConatainer {
-  position: absolute;
+  /* position: absolute; */
   width: 671.71px;
   height: 98px;
   padding: 24px 0px 24px 0px;
@@ -107,7 +152,7 @@
 }
 .acceptButton,
 .rejectButton {
-  width: 125px;
+  min-width: 125px;
   height: 50px;
   border-radius: 8px;
   font: Roboto Flex;
@@ -129,8 +174,14 @@
   margin-right: 20px; /* Added margin for gap */
 }
 
-.acceptButton {
+.acceptButton,.sheduleButton {
   color: #ffffff;
   background: #ee6c4d;
   border: none;
+  font-weight: 700;
+  font-size: 16px;
+}
+.sheduleButton{
+  border-radius:8px;
+  padding:10px 20px
 }

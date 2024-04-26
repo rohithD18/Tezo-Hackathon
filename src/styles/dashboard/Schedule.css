@@ -1,0 +1,52 @@
+.scheduleMeetingPopUp > div{
+    display:flex
+}
+.scheduleMeetingPopUp img{
+    float:right
+}
+.scheduleMeetingPopUp {
+    background-color:#03162f ;
+    Width:45%;
+    height:160px;
+    padding: 24px 24px 12px 24px;
+
+}
+.datePicker,.timePicker{
+    height:40px;
+    margin-left:40px;
+    background-color: transparent;
+    border:2px solid #3D5A80
+}
+.datePicker input{
+    background-color: transparent;
+    border:none
+}
+.datePicker input::placeholder{
+    padding-left:10px;
+    font-size: 16px;
+    color:#878787
+}
+.timePicker .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    height:40px;
+    margin-left:40px;
+    background-color: transparent;
+    border-color:#3D5A80;
+    text-align: left;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 0px;
+    left: 0px;
+    margin: 0;
+    padding: 0px; 
+    pointer-events: none;
+    border-radius: 0px; 
+    border-style: solid;
+    border-width: 2px; 
+    overflow: hidden;
+}
+.timePicker .css-1d3z3hw-MuiOutlinedInput-notchedOutline:hover,.timePicker .css-1d3z3hw-MuiOutlinedInput-notchedOutline:active 
+    {
+    border-color:#3D5A80;
+
+}

@@ -1,6 +1,11 @@
+.applicationView {
+  display: flex;
+}
 .ApplicationScreen {
-  height: 100vh;
-  width: 1586px;
+  height: 98vh;
+  width: 81%;
+  margin-left: 26px;
+/* border: 1px solid; */
 }
 .adminContainer {
   width: 240px;
@@ -16,7 +21,7 @@
   width: 1525.29px;
   height: 250px;
   top: 68.51px;
-  left: 347.99px;
+  left: 315px;
   gap: 21.13px;
   height: 188px;
 }
@@ -80,39 +85,6 @@ img.cardImage {
   color: rgba(238, 238, 238, 1);
 }
 
-.tableContainer {
-  position: relative;
-  display: flex;
-  width: 1525.29px;
-  height: 409px;
-  top: 225px;
-  left: 28px;
-  gap: 20px;
-  flex-direction: column;
-}
-
-.tableTopContainer {
-  display: flex;
-
-  width: 100%;
-  height: 36px;
-  padding: 0px, 0px, 0px, 24px;
-  justify-content: space-between;
-}
-.tableTitle {
-  display: inline-block;
-  width: 142px;
-  height: 28px;
-  font: Raleway;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 28px;
-  letter-spacing: 0em;
-  text-align: left;
-  padding-left: 16px;
-  color: rgba(255, 255, 255, 1);
-}
-
 .filterContainer {
   display: flex;
   width: 285px;
@@ -121,34 +93,9 @@ img.cardImage {
 .searchIcon {
   fill: gray;
 }
-.searchBox {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 36px;
-  color: gray;
-  padding-left: 50px;
-  font-weight: bold;
-  border-radius: 4px;
-  background-color: rgba(43, 54, 71, 1);
-  border: 1px solid gray;
-}
-
-.searchInput {
-  flex: 1;
-  border: none;
-  background: none;
-  color: #ffffff;
-  outline: none;
-  margin-left: 5px;
-}
 
 .searchBox:focus-within {
   border-color: gray;
-}
-.displayTable {
-  width: 1523.2px;
-  height: 333px;
 }
 .table {
   width: 100%;
@@ -156,7 +103,7 @@ img.cardImage {
   padding: 0px 64px 0px 0px;
 }
 
-.tableRow {
+.tableRows {
   height: 48px;
   padding: 0px, 64px 0px 0px;
   background: rgba(164, 96, 142, 1);
@@ -164,7 +111,7 @@ img.cardImage {
 .teamTitle {
   width: 20%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -177,9 +124,9 @@ img.cardImage {
 }
 .captTitle {
   padding-left: 8px;
-  width: 15%;
+  width: 20%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -192,9 +139,9 @@ img.cardImage {
 
 .projectTitle {
   text-overflow: ellipsis;
-  width: 25%px;
+  width: 20%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -207,7 +154,7 @@ img.cardImage {
 .projectSubmit {
   width: 10%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -218,9 +165,9 @@ img.cardImage {
 }
 
 .dateTitle {
-  width: 15%;
+  width: 20%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -230,9 +177,9 @@ img.cardImage {
   color: rgba(238, 238, 238, 1);
 }
 .statusTitle {
-  width: 15%;
+  width: 20%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   vertical-align: middle;
   font-weight: 500;
@@ -244,18 +191,15 @@ img.cardImage {
 .tableRowData {
   background-color: rgba(43, 54, 71, 1);
   justify-content: center;
-  height: 52.5px;
+  height: 52.5px !important;
   border-bottom: 1px solid rgba(61, 90, 128, 1);
 }
 
 .tableRowData:hover {
-  background-color: rgba(61, 90, 128, 1) ;
-  cursor: pointer !important; 
+  background-color: rgba(61, 90, 128, 1);
+  cursor: pointer !important;
 }
-/* table tr:hover{
-  background-color: rgba(61, 90, 128, 1) ;
-  cursor: pointer !important; 
-} */
+
 img.ProjectedSubmittedImg {
   height: 38px;
   width: 38px;
@@ -269,7 +213,7 @@ img.ProjectedSubmittedImg:hover {
 .captTitleData {
   width: 10%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -277,10 +221,10 @@ img.ProjectedSubmittedImg:hover {
   text-align: left;
   color: none;
 }
-.captTitleData {
+.captTitleDataValue {
   width: 10%;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -292,7 +236,8 @@ img.ProjectedSubmittedImg:hover {
 span.captTitleDataSpan {
   display: flex;
   align-items: center;
-  color: rgba(238, 238, 238, 1);
+  /* color: rgba(238, 238, 238, 1); */
+  background-color: inherit;
 }
 
 span.captTitleDataSpan img {
@@ -302,15 +247,15 @@ span.captTitleDataSpan img {
 }
 
 .statusTitleData {
-  width: max-content;
+  width: 95px;
   height: 22px;
-  font-family: Inter;
+  font: Inter;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
   align-items: center;
   letter-spacing: 0em;
-  text-align: left;
+  text-align: center;
   color: rgba(238, 238, 238, 1);
 }
 
@@ -322,6 +267,7 @@ span.captTitleDataSpan img {
   color: #239d4c;
   align-items: center;
   display: flex;
+  justify-content: center;
 }
 
 .statusTitleData.rejected {
@@ -333,6 +279,7 @@ span.captTitleDataSpan img {
   color: black;
   align-items: center;
   display: flex;
+  justify-content: center;
 }
 .statusTitleData.pending {
   border-radius: 4px;
@@ -342,21 +289,18 @@ span.captTitleDataSpan img {
   color: #be7913;
   align-items: center;
   display: flex;
+  justify-content: center;
 }
 
 .applicationPagination {
   position: relative;
   margin-top: 450px;
 }
-.filterButtonContainer {
-  width: 1525.29px;
-}
 
 .filterButtonContainer button {
   background-color: inherit;
   color: gray;
   padding: 0.5rem 1rem;
-  margin-right: 10px;
   border: none;
   cursor: pointer;
 
@@ -391,4 +335,58 @@ span.captTitleDataSpan img {
   background-color: white;
 }
 
+.tableContainerr {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
+.tableTopContainerr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tableTitlee {
+  /* font-family: Raleway; */
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0em;
+  color: rgba(255, 255, 255, 1);
+}
+
+.searchbox {
+  display: flex;
+  align-items: center;
+  width: 19%;
+  height: 36px;
+  color: gray;
+  padding-left: 20px;
+  font-weight: bold;
+  border-radius: 4px;
+  background-color: rgba(43, 54, 71, 1);
+  border: 1px solid gray;
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background: none;
+  color: #ffffff;
+  outline: none;
+  margin-left: 5px;
+}
+
+.displayTable {
+  width: 100%;
+}
+
+.filterButtonContainer {
+  display: flex;
+}
+.PaginationContainer{
+  width: 81%;
+  position: fixed;
+  bottom: 0px;
+}

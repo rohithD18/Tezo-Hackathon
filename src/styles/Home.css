@@ -6,7 +6,7 @@
  /* position: relative;  */
  background-image: url("../assets/mainBG.png"), url("../assets/mainBG.png");
  background-position: calc(0px - 80px) calc(100% + 0px), calc(100% + 0px) calc(0px - 20px); 
- background-size:500px 400px; 
+ background-size:430px 400px; 
  background-repeat: no-repeat;
  /* border: 2px solid white; */
 }
@@ -25,6 +25,39 @@
 padding: 50px 0px 20px 12px;
 margin-left: 56px;
 /* border: 2px solid white; */
+}
+
+.timeContainer{
+  width:300px;
+height:42px;
+padding-left: 10px;
+margin-bottom: 36px;
+border: 0px 0px 0px 10px;
+border-left: 4px solid #EE6C4D;
+display: flex;
+flex-direction: column;
+}
+#timer{
+font-size: 14px;
+font-weight: 500;
+letter-spacing: 0em;
+text-align: left;
+color: #E0FBFC;
+padding-left: 40px;
+margin-top: -7px;
+
+}
+#time{
+
+font-family: "Roboto";
+font-size: 16px;
+font-weight: 400;
+/* line-height: 27px; */
+padding-left: 10px;
+letter-spacing: 0em;
+text-align: left;
+
+  
 }
 .members{
   width:173px;
@@ -106,17 +139,19 @@ position: absolute;
 /* left: 0; */
   object-fit: cover;
 }
-.profileContainer{
+.profileContainer1{
   position:relative;
-  left: 0;
+  /* left: 0; */
   width: fit-content;
+  border:none
 }
 .mainDiv{
   margin: 3%;
+  margin-left: 4%;
   background-color:  rgba(73, 95, 128, 100);
   border: 2px solid white;
   border-radius: 10px;
-  width: 75%;
+  width: 83%;
   display: flex;
   justify-content: space-between;
   background-image: url('../assets/bgimage4.png');

@@ -1,26 +1,23 @@
-import React, { useState } from "react";
-import AdminNavBar from "./DashboardNav";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import DashboardNav from "./DashboardNav";
+import DashboardView from "./DashboardView";
 import Application from "./Application";
-import ViewBlur from "./ViewBlur";
+import Users from "./Users";
+import ProjectManagement from "./ProjectManagement";
+import Events from "./Events";
 
-const Dashboard = () => {
-  const [isApplication, setIsApplication] = useState(false);
-  const [isApplicationDetailsOpen, setIsApplicationDetailsOpen] =
-    useState(false);
-
+const Dashboard: React.FC = () => {
   return (
     <div className="adminHomeDiv">
-      <div>
-        {isApplicationDetailsOpen && <ViewBlur />}
-        <AdminNavBar setIsApplication={setIsApplication} />
-      </div>
-      <div>
-        {isApplication && (
-          <Application
-            setIsApplicationDetailsOpen={setIsApplicationDetailsOpen}
-          />
-        )}
-      </div>
+      <DashboardNav />
+      <Routes>
+        <Route path="/" element={<DashboardView />} />
+        <Route path="applications" element={<Application />} />
+        <Route path="userManagement" element={<Users />} />
+        <Route path="projectManagement" element={<ProjectManagement />} />
+        <Route path="eventsManagement" element={<Events />} />
+      </Routes>
     </div>
   );
 };

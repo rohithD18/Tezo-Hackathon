@@ -1,9 +1,11 @@
 .submissionFailedSec{
   width: 407px;
+  height:460px;
   background-color: rgba(39, 49, 68, 1);
   border-radius: 16px;
   border: 1px solid rgba(61, 90, 128, 1);
   text-align: center;
+  margin-left:5%;
 }
 .submissionFailedSec img{
   width: 88px;

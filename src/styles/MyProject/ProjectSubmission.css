@@ -6,6 +6,15 @@
     margin-top: 25px;
     color: gray;
   }
+  .disabledButton{
+    cursor: no-drop !important;
+  }
+  .enabledButton{
+    cursor: pointer !important;
+  }
+  .enabledButton:disabled{
+    cursor: no-drop !important;
+  }
   .topicSec1 textarea::placeholder {
     white-space: pre-wrap; /* Enable word wrapping */
 }
@@ -15,7 +24,7 @@
   }
   .topicSec1 textarea{
     font-size: 15px;
-    width: 70%;
+    width: 100%;
     border: 1px solid  rgb(61, 90, 128);
     background-color: transparent;
     padding:10px 10px 35px 10px;
@@ -34,8 +43,8 @@
  }
   .dropFile label,.dropFile ul{
     font-size: 14px;
-    width:70%;
-    height:200px;
+    width:100%;
+    min-height:200px;
     border: 1px solid  rgb(61, 90, 128);
     background-color: transparent;
     padding:10px 10px 10px 10px;
@@ -44,7 +53,7 @@
     text-align: center;
   }
   .formSection1 {
-    width:900px;
+    width:50%;
     border: 1px solid rgb(56 66 82);
     /* height: 500px; */
     border-radius: 20px;
@@ -53,15 +62,16 @@
     height: fit-content;
   }
   .projectDoc{
+    cursor: pointer;
     display:flex;
     justify-content: space-around;
     align-items: center;
     height:71px;
-    width:270px;
+    width:252px;
     border-radius: 4px;
     border:1px solid rgba(61, 90, 128, 1);
     background-color: transparent;
-    margin:12px
+    margin:10px
   }
   #AddIcon{
     display:flex;
@@ -121,12 +131,17 @@
   .dropFile{
     display: flex;
     justify-content: space-between;
+    width: 100%;
     align-items: center; 
     margin-top: 25px;
     color: gray;
+    /* border: 2px solid green */
+  }
+  .fileSection{
+    width: 100%;
+    margin-left: 9%;
   }
   .dropFile textarea{
-    /* height: 150px; */
     min-height: 100px;
   }
   li{
@@ -147,5 +162,21 @@
     font:Roboto Flex;
     font-weight: 400;
     line-height: 20px;
+
+  }
+  
+  .fileData{
+    padding-top:15px;
+    align-items: center;
+
+  }
+  .fileData input{
+    text-align: center;
+    border: none;
+    background-color: transparent;
+    color:#EEEEEE
+  }
+  .fileData :hover{
+    border: none;
 
   }

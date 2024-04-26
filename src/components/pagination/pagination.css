@@ -1,6 +1,5 @@
 .pagination {
   height: 48px;
-  margin: 0px 26px;
   display: flex;
   top: 976px;
   left: 140px;
@@ -23,13 +22,14 @@
 .pagination .paginationBox122 {
   align-items: center;
   display: flex;
-  width: 729px;
+  /* width: 729px; */
+  width: 70%;
   height: 48px;
   gap: 8px;
 }
 
 .pagination .showingText {
-  width: 58px;
+  width: 4rem;
   height: 24px;
   font: Inter;
   font-size: 14px;
@@ -46,9 +46,9 @@
 }
 
 .pagination .totalRecords {
-  width: 565px;
+  width: auto;
   height: 24px;
-  font-family: Inter;
+
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -61,9 +61,11 @@
   display: flex;
   gap: 12px;
   align-items: center;
-  height: 48px;
+  height: 46px;
   padding: 0px 12px;
-  border: 1px solid rgba(61, 90, 128, 1);
+  /* border: 1px solid rgba(61, 90, 128, 1); */
+  border-left: 1px solid rgba(61, 90, 128, 1);
+  border-right: 1px solid rgba(61, 90, 128, 1);
 }
 
 .pagination .totalRender {
@@ -103,16 +105,17 @@
 }
 
 ul.pagination {
-  padding: 10px 0; /* Adjust top and bottom padding */
+  padding: 10px 0; 
   list-style: none;
-  display: flex; /* Use flexbox */
-  justify-content: center; /* Horizontally center */
-  align-items: center; /* Vertically center */
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  border-top: none;
 }
 
 ul.pagination li {
   text-decoration: none;
-  margin: 0 5px; /* Adjust margin between items */
+  margin: 0 5px; 
 }
 
 ul.pagination li a {
@@ -129,15 +132,14 @@ ul.pagination li a {
 }
 
 .entriesPerPagePopup {
-  position: absolute;
-  left: 100%;
-  bottom: 0;
+  position: relative;
   background-color: rgba(61, 90, 128, 1);
   border: 1px solid #273144;
   padding: 10px;
   z-index: 1;
   max-height: 200px;
   overflow-y: auto;
+  bottom: 22px;
 }
 
 .popupItem {

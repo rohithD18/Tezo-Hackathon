@@ -1,67 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import "add-to-calendar-button";
 import Home from "./Home";
 import "../styles/HomePageMain.css";
 import scroll from "../assets/scroll.png";
 import { judges } from "../components/Judges";
 import { IJudges } from "../Interfaces";
 import ribbon from "../assets/ribbon.png";
-interface DataEntry {
-  typeOfTime: string;
-  value: string;
-}
-interface timeLineEntries {
-  title: string;
-  content: string;
-  date: string;
-}
-interface HomePageProps {
-  isRegister: boolean;
-}
-const HomePage: React.FC<HomePageProps> = (props) => {
-  const data: DataEntry[] = [
-    { typeOfTime: "days", value: "24" },
-    { typeOfTime: "hours", value: "12" },
-    { typeOfTime: "minutes", value: "13" },
-    { typeOfTime: "seconds", value: "02" },
-  ];
-  const events: timeLineEntries[] = [
-    {
-      title: "Opening Ceremony",
-      content:
-        "Join us for the opening ceremony of the hackathon, where we will kick off the event and introduce the teams.",
-      date: "Friday, October 15th",
-    },
-    {
-      title: "Opening Ceremony",
-      content:
-        "Join us for the opening ceremony of the hackathon, where we will kick off the event and introduce the teams.",
-      date: "Friday, October 15th",
-    },
-    {
-      title: "Opening Ceremony",
-      content:
-        "Join us for the opening ceremony of the hackathon, where we will kick off the event and introduce the teams.",
-      date: "Friday, October 15th",
-    },
-    {
-      title: "Opening Ceremony",
-      content:
-        "Join us for the opening ceremony of the hackathon, where we will kick off the event and introduce the teams.",
-      date: "Friday, October 15th",
-    },
-    {
-      title: "Opening Ceremony",
-      content:
-        "Join us for the opening ceremony of the hackathon, where we will kick off the event and introduce the teams.",
-      date: "Friday, October 15th",
-    },
-    {
-      title: "Opening Ceremony",
-      content:
-        "Join us for the opening ceremony of the hackathon, where we will kick off the event and introduce the teams.",
-      date: "Friday, October 15th",
-    },
-  ];
+import { events } from "../services/ScheduleData";
+import RemainingTime from "./RemainingTime";
+import { eventDate } from "../services/Profile";
+import { getLoggedInId } from "../services/FormServices";
+import { useFecthApis } from "../services/CustomHooks";
+
+const HomePage: React.FC = () => {
+  const formattedDate = new Date(eventDate);
+  const formattedStartDate = `${formattedDate.getFullYear()}-${
+    formattedDate.getMonth() + 1 < 10 ? "0" : ""
+  }${formattedDate.getMonth() + 1}-${
+    formattedDate.getDate() < 10 ? "0" : ""
+  }${formattedDate.getDate()}`;
+  const { usersData } = useFecthApis();
+  const isRegister: boolean = usersData?.filter(
+    (item) =>
+      item.email ===
+      localStorage.getItem("username")?.toString().toLocaleLowerCase()
+  )[0]?.isRegistered;
+  const sasKey =
+    "KtI82XByT1PJOFddpdLZAcbQrp625yiPOs76KE8ooFA2kVpAh1xqmSLjBFJdvT9S36E9pFP2rxcJ+AStiZOPUw==";
+  const connectString =
+    "DefaultEndpointsProtocol=https;AccountName=tezohackathonblob;AccountKey=KtI82XByT1PJOFddpdLZAcbQrp625yiPOs76KE8ooFA2kVpAh1xqmSLjBFJdvT9S36E9pFP2rxcJ+AStiZOPUw==;EndpointSuffix=core.windows.net";
+  console.log(sasKey, connectString);
+  useEffect(() => {
+    // setIsRegister(
+    //   usersData.filter(
+    //     (item) =>
+    //       item.email ===
+    //       localStorage.getItem("username")?.toString().toLocaleLowerCase()
+    //   )[0]?.isRegistered
+    // );
+    // getLoggedInId().then((res) => console.log(res));
+    // getLoggedInId();
+  }, [usersData]);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -78,8 +58,9 @@ const HomePage: React.FC<HomePageProps> = (props) => {
   }
   return (
     <div className="homePageDiv">
-      <Home isRegister={props.isRegister} />
-      <div className="scrollContainer">
+      <Home isRegister={isRegister} />
+      {/* <Home isRegister={isRegister} /> */}
+      {/* <div className="scrollContainer">
         <img
           src={scroll}
           width={14}
@@ -89,20 +70,30 @@ const HomePage: React.FC<HomePageProps> = (props) => {
           alt="scrollIcon"
         ></img>
         <label id="scrollText">Scroll up to know more</label>
-      </div>
-      {/*date*/}
+      </div> */}
 
       <div className="dateContainer">
         <div className="dateContent">
-          {/* <p> */}
           <h1 className="heading">Keep Up to Date</h1>
           <p className="description1">
             As a front-end developer, I find myself in a perpetual race against
             time. However, unlike the elements in my code, time refuses to be
             debugged or optimised. So, make sure you do not run out of time.
           </p>
-          <button className="addButton">Add to Calender</button>
-          {/* </p> */}
+          <div className="addButton">
+            <add-to-calendar-button
+              name="Hackathon Event"
+              description="Reminder for hackathon"
+              startDate={formattedStartDate}
+              startTime="12:00"
+              endTime="19:00"
+              timeZone="Asia/Calcutta"
+              location="World Wide Web"
+              options="'Microsoft365'"
+              hideIconButton
+              hideCheckmark
+            ></add-to-calendar-button>
+          </div>
         </div>
 
         <div className="finalStage">
@@ -111,14 +102,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
             Don't forget to submit your Final Stage assignment in the dashboard
             summary section and Log In using your registered account
           </p>
-          <div className="cards">
-            {data.map((item, index) => (
-              <div className="card" key={index}>
-                <label className="number"> {item.value}</label>
-                <label className="timeValue">{item.typeOfTime}</label>
-              </div>
-            ))}
-          </div>
+          <RemainingTime />
         </div>
 
         <img src={ribbon} id="ribbon" alt="ribbon"></img>

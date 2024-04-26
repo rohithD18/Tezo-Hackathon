@@ -1,0 +1,132 @@
+.RejectedFeedbackComponent {
+  width: 457px;
+  height: 585px;
+  top: 3476.26px;
+  left: 3830.18px;
+  border-radius: 8px;
+  background: #273144;
+  z-index: 10000;
+}
+#reason1:not(:checked):not(:disabled) {
+  appearance: none;
+  background: transparent;
+  border: 2px solid grey;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+
+}
+
+.imgSpanDiv {
+  display: flex;
+  height: 24px;
+  margin-top: 24px;
+  margin-right: 24px;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.closeImage {
+  width: 24px;
+  height: 24px;
+}
+
+.closeImage:hover {
+  border-radius: 5px;
+  background-color: #3d5a80;
+  cursor: pointer;
+}
+
+.descriptionDiv {
+  width: 409px;
+  height: 411px;
+  gap: 31.83px;
+
+  margin: 0 auto;
+}
+
+.descriptionText {
+  display: inline-block;
+  width: 409px;
+  height: 27px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #eeeeee;
+}
+
+.listofReasonContainer {
+  display: flex;
+  margin-top: 14px;
+  width: 409px;
+  height: 240px;
+  gap: 20px;
+  opacity: 0px;
+  flex-direction: column;
+}
+
+.radioContainer {
+  display: flex;
+  align-items: center;
+}
+
+.radioIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  accent-color: yellow;
+}
+
+.reasonLabel {
+  margin: 0;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #eeeeee;
+}
+
+.textArea {
+  position: relative;
+  /* top: 10px; */
+  width: 409px;
+  margin-top: 30px;
+  width: 409px;
+  height: 112px;
+  padding: 12px;
+  gap: 8px;
+  border-radius: 4px;
+  background: #2b3647;
+  border: 1px solid #3d5a80;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #878787;
+  resize: none;
+}
+
+.rejectedSubmitButton {
+  width: 125px;
+  height: 50px;
+  border-radius: 8px;
+  background: #ee6c4d;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: right;
+  color: white;
+  margin: 0 auto;
+  margin-right: 25px;
+  margin-top: 40px;
+  transition: background-color 0.3s ease;
+}
+
+.rejectedSubmitButton:hover {
+  background-color: #ff0000;
+}

@@ -1,17 +1,82 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { RegistrationForm, registerTeam } from "../../services/FormServices";
+import { useFecthApis } from "../../services/CustomHooks";
+interface IProps {
+  setCurrentForm: (message: string) => void;
+}
+const TopicDetailsForm: React.FC<IProps> = (props: IProps) => {
+  const [projectName, setProjectName] = useState<string>("");
+  const [technology, setTechnology] = useState<string>("");
+  const [projectDesc, setProjectDesc] = useState<string>("");
 
-const TopicDetailsForm: React.FC = () => {
+  const { usersData } = useFecthApis();
+
+  const handleSubmit = () => {
+    RegistrationForm.description = projectDesc;
+    RegistrationForm.projectName = projectName;
+    RegistrationForm.technologies = technology.split(/[,\s]+/);
+    RegistrationForm.adminId = usersData.filter(
+      (item) =>
+        item.email ===
+        localStorage.getItem("username")?.toString().toLocaleLowerCase()
+    )[0].id;
+    RegistrationForm.registeredDate = new Date();
+
+    registerTeam(RegistrationForm)
+      .then((res) => {
+        props.setCurrentForm("RegisterSuccess");
+      })
+      .catch((err) => {
+        err && props.setCurrentForm("RegisterFailed");
+      });
+  };
   return (
     <div>
-      <h5>Topic Details</h5>
-      <p>Please enter the details of the topic you will be working on</p>
+      <p id="selectMemHead">Project Details</p>
+      <p id="infoHeading1">
+        Please enter the details of the project you will be working on
+      </p>
       <div className="topicSec">
-        <p>Mention Topic</p>
-        <input type="text" placeholder="Enter the topic" />
+        <p>Project Name</p>
+        <input
+          type="text"
+          placeholder="Enter the topic"
+          onChange={(e) => setProjectName(e.target.value)}
+        />
+      </div>
+      <div className="topicSec">
+        <p>Technology</p>
+        <input
+          type="text"
+          placeholder="Enter the technology"
+          onChange={(e) => setTechnology(e.target.value)}
+        />
       </div>
       <div className="descriptionSec">
-        <p>Topic Description</p>
-        <textarea placeholder="Enter the topic description"></textarea>
+        <p>Project Description</p>
+        <textarea
+          placeholder="Enter the topic description"
+          onChange={(e) => setProjectDesc(e.target.value)}
+        ></textarea>
+      </div>
+      <div className="nextCancelDiv">
+        <button
+          onClick={() => props.setCurrentForm("SelectMembersForm")}
+          id="cancelBtn"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={handleSubmit}
+          id="nextBtn"
+          // disabled={
+          //   projectName.length < 5 ||
+          //   technology.length < 3 ||
+          //   projectDesc.length < 10
+          // }
+        >
+          Submit
+        </button>
       </div>
     </div>
   );
