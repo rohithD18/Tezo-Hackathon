@@ -14,12 +14,17 @@
 .inputWithSearchIcon{
   position: relative;
   display: flex;
+  flex-direction: row-reverse;
   /* justify-content: center; */
+  align-items: center;
+}
+.inputWithSearchIcon .inputBoxWrapper {
+  display: flex;
   align-items: center;
 }
 .inputWithSearchIcon svg{
   position: absolute;
-  left: 15px;
+ margin-left: 15px;
   width: 13px;
   /* font-size: smaller; */
   color: gray;

@@ -3,7 +3,10 @@
     width: 85%;
     padding: 0 20px;
 }
-
+.skeltonPoint{
+    height:10px;
+    width:200px
+}
 .countDiv {
     width:60%;
     padding:20px 0px;
@@ -174,6 +177,7 @@
     color:#EEEEEE;
     padding:9px 6px 9px 6px;
     align-items: center;
+    padding-left: 10px;
 
 }
 .teamName{

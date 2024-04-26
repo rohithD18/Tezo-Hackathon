@@ -26,6 +26,7 @@ import {
 } from "@azure/msal-react";
 import { HackathonContextProvider } from "./services/Context/HackathonContext";
 import ShimmerCardUI from "./components/ShimmerCardUI";
+import PageNotFound from "./components/PageNotFound";
 
 export const pca = new PublicClientApplication(msalConfig);
 
@@ -61,6 +62,7 @@ const App: React.FC = () => {
                   </Suspense>
                 }
               />
+              <Route path="*" Component={PageNotFound} />
             </Routes>
           </HackathonContextProvider>
         </AuthenticatedTemplate>

@@ -60,7 +60,7 @@ export interface IPointsTable {
   id: number;
   teamId: number;
   // Team: Team;
-  Team: string;
+  team: string;
   registrationScore: number;
   projectSubmissionScore: number;
   projectDemoScore: number;

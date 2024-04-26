@@ -6,10 +6,14 @@ import { teamMembersArray } from "./TeamMembers";
 import { ITeamMembers } from "../Interfaces";
 import mainBG from "../assets/mainBG.png";
 import timerIcon from "../assets/timerIcon.png";
+import { Skeleton } from "@mui/material";
+import { useFecthApis } from "../services/CustomHooks";
 interface HomeProps {
   isRegister: boolean;
 }
 const Home: React.FC<HomeProps> = (props) => {
+  console.log(props.isRegister);
+
   const navigate = useNavigate();
   const [members, setMembers] = useState<ITeamMembers[]>(teamMembersArray);
   const visibleImages = members.slice(0, 3);
@@ -18,6 +22,7 @@ const Home: React.FC<HomeProps> = (props) => {
   const [buttonValue, setButtonValue] = useState<string>("");
   const [flag, setFlag] = useState<boolean>();
   const [date, setDate] = useState<string>("");
+  const { usersData } = useFecthApis();
   useEffect(() => {
     if (props.isRegister) {
       setTitle("Welcome to Tezo Hackathon!");
@@ -43,26 +48,51 @@ const Home: React.FC<HomeProps> = (props) => {
         <div className="left1">
           <div className="members">
             <div className="profileContainer1">
-              {visibleImages.map((item, index) => (
-                <img
-                  src={item.profileUrl}
-                  key={index}
-                  alt={`profile ${index}`}
-                  style={{ left: `${index * 10}px` }}
-                  className="profileIcon"
-                ></img>
-              ))}
+              {visibleImages.map((item, index) =>
+                usersData.length > 0 ? (
+                  <img
+                    src={item.profileUrl}
+                    key={index}
+                    alt={`profile ${index}`}
+                    style={{ left: `${index * 10}px` }}
+                    className="profileIcon"
+                  ></img>
+                ) : (
+                  <Skeleton
+                    key={index}
+                    variant="circular"
+                    style={{ left: `${index * 10}px` }}
+                    className="profileIcon"
+                  />
+                )
+              )}
             </div>
-            <label className="noOfMembers">
-              {" "}
-              + {members.length} participating
-            </label>
+            {usersData.length > 0 ? (
+              <label className="noOfMembers">
+                {" "}
+                + {members.length} participating
+              </label>
+            ) : (
+              <Skeleton variant="rectangular" />
+            )}
           </div>
-          <h1 className="header">{title}</h1>
-          <p className="description">{description}</p>
-          <button onClick={handleClick} id="registerBtn">
-            {buttonValue}
-          </button>
+          {usersData.length > 0 ? (
+            <h1 className="header">{title}</h1>
+          ) : (
+            <Skeleton variant="rectangular" className="header" />
+          )}
+          {usersData.length > 0 ? (
+            <p className="description">{description}</p>
+          ) : (
+            <Skeleton animation="wave" />
+          )}
+          {usersData.length > 0 ? (
+            <button onClick={handleClick} id="registerBtn">
+              {buttonValue}
+            </button>
+          ) : (
+            <Skeleton variant="rectangular" width={210} height={60} />
+          )}
         </div>
         <div className="right1"></div>
         <img

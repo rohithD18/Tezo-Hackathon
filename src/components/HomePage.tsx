@@ -26,19 +26,6 @@ const HomePage: React.FC = () => {
       localStorage.getItem("username")?.toString().toLocaleLowerCase()
   )[0]?.isRegistered;
 
-  useEffect(() => {
-    // setIsRegister(
-    //   usersData.filter(
-    //     (item) =>
-    //       item.email ===
-    //       localStorage.getItem("username")?.toString().toLocaleLowerCase()
-    //   )[0]?.isRegistered
-    // );
-    getLoggedInId().then((res) => console.log(res));
-
-    getLoggedInId();
-  }, [usersData]);
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

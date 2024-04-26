@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Participant from "../../assets/participant.png";
 import RegistrationIcon from "../../assets/registrationIcon.png";
 import Submittedicon from "../../assets/submittedIcon.png";
@@ -9,12 +9,36 @@ import { DisplayCount } from "./DisplayCount";
 import "../../styles/dashboard/DashboardView.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import DashboardNav from "./DashboardNav";
-import { useCount } from "../../services/CustomHooks";
+import { useCount, useFecthApis } from "../../services/CustomHooks";
+import { IPointsTable } from "../../services/Interface/HackathonInterface";
+import Skeleton from "@mui/material/Skeleton";
+import { Box } from "@mui/material";
+
 const DashboardView: React.FC = () => {
+  const {
+    allTeams,
+    allProjects,
+    allTeamMembers,
+    pointsTable,
+    allEvents,
+    usersData,
+  } = useFecthApis();
   const { countParticipant, countRegisteredTeams, countSubmittedProjects } =
     useCount();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate API fetch delay
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
+      (
       <div className="DashboardView">
         <div className="countDiv">
           <DisplayCount />
@@ -80,25 +104,44 @@ const DashboardView: React.FC = () => {
                 />
               </div>
             </div>
-
-            <div></div>
           </div>
+               
           <div className="topPerformingComponent">
-            <p>Top-performing Teams</p>
-            <div>
-              <div>
-                <p className="rank">01</p>
-                <img src={image} alt="teamlogo" />
-                <p className="teamName">Team Alpha</p>
-              </div>
-              <div>
-                <div className="points">48pts</div>
-              </div>
-            </div>
+            <p>Top-performing Teams</p><>
+            {true ? (
+              <Box  className="skeltonPoint" >
+                <Skeleton />
+                <Skeleton animation="wave" />
+                <Skeleton animation={false} />
+              </Box>
+            ) : ( 
+              pointsTable
+                .sort((a, b) => b.overAllScore - a.overAllScore)
+                .map((item, index) => {
+                  const teamDetail = allTeams.filter(
+                    (team1) => team1.id === item.teamId
+                  )[0];
+                  return (
+                    <div key={index}>
+                      <div>
+                        <p className="rank">{index + 1}</p>
+                        <img src={image} alt="teamlogo" />
+                        <p className="teamName">{teamDetail.teamName}</p>
+                      </div>
+                      <div>
+                        <div className="points">{item.overAllScore}pts</div>
+                      </div>
+                    </div>
+                  );
+                })
+            )}</>
           </div>
+                    
         </div>
       </div>
+      )
     </>
   );
 };
+
 export default DashboardView;

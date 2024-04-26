@@ -3,7 +3,11 @@ import profileImg from "../../assets/profilepic.jpg";
 import CheckBoxIcon from "../CheckBoxIcon";
 import { ITeams } from "../../Interfaces";
 import { IAllUsers } from "../../services/Interface/HackathonInterface";
-import { RegistrationForm, membersArray } from "../../services/FormServices";
+import {
+  RegistrationForm,
+  membersArray,
+  uploadFileToBlob,
+} from "../../services/FormServices";
 interface IProps {
   setCurrentForm: (message: string) => void;
 }
@@ -17,45 +21,32 @@ const TeamDetailsForm: React.FC<IProps> = (props: IProps) => {
   const [teamName, setTeamName] = useState<string>("");
   const [captainId, setCaptainId] = useState<number>(0);
   const [selectedId, setSelectedId] = useState<number>(0);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File>();
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
-  // const [teamDetails, setTeamDetails] = useState<ITeamss>({
-  //   TeamName: "",
-  //   TeamMembers: [],
-  //   TeamLogo: "",
-  //   captainId: 0,
-  // });
   const [fileInput, setFileInput] = useState<HTMLInputElement | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       setSelectedFile(file);
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImageUrl(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      uploadFileToBlob(file).then((res) => setImageUrl(res));
     }
-    // console.log(JSON.stringify(file));
   };
 
   const handleClick = (id: number) => {
-    // console.log(id);
-
     setSelectedId(id);
     setCaptainId(id);
   };
-
-  // console.log(teamDetails);
   const handleTeamDetails = () => {
-    RegistrationForm.teamLogo = "file";
+    RegistrationForm.teamLogo = imageUrl ? imageUrl : "";
     RegistrationForm.userIds = membersArray.map((item) => {
       return item.id;
     });
     RegistrationForm.teamName = teamName;
     RegistrationForm.captainId = captainId;
-    props.setCurrentForm("TopicDescriptionForm");
+    // props.setCurrentForm("TopicDescriptionForm");
+    // getBlobsInContainer();
+    console.log(RegistrationForm);
   };
   // const { registerForm } = useFormDetails(teamDetails);
 
