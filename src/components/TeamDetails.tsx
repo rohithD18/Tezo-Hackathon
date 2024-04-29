@@ -3,14 +3,11 @@ import "../styles/TeamDetails.css";
 import { useLocation, useParams } from "react-router-dom";
 import InputSearch from "./InputSearch";
 import image from "../assets/image.png";
-import { Teams } from "../services/Data";
 import {
-  getFilteredTeams,
   getTeamMembersByTeam,
   getTeams,
   getUserById,
 } from "../services/Services";
-import { ITeamMembers, ITeamMems, IUsers } from "../Interfaces";
 import {
   IAllUsers,
   ITeamMember,

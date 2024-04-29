@@ -1,12 +1,6 @@
-import axios, { AxiosResponse } from "axios";
-import { Teams } from "../services/Data";
-import { UsersData } from "./Data";
-import { useEffect, useState } from "react";
-import { IProject, ITeams, IUsers } from "../Interfaces";
-import { EventsData } from "./EventData";
+import axios from "axios";
+import { IProject } from "../Interfaces";
 import { Projects } from "./ProjectManagementEvents";
-import { getLoggedInId } from "./FormServices";
-// import { IProjectInfo } from "../Interfaces";
 import {
   IAllEvents,
   IAllProject,
@@ -18,7 +12,6 @@ import {
   ITeamMember,
   ITechnology,
 } from "./Interface/HackathonInterface";
-import { membersArray } from "./FormServices";
 const userEmail: string | null = localStorage.getItem("username");
 
 const BASE_URL = "https://tezohackathonwebapi.azurewebsites.net/api";
@@ -46,8 +39,9 @@ export const getFilteredTeams = (name: string): Promise<IAllTeams[]> => {
 };
 export const getFilteredMembers = (name: string): Promise<IAllUsers[]> => {
   const filtered = getAllUsers().then((res) => {
-    return res.filter((item)=>item.isRegistered)
-      .filter((item) => item.name.toLowerCase().includes(name.toLowerCase() ))
+    return res
+      .filter((item) => item.isRegistered)
+      .filter((item) => item.name.toLowerCase().includes(name.toLowerCase()))
       .slice(0, 6);
   });
   // console.log(filtered, membersArray);
@@ -76,40 +70,39 @@ export const combineDateAndTime = (date: Date, time: string): Date => {
   return combinedDate;
 };
 // export const addNewEvent = (form) => {
-  // let status = "";
-  // let captain = "";
+// let status = "";
+// let captain = "";
 
-  
-  // const today = new Date();
-  // const dateObj = new Date(newEvent.formattedDate);
-  // dateObj.setHours(0, 0, 0, 0);
-  // today.setHours(0, 0, 0, 0);
-  // if (dateObj < today) {
-  //   status = "Pending";
-  // } else {
-  //   status = "Upcoming";
-  // }
+// const today = new Date();
+// const dateObj = new Date(newEvent.formattedDate);
+// dateObj.setHours(0, 0, 0, 0);
+// today.setHours(0, 0, 0, 0);
+// if (dateObj < today) {
+//   status = "Pending";
+// } else {
+//   status = "Upcoming";
+// }
 
-  // const captainName=team ? team.captainName : undefined;
-  // EventsData.push( {
-  //   id: EventsData.length+1,
-  //   teamName: newEvent.teamName,
-  //   captain: team?.captain,
-  //   topic: "Topic X - Exploring the depths of Artificial Intelligence",
-  //   dateAndTime:combineDateAndTime(newEvent.formattedDate,newEvent.formattedTime),
-  //   status: status,
-  //   review: false
-  // },);
+// const captainName=team ? team.captainName : undefined;
+// EventsData.push( {
+//   id: EventsData.length+1,
+//   teamName: newEvent.teamName,
+//   captain: team?.captain,
+//   topic: "Topic X - Exploring the depths of Artificial Intelligence",
+//   dateAndTime:combineDateAndTime(newEvent.formattedDate,newEvent.formattedTime),
+//   status: status,
+//   review: false
+// },);
 //   console.log(
 //     combineDateAndTime(newEvent.formattedDate, newEvent.formattedTime)
 //   );
 //   return {
-  
+
 //     SubmissionDate: combineDateAndTime(
 //       newEvent.formattedDate,
 //       newEvent.formattedTime
 //     )
-    
+
 //   };
 // };
 
@@ -393,20 +386,32 @@ export const addProject = (data: IAllProject) => {
       console.log(error);
     });
 };
-export const updateProject = async (data: IAllProject,loggedInId:number,teamId:number,id:number) => {
+export const updateProject = async (
+  data: IAllProject,
+  loggedInId: number,
+  teamId: number,
+  id: number
+) => {
   // console.log(data, loggedInId);
   axios
-    .put(`${BASE_URL}/Project/updateProject/loggedInId/${loggedInId}`, {
-      id:id,
-      projectName: data.projectName,
-      description: data.description,
-      projectStatus:3,
-      detailedDescription:data.detailedDescription,
-      submittedDate:new Date(),
-      comments:data.comments,
-      teamId:teamId},{headers: {
-        "Content-Type": "application/json",
-      }})
+    .put(
+      `${BASE_URL}/Project/updateProject/loggedInId/${loggedInId}`,
+      {
+        id: id,
+        projectName: data.projectName,
+        description: data.description,
+        projectStatus: 3,
+        detailedDescription: data.detailedDescription,
+        submittedDate: new Date(),
+        comments: data.comments,
+        teamId: teamId,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
     .then((response) => {
       console.log(response);
     })
@@ -509,8 +514,8 @@ export const addTechnologies = (data: ITechnology) => {
       console.log(`Error : ${error}`);
     });
 };
-export const addEvents =  async (data: any,loggedInId:number) => {
- await  axios
+export const addEvents = async (data: any, loggedInId: number) => {
+  await axios
     .post(`${BASE_URL}/Events/addEvent/loggedInId/${loggedInId}`, data)
     .then((response) => {
       console.log(response);

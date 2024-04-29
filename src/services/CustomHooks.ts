@@ -35,8 +35,6 @@ export const useFecthApis = () => {
       .then((res) => setUsersData(res))
       .catch((err) => console.error(err));
   }, []);
-  console.log(usersData);
-
   return {
     allTeams,
     allProjects,

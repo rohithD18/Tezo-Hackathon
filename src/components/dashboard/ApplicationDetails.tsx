@@ -20,7 +20,6 @@ type Props = {
   // selectedRatingValue?:number
 };
 
-
 const ApplicationDetails: React.FC<Props> = (props: Props) => {
   const {
     setIsApplicationDetails,
@@ -35,10 +34,10 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
 
   function isIsEventManagement(data: any): data is EventManagement {
     return (
-      typeof data === 'object' &&
-      'captain' in data &&
-      'teamName' in data &&
-      'status' in data
+      typeof data === "object" &&
+      "captain" in data &&
+      "teamName" in data &&
+      "status" in data
     );
   }
   React.useEffect(() => {
@@ -58,14 +57,12 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     };
 
     document.addEventListener("click", handleOutsideClick);
-
- 
   }, [setIsApplicationDetails]);
 
   useEffect(() => {
     if (isProjectManagement || isEventManagement) {
       const filteredProject = Projects.filter((event: IProject) => {
-        if (event.TeamName === (appliDetailsData as IEvents )?.TeamName) {
+        if (event.TeamName === (appliDetailsData as IEvents)?.TeamName) {
           console.log("inside");
           return event;
         }
@@ -74,9 +71,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
     }
   }, [appliDetailsData, isEventManagement, isProjectManagement]);
 
-
   const [filteredEvent, setFilteredEvent] = useState<IProject[] | null>(null);
-
 
   // const formattedDate = useMemo(() => {
   //   let g= isIsEventManagement(appliDetailsData)  ? appliDetailsData?.review:((appliDetailsData as IProject?appliDetailsData?.review:undefined))
@@ -88,8 +83,6 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
   //   }
   //   return "";
   // }, [appliDetailsData?.SubmissionDate]);
-
-
 
   const formattedTime = useMemo(() => {
     if (appliDetailsData?.SubmissionDate) {
@@ -286,7 +279,7 @@ const ApplicationDetails: React.FC<Props> = (props: Props) => {
             </button>
           </div>
         ) : (
-          isEventManagement && 
+          isEventManagement &&
           appliDetailsData?.review === true &&
           appliDetailsData?.Status === "Completed" && (
             <p className="descriptionHeading">

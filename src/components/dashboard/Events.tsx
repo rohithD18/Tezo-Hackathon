@@ -8,18 +8,28 @@ import DashboardNav from "./DashboardNav";
 import Feedback from "../../assets/Feedback.png";
 import Feedback1 from "../../assets/Feedback1.png";
 import EventSchedulePopUp from "./EventSchedulePopUp";
-// import { getArrayItems } from "../../services/Services";
-import { EventsData as Data } from "../../services/EventData";
 import ApplicationDetails from "./ApplicationDetails";
 import ViewBlur from "./ViewBlur";
 import HackathonContext from "../../services/Context/HackathonContext";
-import { EventManagement, IAllEvents, IAllTeams, ITeamMember } from "../../services/Interface/HackathonInterface";
-import { addEvents, getAllUsers, getEvents, getPointOfATeam, getTeamById, getTeamMembersByTeam, getUserById } from "../../services/Services";
+import {
+  EventManagement,
+  IAllEvents,
+  IAllTeams,
+  ITeamMember,
+} from "../../services/Interface/HackathonInterface";
+import {
+  addEvents,
+  getAllUsers,
+  getEvents,
+  getPointOfATeam,
+  getTeamById,
+  getTeamMembersByTeam,
+  getUserById,
+} from "../../services/Services";
 import { TeamMemberRole } from "../../services/enums";
 import { getTodayDate } from "@mui/x-date-pickers/internals";
 import dayjs from "dayjs";
 import { getLoggedInId } from "../../services/FormServices";
-
 
 const Events = () => {
   const hackathonContext = useContext(HackathonContext);
@@ -34,7 +44,7 @@ const Events = () => {
     Upcoming: 0,
     Pending: 0,
   });
-  
+
   const [displayOnEvent, setDisplayOnEvent] = useState<EventManagement[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState<EventManagement[]>([]);
@@ -52,36 +62,41 @@ const Events = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [scheduleEvent, setScheduleEvent] = useState<boolean>(false);
   const [EventsData, setEventsData] = useState<EventManagement[]>([]);
-  const [ex,setEx]=useState<EventManagement[]>([]);
+  const [ex, setEx] = useState<EventManagement[]>([]);
   const [addItem, setAddItem] = useState<boolean>(false);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   // const [selectedRating, setSelectedRating]=useState<number>(0);
-  useEffect(()=>{
+  useEffect(() => {
     getEvents().then((res: IAllEvents[]) => {
       let array: EventManagement[] = [];
       let promises = res.map((item: IAllEvents, index: number) => {
         return getTeamMembersByTeam(item.teamId).then((teamMembers) => {
-          const captain = teamMembers.find((teamMember) => teamMember.role === TeamMemberRole.Captain);
+          const captain = teamMembers.find(
+            (teamMember) => teamMember.role === TeamMemberRole.Captain
+          );
           if (captain) {
             return getUserById(captain.personId).then((captainInfo) => {
               return getTeamById(item.teamId).then((teamDetails: IAllTeams) => {
                 return getPointOfATeam(item.teamId).then((res) => {
-                const eventManagement: EventManagement = {
-                  data: item,
-                  captain: captainInfo.name,
-                  teamName: teamDetails.teamName,
-                  status: new Date(item.time) < new Date() ? "Completed" : "Upcoming",
-                  review:res.projectDemoScore?true:false
-                };
-                console.log(eventManagement, "event");
-                array.push(eventManagement);
+                  const eventManagement: EventManagement = {
+                    data: item,
+                    captain: captainInfo.name,
+                    teamName: teamDetails.teamName,
+                    status:
+                      new Date(item.time) < new Date()
+                        ? "Completed"
+                        : "Upcoming",
+                    review: res.projectDemoScore ? true : false,
+                  };
+                  console.log(eventManagement, "event");
+                  array.push(eventManagement);
+                });
               });
-            });
             });
           }
         });
-      },[]);
-    
+      }, []);
+
       // Wait for all promises to resolve
       Promise.all(promises).then(() => {
         // After all promises are resolved, update the state with the array
@@ -89,35 +104,31 @@ const Events = () => {
         console.log(array);
       });
     });
-    
-  
-    },[refreshData])
- 
+  }, [refreshData]);
+
   useEffect(() => {
     setCurrEventData(EventsData);
     // getArrayItems(EventsData);
     console.log(EventsData);
-    
   }, [EventsData]);
 
-  const updateEvents = (date:Date,selectedOption:string) => {
-    const data={
-      "teamId": parseInt(selectedOption),
-      "topic": "sample",
-      "time":  date
-    }
-    console.log("njhb")
+  const updateEvents = (date: Date, selectedOption: string) => {
+    const data = {
+      teamId: parseInt(selectedOption),
+      topic: "sample",
+      time: date,
+    };
+    console.log("njhb");
     // if (appliDetailsData == undefined) {
 
-    getLoggedInId()
-    .then((loggedInUserId) => {
-      loggedInUserId && addEvents(data,loggedInUserId).then(()=>{
-        setRefreshData(!refreshData)
-        
-      })
-    })
-      // const updatedItems = EventsData;
-      // setEventsData([...updatedItems, newitem]);
+    getLoggedInId().then((loggedInUserId) => {
+      loggedInUserId &&
+        addEvents(data, loggedInUserId).then(() => {
+          setRefreshData(!refreshData);
+        });
+    });
+    // const updatedItems = EventsData;
+    // setEventsData([...updatedItems, newitem]);
     // }
     // if (appliDetailsData != undefined) {
     //   const updateItems = EventsData.map((item) => {
@@ -172,33 +183,38 @@ const Events = () => {
     setStatusCounts(counts);
     setTotal(EventsData.length);
     const filtered = [...EventsData].sort((a, b) => {
-      const aValue = a.data.time instanceof Date ? a.data.time.getTime() :Infinity;
-      const bValue = b.data.time instanceof Date ? b.data.time.getTime() : Infinity;
-      return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+      const aValue =
+        a.data.time instanceof Date ? a.data.time.getTime() : Infinity;
+      const bValue =
+        b.data.time instanceof Date ? b.data.time.getTime() : Infinity;
+      return sortOrder === "asc" ? aValue - bValue : bValue - aValue;
     });
-    console.log(filtered)
+    console.log(filtered);
     setCurrEventData(filtered);
   }, [EventsData, sortOrder]);
   const handleFilterClick = (status: string) => {
-   
     setActiveFilter(status);
     if (status === "All") {
       const filtered = [...EventsData].sort((a, b) => {
-        const aValue = a.data.time  instanceof Date ? a.data.time .getTime() :Infinity;
-        const bValue = b.data.time  instanceof Date ? b.data.time .getTime() : Infinity;
-        return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+        const aValue =
+          a.data.time instanceof Date ? a.data.time.getTime() : Infinity;
+        const bValue =
+          b.data.time instanceof Date ? b.data.time.getTime() : Infinity;
+        return sortOrder === "asc" ? aValue - bValue : bValue - aValue;
       });
       setCurrEventData(filtered);
       hackathonContext.setActivePage(0);
       hackathonContext.setItemOffset(0);
     } else {
-      const filtered = [...EventsData].filter(
-        (event) => event.status === status
-      ).sort((a, b) => {
-        const aValue = a.data.time  instanceof Date ? a.data.time .getTime() :Infinity;
-        const bValue = b.data.time  instanceof Date ? b.data.time .getTime() : Infinity;
-        return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
-      });
+      const filtered = [...EventsData]
+        .filter((event) => event.status === status)
+        .sort((a, b) => {
+          const aValue =
+            a.data.time instanceof Date ? a.data.time.getTime() : Infinity;
+          const bValue =
+            b.data.time instanceof Date ? b.data.time.getTime() : Infinity;
+          return sortOrder === "asc" ? aValue - bValue : bValue - aValue;
+        });
       setCurrEventData(filtered);
       hackathonContext.setActivePage(0);
       hackathonContext.setItemOffset(0);
@@ -398,9 +414,7 @@ const Events = () => {
                 </td>
                 <td className="tableRowTitle">{event.data.topic}</td>
                 <td className="tableRowTitle">
-                  {event.data.time 
-                    ? event.data.time .toLocaleString()
-                    : "--"}
+                  {event.data.time ? event.data.time.toLocaleString() : "--"}
                 </td>
 
                 <td className="statusTitle">

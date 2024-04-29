@@ -27,11 +27,13 @@ import {
 import { HackathonContextProvider } from "./services/Context/HackathonContext";
 import ShimmerCardUI from "./components/ShimmerCardUI";
 import PageNotFound from "./components/PageNotFound";
+import { useFecthApis } from "./services/CustomHooks";
 
 export const pca = new PublicClientApplication(msalConfig);
 
 const App: React.FC = () => {
   const Dashboard = lazy(() => import("./components/dashboard/Dashboard"));
+  const { usersData } = useFecthApis();
 
   return (
     <div className="App">
@@ -44,7 +46,23 @@ const App: React.FC = () => {
           <NavBarCopy />
           <HackathonContextProvider>
             <Routes>
-              <Route path="/" Component={() => <HomePage />} />
+              <Route
+                path="/"
+                Component={() => (
+                  <HomePage
+                    isRegister={
+                      usersData?.filter(
+                        (item) =>
+                          item.email ===
+                          localStorage
+                            .getItem("username")
+                            ?.toString()
+                            .toLocaleLowerCase()
+                      )[0]?.isRegistered
+                    }
+                  />
+                )}
+              />
               <Route path="/registration-form" Component={RegistrationForm} />
               <Route path="/schedule" Component={Schedule} />
               <Route path="/teams" Component={MyTeam} />

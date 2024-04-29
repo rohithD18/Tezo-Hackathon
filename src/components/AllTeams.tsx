@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import "../styles/AllTeams.css";
 import PaginationSection from "./pagination/PaginationSection";
 import TeamCard from "./TeamCard";
-// import { TeamsData } from "../services/Const";
-import { ITeamData } from "../services/Interface/TeamData";
 import ShimmerCardUI from "./ShimmerCardUI";
 import { getTeams, getAllTeamMembers } from "../services/Services";
 import { IAllTeams } from "../services/Interface/HackathonInterface";

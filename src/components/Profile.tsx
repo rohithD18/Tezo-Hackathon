@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Profile.css";
 import image from "../assets/image.png";
-import { Teams } from "../services/Data";
 import { ITeamMems, IUsers } from "../Interfaces";
 import { userName } from "../services/Profile";
 import { userEmail } from "../services/Profile";
-import { getTeamById, getTeamMembersByTeam, getUserById } from "../services/Services";
-import { getLoggedInId, getMyTeamId, useFetchTeamDetails } from "../services/FormServices";
-import { IAllUsers, ITeamMember } from "../services/Interface/HackathonInterface";
+import {
+  getTeamById,
+  getTeamMembersByTeam,
+  getUserById,
+} from "../services/Services";
+import {
+  getLoggedInId,
+  getMyTeamId,
+  useFetchTeamDetails,
+} from "../services/FormServices";
+import {
+  IAllUsers,
+  ITeamMember,
+} from "../services/Interface/HackathonInterface";
 import { TeamMemberRole } from "../services/enums";
 const Profile = () => {
   // const Name: string = "Venkatesh";
-  const {teamNameFetch,teamMembersFetch}=useFetchTeamDetails();
+  const { teamNameFetch, teamMembersFetch } = useFetchTeamDetails();
   // const TeamName: string = "Team One";
   // const Email: string = "venkatesh.g@gmail.com";
   // const [teamName, setTeamName] = useState<string>();
   // const [teamMembers, setTeamMembers] = useState<ITeamMember[] >();
- 
 
   useEffect(() => {
     // getLoggedInId().then((res) => { if(res){
@@ -26,15 +35,15 @@ const Profile = () => {
     //       const getUserPromises = teamData.map((item: ITeamMember) =>
     //         getUserById(item.personId).then((userData: IAllUsers) => ({
     //           ...item,
-    //           userData: userData 
+    //           userData: userData
     //         }))
-    //       ); 
+    //       );
     //       Promise.all(getUserPromises).then((updatedTeamMembers) => {
     //        setTeamMembers(updatedTeamMembers)
     //       });
     //     });
     //     getTeamById(res).then((teamData) => {
-    //       setTeamName(teamData.teamName);  
+    //       setTeamName(teamData.teamName);
     //     });
     //   }
     // });
@@ -44,10 +53,6 @@ const Profile = () => {
     //  setTeamName(teamNameFetch);
     //  setTeamMembers(teamMembersFetch)
     //   }
-    
-    
-    
-    
     // Teams.forEach((item) => {
     //   if (TeamName === item.TeamName) {
     //     setTeamMembers(item.TeamMembers);
@@ -77,7 +82,7 @@ const Profile = () => {
       <label className="title">My Team {`(${teamNameFetch})`} </label>
       <div className="row">
         {teamMembersFetch &&
-          teamMembersFetch.map((item: ITeamMember, index:number) => (
+          teamMembersFetch.map((item: ITeamMember, index: number) => (
             <div
               className="cardStyling  col-sm-3 mb-3"
               key={index}
@@ -93,10 +98,14 @@ const Profile = () => {
               <div className="memberDetails">
                 <label className="name">{item.userData?.name}</label>
                 <label className="emailStyling">{item.userData?.email}</label>
-                <label className="empIdStyling">Emp. ID {item.userData?.employeeId}</label>
+                <label className="empIdStyling">
+                  Emp. ID {item.userData?.employeeId}
+                </label>
               </div>
 
-              {item.role===TeamMemberRole.Captain && <label className="captain">captain</label>}
+              {item.role === TeamMemberRole.Captain && (
+                <label className="captain">captain</label>
+              )}
               {index === teamMembersFetch.length - 1 && (
                 <label className="invitationPending">Invitation Pending</label>
               )}

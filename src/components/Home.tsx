@@ -12,8 +12,6 @@ interface HomeProps {
   isRegister: boolean;
 }
 const Home: React.FC<HomeProps> = (props) => {
-  console.log(props.isRegister);
-
   const navigate = useNavigate();
   const [members, setMembers] = useState<ITeamMembers[]>(teamMembersArray);
   const visibleImages = members.slice(0, 3);
@@ -23,6 +21,10 @@ const Home: React.FC<HomeProps> = (props) => {
   const [flag, setFlag] = useState<boolean>();
   const [date, setDate] = useState<string>("");
   const { usersData } = useFecthApis();
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    usersData.length > 0 ? setLoading(false) : setLoading(true);
+  }, [usersData]);
   useEffect(() => {
     if (props.isRegister) {
       setTitle("Welcome to Tezo Hackathon!");
@@ -49,7 +51,7 @@ const Home: React.FC<HomeProps> = (props) => {
           <div className="members">
             <div className="profileContainer1">
               {visibleImages.map((item, index) =>
-                usersData.length > 0 ? (
+                !loading ? (
                   <img
                     src={item.profileUrl}
                     key={index}
@@ -67,7 +69,7 @@ const Home: React.FC<HomeProps> = (props) => {
                 )
               )}
             </div>
-            {usersData.length > 0 ? (
+            {!loading ? (
               <label className="noOfMembers">
                 {" "}
                 + {members.length} participating
@@ -76,17 +78,17 @@ const Home: React.FC<HomeProps> = (props) => {
               <Skeleton variant="rectangular" />
             )}
           </div>
-          {usersData.length > 0 ? (
+          {!loading ? (
             <h1 className="header">{title}</h1>
           ) : (
             <Skeleton variant="rectangular" className="header" />
           )}
-          {usersData.length > 0 ? (
+          {!loading ? (
             <p className="description">{description}</p>
           ) : (
             <Skeleton animation="wave" />
           )}
-          {usersData.length > 0 ? (
+          {!loading ? (
             <button onClick={handleClick} id="registerBtn">
               {buttonValue}
             </button>

@@ -11,27 +11,16 @@ import RemainingTime from "./RemainingTime";
 import { eventDate } from "../services/Profile";
 import { getLoggedInId } from "../services/FormServices";
 import { useFecthApis } from "../services/CustomHooks";
-
-const HomePage: React.FC = () => {
+interface IHomeProps {
+  isRegister: boolean;
+}
+const HomePage: React.FC<IHomeProps> = (props: IHomeProps) => {
   const formattedDate = new Date(eventDate);
   const formattedStartDate = `${formattedDate.getFullYear()}-${
     formattedDate.getMonth() + 1 < 10 ? "0" : ""
   }${formattedDate.getMonth() + 1}-${
     formattedDate.getDate() < 10 ? "0" : ""
   }${formattedDate.getDate()}`;
-  const { usersData } = useFecthApis();
-  const isRegister: boolean = usersData?.filter(
-    (item) =>
-      item.email ===
-      localStorage.getItem("username")?.toString().toLocaleLowerCase()
-  )[0]?.isRegistered;
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
   function getRandomColor() {
     const letters = "0123456789ABCDEF";
     let color = "#";
@@ -42,7 +31,7 @@ const HomePage: React.FC = () => {
   }
   return (
     <div className="homePageDiv">
-      <Home isRegister={isRegister} />
+      <Home isRegister={props.isRegister} />
       {/* <Home isRegister={isRegister} /> */}
       {/* <div className="scrollContainer">
         <img

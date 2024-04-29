@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../styles/TeamCard.css";
-import { ITeamData } from "../services/Interface/TeamData";
 import star01 from "../assets/star01.png";
 import Ellipse810 from "../assets/Ellipse810.png";
 import { FaHashtag } from "react-icons/fa";
